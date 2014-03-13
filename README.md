@@ -7,13 +7,13 @@ by using great guzzle/guzzle webservice description, leading to a cool restful i
 
 to "talk" with afterbuy you'll need to set following parameters in your parameters.yml
 
-afterbuy_shop_uri: 'https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx'
-afterbuy_xml_uri: 'https://api.afterbuy.de/afterbuy/ABInterface.aspx'
-afterbuy_partner_id: [YOUR_PARTNER_ID]
-afterbuy_partner_pass: [YOUR_PARTNER_PASS]
-afterbuy_user_id: [YOUR_USER_ID]
-afterbuy_user_password: [YOUR_USER_PASS]
-afterbuy_marker_id: [YOUR_MARKER_ID]
-afterbuy_check_vid: 1
-afterbuy_detail_level: 0
-afterbuy_error_language: DE
+    afterbuy_shop_uri: 'https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx'
+    afterbuy_xml_uri: 'https://api.afterbuy.de/afterbuy/ABInterface.aspx'
+    afterbuy_partner_id: [YOUR_PARTNER_ID]
+    afterbuy_partner_pass: [YOUR_PARTNER_PASS]
+    afterbuy_user_id: [YOUR_USER_ID]
+    afterbuy_user_password: [YOUR_USER_PASS]
+    afterbuy_marker_id: [YOUR_MARKER_ID]
+    afterbuy_check_vid: 1
+    afterbuy_detail_level: 0
+    afterbuy_error_language: DE
