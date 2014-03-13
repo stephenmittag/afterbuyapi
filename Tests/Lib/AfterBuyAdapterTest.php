@@ -1,10 +1,10 @@
 <?php
 
-namespace Wk\AfterBuyBundle\Tests\Lib;
+namespace Wk\AfterBuyApi\Tests\Lib;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Wk\AfterBuyBundle\Lib\AfterBuyAdapter;
-use Wk\AfterBuyBundle\Lib\AfterBuyConnection;
+use Wk\AfterBuyApi\Lib\AfterBuyAdapter;
+use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
  * Class AfterBuyAdapterTest

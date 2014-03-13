@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Wk\AfterBuyBundle\Lib;
+namespace Wk\AfterBuyApi\Lib;
 
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;

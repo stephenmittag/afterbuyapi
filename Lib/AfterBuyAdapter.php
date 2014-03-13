@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterBuyBundle\Lib;
+namespace Wk\AfterBuyApi\Lib;
 
 /**
  * Class AfterBuyAdapter

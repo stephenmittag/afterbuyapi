@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterBuyBundle\Controller;
+namespace Wk\AfterBuyApi\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -17,7 +17,7 @@ class DefaultController extends Controller
      */
     public function getTimeAction()
     {
-        /** @var Wk\AfterBuyBundle\Lib\AfterBuyConnection $connection */
+        /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
         $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
         $connection->setBaseUrl('xml');
 
@@ -43,7 +43,7 @@ class DefaultController extends Controller
             $parameters = json_decode($parameters, true);
 
             if (!is_null($parameters)) {
-                /** @var Wk\AfterBuyBundle\Lib\AfterBuyConnection $connection */
+                /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $connection->setBaseUrl('xml');
 
@@ -73,7 +73,7 @@ class DefaultController extends Controller
             $parameters = json_decode($parameters, true);
 
             if (!is_null($parameters)) {
-                /** @var Wk\AfterBuyBundle\Lib\AfterBuyConnection $connection */
+                /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $connection->setBaseUrl('xml');
 
@@ -103,7 +103,7 @@ class DefaultController extends Controller
             $parameters = json_decode($parameters, true);
 
             if (!is_null($parameters)) {
-                /** @var Wk\AfterBuyBundle\Lib\AfterBuyConnection $connection */
+                /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $result = $connection->sendNotification($parameters);
 

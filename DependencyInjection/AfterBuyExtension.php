@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterBuyBundle\DependencyInjection;
+namespace Wk\AfterBuyApi\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;

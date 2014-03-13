@@ -1,14 +1,14 @@
 <?php
 
 
-namespace Wk\AfterBuyBundle\Tests\Lib;
+namespace Wk\AfterBuyApi\Tests\Lib;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Guzzle\Http\Message\Response;
 use Guzzle\Plugin\Mock\MockPlugin;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
-use Wk\AfterBuyBundle\Lib\AfterBuyConnection;
+use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
  * Class AfterBuyConnectionTest
