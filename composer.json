@@ -1,0 +1,29 @@
+{
+    "name": "asgoodasnu/afterbuyapi",
+    "type": "symfony-bundle",
+    "description": "Afterbuy Api for Symfony2",
+    "keywords":     ["afterbuy"],
+    "homepage": "https://github.com/asgoodasnu/afterbuyapi",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Simon Chrzanowski",
+            "email": "simon@wirkaufens.de",
+            "homepage": "http://wirkaufens.de"
+        },
+        {
+            "name": "Github Community",
+            "homepage": "https://github.com/asgoodasnu/afterbuyapi/contributors"
+        }
+    ],
+    "require": {
+	"guzzle/guzzle": "v3.8.1",
+	"monolog/monolog": "~1.7"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": { "Wk\\AfterbuyApi\\": "" }
+    }
+}

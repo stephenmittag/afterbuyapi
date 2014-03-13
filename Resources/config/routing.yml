@@ -1,0 +1,19 @@
+wk_afterbuy_time:
+    pattern:  /afterbuy/time/
+    defaults: { _controller: AfterBuyBundle:Default:getTime }
+
+wk_afterbuy_solditems_get:
+    pattern:  /afterbuy/solditems/
+    defaults: { _controller: AfterBuyBundle:Default:getSoldItems }
+    methods:  [POST]
+
+wk_afterbuy_solditems_update:
+    pattern:  /afterbuy/solditems/update/
+    defaults: { _controller: AfterBuyBundle:Default:updateSoldItems }
+    #methods:  [PUT]
+
+wk_afterbuy_order_create:
+    pattern:  /afterbuy/order/create/
+    defaults: { _controller: AfterBuyBundle:Default:createOrder }
+    #methods:  [POST]
+
