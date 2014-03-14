@@ -3,7 +3,6 @@
 
 namespace Wk\AfterBuyApi\Tests\Lib;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Guzzle\Http\Message\Response;
 use Guzzle\Plugin\Mock\MockPlugin;
 use Guzzle\Service\Client;
@@ -13,7 +12,7 @@ use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 /**
  * Class AfterBuyConnectionTest
  */
-class AfterBuyConnectionTest extends WebTestCase
+class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase 
 {
 
     /**

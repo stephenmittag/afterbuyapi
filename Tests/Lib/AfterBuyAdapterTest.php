@@ -2,14 +2,13 @@
 
 namespace Wk\AfterBuyApi\Tests\Lib;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterBuyApi\Lib\AfterBuyAdapter;
 use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
  * Class AfterBuyAdapterTest
  */
-class AfterBuyAdapterTest extends WebTestCase
+class AfterBuyAdapterTest extends \PHPUnit_Framework_TestCase 
 {
 
     /**
