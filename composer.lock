@@ -3,8 +3,57 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "3654e5aa750d4af0bab940bd608dd7c4",
+    "hash": "a8209d6ebea64199b5e4e933da12bbab",
     "packages": [
+        {
+            "name": "asgoodasnu/shopifyapi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asgoodasnu/shopifyapi.git",
+                "reference": "10dbfaa3f675cf391a9982b8919cf3c368757a47"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asgoodasnu/shopifyapi/zipball/10dbfaa3f675cf391a9982b8919cf3c368757a47",
+                "reference": "10dbfaa3f675cf391a9982b8919cf3c368757a47",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "v3.8.1",
+                "monolog/monolog": "~1.7"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.0.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Wk\\ShopifyApi\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Chrzanowski",
+                    "email": "simon@wirkaufens.de",
+                    "homepage": "http://wirkaufens.de"
+                },
+                {
+                    "name": "Github Community",
+                    "homepage": "https://github.com/asgoodasnu/shopifyapi/contributors"
+                }
+            ],
+            "description": "Shopify Api for Symfony2",
+            "homepage": "https://github.com/asgoodasnu/shopifyapi",
+            "keywords": [
+                "shopify"
+            ],
+            "time": "2014-03-14 10:42:16"
+        },
         {
             "name": "guzzle/guzzle",
             "version": "v3.8.1",
@@ -890,9 +939,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "asgoodasnu/shopifyapi": 20
+    },
     "platform": [
 
     ],
