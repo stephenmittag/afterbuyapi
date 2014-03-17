@@ -311,16 +311,16 @@
     "packages-dev": [
         {
             "name": "phpunit/php-code-coverage",
-            "version": "2.0.1",
+            "version": "2.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "23e6ac9513df2af67f9f713347f3e4bf4b59784c"
+                "reference": "2c20ba4872d09d1d3d7ceda5a0c5f82d9a8ff31f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/23e6ac9513df2af67f9f713347f3e4bf4b59784c",
-                "reference": "23e6ac9513df2af67f9f713347f3e4bf4b59784c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/2c20ba4872d09d1d3d7ceda5a0c5f82d9a8ff31f",
+                "reference": "2c20ba4872d09d1d3d7ceda5a0c5f82d9a8ff31f",
                 "shasum": ""
             },
             "require": {
@@ -371,7 +371,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-07 16:03:14"
+            "time": "2014-03-17 10:25:49"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -553,16 +553,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.0.7",
+            "version": "4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "726abb62e9ed37125cd5a75b01f3c0ed36050726"
+                "reference": "9df79a9df3c1c87bedc292b95134404a370de132"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/726abb62e9ed37125cd5a75b01f3c0ed36050726",
-                "reference": "726abb62e9ed37125cd5a75b01f3c0ed36050726",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9df79a9df3c1c87bedc292b95134404a370de132",
+                "reference": "9df79a9df3c1c87bedc292b95134404a370de132",
                 "shasum": ""
             },
             "require": {
@@ -624,7 +624,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-12 15:09:38"
+            "time": "2014-03-17 10:28:16"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
