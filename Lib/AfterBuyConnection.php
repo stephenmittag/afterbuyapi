@@ -5,14 +5,13 @@ namespace Wk\AfterBuyApi\Lib;
 
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
-use Wk\ShopifyApi\Lib\base\NotifiedApi;
 use Monolog\Logger;
 
 /**
  * Class AfterBuyConnection
  * Implements the Singleton pattern
  */
-class AfterBuyConnection extends NotifiedApi
+class AfterBuyConnection
 {
 
     const MAX_ATTEMPS = 10;

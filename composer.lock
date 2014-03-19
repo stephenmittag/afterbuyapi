@@ -3,57 +3,8 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a8209d6ebea64199b5e4e933da12bbab",
+    "hash": "3654e5aa750d4af0bab940bd608dd7c4",
     "packages": [
-        {
-            "name": "asgoodasnu/shopifyapi",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/asgoodasnu/shopifyapi.git",
-                "reference": "10dbfaa3f675cf391a9982b8919cf3c368757a47"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/asgoodasnu/shopifyapi/zipball/10dbfaa3f675cf391a9982b8919cf3c368757a47",
-                "reference": "10dbfaa3f675cf391a9982b8919cf3c368757a47",
-                "shasum": ""
-            },
-            "require": {
-                "guzzle/guzzle": "v3.8.1",
-                "monolog/monolog": "~1.7"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "4.0.*"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Wk\\ShopifyApi\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Simon Chrzanowski",
-                    "email": "simon@wirkaufens.de",
-                    "homepage": "http://wirkaufens.de"
-                },
-                {
-                    "name": "Github Community",
-                    "homepage": "https://github.com/asgoodasnu/shopifyapi/contributors"
-                }
-            ],
-            "description": "Shopify Api for Symfony2",
-            "homepage": "https://github.com/asgoodasnu/shopifyapi",
-            "keywords": [
-                "shopify"
-            ],
-            "time": "2014-03-14 10:42:16"
-        },
         {
             "name": "guzzle/guzzle",
             "version": "v3.8.1",
@@ -553,16 +504,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.0.8",
+            "version": "4.0.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "9df79a9df3c1c87bedc292b95134404a370de132"
+                "reference": "566b51d0237ce2af12a777ce2ea6fc49b787dbd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9df79a9df3c1c87bedc292b95134404a370de132",
-                "reference": "9df79a9df3c1c87bedc292b95134404a370de132",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/566b51d0237ce2af12a777ce2ea6fc49b787dbd9",
+                "reference": "566b51d0237ce2af12a777ce2ea6fc49b787dbd9",
                 "shasum": ""
             },
             "require": {
@@ -624,20 +575,20 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-03-17 10:28:16"
+            "time": "2014-03-18 15:45:22"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.0.3",
+            "version": "2.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "5888b2501d41c34f9132c959b073b23de83235aa"
+                "reference": "c5e6274b8f2bf983cf883bb375cf44f99aff200e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5888b2501d41c34f9132c959b073b23de83235aa",
-                "reference": "5888b2501d41c34f9132c959b073b23de83235aa",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/c5e6274b8f2bf983cf883bb375cf44f99aff200e",
+                "reference": "c5e6274b8f2bf983cf883bb375cf44f99aff200e",
                 "shasum": ""
             },
             "require": {
@@ -681,7 +632,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2014-03-11 09:46:18"
+            "time": "2014-03-18 08:56:48"
         },
         {
             "name": "sebastian/diff",
@@ -939,9 +890,9 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "asgoodasnu/shopifyapi": 20
-    },
+    "stability-flags": [
+
+    ],
     "platform": [
 
     ],
