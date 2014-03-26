@@ -6,6 +6,7 @@ namespace Wk\AfterBuyApi\Lib;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
 use Monolog\Logger;
+use Symfony\Component\EventDispatcher\Event;
 
 /**
  * Class AfterBuyConnection
@@ -226,10 +227,20 @@ class AfterBuyConnection
     }
 
     /**
+     * @param Event $event
+     *
+     * @return bool
+     */
+    public function onOrderCreation (Event $event)
+    {
+        return $this->sendNotification($event->getBody());
+    }
+
+    /**
      * Send the request to AfterBuy when a new order has been created and the webhook has been triggered
      * @param array $notification
      *
-     * @return boolean
+     * @throws \Exception
      */
     public function sendNotification(array $notification)
     {
@@ -237,7 +248,7 @@ class AfterBuyConnection
         if (empty ($notification)) {
             $this->logger->addError("\nEmpty order parameteres from Shopify");
 
-            return false;
+            throw new \Exception("Empty notification when trying to send notification to AfterBuy");
         }
 
         $params = array(
@@ -282,13 +293,13 @@ class AfterBuyConnection
             $resp = $this->adapter->getResponse($response->getBody());
 
             if (($resp['success'] == true) || (in_array($resp['message'], $this->errorMessagesOk))) {
-                return true;
+                return;
             }
 
             sleep(0.5);
         } while (($response->getStatusCode() !== 200) && ($cont <= self::MAX_ATTEMPS));
 
-        return false;
+        throw new \Exception("There was an error when trying to send notification to AfterBuy. Order not created or max number of attempts reached");
     }
 
     /**

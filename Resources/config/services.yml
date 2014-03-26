@@ -18,3 +18,5 @@ services:
         calls:
             - [setApiUrls, ["%wk_afterbuy.afterbuy.url%"]]
             - [setParams, ["%wk_afterbuy.afterbuy.params%"]]
+        tags:
+            - { name: kernel.event_listener, event: shopify.events.notify, method: onOrderCreation }
