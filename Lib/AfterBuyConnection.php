@@ -51,9 +51,9 @@ class AfterBuyConnection
      * List of error messages that are OK to accept the respond from AfterBuy
      */
     private $errorMessagesOk = array(
-                                  'Diese Bestellung wurde bereits erfasst.',
-                                  'Diese Bestellung wurde bereits erfasst, oder wird gerade bearbeitet.',
-                               );
+        'Diese Bestellung wurde bereits erfasst.',
+        'Diese Bestellung wurde bereits erfasst, oder wird gerade bearbeitet.',
+    );
 
     /**
      * Constructor for the class
@@ -229,18 +229,38 @@ class AfterBuyConnection
     /**
      * @param Event $event
      *
-     * @return bool
+     * @return bool|void
+     * @throws \Exception
      */
     public function onOrderCreation (Event $event)
     {
-        return $this->sendNotification($event->getBody());
+        // check if we have the Schutzclick flag
+        if ($event->hasSchutzklickFlag()) {
+            // send the first notification to afterbuy with the product itself
+            $status = $this->sendNotification($event->getBodyWithoutSchutzklick());
+
+            foreach ($event->getBodyOnlySchutzklick() as $body) {
+                // send the notification with the insurance
+                $status = $status && $this->sendNotification($body);
+            }
+
+        } else {
+            // send the request to after buy and get the status
+            $status = $this->sendNotification($event->getBody());
+        }
+
+        if (!$status) {
+            throw new \Exception("Error when trying to create the order in AfterBuy. Not all the item could be notified to AfterBuy.");
+        }
+
+        return $status;
     }
 
     /**
      * Send the request to AfterBuy when a new order has been created and the webhook has been triggered
      * @param array $notification
      *
-     * @throws \Exception
+     * @return bool
      */
     public function sendNotification(array $notification)
     {
@@ -248,7 +268,7 @@ class AfterBuyConnection
         if (empty ($notification)) {
             $this->logger->addError("\nEmpty order parameteres from Shopify");
 
-            throw new \Exception("Empty notification when trying to send notification to AfterBuy");
+            return false;
         }
 
         $params = array(
@@ -293,13 +313,13 @@ class AfterBuyConnection
             $resp = $this->adapter->getResponse($response->getBody());
 
             if (($resp['success'] == true) || (in_array($resp['message'], $this->errorMessagesOk))) {
-                return;
+                return true;
             }
 
             sleep(0.5);
         } while (($response->getStatusCode() !== 200) && ($cont <= self::MAX_ATTEMPS));
 
-        throw new \Exception("There was an error when trying to send notification to AfterBuy. Order not created or max number of attempts reached");
+        return false;
     }
 
     /**
