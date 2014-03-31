@@ -12,7 +12,7 @@ use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 /**
  * Class AfterBuyConnectionTest
  */
-class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase 
+class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -38,13 +38,13 @@ XML;
 
         $mock = new MockPlugin();
         $mock->addResponse(new Response(
-            200,
-            array(
-                'Location'     => 'afterbuy.de',
-                'Content-Type' => 'application/json',
-            ),
-            $xmlResponse
-        ));
+                200,
+                array(
+                    'Location'     => 'afterbuy.de',
+                    'Content-Type' => 'application/json',
+                ),
+                $xmlResponse
+            ));
 
         $client->addSubscriber($mock);
 
@@ -79,20 +79,20 @@ XML;
 
         $api = new AfterBuyConnection();
         $logger = $this->getMockBuilder('Monolog\Logger')
-                       ->disableOriginalConstructor()
-                       ->getMock();
+            ->disableOriginalConstructor()
+            ->getMock();
 
         $api->setLogger($logger);
         $client = new Client();
 
         $mock = new MockPlugin();
         $mock->addResponse(new Response(
-            200,
-            array(
-                'Location' => 'https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx',
-            ),
-            $xmlString
-        ));
+                200,
+                array(
+                    'Location' => 'https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx',
+                ),
+                $xmlString
+            ));
 
         $client->addSubscriber($mock);
 
@@ -108,7 +108,7 @@ XML;
     }
 
     /**
-     * test for the getAfterBuyTimeRequest method
+     * Test for the getAfterBuyTimeRequest method
      */
     public function testGetAfterBuyTimeRequest ()
     {
@@ -123,7 +123,7 @@ XML;
     }
 
     /**
-     * tets for the getAfterBuySoldItems method
+     * Test for the getAfterBuySoldItems method
      */
     public function testGetAfterBuySoldItems ()
     {
@@ -159,4 +159,4 @@ XML;
         $this->assertTrue($reader->isValid());
     }
 
-} 
+}
