@@ -8,7 +8,7 @@ use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 /**
  * Class AfterBuyAdapterTest
  */
-class AfterBuyAdapterTest extends \PHPUnit_Framework_TestCase 
+class AfterBuyAdapterTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -86,4 +86,4 @@ XML;
 
     }
 
-} 
+}

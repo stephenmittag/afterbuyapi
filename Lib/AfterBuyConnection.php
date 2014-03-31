@@ -15,7 +15,7 @@ use Symfony\Component\EventDispatcher\Event;
 class AfterBuyConnection
 {
 
-    const MAX_ATTEMPS = 10;
+    const MAX_ATTEMPTS = 10;
 
     /** @var AfterBuyAdapter to generate the requests and responses out of the AfterBuyConnection */
     protected $adapter;
@@ -319,7 +319,7 @@ class AfterBuyConnection
             }
 
             sleep(0.5);
-        } while (($response->getStatusCode() !== 200) && ($cont <= self::MAX_ATTEMPS));
+        } while (($response->getStatusCode() !== 200) && ($cont <= self::MAX_ATTEMPTS));
 
         return false;
     }
