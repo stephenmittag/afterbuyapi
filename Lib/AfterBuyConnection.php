@@ -234,12 +234,14 @@ class AfterBuyConnection
      */
     public function onOrderCreation (Event $event)
     {
-        // check if we have the Schutzclick flag
-        if ($event->hasSchutzklickFlag()) {
-            // send the first notification to afterbuy with the product itself
-            $status = $this->sendNotification($event->getBodyWithoutSchutzklick());
+        $schutzklickVendorName = "R+V";
 
-            foreach ($event->getBodyOnlySchutzklick() as $body) {
+        // check if we have the Schutzclick flag
+        if ($event->hasVendorProducts($schutzklickVendorName)) {
+            // send the first notification to afterbuy with the product itself
+            $status = $this->sendNotification($event->getBodyWithoutVendorProducts($schutzklickVendorName));
+
+            foreach ($event->getBodyOnlyVendorProducts($schutzklickVendorName) as $body) {
                 // send the notification with the insurance
                 $status = $status && $this->sendNotification($body);
             }
