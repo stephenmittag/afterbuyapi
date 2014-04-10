@@ -3,10 +3,13 @@
 
 namespace Wk\AfterBuyApi\Tests\Lib;
 
-use Guzzle\Http\Message\Response;
-use Guzzle\Plugin\Mock\MockPlugin;
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
+use GuzzleHttp\Message\Response;
+use GuzzleHttp\Client;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Stream;
+use GuzzleHttp\Command\Event\ProcessEvent;
+use GuzzleHttp\Event\BeforeEvent;
 use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
@@ -33,78 +36,32 @@ class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
 </Afterbuy>
 XML;
 
-        $client = new Client();
-        $client->setDescription(ServiceDescription::factory(__DIR__. "/../../Resources/config/service.json"));
+        $tmpclient = new Client();
+        $tmpclient->getEmitter()->on('before', function (BeforeEvent $event)  use ($xmlResponse) {
+                $event->intercept(new Response(200, array(
+                            'Location'     => 'afterbuy.de',
+                            'Content-Type' => 'application/json',
+                        ), Stream\create($xmlResponse)));
+            });
 
-        $mock = new MockPlugin();
-        $mock->addResponse(new Response(
-                200,
-                array(
-                    'Location'     => 'afterbuy.de',
-                    'Content-Type' => 'application/json',
-                ),
-                $xmlResponse
-            ));
+        $json = file_get_contents(__DIR__. "/../../Resources/config/service.json");
+        $config = json_decode($json, true);
+        $description = new Description($config);
 
-        $client->addSubscriber($mock);
+        $client = new GuzzleClient($tmpclient, $description);
 
         // Create the command and supply the input
         $command = $client->getCommand('getSoldItems', json_decode($jsonRequest, true));
-        $this->assertTrue($command->getResponse()->isSuccessful());
-        $this->assertEquals('application/json', $command->getResponse()->getContentType());
 
-        $result = $command->getResult()->toArray();
-        $this->assertArrayHasKey("CallStatus", $result);
-        $this->assertEquals("Success", $result['CallStatus']);
+        $command->getEmitter()->on('process', function (ProcessEvent $event, $name) {
+            $this->assertEquals($event->getResponse()->getStatusCode(), 200);
+            $this->assertEquals($event->getResponse()->getHeader('Content-Type'),'application/json');
+            $result = json_decode(json_encode($event->getResponse()->xml()),true);
+            $this->assertArrayHasKey("CallStatus", $result);
+            $this->assertEquals("Success", $result['CallStatus']);
+        });
 
-    }
-
-    /**
-     * Test for sendNotification method
-     */
-    public function testSendNotification ()
-    {
-        $xmlString = <<<XML
-<?xml version='1.0'?>
-<document>
- <success>1</success>
- <title>Forty What?</title>
- <from>Joe</from>
- <to>Jane</to>
- <body>
-  I know that's the answer -- but what's the question?
- </body>
-</document>
-XML;
-
-        $api = new AfterBuyConnection();
-        $logger = $this->getMockBuilder('Monolog\Logger')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $api->setLogger($logger);
-        $client = new Client();
-
-        $mock = new MockPlugin();
-        $mock->addResponse(new Response(
-                200,
-                array(
-                    'Location' => 'https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx',
-                ),
-                $xmlString
-            ));
-
-        $client->addSubscriber($mock);
-
-        $request = $client->get('https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx');
-
-        /** @var \Guzzle\Http\Message\Response $response */
-        $response = $request->send();
-        $this->assertTrue($response->isSuccessful());
-
-        $response = $api->getAdapter()->getResponse($response->getBody());
-
-        $this->assertTrue(is_bool($response['success']));
+        $client->execute($command);
     }
 
     /**

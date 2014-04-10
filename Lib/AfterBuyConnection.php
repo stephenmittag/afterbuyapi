@@ -3,8 +3,9 @@
 
 namespace Wk\AfterBuyApi\Lib;
 
-use Guzzle\Service\Client;
-use Guzzle\Service\Description\ServiceDescription;
+use GuzzleHttp\Client;
+use GuzzleHttp\Command\Guzzle\GuzzleClient;
+use GuzzleHttp\Command\Guzzle\Description;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -22,7 +23,7 @@ class AfterBuyConnection
 
     protected static $instance = null;
 
-    /** @var  Guzzle\Service\Client */
+    /** @var  GuzzleHttp\Client */
     protected $client;
 
     protected $partnerId;
@@ -349,8 +350,11 @@ class AfterBuyConnection
     private function initClient ()
     {
         if (is_null($this->client)) {
-            $this->client = new Client();
-            $this->client->setDescription(ServiceDescription::factory(__DIR__. "/../Resources/config/service.json"));
+            $client = new Client();
+            $json = file_get_contents(__DIR__. "/../Resources/config/service.json");
+            $config = json_decode($json, true);
+            $description = new Description($config);
+            $this->client = new GuzzleClient($client, $description);
         }
     }
 }
