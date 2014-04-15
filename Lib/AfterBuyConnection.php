@@ -6,6 +6,7 @@ namespace Wk\AfterBuyApi\Lib;
 use GuzzleHttp\Client;
 use GuzzleHttp\Command\Guzzle\GuzzleClient;
 use GuzzleHttp\Command\Guzzle\Description;
+use GuzzleHttp\Command\Event\ProcessEvent;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -123,7 +124,6 @@ class AfterBuyConnection
     {
         if (!self::$instance instanceof self) {
             self::$instance = new self;
-            self::$instance->initClient();
         }
 
         return self::$instance;
@@ -136,9 +136,8 @@ class AfterBuyConnection
      */
     public function setBaseUrl ($apiName)
     {
-        $this->initClient();
         if (array_key_exists($apiName, $this->apiUrls)) {
-            $this->client->setBaseUrl($this->apiUrls[$apiName]);
+            $this->initClient($this->apiUrls[$apiName]);
         } else {
             throw new \RuntimeException(sprintf('Api "%s" not defined for AfterBuy', $apiName));
         }
@@ -174,14 +173,13 @@ class AfterBuyConnection
 
         try {
             $command = $params ? $this->client->getCommand($commandName, $params) : $this->client->getCommand($commandName);
-            $command->prepare();
-
-            $result = $command->getResult();
+            $command->getEmitter()->on('process', function (ProcessEvent $event, $name) {
+                    $event->setResult(json_decode($event->getResponse()->json(),true));
+                });
+            $result = $this->client->execute($command);
         } catch (\Exception $e) {
             return null;
         }
-
-        $result = $result->toArray();
 
         return $result['CallStatus'] == 'Success' ? (empty($result['Result']) ? array("OK") : $result['Result'] ) : array("Error");
     }
@@ -347,10 +345,10 @@ class AfterBuyConnection
     /**
      * Initialize the Guzzle client to perform the different calls
      */
-    private function initClient ()
+    private function initClient ($baseUrl)
     {
         if (is_null($this->client)) {
-            $client = new Client();
+            $client = new Client(array('base_url'=>$baseUrl));
             $json = file_get_contents(__DIR__. "/../Resources/config/service.json");
             $config = json_decode($json, true);
             $description = new Description($config);
