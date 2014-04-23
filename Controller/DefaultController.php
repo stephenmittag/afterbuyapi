@@ -21,10 +21,13 @@ class DefaultController extends Controller
         $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
         $connection->setBaseUrl('xml');
 
-        $result = $connection->executeCommand('getTime', array(
-                                                            "Request" => $connection->getAfterBuyTimeRequest(),
-                                                         )
-        );
+        try {
+            $result = $connection->executeCommand('getTime', array(
+                "Request" => $connection->getAfterBuyTimeRequest(),
+            ));
+        } catch(\Exception $e) {
+            $result = null;
+        }
 
         return $this->generateResponse($result);
     }
@@ -47,10 +50,13 @@ class DefaultController extends Controller
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $connection->setBaseUrl('xml');
 
-                $result = $connection->executeCommand('getSoldItems', array(
-                                                                         "Request" => $connection->getAfterBuySoldItems($parameters),
-                                                                      )
-                );
+                try {
+                    $result = $connection->executeCommand('getSoldItems', array(
+                        "Request" => $connection->getAfterBuySoldItems($parameters),
+                    ));
+                } catch(\Exception $e) {
+                    $result = null;
+                }
 
                 return $this->generateResponse($result);
             }
@@ -77,10 +83,13 @@ class DefaultController extends Controller
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $connection->setBaseUrl('xml');
 
-                $result = $connection->executeCommand('updateSoldItems', array(
-                                                                            "Request" => $connection->updateAfterBuySoldItems($parameters),
-                                                                         )
-                );
+                try {
+                    $result = $connection->executeCommand('updateSoldItems', array(
+                        "Request" => $connection->updateAfterBuySoldItems($parameters),
+                    ));
+                } catch(\Exception $e) {
+                    $result = null;
+                }
 
                 return $this->generateResponse($result);
             }
@@ -105,7 +114,12 @@ class DefaultController extends Controller
             if (!is_null($parameters)) {
                 /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
-                $result = $connection->sendNotification($parameters);
+
+                try {
+                    $result = $connection->sendNotification($parameters);
+                } catch(\Exception $e) {
+                    $result = null;
+                }
 
                 return $this->generateResponse($result);
             }
