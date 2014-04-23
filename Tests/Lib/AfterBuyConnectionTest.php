@@ -68,5 +68,4 @@ class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
 
         $this->assertTrue($reader->isValid());
     }
-
 }
