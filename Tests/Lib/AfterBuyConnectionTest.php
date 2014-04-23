@@ -17,53 +17,6 @@ use Wk\AfterBuyApi\Lib\AfterBuyConnection;
  */
 class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
 {
-
-    /**
-     * Test for the executeCommand method
-     */
-    public function testExecuteCommand ()
-    {
-        $jsonRequest = '{ "allItem": false, "filters": [ { "type": "order", "id": "334996053" } ] }';
-
-        $xmlResponse = <<<XML
-<?xml version="1.0" encoding="UTF-8"?>
-<Afterbuy>
-    <CallStatus>Success</CallStatus>
-    <CallName>getSoldItems</CallName>
-    <Result>
-        <Field>Test</Field>
-    </Result>
-</Afterbuy>
-XML;
-
-        $tmpclient = new Client();
-        $tmpclient->getEmitter()->on('before', function (BeforeEvent $event)  use ($xmlResponse) {
-                $event->intercept(new Response(200, array(
-                            'Location'     => 'afterbuy.de',
-                            'Content-Type' => 'application/json',
-                        ), Stream\create($xmlResponse)));
-            });
-
-        $json = file_get_contents(__DIR__. "/../../Resources/config/service.json");
-        $config = json_decode($json, true);
-        $description = new Description($config);
-
-        $client = new GuzzleClient($tmpclient, $description);
-
-        // Create the command and supply the input
-        $command = $client->getCommand('getSoldItems', json_decode($jsonRequest, true));
-
-        $command->getEmitter()->on('process', function (ProcessEvent $event, $name) {
-            $this->assertEquals($event->getResponse()->getStatusCode(), 200);
-            $this->assertEquals($event->getResponse()->getHeader('Content-Type'),'application/json');
-            $result = json_decode(json_encode($event->getResponse()->xml()),true);
-            $this->assertArrayHasKey("CallStatus", $result);
-            $this->assertEquals("Success", $result['CallStatus']);
-        });
-
-        $client->execute($command);
-    }
-
     /**
      * Test for the getAfterBuyTimeRequest method
      */
