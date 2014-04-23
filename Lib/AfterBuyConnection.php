@@ -9,12 +9,13 @@ use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Command\Event\ProcessEvent;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\Event;
+use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
 
 /**
  * Class AfterBuyConnection
  * Implements the Singleton pattern
  */
-class AfterBuyConnection
+class AfterBuyConnection extends GuzzleCommandClient
 {
 
     const MAX_ATTEMPTS = 10;
@@ -25,7 +26,7 @@ class AfterBuyConnection
     protected static $instance = null;
 
     /** @var  GuzzleHttp\Client */
-    protected $client;
+    protected $guzzleClient;
 
     protected $partnerId;
 
@@ -63,6 +64,8 @@ class AfterBuyConnection
     public function __construct()
     {
         $this->adapter = new AfterBuyAdapter();
+        $json = file_get_contents(__DIR__. "/../Resources/config/service.json");
+        parent::__construct($json);
     }
 
     /**
@@ -137,7 +140,7 @@ class AfterBuyConnection
     public function setBaseUrl ($apiName)
     {
         if (array_key_exists($apiName, $this->apiUrls)) {
-            $this->initClient($this->apiUrls[$apiName]);
+            parent::setBaseUrl($this->apiUrls[$apiName]);
         } else {
             throw new \RuntimeException(sprintf('Api "%s" not defined for AfterBuy', $apiName));
         }
@@ -146,9 +149,9 @@ class AfterBuyConnection
 
     /**
      * Getter for the client
-     * @return Client $client
+     * @return Client
      */
-    public function getClient()
+    public function getGuzzleClient()
     {
         return $this->client;
     }
@@ -157,31 +160,9 @@ class AfterBuyConnection
      * Setter for the client
      * @param Client $client
      */
-    public function setClient(Client $client)
+    public function setGuzzleClient(Client $client)
     {
         $this->client = $client;
-    }
-
-    /**
-     * @param string     $commandName
-     * @param null|array $params
-     *
-     * @return array|\stdClass
-     */
-    public function executeCommand ($commandName, $params = null)
-    {
-
-        try {
-            $command = $params ? $this->client->getCommand($commandName, $params) : $this->client->getCommand($commandName);
-            $command->getEmitter()->on('process', function (ProcessEvent $event, $name) {
-                    $event->setResult(json_decode($event->getResponse()->json(),true));
-                });
-            $result = $this->client->execute($command);
-        } catch (\Exception $e) {
-            return null;
-        }
-
-        return $result['CallStatus'] == 'Success' ? (empty($result['Result']) ? array("OK") : $result['Result'] ) : array("Error");
     }
 
     /**
@@ -296,7 +277,7 @@ class AfterBuyConnection
         $url = $this->apiUrls['shop'] . '?' . http_build_query($params);
 
         /** @var \Guzzle\Http\Message\Request $request */
-        $request = $this->client->get($url);
+        $request = $this->guzzleClient->get($url);
 
         // start the log
         $this->logger->addInfo("\n\n".date(DATE_RFC822)."\nOrder ID: " . $params['VID']);
@@ -340,19 +321,5 @@ class AfterBuyConnection
                     <DetailLevel>$this->detailLevel</DetailLevel>
                     <ErrorLanguage>$this->errorLanguage</ErrorLanguage>
                 </AfterbuyGlobal>";
-    }
-
-    /**
-     * Initialize the Guzzle client to perform the different calls
-     */
-    private function initClient ($baseUrl)
-    {
-        if (is_null($this->client)) {
-            $client = new Client(array('base_url'=>$baseUrl));
-            $json = file_get_contents(__DIR__. "/../Resources/config/service.json");
-            $config = json_decode($json, true);
-            $description = new Description($config);
-            $this->client = new GuzzleClient($client, $description);
-        }
     }
 }
