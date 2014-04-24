@@ -4,9 +4,6 @@
 namespace Wk\AfterBuyApi\Lib;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use GuzzleHttp\Command\Guzzle\Description;
-use GuzzleHttp\Command\Event\ProcessEvent;
 use Monolog\Logger;
 use Symfony\Component\EventDispatcher\Event;
 use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
@@ -25,7 +22,7 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     protected static $instance = null;
 
-    /** @var  GuzzleHttp\Client */
+    /** @var  \GuzzleHttp\Client */
     protected $guzzleClient;
 
     protected $partnerId;
@@ -265,19 +262,15 @@ class AfterBuyConnection extends GuzzleCommandClient
         // merge the configuration parameters with the ones from the order
         $params = array_merge($params, $this->adapter->parseOrder($notification));
 
-        // call the command from the service
-        $this->setBaseUrl('shop');
         /*
+        * $this->setBaseUrl('shop');
         * $output = "?" . implode('&', array_map(function ($v, $k) { return sprintf("%s=%s", $k, $v); }, $params, array_keys($params)));
         * $result = $this->executeCommand('createOrder', array("UriRequest" => $output) );
         * TODO: when working, change the executeCommand method in order to have the same structure for the response
         */
 
         // builds the GET query
-        $url = $this->apiUrls['shop'] . '?' . http_build_query($params);
-
-        /** @var \Guzzle\Http\Message\Request $request */
-        $request = $this->guzzleClient->get($url);
+        $this->initGuzzleClient($this->apiUrls['shop']);
 
         // start the log
         $this->logger->addInfo("\n\n".date(DATE_RFC822)."\nOrder ID: " . $params['VID']);
@@ -287,8 +280,8 @@ class AfterBuyConnection extends GuzzleCommandClient
         $cont = 0;
         do {
             $cont++;
-            /** @var \Guzzle\Http\Message\Response $response */
-            $response = $request->send();
+
+            $response = $this->guzzleClient->get('?' . http_build_query($params));
 
             $this->logger->addInfo("\n\nAfterBuy Response Data:\n".$response->getBody());
             $this->logger->addInfo("\nAfterBuy Response Status: ".$response->getStatusCode());
@@ -321,5 +314,15 @@ class AfterBuyConnection extends GuzzleCommandClient
                     <DetailLevel>$this->detailLevel</DetailLevel>
                     <ErrorLanguage>$this->errorLanguage</ErrorLanguage>
                 </AfterbuyGlobal>";
+    }
+
+    /**
+     * @param string $baseUrl
+     *
+     * @throws \Exception
+     */
+    private function initGuzzleClient($baseUrl)
+    {
+        $this->guzzleClient = new Client(array('base_url' => $baseUrl));
     }
 }
