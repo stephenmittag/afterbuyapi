@@ -1,6 +1,6 @@
 afterbuyapi
 ==========
-[![Composer Downloads](https://poser.pugx.org/asgoodasnu/afterbuyapi/d/total.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![Build Status](https://travis-ci.org/asgoodasnu/afterbuyapi.png?branch=master)](https://travis-ci.org/asgoodasnu/afterbuyapi) [![Dependency Status](https://www.versioneye.com/user/projects/53344ea47bae4bb0ec0005a3/badge.png)](https://www.versioneye.com/user/projects/53344ea47bae4bb0ec0005a3)
+[![Composer Downloads](https://poser.pugx.org/asgoodasnu/afterbuyapi/d/total.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![Build Status](https://travis-ci.org/asgoodasnu/afterbuyapi.png?branch=master)](https://travis-ci.org/asgoodasnu/afterbuyapi) [![Dependency Status](https://www.versioneye.com/user/projects/535e7341fe0d0734a30001c1/badge.png)](https://www.versioneye.com/user/projects/535e7341fe0d0734a30001c1)
 
 this bundle implements the afterbuy xmp- and shop-api as described here http://xmldoku.afterbuy.de/dokued/ and here http://shopdoku.afterbuy.de/shopdoku/
 by using great guzzle/guzzle webservice description, leading to a cool restful interface.
