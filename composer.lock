@@ -3,29 +3,29 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "12f21357757e9f81a8bf1eee136a3819",
+    "hash": "1b99f2bfe31f1e3f37b46f506a459ac1",
     "packages": [
         {
             "name": "asgoodasnu/guzzlecommandclient",
-            "version": "v0.1",
+            "version": "v0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/asgoodasnu/guzzlecommandclient.git",
-                "reference": "59d673d05494becfb088417d62be58d6eac81f7f"
+                "reference": "556075151601781d6cd8c4181bc0c91703c94bd8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/asgoodasnu/guzzlecommandclient/zipball/59d673d05494becfb088417d62be58d6eac81f7f",
-                "reference": "59d673d05494becfb088417d62be58d6eac81f7f",
+                "url": "https://api.github.com/repos/asgoodasnu/guzzlecommandclient/zipball/556075151601781d6cd8c4181bc0c91703c94bd8",
+                "reference": "556075151601781d6cd8c4181bc0c91703c94bd8",
                 "shasum": ""
             },
             "require": {
-                "guzzlehttp/command": "0.3.0",
+                "guzzlehttp/command": "0.4.0",
                 "guzzlehttp/guzzle": "~4.0",
                 "guzzlehttp/guzzle-services": "0.2.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.0.*"
+                "phpunit/phpunit": "4.1.*"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -53,7 +53,57 @@
             "keywords": [
                 "ebay"
             ],
-            "time": "2014-04-28 15:32:32"
+            "time": "2014-05-07 09:37:47"
+        },
+        {
+            "name": "asgoodasnu/shopifyapi",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/asgoodasnu/shopifyapi.git",
+                "reference": "2ff43f8cebff13e4e524169e8e9175865a199a0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/asgoodasnu/shopifyapi/zipball/2ff43f8cebff13e4e524169e8e9175865a199a0c",
+                "reference": "2ff43f8cebff13e4e524169e8e9175865a199a0c",
+                "shasum": ""
+            },
+            "require": {
+                "asgoodasnu/guzzlecommandclient": "v0.2",
+                "monolog/monolog": "~1.9",
+                "symfony/framework-bundle": "2.4.*@dev"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.1.*"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-4": {
+                    "Wk\\ShopifyApi\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Simon Chrzanowski",
+                    "email": "simon@wirkaufens.de",
+                    "homepage": "http://wirkaufens.de"
+                },
+                {
+                    "name": "Github Community",
+                    "homepage": "https://github.com/asgoodasnu/shopifyapi/contributors"
+                }
+            ],
+            "description": "Shopify Api for Symfony2",
+            "homepage": "https://github.com/asgoodasnu/shopifyapi",
+            "keywords": [
+                "shopify"
+            ],
+            "time": "2014-05-08 07:10:00"
         },
         {
             "name": "doctrine/annotations",
@@ -181,16 +231,16 @@
         },
         {
             "name": "guzzlehttp/command",
-            "version": "0.3.0",
+            "version": "0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/command.git",
-                "reference": "c048d330b3b4d12b067887160fad34b0602d549f"
+                "reference": "a06e799bca01ebddf46757e678ede6cf17147f9e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/command/zipball/c048d330b3b4d12b067887160fad34b0602d549f",
-                "reference": "c048d330b3b4d12b067887160fad34b0602d549f",
+                "url": "https://api.github.com/repos/guzzle/command/zipball/a06e799bca01ebddf46757e678ede6cf17147f9e",
+                "reference": "a06e799bca01ebddf46757e678ede6cf17147f9e",
                 "shasum": ""
             },
             "require": {
@@ -218,7 +268,7 @@
                 }
             ],
             "description": "Provides the foundation for building command based web service clients",
-            "time": "2014-04-03 03:20:07"
+            "time": "2014-04-30 03:48:46"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -2008,7 +2058,8 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/framework-bundle": 20
+        "symfony/framework-bundle": 20,
+        "asgoodasnu/shopifyapi": 20
     },
     "platform": [
 

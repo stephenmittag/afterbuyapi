@@ -5,7 +5,7 @@ namespace Wk\AfterBuyApi\Lib;
 
 use GuzzleHttp\Client;
 use Monolog\Logger;
-use Symfony\Component\EventDispatcher\Event;
+use Wk\ShopifyApi\Lib\ShopifyNotification;
 use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
 
 /**
@@ -209,7 +209,7 @@ class AfterBuyConnection extends GuzzleCommandClient
      * @return bool|void
      * @throws \Exception
      */
-    public function onOrderCreation (Event $event)
+    public function onOrderCreation (ShopifyNotification $event)
     {
         $schutzklickVendorName = "R+V";
 
