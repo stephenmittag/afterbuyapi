@@ -19,7 +19,7 @@
     "require": {
         "symfony/framework-bundle": "2.5.*@dev",
         "monolog/monolog": "~1.10",
-	"asgoodasnu/shopifyapi": "dev-master",
+        "asgoodasnu/shopifyapi": "dev-master",
         "asgoodasnu/guzzlecommandclient": "v0.3"
     },
     "require-dev": {
