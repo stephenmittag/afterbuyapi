@@ -10,30 +10,36 @@ class AfterBuyAdapter
 
     /**
      * Parse the response from AfterBuy and sets it to the response attribute
+     *
      * @param string $xmlResponse
      *
      * @return array
      */
-    public function getResponse ($xmlResponse)
+    public function getResponse($xmlResponse)
     {
 
         $dom = new \DOMDocument();
         try {
             $dom->loadXML($xmlResponse);
-            if (($dom->getElementsByTagName('success')->length > 0) && $dom->getElementsByTagName('success')->item(0)->nodeValue) {
+            if (($dom->getElementsByTagName('success')->length > 0) && $dom->getElementsByTagName('success')->item(
+                    0
+                )->nodeValue
+            ) {
                 return array(
                     'success' => true,
                     'message' => 'success',
                 );
             } else {
-                $error = ($dom->getElementsByTagName('error')->length > 0) ? $dom->getElementsByTagName('error')->item(0)->nodeValue : "";
+                $error = ($dom->getElementsByTagName('error')->length > 0) ? $dom->getElementsByTagName('error')->item(
+                    0
+                )->nodeValue : "";
 
                 return array(
                     'success' => false,
                     'message' => $error,
                 );
             }
-        } catch (Exception $ex) {
+        } catch (\Exception $ex) {
             return array(
                 'success' => false,
                 'message' => $ex->getMessage(),
@@ -43,6 +49,7 @@ class AfterBuyAdapter
 
     /**
      * Method for parsing the content from shopify and transforms it for the fields afterbuy needs
+     *
      * @param array $order
      *
      * @return array
@@ -67,15 +74,19 @@ class AfterBuyAdapter
 
         // billing info
         if (isset($order['billing_address'])) {
-            $result['KVorname'] = empty($order['billing_address']['first_name']) ? "-" : html_entity_decode($order['billing_address']['first_name']);
-            $result['KNachname'] = empty($order['billing_address']['last_name']) ? "-" : html_entity_decode($order['billing_address']['last_name']);
+            $result['KVorname'] = empty($order['billing_address']['first_name']) ? "-" : html_entity_decode(
+                $order['billing_address']['first_name']
+            );
+            $result['KNachname'] = empty($order['billing_address']['last_name']) ? "-" : html_entity_decode(
+                $order['billing_address']['last_name']
+            );
             $result['KFirma'] = html_entity_decode($order['billing_address']['company']);
             $result['KStrasse'] = html_entity_decode($order['billing_address']['address1']);
             $result['KStrasse2'] = html_entity_decode($order['billing_address']['address2']);
             $result['KPLZ'] = html_entity_decode($order['billing_address']['zip']);
             $result['KOrt'] = html_entity_decode($order['billing_address']['city']);
             $result['KLand'] = $countries[$order['billing_address']['country']];
-            $result['Versandart'] = "DHL_Paket_".$order['billing_address']['country_code'];
+            $result['Versandart'] = "DHL_Paket_" . $order['billing_address']['country_code'];
             $result['Ktelefon'] = html_entity_decode($order['billing_address']['phone']);
 
             $name = html_entity_decode($order['billing_address']['name']);
@@ -84,15 +95,19 @@ class AfterBuyAdapter
         if (isset($order['shipping_address'])) {
             if ($order['shipping_address']['address1'] != $result['KStrasse'] || $order['shipping_address']['name'] != $name) {
                 $result['Lieferanschrift'] = 1;
-                $result['KLVorname'] = empty($order['shipping_address']['first_name']) ? "-" : html_entity_decode($order['shipping_address']['first_name']);
-                $result['KLNachname'] = empty($order['shipping_address']['last_name']) ? "-" : html_entity_decode($order['shipping_address']['last_name']);
+                $result['KLVorname'] = empty($order['shipping_address']['first_name']) ? "-" : html_entity_decode(
+                    $order['shipping_address']['first_name']
+                );
+                $result['KLNachname'] = empty($order['shipping_address']['last_name']) ? "-" : html_entity_decode(
+                    $order['shipping_address']['last_name']
+                );
                 $result['KLFirma'] = html_entity_decode($order['shipping_address']['company']);
                 $result['KLStrasse'] = html_entity_decode($order['shipping_address']['address1']);
                 $result['KLStrasse2'] = html_entity_decode($order['shipping_address']['address2']);
                 $result['KLPLZ'] = html_entity_decode($order['shipping_address']['zip']);
                 $result['KLOrt'] = html_entity_decode($order['shipping_address']['city']);
                 $result['KLLand'] = $countries[$order['shipping_address']['country']];
-                $result['Versandart'] = 'DHL_Paket_'.$order['shipping_address']['country_code'];
+                $result['Versandart'] = 'DHL_Paket_' . $order['shipping_address']['country_code'];
                 $result['KLTelefon'] = html_entity_decode($order['shipping_address']['phone']);
             }
         }
@@ -109,16 +124,16 @@ class AfterBuyAdapter
         $i = 0;
         foreach ($order['line_items'] as $item) {
             $i++;
-            $result['Artikelnr_'.$i] = $result['VID'];
-            $result['Artikelname_'.$i] = html_entity_decode($item['name'].' '.$item['sku']);
-            $result['ArtikelEPreis_'.$i] = number_format($item['price'], 2, ',', '');
-            $result['ArtikelMenge_'.$i] = $item['quantity'];
-            $result['ArtikelGewicht_'.$i] = number_format(($item['grams']/1000), 2, ',', '');
+            $result['Artikelnr_' . $i] = $result['VID'];
+            $result['Artikelname_' . $i] = html_entity_decode($item['name'] . ' ' . $item['sku']);
+            $result['ArtikelEPreis_' . $i] = number_format($item['price'], 2, ',', '');
+            $result['ArtikelMenge_' . $i] = $item['quantity'];
+            $result['ArtikelGewicht_' . $i] = number_format(($item['grams'] / 1000), 2, ',', '');
             if (strpos($item['sku'], '-M')) {
                 $price = $item['price'];
-                $result['ArtikelMwSt_'.$i] = number_format($taxrate*100, 2, ',', '');
+                $result['ArtikelMwSt_' . $i] = number_format($taxrate * 100, 2, ',', '');
             } else {
-                $result['ArtikelMwSt_'.$i] = "0,00";
+                $result['ArtikelMwSt_' . $i] = "0,00";
                 $result['MwStNichtAusweisen'] = 1;
             }
         }
@@ -129,19 +144,18 @@ class AfterBuyAdapter
         foreach ($order['discount_codes'] as $discount) {
             $i++;
             if (isset($discount['amount'])) {
-                $result['Artikelnr_'.$i] = $result['VID'];
-                $result['Artikelname_'.$i] = "Gutschein ".$discount['code'];
-                $result['ArtikelEPreis_'.$i] = "-".number_format($discount['amount'], 2, ',', '');
-                $result['ArtikelMenge_'.$i] = 1;  // amount of articles
-                $result['ArtikelGewicht_'.$i] = "0,00"; // weight
-                $result['ArtikelMwSt_'.$i] = "0,00"; // sales tax
+                $result['Artikelnr_' . $i] = $result['VID'];
+                $result['Artikelname_' . $i] = "Gutschein " . $discount['code'];
+                $result['ArtikelEPreis_' . $i] = "-" . number_format($discount['amount'], 2, ',', '');
+                $result['ArtikelMenge_' . $i] = 1; // amount of articles
+                $result['ArtikelGewicht_' . $i] = "0,00"; // weight
+                $result['ArtikelMwSt_' . $i] = "0,00"; // sales tax
                 $result['PosAnz'] = $i;
             }
         }
 
         // financial data
-        switch($order['financial_status'])
-        {
+        switch ($order['financial_status']) {
             case 'pending':
                 if (strpos($order['gateway'], "Vorkasse") !== false) {
                     $result['ZFunktionsID'] = 1;
@@ -170,15 +184,20 @@ class AfterBuyAdapter
 
     /**
      * Build the xml string for getting the AfterBuy sold items
+     *
      * @param array $params
      *
      * @return string
      */
-    public function buildAfterBuySoldItemsXmlString (array $params)
+    public function buildAfterBuySoldItemsXmlString(array $params)
     {
 
-        $xmlString = isset($params['allItem']) ? "<RequestAllItems>" . intval($params['allItem']) ."</RequestAllItems>" : "";
-        $xmlString .= isset($params['maxSoldItems']) ? "<MaxSoldItems>" . intval($params['maxSoldItems']) ."</MaxSoldItems>" : "";
+        $xmlString = isset($params['allItem']) ? "<RequestAllItems>" . intval(
+                $params['allItem']
+            ) . "</RequestAllItems>" : "";
+        $xmlString .= isset($params['maxSoldItems']) ? "<MaxSoldItems>" . intval(
+                $params['maxSoldItems']
+            ) . "</MaxSoldItems>" : "";
 
         if (!empty($params['filters'])) {
 
@@ -221,20 +240,21 @@ class AfterBuyAdapter
 
     /**
      * Build the xml string for updating the AfterBuy sold items
+     *
      * @param array $params
      *
      * @return string
      */
-    public function buildUpdateAfterBuySoldItemsXmlString (array $params)
+    public function buildUpdateAfterBuySoldItemsXmlString(array $params)
     {
 
         $xmlString = "<Orders><Order>";
-        $xmlString .= "<OrderID>" . $params['orderId'] ."</OrderID>";
-        $xmlString .= "<ItemID>" . $params['itemId'] ."</ItemID>";
+        $xmlString .= "<OrderID>" . $params['orderId'] . "</OrderID>";
+        $xmlString .= "<ItemID>" . $params['itemId'] . "</ItemID>";
 
         foreach ($params['fields'] as $field) {
             foreach ($field as $key => $value) {
-                $xmlString .= "<" . ucfirst($key) . "><![CDATA[" . $value ."]]></" . ucfirst($key) . ">";
+                $xmlString .= "<" . ucfirst($key) . "><![CDATA[" . $value . "]]></" . ucfirst($key) . ">";
             }
         }
 

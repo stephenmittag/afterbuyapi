@@ -3,7 +3,6 @@
 namespace Wk\AfterBuyApi\Tests\Lib;
 
 use Wk\AfterBuyApi\Lib\AfterBuyAdapter;
-use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
  * Class AfterBuyAdapterTest
@@ -14,7 +13,7 @@ class AfterBuyAdapterTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for the getResponse method
      */
-    public function testGetResponse ()
+    public function testGetResponse()
     {
         $xmlString = <<<XML
 <?xml version='1.0'?>
@@ -42,10 +41,10 @@ XML;
     /**
      * Test for the buildAfterBuySoldItemsXmlString method
      */
-    public function testBuildAfterBuySoldItemsXmlString ()
+    public function testBuildAfterBuySoldItemsXmlString()
     {
 
-        $data = array (
+        $data = array(
             "item" => "Test Item",
             "user" => "John Doe",
             "maxSoldItems" => false,
@@ -57,17 +56,20 @@ XML;
         $xml = simplexml_load_string($xmlString);
 
         $this->assertTrue($xml instanceof \SimpleXMLElement);
-        $this->assertXmlStringEqualsXmlString("<?xml version='1.0'?><MaxSoldItems>0</MaxSoldItems>", (string) $xml->asXml());
+        $this->assertXmlStringEqualsXmlString(
+            "<?xml version='1.0'?><MaxSoldItems>0</MaxSoldItems>",
+            (string) $xml->asXml()
+        );
 
     }
 
     /**
      * Test for the buildUpdateAfterBuySoldItemsXmlString method
      */
-    public function testBuildUpdateAfterBuySoldItemsXmlString ()
+    public function testBuildUpdateAfterBuySoldItemsXmlString()
     {
 
-        $data = array (
+        $data = array(
             "orderId" => "100",
             "itemId" => "3",
             "fields" => array(),

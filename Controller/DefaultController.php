@@ -5,6 +5,7 @@ namespace Wk\AfterBuyApi\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
  * Class DefaultController
@@ -13,19 +14,23 @@ class DefaultController extends Controller
 {
     /**
      * GetAfterBuyTime action.
+     *
      * @return Response
      */
     public function getTimeAction()
     {
-        /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
+        /** @var AfterBuyConnection $connection */
         $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
         $connection->setBaseUrl('xml');
 
         try {
-            $result = $connection->executeCommand('getTime', array(
-                "Request" => $connection->getAfterBuyTimeRequest(),
-            ));
-        } catch(\Exception $e) {
+            $result = $connection->executeCommand(
+                'getTime',
+                array(
+                    "Request" => $connection->getAfterBuyTimeRequest(),
+                )
+            );
+        } catch (\Exception $e) {
             $result = null;
         }
 
@@ -34,6 +39,7 @@ class DefaultController extends Controller
 
     /**
      * GetSoldItems action
+     *
      * @param Request $request
      *
      * @return Response
@@ -46,15 +52,18 @@ class DefaultController extends Controller
             $parameters = json_decode($parameters, true);
 
             if (!is_null($parameters)) {
-                /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
+                /** @var AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $connection->setBaseUrl('xml');
 
                 try {
-                    $result = $connection->executeCommand('getSoldItems', array(
-                        "Request" => $connection->getAfterBuySoldItems($parameters),
-                    ));
-                } catch(\Exception $e) {
+                    $result = $connection->executeCommand(
+                        'getSoldItems',
+                        array(
+                            "Request" => $connection->getAfterBuySoldItems($parameters),
+                        )
+                    );
+                } catch (\Exception $e) {
                     $result = null;
                 }
 
@@ -67,6 +76,7 @@ class DefaultController extends Controller
 
     /**
      * UpdateSoldItems action
+     *
      * @param Request $request
      *
      * @return Response
@@ -79,15 +89,18 @@ class DefaultController extends Controller
             $parameters = json_decode($parameters, true);
 
             if (!is_null($parameters)) {
-                /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
+                /** @var AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
                 $connection->setBaseUrl('xml');
 
                 try {
-                    $result = $connection->executeCommand('updateSoldItems', array(
-                        "Request" => $connection->updateAfterBuySoldItems($parameters),
-                    ));
-                } catch(\Exception $e) {
+                    $result = $connection->executeCommand(
+                        'updateSoldItems',
+                        array(
+                            "Request" => $connection->updateAfterBuySoldItems($parameters),
+                        )
+                    );
+                } catch (\Exception $e) {
                     $result = null;
                 }
 
@@ -100,6 +113,7 @@ class DefaultController extends Controller
 
     /**
      * Create an order in AfterBuy
+     *
      * @param Request $request
      *
      * @return Response
@@ -112,12 +126,12 @@ class DefaultController extends Controller
             $parameters = json_decode($parameters, true);
 
             if (!is_null($parameters)) {
-                /** @var Wk\AfterBuyApi\Lib\AfterBuyConnection $connection */
+                /** @var AfterBuyConnection $connection */
                 $connection = $this->container->get('wk_afterbuy.afterbuy.connection');
 
                 try {
                     $result = $connection->sendNotification($parameters);
-                } catch(\Exception $e) {
+                } catch (\Exception $e) {
                     $result = null;
                 }
 
@@ -134,7 +148,7 @@ class DefaultController extends Controller
      *
      * @return Response
      */
-    private function generateResponse ($content, $responseCode = Response::HTTP_OK)
+    private function generateResponse($content, $responseCode = Response::HTTP_OK)
     {
         $response = new Response();
         $response->setStatusCode(!empty($content) ? $responseCode : Response::HTTP_NOT_FOUND);

@@ -61,14 +61,14 @@ class AfterBuyConnection extends GuzzleCommandClient
     public function __construct()
     {
         $this->adapter = new AfterBuyAdapter();
-        $json = file_get_contents(__DIR__. "/../Resources/config/service.json");
+        $json = file_get_contents(__DIR__ . "/../Resources/config/service.json");
         parent::__construct($json);
     }
 
     /**
      * @param Logger $logger
      */
-    public function setLogger (Logger $logger)
+    public function setLogger(Logger $logger)
     {
         $this->logger = $logger;
     }
@@ -76,7 +76,7 @@ class AfterBuyConnection extends GuzzleCommandClient
     /**
      * @param AfterBuyAdapter $adapter
      */
-    public function setAdapter (AfterBuyAdapter $adapter)
+    public function setAdapter(AfterBuyAdapter $adapter)
     {
         $this->adapter = $adapter;
     }
@@ -91,6 +91,7 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Setter for the urls
+     *
      * @param array $urls
      */
     public function setApiUrls(array $urls)
@@ -100,9 +101,10 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Method to set the parameters for Afterbuy
+     *
      * @param array $params
      */
-    public function setParams (array $params)
+    public function setParams(array $params)
     {
 
         $this->partnerId = isset($params['partner_id']) ? $params['partner_id'] : null;
@@ -118,9 +120,10 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Instance of the AfterBuyConnection
+     *
      * @return AfterBuyConnection
      */
-    public static function getInstance ()
+    public static function getInstance()
     {
         if (!self::$instance instanceof self) {
             self::$instance = new self;
@@ -134,7 +137,7 @@ class AfterBuyConnection extends GuzzleCommandClient
      *
      * @throws \RuntimeException
      */
-    public function setBaseUrl ($apiName)
+    public function setBaseUrl($apiName)
     {
         if (array_key_exists($apiName, $this->apiUrls)) {
             parent::setBaseUrl($this->apiUrls[$apiName]);
@@ -146,6 +149,7 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Getter for the client
+     *
      * @return Client
      */
     public function getGuzzleClient()
@@ -155,6 +159,7 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Setter for the client
+     *
      * @param Client $client
      */
     public function setGuzzleClient(Client $client)
@@ -164,20 +169,22 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Build the xml string for getting the AfterBuy time
+     *
      * @return string
      */
-    public function getAfterBuyTimeRequest ()
+    public function getAfterBuyTimeRequest()
     {
         return "<Request>" . $this->buildAfterbuyGlobalCredentials('GetAfterbuyTime') . "</Request>";
     }
 
     /**
      * Build the xml string for getting the AfterBuy sold items
+     *
      * @param array $params
      *
      * @return string
      */
-    public function getAfterBuySoldItems (array $params)
+    public function getAfterBuySoldItems(array $params)
     {
 
         $request = "<Request>" . $this->buildAfterbuyGlobalCredentials('GetSoldItems');
@@ -189,11 +196,12 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Build the xml string for updating the AfterBuy sold items
+     *
      * @param array $params
      *
      * @return string
      */
-    public function updateAfterBuySoldItems (array $params)
+    public function updateAfterBuySoldItems(array $params)
     {
 
         $request = "<Request>" . $this->buildAfterbuyGlobalCredentials('UpdateSoldItems');
@@ -204,12 +212,12 @@ class AfterBuyConnection extends GuzzleCommandClient
     }
 
     /**
-     * @param Event $event
+     * @param ShopifyNotification $event
      *
      * @return bool|void
      * @throws \Exception
      */
-    public function onOrderCreation (ShopifyNotification $event)
+    public function onOrderCreation(ShopifyNotification $event)
     {
         $schutzklickVendorName = "R+V";
 
@@ -229,7 +237,9 @@ class AfterBuyConnection extends GuzzleCommandClient
         }
 
         if (!$status) {
-            throw new \Exception("Error when trying to create the order in AfterBuy. Not all the item could be notified to AfterBuy.");
+            throw new \Exception(
+                "Error when trying to create the order in AfterBuy. Not all the item could be notified to AfterBuy."
+            );
         }
 
         return $status;
@@ -237,6 +247,7 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Send the request to AfterBuy when a new order has been created and the webhook has been triggered
+     *
      * @param array $notification
      *
      * @return bool
@@ -273,7 +284,7 @@ class AfterBuyConnection extends GuzzleCommandClient
         $this->initGuzzleClient($this->apiUrls['shop']);
 
         // start the log
-        $this->logger->addInfo("\n\n".date(DATE_RFC822)."\nOrder ID: " . $params['VID']);
+        $this->logger->addInfo("\n\n" . date(DATE_RFC822) . "\nOrder ID: " . $params['VID']);
         //log the json from shopify
         $this->logger->addInfo("\nShopify JSON decoded: \n" . print_r($notification, true));
 
@@ -283,8 +294,8 @@ class AfterBuyConnection extends GuzzleCommandClient
 
             $response = $this->guzzleClient->get('?' . http_build_query($params));
 
-            $this->logger->addInfo("\n\nAfterBuy Response Data:\n".$response->getBody());
-            $this->logger->addInfo("\nAfterBuy Response Status: ".$response->getStatusCode());
+            $this->logger->addInfo("\n\nAfterBuy Response Data:\n" . $response->getBody());
+            $this->logger->addInfo("\nAfterBuy Response Status: " . $response->getStatusCode());
             $resp = $this->adapter->getResponse($response->getBody());
 
             if (($resp['success'] == true) || (in_array($resp['message'], $this->errorMessagesOk))) {
@@ -299,11 +310,12 @@ class AfterBuyConnection extends GuzzleCommandClient
 
     /**
      * Build the xml string for the credentials
+     *
      * @param string $callName Name of the method to call in the api
      *
      * @return string
      */
-    private function buildAfterbuyGlobalCredentials ($callName)
+    private function buildAfterbuyGlobalCredentials($callName)
     {
         return "<AfterbuyGlobal>
                     <PartnerID>$this->partnerId</PartnerID>

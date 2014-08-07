@@ -3,13 +3,7 @@
 
 namespace Wk\AfterBuyApi\Tests\Lib;
 
-use GuzzleHttp\Message\Response;
-use GuzzleHttp\Client;
-use GuzzleHttp\Command\Guzzle\GuzzleClient;
-use GuzzleHttp\Command\Guzzle\Description;
 use GuzzleHttp\Stream;
-use GuzzleHttp\Command\Event\ProcessEvent;
-use GuzzleHttp\Event\BeforeEvent;
 use Wk\AfterBuyApi\Lib\AfterBuyConnection;
 
 /**
@@ -20,7 +14,7 @@ class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for the getAfterBuyTimeRequest method
      */
-    public function testGetAfterBuyTimeRequest ()
+    public function testGetAfterBuyTimeRequest()
     {
         $connection = new AfterBuyConnection();
 
@@ -35,7 +29,7 @@ class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for the getAfterBuySoldItems method
      */
-    public function testGetAfterBuySoldItems ()
+    public function testGetAfterBuySoldItems()
     {
         $connection = new AfterBuyConnection();
 
@@ -51,9 +45,9 @@ class AfterBuyConnectionTest extends \PHPUnit_Framework_TestCase
     /**
      * Test for the updateAfterBuySoldItems method
      */
-    public function testUpdateAfterBuySoldItems ()
+    public function testUpdateAfterBuySoldItems()
     {
-        $data = array (
+        $data = array(
             "orderId" => "100",
             "itemId" => "3",
             "fields" => array(),
