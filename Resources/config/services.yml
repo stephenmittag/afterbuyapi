@@ -7,17 +7,13 @@ parameters:
         partner_pass:   "%afterbuy_partner_pass%"
         user_id:        "%afterbuy_user_id%"
         user_pass:      "%afterbuy_user_password%"
-        marker_id:      "%afterbuy_marker_id%"
-        check_vid:      "%afterbuy_check_vid%"
         detail_level:   "%afterbuy_detail_level%"
         error_language: "%afterbuy_error_language%"
 
 services:
     wk_afterbuy.afterbuy.connection:
-        class: Wk\AfterBuyApi\Lib\AfterBuyConnection
+        class: Wk\AfterBuyApi\Services\AfterBuyConnection
         calls:
             - [setApiUrls, ["%wk_afterbuy.afterbuy.url%"]]
             - [setParams, ["%wk_afterbuy.afterbuy.params%"]]
             - [setLogger, ["@logger"]]
-        tags:
-            - { name: kernel.event_listener, event: shopify.events.notify, method: onOrderCreation }
