@@ -6,9 +6,9 @@ use Wk\AfterBuyApi\Models\Address;
 use Wk\AfterBuyApi\Models\Article;
 
 /**
- * Class BaseItem
+ * Class BaseAfterbuyOrder
  */
-class BaseItem
+class BaseAfterbuyOrder
 {
     /**
      * @var string
@@ -18,12 +18,12 @@ class BaseItem
     /**
      * @var string
      */
-    protected $vid;
+    protected $id;
 
     /**
      * @var boolean
      */
-    protected $checkVid;
+    protected $checkId;
 
     /**
      * @var string
@@ -49,11 +49,6 @@ class BaseItem
      * @var string
      */
     protected $paymentMethod;
-
-    /**
-     * @var integer
-     */
-    protected $paymentId;
 
     /**
      * @var boolean
@@ -141,22 +136,6 @@ class BaseItem
     public function setBillingAddress($billingAddress)
     {
         $this->billingAddress = $billingAddress;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isCheckVid()
-    {
-        return $this->checkVid;
-    }
-
-    /**
-     * @param boolean $checkVid
-     */
-    public function setCheckVid($checkVid)
-    {
-        $this->checkVid = $checkVid;
     }
 
     /**
@@ -272,22 +251,6 @@ class BaseItem
     }
 
     /**
-     * @return int
-     */
-    public function getPaymentId()
-    {
-        return $this->paymentId;
-    }
-
-    /**
-     * @param int $paymentId
-     */
-    public function setPaymentId($paymentId)
-    {
-        $this->paymentId = $paymentId;
-    }
-
-    /**
      * @return string
      */
     public function getPaymentMethod()
@@ -352,18 +315,34 @@ class BaseItem
     }
 
     /**
-     * @return string
+     * @return boolean
      */
-    public function getVid()
+    public function isCheckId()
     {
-        return $this->vid;
+        return $this->checkId;
     }
 
     /**
-     * @param string $vid
+     * @param boolean $checkId
      */
-    public function setVid($vid)
+    public function setCheckId($checkId)
     {
-        $this->vid = $vid;
+        $this->checkId = $checkId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * @param string $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 }
