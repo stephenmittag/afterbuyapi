@@ -1,14 +1,14 @@
 <?php
 
-namespace Wk\AfterBuyApi\Services;
+namespace Wk\AfterbuyApi\Services;
 
 /**
- * Class AfterBuyAdapter
+ * Class AfterbuyAdapter
  */
-class AfterBuyAdapter
+class AfterbuyAdapter
 {
     /**
-     * List of error messages that are OK to accept the response from AfterBuy
+     * List of error messages that are OK to accept the response from Afterbuy
      */
     private $errorMessagesOk = array(
         'Diese Bestellung wurde bereits erfasst.',
@@ -16,7 +16,7 @@ class AfterBuyAdapter
     );
 
     /**
-     * Parse the response from AfterBuy
+     * Parse the response from Afterbuy
      *
      * @param \SimpleXMLElement $xmlResponse
      *
@@ -51,13 +51,13 @@ class AfterBuyAdapter
     }
 
     /**
-     * Build the xml string for getting the AfterBuy sold items
+     * Build the xml string for getting the Afterbuy sold items
      *
      * @param array $params
      *
      * @return string
      */
-    public function buildAfterBuySoldItemsXmlString(array $params)
+    public function buildAfterbuySoldItemsXmlString(array $params)
     {
 
         $xmlString = isset($params['allItem']) ? "<RequestAllItems>" . intval(
@@ -107,13 +107,13 @@ class AfterBuyAdapter
     }
 
     /**
-     * Build the xml string for updating the AfterBuy sold items
+     * Build the xml string for updating the Afterbuy sold items
      *
      * @param array $params
      *
      * @return string
      */
-    public function buildUpdateAfterBuySoldItemsXmlString(array $params)
+    public function buildUpdateAfterbuySoldItemsXmlString(array $params)
     {
 
         $xmlString = "<Orders><Order>";

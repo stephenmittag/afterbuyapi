@@ -1,13 +1,13 @@
 <?php
 
-namespace Wk\AfterBuyApi\Tests\Services;
+namespace Wk\AfterbuyApi\Tests\Services;
 
-use Wk\AfterBuyApi\Services\AfterBuyAdapter;
+use Wk\AfterbuyApi\Services\AfterbuyAdapter;
 
 /**
- * Class AfterBuyAdapterTest
+ * Class AfterbuyAdapterTest
  */
-class AfterBuyAdapterTest extends \PHPUnit_Framework_TestCase
+class AfterbuyAdapterTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -28,7 +28,7 @@ class AfterBuyAdapterTest extends \PHPUnit_Framework_TestCase
 </document>
 XML;
 
-        $adapter = new AfterBuyAdapter();
+        $adapter = new AfterbuyAdapter();
         $result = $adapter->getResponse($xmlString);
 
         $this->assertCount(2, $result);
@@ -39,9 +39,9 @@ XML;
     }
 
     /**
-     * Test for the buildAfterBuySoldItemsXmlString method
+     * Test for the buildAfterbuySoldItemsXmlString method
      */
-    public function testBuildAfterBuySoldItemsXmlString()
+    public function testBuildAfterbuySoldItemsXmlString()
     {
 
         $data = array(
@@ -50,9 +50,9 @@ XML;
             "maxSoldItems" => false,
         );
 
-        $adapter = new AfterBuyAdapter();
+        $adapter = new AfterbuyAdapter();
 
-        $xmlString = $adapter->buildAfterBuySoldItemsXmlString($data);
+        $xmlString = $adapter->buildAfterbuySoldItemsXmlString($data);
         $xml = simplexml_load_string($xmlString);
 
         $this->assertTrue($xml instanceof \SimpleXMLElement);
@@ -64,9 +64,9 @@ XML;
     }
 
     /**
-     * Test for the buildUpdateAfterBuySoldItemsXmlString method
+     * Test for the buildUpdateAfterbuySoldItemsXmlString method
      */
-    public function testBuildUpdateAfterBuySoldItemsXmlString()
+    public function testBuildUpdateAfterbuySoldItemsXmlString()
     {
 
         $data = array(
@@ -75,9 +75,9 @@ XML;
             "fields" => array(),
         );
 
-        $adapter = new AfterBuyAdapter();
+        $adapter = new AfterbuyAdapter();
 
-        $xmlString = $adapter->buildUpdateAfterBuySoldItemsXmlString($data);
+        $xmlString = $adapter->buildUpdateAfterbuySoldItemsXmlString($data);
         $xml = simplexml_load_string($xmlString);
 
         $this->assertTrue($xml instanceof \SimpleXMLElement);

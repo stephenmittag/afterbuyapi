@@ -1,22 +1,22 @@
 <?php
 
 
-namespace Wk\AfterBuyApi\Services;
+namespace Wk\AfterbuyApi\Services;
 
 use Monolog\Logger;
-use Wk\AfterBuyApi\Models\AfterbuyOrder;
+use Wk\AfterbuyApi\Models\AfterbuyOrder;
 use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
 
 /**
- * Class AfterBuyConnection
+ * Class AfterbuyConnection
  * Implements the Singleton pattern
  */
-class AfterBuyConnection extends GuzzleCommandClient
+class AfterbuyConnection extends GuzzleCommandClient
 {
 
     const MAX_ATTEMPTS = 10;
 
-    /** @var AfterBuyAdapter to generate the requests and responses out of the AfterBuyConnection */
+    /** @var AfterbuyAdapter to generate the requests and responses out of the AfterbuyConnection */
     protected $adapter;
 
     protected static $instance = null;
@@ -47,7 +47,7 @@ class AfterBuyConnection extends GuzzleCommandClient
      */
     public function __construct()
     {
-        $this->adapter = new AfterBuyAdapter();
+        $this->adapter = new AfterbuyAdapter();
         $json = file_get_contents(__DIR__ . "/../Resources/config/service.json");
         parent::__construct($json);
     }
@@ -61,15 +61,15 @@ class AfterBuyConnection extends GuzzleCommandClient
     }
 
     /**
-     * @param AfterBuyAdapter $adapter
+     * @param AfterbuyAdapter $adapter
      */
-    public function setAdapter(AfterBuyAdapter $adapter)
+    public function setAdapter(AfterbuyAdapter $adapter)
     {
         $this->adapter = $adapter;
     }
 
     /**
-     * @return AfterBuyAdapter
+     * @return AfterbuyAdapter
      */
     public function getAdapter()
     {
@@ -102,9 +102,9 @@ class AfterBuyConnection extends GuzzleCommandClient
     }
 
     /**
-     * Instance of the AfterBuyConnection
+     * Instance of the AfterbuyConnection
      *
-     * @return AfterBuyConnection
+     * @return AfterbuyConnection
      */
     public static function getInstance()
     {
@@ -125,53 +125,73 @@ class AfterBuyConnection extends GuzzleCommandClient
         if (array_key_exists($apiName, $this->apiUrls)) {
             parent::setBaseUrl($this->apiUrls[$apiName]);
         } else {
-            throw new \RuntimeException(sprintf('Api "%s" not defined for AfterBuy', $apiName));
+            throw new \RuntimeException(sprintf('Api "%s" not defined for Afterbuy', $apiName));
         }
 
     }
 
     /**
-     * Build the xml string for getting the AfterBuy time
+     * Build the xml string for getting the Afterbuy time
      *
      * @return string
      */
-    public function getAfterBuyTimeRequest()
+    public function generateAfterbuyTimeRequest()
     {
         return "<Request>" . $this->buildAfterbuyGlobalCredentials('GetAfterbuyTime') . "</Request>";
     }
 
     /**
-     * Build the xml string for getting the AfterBuy sold items
+     * Build the xml string for getting the Afterbuy sold items
      *
      * @param array $params
      *
      * @return string
      */
-    public function getAfterBuySoldItems(array $params)
+    public function generateAfterbuySoldItemsRequest(array $params)
     {
 
         $request = "<Request>" . $this->buildAfterbuyGlobalCredentials('GetSoldItems');
-        $request .= $this->adapter->buildAfterBuySoldItemsXmlString($params);
+        $request .= $this->adapter->buildAfterbuySoldItemsXmlString($params);
         $request .= "</Request>";
 
         return $request;
     }
 
     /**
-     * Build the xml string for updating the AfterBuy sold items
+     * Build the xml string for updating the Afterbuy sold items
      *
      * @param array $params
      *
      * @return string
      */
-    public function updateAfterBuySoldItems(array $params)
+    public function generateAfterbuyUpdateSoldItemsRequest(array $params)
     {
 
         $request = "<Request>" . $this->buildAfterbuyGlobalCredentials('UpdateSoldItems');
-        $request .= $this->adapter->buildUpdateAfterBuySoldItemsXmlString($params);
+        $request .= $this->adapter->buildUpdateAfterbuySoldItemsXmlString($params);
         $request .= "</Request>";
 
         return $request;
+    }
+
+    /**
+     * Build the xml string for the credentials
+     *
+     * @param string $callName Name of the method to call in the api
+     *
+     * @return string
+     */
+    private function generateAfterbuyGlobalCredentials($callName)
+    {
+        return "<AfterbuyGlobal>
+                    <PartnerID>$this->partnerId</PartnerID>
+                    <PartnerPassword>$this->partnerPassword</PartnerPassword>
+                    <UserID>$this->userId</UserID>
+                    <UserPassword>$this->userPassword</UserPassword>
+                    <CallName>$callName</CallName>
+                    <DetailLevel>$this->detailLevel</DetailLevel>
+                    <ErrorLanguage>$this->errorLanguage</ErrorLanguage>
+                </AfterbuyGlobal>";
     }
 
     /**
@@ -198,28 +218,8 @@ class AfterBuyConnection extends GuzzleCommandClient
 
         $response = $this->adapter->getResponse($result['message']->xml());
 
-        //$this->logger->addInfo("\n\nAfterBuy Response Data:\n" . $result['message']->xml()->asXML());
+        //$this->logger->addInfo("\n\nAfterbuy Response Data:\n" . $result['message']->xml()->asXML());
 
         return $response;
-    }
-
-    /**
-     * Build the xml string for the credentials
-     *
-     * @param string $callName Name of the method to call in the api
-     *
-     * @return string
-     */
-    private function buildAfterbuyGlobalCredentials($callName)
-    {
-        return "<AfterbuyGlobal>
-                    <PartnerID>$this->partnerId</PartnerID>
-                    <PartnerPassword>$this->partnerPassword</PartnerPassword>
-                    <UserID>$this->userId</UserID>
-                    <UserPassword>$this->userPassword</UserPassword>
-                    <CallName>$callName</CallName>
-                    <DetailLevel>$this->detailLevel</DetailLevel>
-                    <ErrorLanguage>$this->errorLanguage</ErrorLanguage>
-                </AfterbuyGlobal>";
     }
 }

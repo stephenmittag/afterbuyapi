@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterBuyApi;
+namespace Wk\AfterbuyApi;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
-class WkAfterBuyApi extends Bundle
+class WkAfterbuyApi extends Bundle
 {
 }
