@@ -42,13 +42,10 @@
         },
         "createOrder": {
             "httpMethod": "GET",
-            "uri": "{UriRequest}",
             "summary": "Create an order in AfterBuy",
             "responseClass": "AfterBuyResponse",
-            "parameters": {
-                "UriRequest": {
-                    "location": "uri"
-                }
+            "additionalParameters": {
+                "location": "query"
             }
         }
     },

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace Wk\AfterBuyApi\Tests\Lib;
+namespace Wk\AfterBuyApi\Tests\Services;
 
 use GuzzleHttp\Stream;
-use Wk\AfterBuyApi\Lib\AfterBuyConnection;
+use Wk\AfterBuyApi\Services\AfterBuyConnection;
 
 /**
  * Class AfterBuyConnectionTest
