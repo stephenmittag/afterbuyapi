@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterBuyApi\Models\Base;
+namespace Wk\AfterbuyApi\Models\Base;
 
 /**
  * Class BaseArticle

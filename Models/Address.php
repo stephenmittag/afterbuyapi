@@ -1,8 +1,8 @@
 <?php
 
-namespace Wk\AfterBuyApi\Models;
+namespace Wk\AfterbuyApi\Models;
 
-use Wk\AfterBuyApi\Models\Base\BaseAddress;
+use Wk\AfterbuyApi\Models\Base\BaseAddress;
 
 /**
  * Class Address

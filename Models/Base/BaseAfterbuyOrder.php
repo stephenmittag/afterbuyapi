@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterBuyApi\Models\Base;
+namespace Wk\AfterbuyApi\Models\Base;
 
-use Wk\AfterBuyApi\Models\Address;
-use Wk\AfterBuyApi\Models\Article;
+use Wk\AfterbuyApi\Models\Address;
+use Wk\AfterbuyApi\Models\Article;
 
 /**
  * Class BaseAfterbuyOrder

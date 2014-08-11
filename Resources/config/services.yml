@@ -12,7 +12,7 @@ parameters:
 
 services:
     wk_afterbuy.afterbuy.connection:
-        class: Wk\AfterBuyApi\Services\AfterBuyConnection
+        class: Wk\AfterbuyApi\Services\AfterbuyConnection
         calls:
             - [setApiUrls, ["%wk_afterbuy.afterbuy.url%"]]
             - [setParams, ["%wk_afterbuy.afterbuy.params%"]]

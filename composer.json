@@ -27,6 +27,6 @@
         "phpunit/phpunit": "4.1.*"
     },
     "autoload": {
-        "psr-4": { "Wk\\AfterBuyApi\\": "" }
+        "psr-4": { "Wk\\AfterbuyApi\\": "" }
     }
 }

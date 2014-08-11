@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterBuyApi\DependencyInjection;
+namespace Wk\AfterbuyApi\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

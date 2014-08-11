@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterBuyApi\Models;
+namespace Wk\AfterbuyApi\Models;
 
 use Symfony\Component\Yaml\Yaml;
-use Wk\AfterBuyApi\Models\Base\BaseAfterbuyOrder;
+use Wk\AfterbuyApi\Models\Base\BaseAfterbuyOrder;
 
 /**
  * Class Item

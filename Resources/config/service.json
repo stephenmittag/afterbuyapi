@@ -2,13 +2,13 @@
     "name": "Afterbuy",
     "apiVersion": "2014-03-06",
     "baseUrl": "",
-    "description": "This is the AfterBuy API",
+    "description": "This is the Afterbuy API",
     "operations": {
         "getTime": {
             "httpMethod": "POST",
             "uri": "",
-            "summary": "Get the AfterBuy time",
-            "responseClass": "AfterBuyResponse",
+            "summary": "Get the Afterbuy time",
+            "responseClass": "AfterbuyResponse",
             "parameters": {
                 "Request": {
                     "location": "body",
@@ -19,8 +19,8 @@
         "getSoldItems": {
             "httpMethod": "POST",
             "uri": "",
-            "summary": "Get the AfterBuy sold items",
-            "responseClass": "AfterBuyResponse",
+            "summary": "Get the Afterbuy sold items",
+            "responseClass": "AfterbuyResponse",
             "parameters": {
                 "Request": {
                     "location": "body",
@@ -31,8 +31,8 @@
         "updateSoldItems": {
             "httpMethod": "POST",
             "uri": "",
-            "summary": "Update the AfterBuy sold items",
-            "responseClass": "AfterBuyResponse",
+            "summary": "Update the Afterbuy sold items",
+            "responseClass": "AfterbuyResponse",
             "parameters": {
                 "Request": {
                     "location": "body",
@@ -42,15 +42,15 @@
         },
         "createOrder": {
             "httpMethod": "GET",
-            "summary": "Create an order in AfterBuy",
-            "responseClass": "AfterBuyResponse",
+            "summary": "Create an order in Afterbuy",
+            "responseClass": "AfterbuyResponse",
             "additionalParameters": {
                 "location": "query"
             }
         }
     },
     "models": {
-        "AfterBuyResponse": {
+        "AfterbuyResponse": {
             "type": "object",
             "properties": {
                 "Result": {
