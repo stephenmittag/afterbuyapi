@@ -1,8 +1,8 @@
 <?php
 
-namespace Wk\AfterBuyApi\Tests\Lib;
+namespace Wk\AfterBuyApi\Tests\Services;
 
-use Wk\AfterBuyApi\Lib\AfterBuyAdapter;
+use Wk\AfterBuyApi\Services\AfterBuyAdapter;
 
 /**
  * Class AfterBuyAdapterTest
