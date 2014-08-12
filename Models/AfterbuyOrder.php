@@ -158,6 +158,7 @@ class AfterbuyOrder extends BaseAfterbuyOrder
             $data['ArtikelMenge_' . ($i + 1)] = $article->getQuantity();
             $data['ArtikelGewicht_' . ($i + 1)] = $this->formatNumber($article->getWeight() / 1000);
             $data['AlternArtikelNr1_' . ($i + 1)] = $article->getAlternativeId1();
+            $data['AlternArtikelNr2_' . ($i + 1)] = $article->getAlternativeId2();
             $data['ArtikelMwSt_' . ($i + 1)] = $this->formatNumber($article->getTax());
             $taxable = $article->getTax() ? true : false;
         }

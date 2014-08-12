@@ -38,9 +38,30 @@ class BaseArticle
     protected $alternativeId1;
 
     /**
+     * @var string
+     */
+    protected $alternativeId2;
+
+    /**
      * @var float
      */
     protected $tax;
+
+    /**
+     * @return string
+     */
+    public function getAlternativeId2()
+    {
+        return $this->alternativeId2;
+    }
+
+    /**
+     * @param string $alternativeId2
+     */
+    public function setAlternativeId2($alternativeId2)
+    {
+        $this->alternativeId2 = $alternativeId2;
+    }
 
     /**
      * @return string
