@@ -16,7 +16,7 @@ class BaseAfterbuyOrder
     protected $shippingMethod;
 
     /**
-     * @var string
+     * @var integer
      */
     protected $id;
 
@@ -373,7 +373,7 @@ class BaseAfterbuyOrder
     }
 
     /**
-     * @return string
+     * @return int
      */
     public function getId()
     {
@@ -381,7 +381,7 @@ class BaseAfterbuyOrder
     }
 
     /**
-     * @param string $id
+     * @param int $id
      */
     public function setId($id)
     {
