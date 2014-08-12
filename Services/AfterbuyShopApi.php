@@ -60,18 +60,18 @@ class AfterbuyShopApi
         try {
             if ($success || in_array($error, $this->errorMessagesOk)) {
                 return array(
-                    'success' => true,
-                    'message' => 'success',
+                    'status' => 'success',
+                    'message' => $xmlResponse->asXML(),
                 );
             } else {
                 return array(
-                    'success' => false,
+                    'status' => 'error',
                     'message' => $error,
                 );
             }
         } catch (\Exception $e) {
             return array(
-                'success' => false,
+                'status' => 'error',
                 'message' => $e->getMessage(),
             );
         }
@@ -80,7 +80,7 @@ class AfterbuyShopApi
     /**
      * @param AfterbuyOrder $order
      *
-     * @return bool
+     * @return array
      */
     public function createOrder(AfterbuyOrder $order)
     {
@@ -90,6 +90,12 @@ class AfterbuyShopApi
         $this->logger->addInfo("\nItem to create: \n" . print_r($orderParams, true));
 
         $result = $this->afterbuyConnection->executeCommand('createOrder', $orderParams);
+
+        if ($result['status'] == 'error') {
+            $this->logger->addInfo("\n\nAfterbuy Response Data:\n" . $result['message']);
+
+            return $result;
+        }
 
         /** @var \SimpleXMLElement $xmlResponse */
         $xmlResponse = $result['message']->xml();

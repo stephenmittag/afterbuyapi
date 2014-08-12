@@ -26,6 +26,11 @@ class BaseAfterbuyOrder
     protected $checkId;
 
     /**
+     * @var \DateTime
+     */
+    protected $buyDate;
+
+    /**
      * @var string
      */
     protected $customerUsername;
@@ -89,6 +94,43 @@ class BaseAfterbuyOrder
      * @var Article[]
      */
     protected $articles;
+
+    /**
+     * @var string
+     */
+    protected $comment;
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getBuyDate()
+    {
+        return $this->buyDate;
+    }
+
+    /**
+     * @param \DateTime $buyDate
+     */
+    public function setBuyDate($buyDate)
+    {
+        $this->buyDate = $buyDate;
+    }
 
     /**
      * @return boolean

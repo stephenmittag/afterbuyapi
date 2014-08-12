@@ -103,6 +103,7 @@ class AfterbuyOrder extends BaseAfterbuyOrder
 
         $data['VID'] = $this->id;
         $data['CheckVID'] = $this->checkId ? 1 : 0;
+        $data['BuyDate'] = $this->buyDate->format('d.m.Y H:i:s');
         $data['Kbenutzername'] = $this->customerUsername;
         $data['Kemail'] = $this->customerEmail;
         $data['NoFeedback'] = $this->noFeedback;
@@ -113,6 +114,7 @@ class AfterbuyOrder extends BaseAfterbuyOrder
         $data['Versandart'] = $this->shippingMethod;
         $data['PosAnz'] = sizeof($this->articles);
         $data['SetPay'] = $this->paid ? 1 : 0;
+        $data['Kommentar'] = $this->comment;
 
         if (isset($this->payments[$this->paymentMethod])) {
             $data['ZFunktionsID'] = $this->payments[$this->paymentMethod]['id'];
@@ -156,8 +158,8 @@ class AfterbuyOrder extends BaseAfterbuyOrder
             $data['ArtikelMenge_' . ($i + 1)] = $article->getQuantity();
             $data['ArtikelGewicht_' . ($i + 1)] = $this->formatNumber($article->getWeight() / 1000);
             $data['AlternArtikelNr1_' . ($i + 1)] = $article->getAlternativeId1();
-            $data['ArtikelMwSt_' . ($i + 1)] = $this->formatNumber($article->getVat());
-            $taxable = $article->getVat() ? true : false;
+            $data['ArtikelMwSt_' . ($i + 1)] = $this->formatNumber($article->getTax());
+            $taxable = $article->getTax() ? true : false;
         }
 
         $data['MwStNichtAusweisen'] = $taxable ? 0 : 1;

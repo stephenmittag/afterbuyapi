@@ -40,7 +40,7 @@ class BaseArticle
     /**
      * @var float
      */
-    protected $vat;
+    protected $tax;
 
     /**
      * @return string
@@ -125,17 +125,17 @@ class BaseArticle
     /**
      * @return float
      */
-    public function getVat()
+    public function getTax()
     {
-        return $this->vat;
+        return $this->tax;
     }
 
     /**
-     * @param float $vat
+     * @param float $tax
      */
-    public function setVat($vat)
+    public function setTax($tax)
     {
-        $this->vat = $vat;
+        $this->tax = $tax;
     }
 
     /**
