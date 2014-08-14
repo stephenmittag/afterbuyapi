@@ -1,23 +1,18 @@
 parameters:
-    wk_afterbuy.afterbuy.url:
-        xml:  "%afterbuy_xml_uri%"
-        shop: "%afterbuy_shop_uri%"
-    wk_afterbuy.afterbuy.params:
+    wk_afterbuy.params:
         partner_id:     "%afterbuy_partner_id%"
         partner_pass:   "%afterbuy_partner_pass%"
         user_id:        "%afterbuy_user_id%"
         user_pass:      "%afterbuy_user_password%"
-        marker_id:      "%afterbuy_marker_id%"
-        check_vid:      "%afterbuy_check_vid%"
-        detail_level:   "%afterbuy_detail_level%"
-        error_language: "%afterbuy_error_language%"
 
 services:
-    wk_afterbuy.afterbuy.connection:
-        class: Wk\AfterBuyApi\Lib\AfterBuyConnection
+    wk_afterbuy.shop_api.connection:
+        class: Wk\AfterbuyApi\Services\AfterbuyConnection
+        arguments: ["shopApiServiceDescription.json"]
         calls:
-            - [setApiUrls, ["%wk_afterbuy.afterbuy.url%"]]
-            - [setParams, ["%wk_afterbuy.afterbuy.params%"]]
-            - [setLogger, ["@logger"]]
-        tags:
-            - { name: kernel.event_listener, event: shopify.events.notify, method: onOrderCreation }
+            - [setParams, ["%wk_afterbuy.params%"]]
+    wk_afterbuy.shop_api:
+        class: Wk\AfterbuyApi\Services\AfterbuyShopApi
+        calls:
+           - [setAfterbuyConnection, ["@wk_afterbuy.shop_api.connection"]]
+           - [setLogger, ["@logger"]]

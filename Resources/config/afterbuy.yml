@@ -1,0 +1,12 @@
+countries:
+    de: D
+    at: A
+    pl: PL
+    us: US
+payments:
+    paypal:
+        id: 5
+        name: PayPal
+    directebanking:
+        id: 12
+        name: Sofortüberweisung

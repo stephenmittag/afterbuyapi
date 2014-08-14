@@ -1,0 +1,27 @@
+{
+    "name": "Afterbuy Shop API",
+    "apiVersion": "2014-03-06",
+    "baseUrl": "https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx",
+    "description": "This is the Afterbuy Shop API",
+    "operations": {
+        "createOrder": {
+            "httpMethod": "GET",
+            "summary": "Create an order in Afterbuy",
+            "responseClass": "AfterbuyResponse",
+            "additionalParameters": {
+                "location": "query"
+            }
+        }
+    },
+    "models": {
+        "AfterbuyResponse": {
+            "type": "object",
+            "properties": {
+                "Result": {
+                    "location": "xml",
+                    "type": "object"
+                }
+            }
+        }
+    }
+}
