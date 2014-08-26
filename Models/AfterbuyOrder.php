@@ -12,6 +12,7 @@ class AfterbuyOrder extends BaseAfterbuyOrder
 {
     const PAYMENT_PAYPAL = 'paypal';
     const PAYMENT_DIRECTEBANKING = 'directebanking';
+    const PAYMENT_TRANSFER = 'transfer';
 
     /**
      * @var array
