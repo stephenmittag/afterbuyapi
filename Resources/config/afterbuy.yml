@@ -4,6 +4,9 @@ countries:
     pl: PL
     us: US
 payments:
+    transfer:
+        id: 1
+        name: Überweisung
     paypal:
         id: 5
         name: PayPal
