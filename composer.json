@@ -19,7 +19,7 @@
     "require": {
         "symfony/symfony": "2.6.x-dev",
         "monolog/monolog": "~1.10",
-        "asgoodasnu/shopifyapi": "dev-master",
+        "asgoodasnu/shopifyapi": "0.2",
         "asgoodasnu/guzzlecommandclient": "0.9",
         "symfony/yaml": "2.6.*@dev"
     },
