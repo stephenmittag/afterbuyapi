@@ -17,14 +17,14 @@
         }
     ],
     "require": {
-        "symfony/symfony": "2.6.x-dev",
+        "symfony/symfony": "2.6.*",
         "monolog/monolog": "~1.10",
-        "asgoodasnu/shopifyapi": "0.3",
-        "asgoodasnu/guzzlecommandclient": "0.10",
-        "symfony/yaml": "2.6.*@dev"
+        "asgoodasnu/shopifyapi": "0.4",
+        "asgoodasnu/guzzlecommandclient": "0.11",
+        "symfony/yaml": "2.6.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.3.*"
+        "phpunit/phpunit": "4.4.*"
     },
     "autoload": {
         "psr-4": { "Wk\\AfterbuyApi\\": "" }
