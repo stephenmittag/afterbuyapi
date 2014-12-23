@@ -18,9 +18,8 @@
     ],
     "require": {
         "symfony/symfony": "2.6.*",
-        "monolog/monolog": "~1.10",
-        "asgoodasnu/shopifyapi": "0.4",
-        "asgoodasnu/guzzlecommandclient": "0.11",
+        "monolog/monolog": "~1.11",
+        "asgoodasnu/shopifyapi": "0.5",
         "symfony/yaml": "2.6.*"
     },
     "require-dev": {
