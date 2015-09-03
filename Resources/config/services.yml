@@ -7,12 +7,16 @@ parameters:
 
 services:
     wk_afterbuy.shop_api.connection:
-        class: Wk\AfterbuyApi\Services\AfterbuyConnection
+        class: Wk\AfterbuyApi\Services\ShopClient\Connection
         arguments: ["shopApiServiceDescription.json"]
         calls:
             - [setParams, ["%wk_afterbuy.params%"]]
     wk_afterbuy.shop_api:
-        class: Wk\AfterbuyApi\Services\AfterbuyShopApi
+        class: Wk\AfterbuyApi\Services\ShopClient\Api
         calls:
            - [setAfterbuyConnection, ["@wk_afterbuy.shop_api.connection"]]
            - [setLogger, ["@logger"]]
+    wk_afterbuy.xml_api:
+        class: Wk\AfterbuyApi\Services\AfterbuyXmlClient
+        calls:
+           - [setCredentials, ["%wk_afterbuy.params%"]]
