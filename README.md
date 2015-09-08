@@ -22,11 +22,11 @@ to "talk" with afterbuy you'll need to set following parameters in your paramete
 
 
 Using Afterbuy XML-Api (Examples):
+==================================
 
 
 
-GetSoldItems:
-=============
+<b>GetSoldItems:</b>
 
     $serviceprovider = new SoldItemslist();
     $serviceprovider->setUserDefinedFlag(17733);
@@ -47,8 +47,8 @@ GetSoldItems:
 
 
 
-UpdateSoldItems:
-================
+
+<b>UpdateSoldItems:</b>
 
     $serviceprovider->setOrderId(your_afterbuy_orderid)
                     ->setOperationFieldOne('your_infofield1_text');

@@ -130,11 +130,22 @@ final class AfterbuyXmlClient
     }
 
     /**
+     * @return array
+     */
+    private function getValidCredentialStructure()
+    {
+       $validStructure = $this->isValidCredentialStructure() ? $this->credentials : $this->validStructure;
+
+       return $validStructure;
+    }
+
+
+    /**
      * @return SimpleXMLElement
      */
     public function send()
     {
-        $postData = $this->serviceProvider->getData($this->isValidCredentialStructure() ? $this->credentials : $this->validStructure);
+        $postData = $this->serviceProvider->getData($this->getValidCredentialStructure());
         $request = $this->httpClient->post($this->uri,
             array(
                 'body' => $postData
