@@ -1,0 +1,15 @@
+<phpunit bootstrap="../../autoload.php"
+         backupGlobals="false"
+         backupStaticAttributes="false"
+         colors="always"
+         syntaxCheck="false">
+    <testsuites>
+        <testsuite name="UnitTests">
+            <directory suffix=".php">Tests</directory>
+        </testsuite>
+        <testsuite name="IntegrationTests">
+            <directory suffix=".php">Integration</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
+

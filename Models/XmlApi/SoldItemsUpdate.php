@@ -6,66 +6,79 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
 {
     private $operationFieldOne = null;
 
-    private $orderId = null;
+    private $orderId = 0;
 
     /**
-     * @param string $fieldvalue
+     * @param string $fieldValue
      *
      * @return object SoldItemsUpdate
      */
-    public function setOperationFieldOne($fieldvalue)
+    public function setOperationFieldOne($fieldValue)
     {
-        $this->operationFieldOne = (string) $fieldvalue;
+        $this->operationFieldOne = (string) $fieldValue;
 
         return $this;
     }
 
     /**
-     * @param int $orderid
+     * @return string
+     */
+    public function getOperationFieldOne()
+    {
+        return $this->operationFieldOne;
+    }
+
+    /**
+     * @return int
+     */
+    public function getOrderId()
+    {
+        return $this->orderId;
+    }
+
+    /**
+     * @param int $orderId
      *
      * @return object SoldItemsUpdate
      */
-    public function setOrderId($orderid)
+    public function setOrderId($orderId)
     {
-        $this->orderId = (int) $orderid;
+        $this->orderId = (int) $orderId;
 
         return $this;
     }
 
     /**
-     * @return SimpleXMLElement
+     * @return string
      */
-    public function getData($credentials = array('partner_id' => '',
-                                                    'partner_pass'=> '',
-                                                    'user_id' => '',
-                                                    'user_pass' => ''))
+    public function getData(array $credentials)
     {
-        $DomElement = new \DOMDocument( "1.0", "UTF-8" );
+        $domElement = new \DOMDocument("1.0", "UTF-8");
 
-        $requestEle = $DomElement->createElement('Request');
-        $rootNode = $DomElement->appendChild($requestEle);
+        $requestEle = $domElement->createElement('Request');
+        $rootNode = $domElement->appendChild($requestEle);
 
-        $authEle = $DomElement->createElement('AfterbuyGlobal');
+        $authEle = $domElement->createElement('AfterbuyGlobal');
         $authData = $rootNode->appendChild($authEle);
-        $authData->appendChild($DomElement->createElement('PartnerID', $credentials['partner_id']));
-        $authData->appendChild($DomElement->createElement('PartnerPassword', $credentials['partner_pass']));
-        $authData->appendChild($DomElement->createElement('UserID', $credentials['user_id']));
+        $authData->appendChild($domElement->createElement('PartnerID', $credentials['partner_id']));
+        $authData->appendChild($domElement->createElement('PartnerPassword', $credentials['partner_pass']));
+        $authData->appendChild($domElement->createElement('UserID', $credentials['user_id']));
 
-        $userpwd = $DomElement->createElement('UserPassword');
-        $userpwd->appendChild($DomElement->createCDATASection($credentials['user_pass']));
+        $userpwd = $domElement->createElement('UserPassword');
+        $userpwd->appendChild($domElement->createCDATASection($credentials['user_pass']));
         $authData->appendChild($userpwd);
 
-        $authData->appendChild($DomElement->createElement('CallName', 'UpdateSoldItems'));
-        $authData->appendChild($DomElement->createElement('DetailLevel', 0));
-        $authData->appendChild($DomElement->createElement('ErrorLanguage', 'DE'));
+        $authData->appendChild($domElement->createElement('CallName', 'UpdateSoldItems'));
+        $authData->appendChild($domElement->createElement('DetailLevel', 0));
+        $authData->appendChild($domElement->createElement('ErrorLanguage', 'DE'));
 
-        $orders = $rootNode->appendChild($DomElement->createElement('Orders'));
+        $orders = $rootNode->appendChild($domElement->createElement('Orders'));
 
-        $order = $orders->appendChild($DomElement->createElement('Order'));
-        $order->appendChild($DomElement->createElement('OrderID', $this->orderId));
-        $operationinfo = $order->appendChild($DomElement->createElement('VorgangsInfo'));
-        $operationinfo->appendChild($DomElement->createElement('VorgangsInfo1', $this->operationFieldOne));
+        $order = $orders->appendChild($domElement->createElement('Order'));
+        $order->appendChild($domElement->createElement('OrderID', $this->orderId));
+        $operationinfo = $order->appendChild($domElement->createElement('VorgangsInfo'));
+        $operationinfo->appendChild($domElement->createElement('VorgangsInfo1', $this->operationFieldOne));
 
-        return $DomElement->saveXML();
+        return $domElement->saveXML();
     }
 }

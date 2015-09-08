@@ -28,23 +28,21 @@ Using Afterbuy XML-Api (Examples):
 GetSoldItems:
 =============
 
-$serviceprovider = new SoldItemslist();
-$serviceprovider->setFeedbackDate('27.10.2015 23:59:59')
-                ->setAuctionEndDate('27.08.2015 00:00:00');
+    $serviceprovider = new SoldItemslist();
+    $serviceprovider->setUserDefinedFlag(17733);
 
 
-$apicall = new AfterbuyXmlClient();
-$apicall->setHttpClient(new Client())
-        ->setUri('https://api.afterbuy.de/afterbuy/ABInterface.aspx')
-        ->setServiceProvider($serviceprovider)
-        ->setCredentials(array(
-                'partner_id' => 'your_partnerid',
-                'partner_pass' => 'Your_partnerpassword',
-                'user_id' => 'your_userid',
-                'user_pass' => 'your_userpassword'
-            ));
-
-apicall->send();
+    $apicall = new AfterbuyXmlClient();
+    $apicall->setUri('https://api.afterbuy.de/afterbuy/ABInterface.aspx')
+            ->setServiceProvider($serviceprovider)
+            ->setCredentials(array(
+                    'partner_id' => 'your_partnerid',
+                    'partner_pass' => 'Your_partnerpassword',
+                    'user_id' => 'your_userid',
+                    'user_pass' => 'your_userpassword'
+                ));
+    
+    apicall->send();
 
 
 
@@ -52,18 +50,17 @@ apicall->send();
 UpdateSoldItems:
 ================
 
-$serviceprovider->setOrderId(your_afterbuy_orderid)
-                ->setOperationFieldOne('your_infofield1_text');
-
-$apicall = new AfterbuyXmlClient();
-$apicall->setHttpClient(new Client())
-        ->setUri('https://api.afterbuy.de/afterbuy/ABInterface.aspx')
-        ->setServiceProvider($serviceprovider)
-        ->setCredentials(array(
-                'partner_id' => 'your_partnerid',
-                'partner_pass' => 'Your_partnerpassword',
-                'user_id' => 'your_userid',
-                'user_pass' => 'your_userpassword'
-            ));
-
-apicall->send();
+    $serviceprovider->setOrderId(your_afterbuy_orderid)
+                    ->setOperationFieldOne('your_infofield1_text');
+    
+    $apicall = new AfterbuyXmlClient();
+    $apicall->setUri('https://api.afterbuy.de/afterbuy/ABInterface.aspx')
+            ->setServiceProvider($serviceprovider)
+            ->setCredentials(array(
+                    'partner_id' => 'your_partnerid',
+                    'partner_pass' => 'Your_partnerpassword',
+                    'user_id' => 'your_userid',
+                    'user_pass' => 'your_userpassword'
+                ));
+    
+    apicall->send();

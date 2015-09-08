@@ -2,11 +2,15 @@
 
 namespace Wk\AfterbuyApi\Models\XmlApi;
 
+/**
+ * Interface XmlWebserviceInterface
+ * @package Wk\AfterbuyApi\Models\XmlApi
+ */
 interface XmlWebserviceInterface
 {
-    public function getData ($credentials = array('partner_id' => '',
-                                                  'partner_pass'=> '',
-                                                  'user_id' => '',
-                                                  'user_pass' => ''));
-
+    /**
+     * @param array $credentials
+     * @return mixed
+     */
+    public function getData(array $credentials);
 }

@@ -6,83 +6,88 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
 final class SoldItemsList implements XmlWebserviceInterface
 {
 
-    private $auctionenddate = null;
+    private $userDefinedFlag = 0;
 
-    private $feedbackdate = null;
+    private $filterValue = 'PaidAuctions';
 
     /**
-     * e.g. 27.08.2015 00:00:00
-     *
-     * @param string $date
+     * @param string $value
      *
      * @return object SoldItemsList
      */
-    public function setAuctionEndDate($date)
+    public function setDefaultFilter($value)
     {
-        $this->auctionenddate = (string) $date;
+        $this->filterValue = (string) $value;
 
         return $this;
     }
 
     /**
-     * e.g. 27.10.2015 23:59:59
-     *
-     * @param string $date
+     * @return string
+     */
+    public function getDefaultFilter()
+    {
+        return $this->filterValue;
+    }
+
+    /**
+     * @param int $value
      *
      * @return object SoldItemsList
      */
-    public function setFeedbackDate($date)
+    public function setUserDefinedFlag($value)
     {
-        $this->feedbackdate = (string) $date;
+        $this->userDefinedFlag = (int) $value;
 
         return $this;
     }
 
+    /**
+     * @return int
+     */
+    public function getUserDefinedFlag()
+    {
+        return $this->userDefinedFlag;
+    }
 
     /**
-     * @return DOMDocument
+     * @return string
      */
-    public function getData($credentials = array('partner_id' => '',
-                                                    'partner_pass'=> '',
-                                                    'user_id' => '',
-                                                    'user_pass' => ''))
+    public function getData(array $credentials)
     {
-        $DomElement = new \DOMDocument( "1.0", "UTF-8" );
+        $domElement = new \DOMDocument( "1.0", "UTF-8" );
 
-        $requestEle = $DomElement->createElement('Request');
-        $rootNode = $DomElement->appendChild($requestEle);
+        $requestEle = $domElement->createElement('Request');
+        $rootNode = $domElement->appendChild($requestEle);
 
-        $authEle = $DomElement->createElement('AfterbuyGlobal');
+        $authEle = $domElement->createElement('AfterbuyGlobal');
         $authData = $rootNode->appendChild($authEle);
-        $authData->appendChild($DomElement->createElement('PartnerID', $credentials['partner_id']));
-        $authData->appendChild($DomElement->createElement('PartnerPassword', $credentials['partner_pass']));
-        $authData->appendChild($DomElement->createElement('UserID', $credentials['user_id']));
+        $authData->appendChild($domElement->createElement('PartnerID', $credentials['partner_id']));
+        $authData->appendChild($domElement->createElement('PartnerPassword', $credentials['partner_pass']));
+        $authData->appendChild($domElement->createElement('UserID', $credentials['user_id']));
 
-        $userpwd = $DomElement->createElement('UserPassword');
-        $userpwd->appendChild($DomElement->createCDATASection($credentials['user_pass']));
-        $authData->appendChild($userpwd);
+        $userPwd = $domElement->createElement('UserPassword');
+        $userPwd->appendChild($domElement->createCDATASection($credentials['user_pass']));
+        $authData->appendChild($userPwd);
 
-        $authData->appendChild($DomElement->createElement('CallName', 'GetSoldItems'));
-        $authData->appendChild($DomElement->createElement('DetailLevel', 0));
-        $authData->appendChild($DomElement->createElement('ErrorLanguage', 'DE'));
+        $authData->appendChild($domElement->createElement('CallName', 'GetSoldItems'));
+        $authData->appendChild($domElement->createElement('DetailLevel', 0));
+        $authData->appendChild($domElement->createElement('ErrorLanguage', 'DE'));
 
-        $rootNode->appendChild($DomElement->createElement('RequestAllItems', 1));
+        $rootNode->appendChild($domElement->createElement('RequestAllItems', 1));
 
-        $dataFilter = $rootNode->appendChild($DomElement->createElement('DataFilter'));
+        $dataFilter = $rootNode->appendChild($domElement->createElement('DataFilter'));
 
-        $filter = $dataFilter->appendChild($DomElement->createElement('Filter'));
-        $filter->appendChild($DomElement->createElement('FilterName', 'DateFilter'));
-        $filterValues = $filter->appendChild($DomElement->createElement('FilterValues'));
-        $filterValues->appendChild($DomElement->createElement('DateFrom', $this->auctionenddate));
-        $filterValues->appendChild($DomElement->createElement('DateTo', $this->feedbackdate));
-        $filterValues->appendChild($DomElement->createElement('FilterValue', 'AuctionEndDate'));
-        $filterValues->appendChild($DomElement->createElement('FilterValue', 'FeedbackDate'));
+        $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
+        $filter->appendChild($domElement->createElement('FilterName', 'UserDefinedFlag'));
+        $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
+        $filterValues->appendChild($domElement->createElement('FilterValue', $this->userDefinedFlag));
 
-        $filter = $dataFilter->appendChild($DomElement->createElement('Filter'));
-        $filter->appendChild($DomElement->createElement('FilterName', 'DefaultFilter'));
-        $filterValues = $filter->appendChild($DomElement->createElement('FilterValues'));
-        $filterValues->appendChild($DomElement->createElement('FilterValue', 'PaidAuctions'));
+        $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
+        $filter->appendChild($domElement->createElement('FilterName', 'DefaultFilter'));
+        $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
+        $filterValues->appendChild($domElement->createElement('FilterValue', $this->filterValue));
 
-        return $DomElement->saveXML();
+        return $domElement->saveXML();
     }
 }
