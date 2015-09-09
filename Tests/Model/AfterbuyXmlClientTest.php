@@ -17,10 +17,10 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->soldItemsUpdate = new XmlApi\SoldItemsUpdate();
         $this->soldItemsList = new XmlApi\SoldItemsList();
 
-        $this->testcredentials = $testCredentials = array('partner_id' => '',
-                                                          'partner_pass'=> '',
-                                                          'user_id' => '',
-                                                          'user_pass' => '');
+        $this->testcredentials = array('partner_id' => '',
+                                       'partner_pass'=> '',
+                                       'user_id' => '',
+                                       'user_pass' => '');
     }
 
     public function testSetCredentials()
@@ -62,13 +62,8 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->httpClient->getEmitter()
                          ->attach($mock);
 
-        $testCredentials = array('partner_id' => '',
-                                 'partner_pass'=> '',
-                                 'user_id' => '',
-                                 'user_pass' => '');
-
         $this->afterbuyClient->setServiceProvider($this->soldItemsUpdate)
-                             ->setCredentials($testCredentials)
+                             ->setCredentials($this->testcredentials)
                              ->setUri('foo')
                              ->setHttpClient($this->httpClient);
 
