@@ -19,4 +19,4 @@ services:
     wk_afterbuy.xml_api:
         class: Wk\AfterbuyApi\Services\AfterbuyXmlClient
         calls:
-           - [setAuthenticationCredentials, ["%wk_afterbuy.params%"]]
+           - [setCredentials, ["%wk_afterbuy.params%"]]
