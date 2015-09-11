@@ -50,6 +50,7 @@ Using Afterbuy XML-Api (Examples):
 
 <b>UpdateSoldItems:</b>
 
+    $serviceprovider = new SoldItemsUpdate();
     $serviceprovider->setOrderId(your_afterbuy_orderid)
                     ->setOperationFieldOne('your_infofield1_text');
     

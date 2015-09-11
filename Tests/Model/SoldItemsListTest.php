@@ -22,7 +22,7 @@ class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
         $this->soldItemsList->setDefaultFilter('123456789');
         $this->assertSame('123456789', $this->soldItemsList->getDefaultFilter());
 
-        $this->soldItemsList->setUserDefinedFlag('66546546456');
+        $this->soldItemsList->setDefaultFilter('66546546456');
         $this->assertTrue(is_string($this->soldItemsList->getDefaultFilter()));
     }
 

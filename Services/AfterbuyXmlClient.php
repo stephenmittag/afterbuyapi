@@ -7,14 +7,24 @@ use GuzzleHttp\Client;
 
 final class AfterbuyXmlClient
 {
-    private $httpClient = null;
 
-    private $serviceProvider = null;
+    private $httpClient;
 
+    private $serviceProvider;
+
+    /**
+     * @var array
+     */
     private $credentials = array();
 
-    private $uri = null;
+    /**
+     * @var string
+     */
+    private $uri = 'https://api.afterbuy.de/afterbuy/ABInterface.aspx';
 
+    /**
+     * @var array
+     */
     private $validStructure = array(
         'partner_id' => '',
         'partner_pass' => '',
@@ -64,19 +74,19 @@ final class AfterbuyXmlClient
 
 
     /**
-     * @param object $httpclient
+     * @param object $httpClient
      *
      * @return object AfterbuyXmlClient
      */
-    public function setHttpClient($httpclient)
+    public function setHttpClient($httpClient)
     {
-        $this->httpClient = $httpclient;
+        $this->httpClient = $httpClient;
 
         return $this;
     }
 
     /**
-     * @return object
+     * @return Client
      */
     public function getHttpClient()
     {
@@ -100,13 +110,13 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @param object $provider
+     * @param XmlWebserviceInterface $provider
      *
      * @return object AfterbuyXmlClient
      */
     public function setServiceProvider($provider)
     {
-        $this->serviceProvider = (object)$provider;
+        $this->serviceProvider = $provider;
 
         return $this;
     }
@@ -130,13 +140,15 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @return array
+     * @return array | Exception
      */
     private function getValidCredentialStructure()
     {
-       $validStructure = $this->isValidCredentialStructure() ? $this->credentials : $this->validStructure;
+       if($this->isValidCredentialStructure() === false) {
+           throw new \Exception('invalid credential data structure set in method setCredentials()');
+       }
 
-       return $validStructure;
+       return $this->credentials;
     }
 
 

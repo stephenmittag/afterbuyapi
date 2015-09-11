@@ -5,6 +5,9 @@ parameters:
         user_id:        "%afterbuy_user_id%"
         user_pass:      "%afterbuy_user_password%"
 
+    wk_afterbuy.params.xml:
+        baseurl:  "https://api.afterbuy.de/afterbuy/ABInterface.aspx"
+
 services:
     wk_afterbuy.shop_api.connection:
         class: Wk\AfterbuyApi\Services\AfterbuyConnection
@@ -20,3 +23,4 @@ services:
         class: Wk\AfterbuyApi\Services\AfterbuyXmlClient
         calls:
            - [setCredentials, ["%wk_afterbuy.params%"]]
+           - [setUri, ["%wk_afterbuy.params.xml%"]]

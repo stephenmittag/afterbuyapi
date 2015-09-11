@@ -17,7 +17,7 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->soldItemsUpdate = new XmlApi\SoldItemsUpdate();
         $this->soldItemsList = new XmlApi\SoldItemsList();
 
-        $this->testcredentials = array('partner_id' => '',
+        $this->testCredentials = array('partner_id' => '',
                                        'partner_pass'=> '',
                                        'user_id' => '',
                                        'user_pass' => '');
@@ -25,16 +25,16 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
 
     public function testSetCredentials()
     {
-        $result = $this->afterbuyClient->setCredentials($this->testcredentials);
+        $result = $this->afterbuyClient->setCredentials($this->testCredentials);
 
         $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient',$result);
     }
 
     public function testGetCredentials()
     {
-        $this->afterbuyClient->setCredentials($this->testcredentials);
+        $this->afterbuyClient->setCredentials($this->testCredentials);
 
-        $this->assertSame($this->testcredentials, $this->afterbuyClient->getCredentials());
+        $this->assertSame($this->testCredentials, $this->afterbuyClient->getCredentials());
     }
 
     public function testSetHttpClient()
@@ -63,7 +63,7 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
                          ->attach($mock);
 
         $this->afterbuyClient->setServiceProvider($this->soldItemsUpdate)
-                             ->setCredentials($this->testcredentials)
+                             ->setCredentials($this->testCredentials)
                              ->setUri('foo')
                              ->setHttpClient($this->httpClient);
 
