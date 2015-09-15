@@ -153,7 +153,7 @@ final class AfterbuyXmlClient
 
 
     /**
-     * @return String
+     * @return SimpleXMLElement
      */
     public function send()
     {
@@ -165,6 +165,6 @@ final class AfterbuyXmlClient
                 'body' => $postData
             ));
 
-        return (string) $request->getBody();
+        return simplexml_load_string( (string) $request->getBody());
     }
 }

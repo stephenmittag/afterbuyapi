@@ -69,7 +69,7 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
 
         $response = $this->afterbuyClient->send();
 
-        $this->assertSame($body, $response);
+        $this->assertInstanceOf('SimpleXMLElement', $response);
     }
 
     public function testSetUri()
