@@ -29,12 +29,11 @@ Using Afterbuy XML-Api (Examples):
 <b>GetSoldItems:</b>
 
     $serviceprovider = new SoldItemslist();
-    $serviceprovider->setUserDefinedFlag(17733);
+    $serviceprovider->setFilterUserDefinedFlag(17733);
 
 
     $apicall = new AfterbuyXmlClient();
-    $apicall->setUri('https://api.afterbuy.de/afterbuy/ABInterface.aspx')
-            ->setServiceProvider($serviceprovider)
+    $apicall->setServiceProvider($serviceprovider)
             ->setCredentials(array(
                     'partner_id' => 'your_partnerid',
                     'partner_pass' => 'Your_partnerpassword',
@@ -55,8 +54,7 @@ Using Afterbuy XML-Api (Examples):
                     ->setOperationFieldOne('your_infofield1_text');
     
     $apicall = new AfterbuyXmlClient();
-    $apicall->setUri('https://api.afterbuy.de/afterbuy/ABInterface.aspx')
-            ->setServiceProvider($serviceprovider)
+    $apicall->setServiceProvider($serviceprovider)
             ->setCredentials(array(
                     'partner_id' => 'your_partnerid',
                     'partner_pass' => 'Your_partnerpassword',

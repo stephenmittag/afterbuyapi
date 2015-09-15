@@ -26,21 +26,21 @@ class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_string($this->soldItemsList->getDefaultFilter()));
     }
 
-    public function testSetUserDefinedFlag()
+    public function testSetFilterUserDefinedFlag()
     {
-        $result = $this->soldItemsList->setUserDefinedFlag(99999);
+        $result = $this->soldItemsList->setFilterUserDefinedFlag(99999);
 
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList',$result);
     }
 
 
-    public function testGetUserDefinedFlag()
+    public function testGetFilterUserDefinedFlag()
     {
-        $this->soldItemsList->setUserDefinedFlag(123456789);
-        $this->assertSame(123456789, $this->soldItemsList->getUserDefinedFlag());
+        $this->soldItemsList->setFilterUserDefinedFlag(123456789);
+        $this->assertSame(123456789, $this->soldItemsList->getFilterUserDefinedFlag());
 
-        $this->soldItemsList->setUserDefinedFlag('66546546456');
-        $this->assertTrue(is_int($this->soldItemsList->getUserDefinedFlag()));
+        $this->soldItemsList->setFilterUserDefinedFlag('66546546456');
+        $this->assertTrue(is_int($this->soldItemsList->getFilterUserDefinedFlag()));
     }
 
 
@@ -51,7 +51,7 @@ class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
                              'user_id' => '1',
                              'user_pass' => '1');
 
-        $result = $this->soldItemsList->setUserDefinedFlag(17733);
+        $result = $this->soldItemsList->setFilterUserDefinedFlag(17733);
 
 
         $object = simplexml_load_string($result->getData($credentials));

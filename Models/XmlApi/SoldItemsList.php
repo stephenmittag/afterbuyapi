@@ -35,7 +35,7 @@ final class SoldItemsList implements XmlWebserviceInterface
      *
      * @return object SoldItemsList
      */
-    public function setUserDefinedFlag($value)
+    public function setFilterUserDefinedFlag($value)
     {
         $this->userDefinedFlag = (int) $value;
 
@@ -45,7 +45,7 @@ final class SoldItemsList implements XmlWebserviceInterface
     /**
      * @return int
      */
-    public function getUserDefinedFlag()
+    public function getFilterUserDefinedFlag()
     {
         return $this->userDefinedFlag;
     }

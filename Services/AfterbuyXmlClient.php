@@ -153,16 +153,18 @@ final class AfterbuyXmlClient
 
 
     /**
-     * @return SimpleXMLElement
+     * @return String
      */
     public function send()
     {
-        $postData = $this->serviceProvider->getData($this->getValidCredentialStructure());
-        $request = $this->httpClient->post($this->uri,
+        $postData = $this->serviceProvider
+                         ->getData($this->getValidCredentialStructure());
+
+        $request = $this->httpClient->request('POST', $this->uri,
             array(
                 'body' => $postData
             ));
 
-        return $request->xml();
+        return (string) $request->getBody();
     }
 }

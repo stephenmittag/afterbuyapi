@@ -2,8 +2,9 @@
 
 use Wk\AfterbuyApi\Services\AfterbuyXmlClient;
 use GuzzleHttp\Client;
-use GuzzleHttp\Subscriber\Mock;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Handler\MockHandler;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\Psr7\Response;
 use Wk\AfterbuyApi\Models\XmlApi;
 
 
@@ -53,23 +54,22 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
 
     public function testSend()
     {
-        $body = GuzzleHttp\Stream\Stream::factory('<result><e>gbff</e></result>');
-        $mock = new Mock([
-            new Response(200, ['X-Foo' => 'Bar'],$body),         // Use response object
-            "HTTP/1.1 202 OK\r\nContent-Length: 0\r\n\r\n"  // Use a response string
+        $body = '<result><e>gbff</e></result>';
+        $mock = new MockHandler([
+            new Response(200, ['X-Foo' => 'Bar'], $body)
         ]);
 
-        $this->httpClient->getEmitter()
-                         ->attach($mock);
+        $handler = HandlerStack::create($mock);
+        $client = new Client(['handler' => $handler]);
 
         $this->afterbuyClient->setServiceProvider($this->soldItemsUpdate)
                              ->setCredentials($this->testCredentials)
                              ->setUri('foo')
-                             ->setHttpClient($this->httpClient);
+                             ->setHttpClient($client);
 
-        $result = $this->afterbuyClient->send();
+        $response = $this->afterbuyClient->send();
 
-        $this->assertInstanceOf('SimpleXMLElement',$result);
+        $this->assertSame($body, $response);
     }
 
     public function testSetUri()
