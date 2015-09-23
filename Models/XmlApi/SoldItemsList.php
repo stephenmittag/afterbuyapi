@@ -13,7 +13,7 @@ final class SoldItemsList implements XmlWebserviceInterface
     /**
      * @param string $value
      *
-     * @return object SoldItemsList
+     * @return SoldItemsList
      */
     public function setDefaultFilter($value)
     {
@@ -33,7 +33,7 @@ final class SoldItemsList implements XmlWebserviceInterface
     /**
      * @param int $value
      *
-     * @return object SoldItemsList
+     * @return SoldItemsList
      */
     public function setFilterUserDefinedFlag($value)
     {

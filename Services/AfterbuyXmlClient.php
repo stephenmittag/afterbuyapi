@@ -2,14 +2,18 @@
 
 namespace Wk\AfterbuyApi\Services;
 
-
 use GuzzleHttp\Client;
 
 final class AfterbuyXmlClient
 {
-
+    /**
+     * @var Client
+     */
     private $httpClient;
 
+    /**
+     * @var XmlWebserviceInterface
+     */
     private $serviceProvider;
 
     /**
@@ -32,7 +36,6 @@ final class AfterbuyXmlClient
         'user_pass' => ''
     );
 
-
     /**
      */
     public function __construct()
@@ -43,9 +46,9 @@ final class AfterbuyXmlClient
     /**
      * @param array $credentials
      *
-     * @return object AfterbuyXmlClient
+     * @return AfterbuyXmlClient
      */
-    public function setCredentials($credentials)
+    public function setCredentials(array $credentials)
     {
         $this->credentials = (array)$credentials;
 
@@ -63,7 +66,7 @@ final class AfterbuyXmlClient
     /**
      * @param $uri
      *
-     * @return object AfterbuyXmlClient
+     * @return AfterbuyXmlClient
      */
     public function setUri($uri)
     {
@@ -74,9 +77,9 @@ final class AfterbuyXmlClient
 
 
     /**
-     * @param object $httpClient
+     * @param Client $httpClient
      *
-     * @return object AfterbuyXmlClient
+     * @return AfterbuyXmlClient
      */
     public function setHttpClient($httpClient)
     {
@@ -102,7 +105,7 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @return object
+     * @return XmlWebserviceInterface
      */
     public function getServiceProvider()
     {
@@ -112,7 +115,7 @@ final class AfterbuyXmlClient
     /**
      * @param XmlWebserviceInterface $provider
      *
-     * @return object AfterbuyXmlClient
+     * @return AfterbuyXmlClient
      */
     public function setServiceProvider($provider)
     {
@@ -126,6 +129,10 @@ final class AfterbuyXmlClient
      */
     private function isValidCredentialStructure()
     {
+        if (empty($this->credentials)) {
+            return false;
+        }
+
         $diffResult = array_diff_key($this->validStructure,
             $this->credentials);
         /**
@@ -140,7 +147,8 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @return array | Exception
+     * @return array
+     * @throws \Exception
      */
     private function getValidCredentialStructure()
     {
