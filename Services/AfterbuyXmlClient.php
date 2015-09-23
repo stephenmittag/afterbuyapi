@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApi\Services;
 
 use GuzzleHttp\Client;
+use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
 
 final class AfterbuyXmlClient
 {

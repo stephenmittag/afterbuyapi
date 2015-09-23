@@ -29,6 +29,11 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
     private $soldItemsUpdate;
 
     /**
+     * @var XmlWebserviceInterface
+     */
+    private $soldItemsList;
+
+    /**
      * @var array
      */
     private $testCredentials;
