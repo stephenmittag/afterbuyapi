@@ -81,7 +81,7 @@ final class AfterbuyXmlClient
      *
      * @return AfterbuyXmlClient
      */
-    public function setHttpClient($httpClient)
+    public function setHttpClient(Client $httpClient)
     {
         $this->httpClient = $httpClient;
 
@@ -117,7 +117,7 @@ final class AfterbuyXmlClient
      *
      * @return AfterbuyXmlClient
      */
-    public function setServiceProvider($provider)
+    public function setServiceProvider(XmlWebserviceInterface $provider)
     {
         $this->serviceProvider = $provider;
 
