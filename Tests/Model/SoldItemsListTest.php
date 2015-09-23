@@ -1,10 +1,21 @@
 <?php
 
 use Wk\AfterbuyApi\Models\XmlApi;
+use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
 
-
+/**
+ * Class SoldItemsListTest
+ */
 class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var XmlWebserviceInterface
+     */
+    private $soldItemsList;
+
+    /**
+     *
+     */
     public function setUp()
     {
         $this->soldItemsList = new XmlApi\SoldItemsList();

@@ -1,5 +1,6 @@
 <?php
 
+use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
 use Wk\AfterbuyApi\Services\AfterbuyXmlClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -7,10 +8,34 @@ use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use Wk\AfterbuyApi\Models\XmlApi;
 
-
-
+/**
+ * Class AfterbuyXmlClientTest
+ */
 class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var AfterbuyXmlClient
+     */
+    private $afterbuyClient;
+
+    /**
+     * @var Client
+     */
+    private $httpClient;
+
+    /**
+     * @var XmlWebserviceInterface
+     */
+    private $soldItemsUpdate;
+
+    /**
+     * @var array
+     */
+    private $testCredentials;
+
+    /**
+     *
+     */
     public function setUp()
     {
         $this->afterbuyClient = new AfterbuyXmlClient();

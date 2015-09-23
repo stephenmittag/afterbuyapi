@@ -11,7 +11,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
     /**
      * @param string $fieldValue
      *
-     * @return object SoldItemsUpdate
+     * @return SoldItemsUpdate
      */
     public function setOperationFieldOne($fieldValue)
     {
@@ -39,7 +39,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
     /**
      * @param int $orderId
      *
-     * @return object SoldItemsUpdate
+     * @return SoldItemsUpdate
      */
     public function setOrderId($orderId)
     {
