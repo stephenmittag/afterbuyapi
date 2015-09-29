@@ -2,12 +2,22 @@
 
 namespace Wk\AfterbuyApi\Models\XmlApi;
 
-
+/**
+ * Class SoldItemsList
+ *
+ * @package Wk\AfterbuyApi\Models\XmlApi
+ */
 final class SoldItemsList implements XmlWebserviceInterface
 {
 
+    /**
+     * @var int
+     */
     private $userDefinedFlag = 0;
 
+    /**
+     * @var string
+     */
     private $filterValue = 'PaidAuctions';
 
     /**
@@ -55,7 +65,7 @@ final class SoldItemsList implements XmlWebserviceInterface
      */
     public function getData(array $credentials)
     {
-        $domElement = new \DOMDocument( "1.0", "UTF-8" );
+        $domElement = new \DOMDocument("1.0", "UTF-8");
 
         $requestEle = $domElement->createElement('Request');
         $rootNode = $domElement->appendChild($requestEle);

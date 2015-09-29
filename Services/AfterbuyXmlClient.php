@@ -5,6 +5,11 @@ namespace Wk\AfterbuyApi\Services;
 use GuzzleHttp\Client;
 use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
 
+/**
+ * Class AfterbuyXmlClient
+ *
+ * @package Wk\AfterbuyApi\Services
+ */
 final class AfterbuyXmlClient
 {
     /**
@@ -31,10 +36,10 @@ final class AfterbuyXmlClient
      * @var array
      */
     private $validStructure = array(
-        'partner_id' => '',
+        'partner_id'   => '',
         'partner_pass' => '',
-        'user_id' => '',
-        'user_pass' => ''
+        'user_id'      => '',
+        'user_pass'    => ''
     );
 
     /**
@@ -51,7 +56,7 @@ final class AfterbuyXmlClient
      */
     public function setCredentials(array $credentials)
     {
-        $this->credentials = (array)$credentials;
+        $this->credentials = (array) $credentials;
 
         return $this;
     }
@@ -71,7 +76,7 @@ final class AfterbuyXmlClient
      */
     public function setUri($uri)
     {
-        $this->uri = (string)$uri;
+        $this->uri = (string) $uri;
 
         return $this;
     }
@@ -153,11 +158,11 @@ final class AfterbuyXmlClient
      */
     private function getValidCredentialStructure()
     {
-       if($this->isValidCredentialStructure() === false) {
-           throw new \Exception('invalid credential data structure set in method setCredentials()');
-       }
+        if ($this->isValidCredentialStructure() === false) {
+            throw new \Exception('invalid credential data structure set in method setCredentials()');
+        }
 
-       return $this->credentials;
+        return $this->credentials;
     }
 
 
@@ -167,13 +172,13 @@ final class AfterbuyXmlClient
     public function send()
     {
         $postData = $this->serviceProvider
-                         ->getData($this->getValidCredentialStructure());
+            ->getData($this->getValidCredentialStructure());
 
         $request = $this->httpClient->request('POST', $this->uri,
             array(
                 'body' => $postData
             ));
 
-        return simplexml_load_string( (string) $request->getBody());
+        return simplexml_load_string((string) $request->getBody());
     }
 }

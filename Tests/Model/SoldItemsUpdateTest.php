@@ -1,24 +1,29 @@
 <?php
 
 use Wk\AfterbuyApi\Models\XmlApi;
+use Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate;
 
-
-
-class SoldItemsUpdateTest  extends \PHPUnit_Framework_TestCase
+/**
+ * Class SoldItemsUpdateTest
+ */
+class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var SoldItemsUpdate
+     */
+    private $soldItemsUpdate;
+
     public function setUp()
     {
         $this->soldItemsUpdate = new XmlApi\SoldItemsUpdate();
     }
 
-
     public function testSetOrderId()
     {
         $result = $this->soldItemsUpdate->setOrderId('27878768');
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate',$result);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
     }
-
 
     public function testGetOrderId()
     {
@@ -29,14 +34,12 @@ class SoldItemsUpdateTest  extends \PHPUnit_Framework_TestCase
         $this->assertSame(0, $this->soldItemsUpdate->getOrderId());
     }
 
-
     public function testSetOperationFieldOne()
     {
         $result = $this->soldItemsUpdate->setOperationFieldOne('test');
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate',$result);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
     }
-
 
     public function testGetOperationFieldOne()
     {
@@ -46,13 +49,14 @@ class SoldItemsUpdateTest  extends \PHPUnit_Framework_TestCase
         $this->assertSame('test', $this->soldItemsUpdate->getOperationFieldOne());
     }
 
-
     public function testGetData()
     {
-        $credentials = array('partner_id' => '1',
-                             'partner_pass'=> '1',
-                             'user_id' => '1',
-                             'user_pass' => '1');
+        $credentials = array(
+            'partner_id'   => '1',
+            'partner_pass' => '1',
+            'user_id'      => '1',
+            'user_pass'    => '1'
+        );
 
         $result = $this->soldItemsUpdate->setOrderId(65656)
                                         ->setOperationFieldOne('gfgfgf');
@@ -73,5 +77,4 @@ class SoldItemsUpdateTest  extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('VorgangsInfo', $object->Orders->Order);
         $this->assertObjectHasAttribute('VorgangsInfo1', $object->Orders->Order->VorgangsInfo);
     }
-
 }

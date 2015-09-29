@@ -6,7 +6,7 @@ use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
 /**
  * Class SoldItemsListTest
  */
-class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
+class SoldItemsListTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var XmlWebserviceInterface
@@ -25,7 +25,7 @@ class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
     {
         $result = $this->soldItemsList->setDefaultFilter('kghggh');
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList',$result);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
     }
 
     public function testGetDefaultFilter()
@@ -41,7 +41,7 @@ class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
     {
         $result = $this->soldItemsList->setFilterUserDefinedFlag(99999);
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList',$result);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
     }
 
 
@@ -57,13 +57,14 @@ class SoldItemsListTest  extends \PHPUnit_Framework_TestCase
 
     public function testGetData()
     {
-        $credentials = array('partner_id' => '1',
-                             'partner_pass'=> '1',
-                             'user_id' => '1',
-                             'user_pass' => '1');
+        $credentials = array(
+            'partner_id'   => '1',
+            'partner_pass' => '1',
+            'user_id'      => '1',
+            'user_pass'    => '1'
+        );
 
         $result = $this->soldItemsList->setFilterUserDefinedFlag(17733);
-
 
         $object = simplexml_load_string($result->getData($credentials));
 

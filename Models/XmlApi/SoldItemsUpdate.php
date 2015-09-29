@@ -2,10 +2,21 @@
 
 namespace Wk\AfterbuyApi\Models\XmlApi;
 
+/**
+ * Class SoldItemsUpdate
+ *
+ * @package Wk\AfterbuyApi\Models\XmlApi
+ */
 final class SoldItemsUpdate implements XmlWebserviceInterface
 {
+    /**
+     * @var null | string
+     */
     private $operationFieldOne = null;
 
+    /**
+     * @var int
+     */
     private $orderId = 0;
 
     /**
