@@ -14,13 +14,16 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     private $soldItemsList;
 
     /**
-     *
+     * initialize global variable
      */
     public function setUp()
     {
         $this->soldItemsList = new XmlApi\SoldItemsList();
     }
 
+    /**
+     * test if setter returns an instance of SolditemsList
+     */
     public function testSetDefaultFilter()
     {
         $result = $this->soldItemsList->setDefaultFilter('kghggh');
@@ -28,6 +31,9 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
     }
 
+    /**
+     * test if getter returns the correct default filter
+     */
     public function testGetDefaultFilter()
     {
         $this->soldItemsList->setDefaultFilter('123456789');
@@ -37,6 +43,9 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_string($this->soldItemsList->getDefaultFilter()));
     }
 
+    /**
+     * test if setter returns an instance of SolditemsList
+     */
     public function testSetFilterUserDefinedFlag()
     {
         $result = $this->soldItemsList->setFilterUserDefinedFlag(99999);
@@ -44,7 +53,9 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
     }
 
-
+    /**
+     * test if getter returns correct user defined flag
+     */
     public function testGetFilterUserDefinedFlag()
     {
         $this->soldItemsList->setFilterUserDefinedFlag(123456789);
@@ -54,7 +65,9 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
         $this->assertTrue(is_int($this->soldItemsList->getFilterUserDefinedFlag()));
     }
 
-
+    /**
+     * test if getData returns the correct SimpleXMLElement object and with correct attributes
+     */
     public function testGetData()
     {
         $credentials = array(

@@ -11,7 +11,7 @@ use Wk\AfterbuyApi\Models\XmlApi;
 /**
  * Class AfterbuyXmlClientTest
  */
-class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
+class AfterbuyXmlClientTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var AfterbuyXmlClient
@@ -39,7 +39,7 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
     private $testCredentials;
 
     /**
-     *
+     * initialized the global variables
      */
     public function setUp()
     {
@@ -48,19 +48,27 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->soldItemsUpdate = new XmlApi\SoldItemsUpdate();
         $this->soldItemsList = new XmlApi\SoldItemsList();
 
-        $this->testCredentials = array('partner_id' => '',
-                                       'partner_pass'=> '',
-                                       'user_id' => '',
-                                       'user_pass' => '');
+        $this->testCredentials = array(
+            'partner_id'   => '',
+            'partner_pass' => '',
+            'user_id'      => '',
+            'user_pass'    => ''
+        );
     }
 
+    /**
+     * test if setter returns an instance of afterbuyXmlClient
+     */
     public function testSetCredentials()
     {
         $result = $this->afterbuyClient->setCredentials($this->testCredentials);
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient',$result);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient', $result);
     }
 
+    /**
+     * test if getter returns the same credentials
+     */
     public function testGetCredentials()
     {
         $this->afterbuyClient->setCredentials($this->testCredentials);
@@ -68,6 +76,9 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->assertSame($this->testCredentials, $this->afterbuyClient->getCredentials());
     }
 
+    /**
+     * test if setter returns an instance of afterbuyXmlClient
+     */
     public function testSetHttpClient()
     {
         $result = $this->afterbuyClient->setHttpClient($this->httpClient);
@@ -75,6 +86,9 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient', $result);
     }
 
+    /**
+     * test if getter returns an instance of afterbuyXmlClient
+     */
     public function testGetHttpClient()
     {
         $this->afterbuyClient->setHttpClient($this->httpClient);
@@ -82,6 +96,9 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('GuzzleHttp\Client', $this->afterbuyClient->getHttpClient());
     }
 
+    /**
+     * test if send method returns an instance of afterbuyXmlClient
+     */
     public function testSend()
     {
         $body = '<result><e>gbff</e></result>';
@@ -102,20 +119,29 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('SimpleXMLElement', $response);
     }
 
+    /**
+     * test if setter returns an instance of afterbuyXmlClient
+     */
     public function testSetUri()
     {
         $result = $this->afterbuyClient->setUri('foo');
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient',$result);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient', $result);
     }
 
+    /**
+     * test if getter returns the same uri
+     */
     public function testGetUri()
     {
         $this->afterbuyClient->setUri('foo_bar');
 
-        $this->assertSame('foo_bar',$this->afterbuyClient->getUri());
+        $this->assertSame('foo_bar', $this->afterbuyClient->getUri());
     }
 
+    /**
+     * test setter returns an instance of AfterbuyXmlClient
+     */
     public function testSetServiceProvider()
     {
         $result = $this->afterbuyClient->setServiceProvider($this->soldItemsList);
@@ -123,6 +149,9 @@ class AfterbuyXmlClientTest  extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Wk\AfterbuyApi\Services\AfterbuyXmlClient', $result);
     }
 
+    /**
+     * test if getter returns an instance of SoldItemsList
+     */
     public function testGetServiceProvider()
     {
         $this->afterbuyClient->setServiceProvider($this->soldItemsList);

@@ -13,11 +13,17 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
      */
     private $soldItemsUpdate;
 
+    /**
+     * initialize global variable
+     */
     public function setUp()
     {
         $this->soldItemsUpdate = new XmlApi\SoldItemsUpdate();
     }
 
+    /**
+     * test if setter returns an instance of SoldItemsUpdate
+     */
     public function testSetOrderId()
     {
         $result = $this->soldItemsUpdate->setOrderId('27878768');
@@ -25,6 +31,9 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
     }
 
+    /**
+     * test if getter return correct orderID
+     */
     public function testGetOrderId()
     {
         $this->soldItemsUpdate->setOrderId('90966656');
@@ -34,6 +43,9 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(0, $this->soldItemsUpdate->getOrderId());
     }
 
+    /**
+     * test if setter returns an instance of SoldItemsUpdate
+     */
     public function testSetOperationFieldOne()
     {
         $result = $this->soldItemsUpdate->setOperationFieldOne('test');
@@ -41,6 +53,9 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
     }
 
+    /**
+     * test if getter returns correct value
+     */
     public function testGetOperationFieldOne()
     {
         $this->soldItemsUpdate->setOperationFieldOne('test');
@@ -49,6 +64,9 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertSame('test', $this->soldItemsUpdate->getOperationFieldOne());
     }
 
+    /**
+     * test if getData returns the correct SimpleXmlElement object with correct attributes
+     */
     public function testGetData()
     {
         $credentials = array(
