@@ -97,7 +97,7 @@ class AfterbuyXmlClientTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test if send method returns an instance of afterbuyXmlClient
+     * test if send method returns an instance of SimpleXMLElement and correct content
      */
     public function testSend()
     {
@@ -117,6 +117,7 @@ class AfterbuyXmlClientTest extends \PHPUnit_Framework_TestCase
         $response = $this->afterbuyClient->send();
 
         $this->assertInstanceOf('SimpleXMLElement', $response);
+        $this->assertEquals('gbff', (string)$response->e);
     }
 
     /**

@@ -30,7 +30,7 @@ final class AfterbuyXmlClient
     /**
      * @var string
      */
-    private $uri = 'https://api.afterbuy.de/afterbuy/ABInterface.aspx';
+    private $uri;
 
     /**
      * @var array
@@ -70,7 +70,7 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @param $uri
+     * @param string $uri
      *
      * @return AfterbuyXmlClient
      */
