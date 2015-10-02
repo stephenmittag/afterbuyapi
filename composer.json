@@ -19,11 +19,11 @@
     "require": {
         "symfony/symfony": "2.6.*",
         "monolog/monolog": "1.12.0",
-        "asgoodasnu/shopifyapi": "0.7",
-        "symfony/yaml": "2.6.*"
+        "symfony/yaml": "2.6.*",
+        "guzzlehttp/guzzle": "6.*"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.5.*"
+        "phpunit/phpunit": "4.8.*"
     },
     "autoload": {
         "psr-4": { "Wk\\AfterbuyApi\\": "" }
