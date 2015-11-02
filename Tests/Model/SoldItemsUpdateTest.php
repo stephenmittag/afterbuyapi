@@ -65,19 +65,41 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * test if setter returns an instance of SoldItemsUpdate
+     */
+    public function testSetInvoiceMemo()
+    {
+        $result = $this->soldItemsUpdate->setInvoiceMemo('test');
+
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
+    }
+
+    /**
+     * test getter
+     */
+    public function testGetInvoiceMemo()
+    {
+        $this->soldItemsUpdate->setInvoiceMemo('test');
+
+        $this->assertTrue(is_string($this->soldItemsUpdate->getInvoiceMemo()));
+        $this->assertSame('test', $this->soldItemsUpdate->getInvoiceMemo());
+    }
+
+    /**
      * test if getData returns the correct SimpleXmlElement object with correct attributes
      */
     public function testGetData()
     {
         $credentials = array(
-            'partner_id'   => '1',
+            'partner_id' => '1',
             'partner_pass' => '1',
-            'user_id'      => '1',
-            'user_pass'    => '1'
+            'user_id' => '1',
+            'user_pass' => '1'
         );
 
         $result = $this->soldItemsUpdate->setOrderId(65656)
-                                        ->setOperationFieldOne('gfgfgf');
+            ->setOperationFieldOne('gfgfgf')
+            ->setInvoiceMemo('gfgfgf');
 
         $object = simplexml_load_string($result->getData($credentials));
 
@@ -94,5 +116,6 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('OrderID', $object->Orders->Order);
         $this->assertObjectHasAttribute('VorgangsInfo', $object->Orders->Order);
         $this->assertObjectHasAttribute('VorgangsInfo1', $object->Orders->Order->VorgangsInfo);
+        $this->assertObjectHasAttribute('InvoiceMemo', $object->Orders->Order);
     }
 }
