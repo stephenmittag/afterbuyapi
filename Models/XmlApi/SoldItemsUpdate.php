@@ -113,8 +113,6 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
         $order = $orders->appendChild($domElement->createElement('Order'));
         $order->appendChild($domElement->createElement('OrderID', $this->orderId));
         $order->appendChild($domElement->createElement('InvoiceMemo', $this->invoiceMemo));
-        $operationinfo = $order->appendChild($domElement->createElement('VorgangsInfo'));
-        $operationinfo->appendChild($domElement->createElement('VorgangsInfo1', $this->operationFieldOne));
 
         return $domElement->saveXML();
     }
