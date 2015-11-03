@@ -15,9 +15,34 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
     private $operationFieldOne = null;
 
     /**
+     * @var null | string
+     */
+    private $invoiceMemo = null;
+
+    /**
      * @var int
      */
     private $orderId = 0;
+
+    /**
+     * @return null|string
+     */
+    public function getInvoiceMemo()
+    {
+        return $this->invoiceMemo;
+    }
+
+    /**
+     * @param null|string $invoiceMemo
+     *
+     * @return SoldItemsUpdate
+     */
+    public function setInvoiceMemo($invoiceMemo)
+    {
+        $this->invoiceMemo = $invoiceMemo;
+
+        return $this;
+    }
 
     /**
      * @param string $fieldValue
@@ -87,6 +112,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
 
         $order = $orders->appendChild($domElement->createElement('Order'));
         $order->appendChild($domElement->createElement('OrderID', $this->orderId));
+        $order->appendChild($domElement->createElement('InvoiceMemo', $this->invoiceMemo));
         $operationinfo = $order->appendChild($domElement->createElement('VorgangsInfo'));
         $operationinfo->appendChild($domElement->createElement('VorgangsInfo1', $this->operationFieldOne));
 
