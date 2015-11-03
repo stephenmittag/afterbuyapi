@@ -114,8 +114,6 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('Orders', $object);
         $this->assertObjectHasAttribute('Order', $object->Orders);
         $this->assertObjectHasAttribute('OrderID', $object->Orders->Order);
-        $this->assertObjectHasAttribute('VorgangsInfo', $object->Orders->Order);
-        $this->assertObjectHasAttribute('VorgangsInfo1', $object->Orders->Order->VorgangsInfo);
         $this->assertObjectHasAttribute('InvoiceMemo', $object->Orders->Order);
     }
 }
