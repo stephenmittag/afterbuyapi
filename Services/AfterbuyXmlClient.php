@@ -3,7 +3,7 @@
 namespace Wk\AfterbuyApi\Services;
 
 use GuzzleHttp\Client;
-use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
+use Wk\AfterbuyApi\Models\XmlApi\AbstractXmlWebservice;
 
 /**
  * Class AfterbuyXmlClient
@@ -18,7 +18,7 @@ final class AfterbuyXmlClient
     private $httpClient;
 
     /**
-     * @var XmlWebserviceInterface
+     * @var AbstractXmlWebservice
      */
     private $serviceProvider;
 
@@ -111,7 +111,7 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @return XmlWebserviceInterface
+     * @return AbstractXmlWebservice
      */
     public function getServiceProvider()
     {
@@ -119,11 +119,11 @@ final class AfterbuyXmlClient
     }
 
     /**
-     * @param XmlWebserviceInterface $provider
+     * @param AbstractXmlWebservice $provider
      *
      * @return AfterbuyXmlClient
      */
-    public function setServiceProvider(XmlWebserviceInterface $provider)
+    public function setServiceProvider(AbstractXmlWebservice $provider)
     {
         $this->serviceProvider = $provider;
 

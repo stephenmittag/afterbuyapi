@@ -7,17 +7,17 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-final class SoldItemsUpdate implements XmlWebserviceInterface
+final class SoldItemsUpdate extends AbstractXmlWebservice
 {
     /**
      * @var null | string
      */
-    private $operationFieldOne = null;
+    private $operationFieldOne;
 
     /**
      * @var null | string
      */
-    private $invoiceMemo = null;
+    private $invoiceMemo;
 
     /**
      * @var int
@@ -85,7 +85,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function getData(array $credentials)
     {
@@ -113,6 +113,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
         $order = $orders->appendChild($domElement->createElement('Order'));
         $order->appendChild($domElement->createElement('OrderID', $this->orderId));
         $order->appendChild($domElement->createElement('InvoiceMemo', $this->invoiceMemo));
+        $order->appendChild($domElement->createElement('UserDefinedFlag', $this->userDefinedFlag));
 
         return $domElement->saveXML();
     }

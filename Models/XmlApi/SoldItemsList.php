@@ -7,14 +7,8 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-final class SoldItemsList implements XmlWebserviceInterface
+final class SoldItemsList extends AbstractXmlWebservice
 {
-
-    /**
-     * @var int
-     */
-    private $userDefinedFlag = 0;
-
     /**
      * @var string
      */
@@ -41,27 +35,7 @@ final class SoldItemsList implements XmlWebserviceInterface
     }
 
     /**
-     * @param int $value
-     *
-     * @return SoldItemsList
-     */
-    public function setFilterUserDefinedFlag($value)
-    {
-        $this->userDefinedFlag = (int) $value;
-
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getFilterUserDefinedFlag()
-    {
-        return $this->userDefinedFlag;
-    }
-
-    /**
-     * @return string
+     * @inheritdoc
      */
     public function getData(array $credentials)
     {

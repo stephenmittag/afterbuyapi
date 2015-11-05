@@ -1,6 +1,6 @@
 <?php
 
-use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
+use Wk\AfterbuyApi\Models\XmlApi\AbstractXmlWebservice;
 use Wk\AfterbuyApi\Services\AfterbuyXmlClient;
 use GuzzleHttp\Client;
 use GuzzleHttp\Handler\MockHandler;
@@ -24,12 +24,12 @@ class AfterbuyXmlClientTest extends \PHPUnit_Framework_TestCase
     private $httpClient;
 
     /**
-     * @var XmlWebserviceInterface
+     * @var AbstractXmlWebservice
      */
     private $soldItemsUpdate;
 
     /**
-     * @var XmlWebserviceInterface
+     * @var AbstractXmlWebservice
      */
     private $soldItemsList;
 
