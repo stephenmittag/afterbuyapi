@@ -29,7 +29,7 @@ Using Afterbuy XML-Api (Examples):
 <b>GetSoldItems:</b>
 
     $serviceprovider = new SoldItemslist();
-    $serviceprovider->setFilterUserDefinedFlag(17733);
+    $serviceprovider->setUserDefinedFlag(17733);
 
 
     $apicall = new AfterbuyXmlClient();
@@ -51,7 +51,8 @@ Using Afterbuy XML-Api (Examples):
 
     $serviceprovider = new SoldItemsUpdate();
     $serviceprovider->setOrderId(your_afterbuy_orderid)
-                    ->setOperationFieldOne('your_infofield1_text');
+                    ->setOperationFieldOne('your_infofield1_text')
+                    ->setUserDefinedFlag(123);
     
     $apicall = new AfterbuyXmlClient();
     $apicall->setServiceProvider($serviceprovider)

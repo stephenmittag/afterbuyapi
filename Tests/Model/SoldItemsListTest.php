@@ -1,7 +1,7 @@
 <?php
 
 use Wk\AfterbuyApi\Models\XmlApi;
-use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
+use Wk\AfterbuyApi\Models\XmlApi\AbstractXmlWebservice;
 
 /**
  * Class SoldItemsListTest
@@ -9,7 +9,7 @@ use Wk\AfterbuyApi\Models\XmlApi\XmlWebserviceInterface;
 class SoldItemsListTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var XmlWebserviceInterface
+     * @var AbstractXmlWebservice
      */
     private $soldItemsList;
 
@@ -46,9 +46,9 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     /**
      * test if setter returns an instance of SolditemsList
      */
-    public function testSetFilterUserDefinedFlag()
+    public function testSetUserDefinedFlag()
     {
-        $result = $this->soldItemsList->setFilterUserDefinedFlag(99999);
+        $result = $this->soldItemsList->setUserDefinedFlag(99999);
 
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
     }
@@ -56,13 +56,13 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     /**
      * test if getter returns correct user defined flag
      */
-    public function testGetFilterUserDefinedFlag()
+    public function testGetUserDefinedFlag()
     {
-        $this->soldItemsList->setFilterUserDefinedFlag(123456789);
-        $this->assertSame(123456789, $this->soldItemsList->getFilterUserDefinedFlag());
+        $this->soldItemsList->setUserDefinedFlag(123456789);
+        $this->assertSame(123456789, $this->soldItemsList->getUserDefinedFlag());
 
-        $this->soldItemsList->setFilterUserDefinedFlag('66546546456');
-        $this->assertTrue(is_int($this->soldItemsList->getFilterUserDefinedFlag()));
+        $this->soldItemsList->setUserDefinedFlag('66546546456');
+        $this->assertTrue(is_int($this->soldItemsList->getUserDefinedFlag()));
     }
 
     /**
@@ -77,7 +77,7 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
             'user_pass'    => '1'
         );
 
-        $result = $this->soldItemsList->setFilterUserDefinedFlag(17733);
+        $result = $this->soldItemsList->setUserDefinedFlag(17733);
 
         $object = simplexml_load_string($result->getData($credentials));
 

@@ -7,47 +7,22 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-final class SoldItemsUpdate implements XmlWebserviceInterface
+final class SoldItemsUpdate extends AbstractXmlWebservice
 {
     /**
      * @var null | string
      */
-    private $operationFieldOne = null;
+    private $operationFieldOne;
 
     /**
      * @var null | string
      */
-    private $invoiceMemo = null;
-
-    /**
-     * @var int
-     */
-    private $userDefinedFlag = null;
+    private $invoiceMemo;
 
     /**
      * @var int
      */
     private $orderId = 0;
-
-    /**
-     * @return int
-     */
-    public function getUserDefinedFlag()
-    {
-        return $this->userDefinedFlag;
-    }
-
-    /**
-     * @param int $userDefinedFlag
-     *
-     * @return $this
-     */
-    public function setUserDefinedFlag($userDefinedFlag)
-    {
-        $this->userDefinedFlag = (int) $userDefinedFlag;
-
-        return $this;
-    }
 
     /**
      * @return null|string
@@ -110,7 +85,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
     public function getData(array $credentials)
     {
