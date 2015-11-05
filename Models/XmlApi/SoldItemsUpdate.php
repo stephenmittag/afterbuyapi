@@ -22,7 +22,32 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
     /**
      * @var int
      */
+    private $userDefinedFlag = null;
+
+    /**
+     * @var int
+     */
     private $orderId = 0;
+
+    /**
+     * @return int
+     */
+    public function getUserDefinedFlag()
+    {
+        return $this->userDefinedFlag;
+    }
+
+    /**
+     * @param int $userDefinedFlag
+     *
+     * @return $this
+     */
+    public function setUserDefinedFlag($userDefinedFlag)
+    {
+        $this->userDefinedFlag = (int) $userDefinedFlag;
+
+        return $this;
+    }
 
     /**
      * @return null|string
@@ -113,6 +138,7 @@ final class SoldItemsUpdate implements XmlWebserviceInterface
         $order = $orders->appendChild($domElement->createElement('Order'));
         $order->appendChild($domElement->createElement('OrderID', $this->orderId));
         $order->appendChild($domElement->createElement('InvoiceMemo', $this->invoiceMemo));
+        $order->appendChild($domElement->createElement('UserDefinedFlag', $this->userDefinedFlag));
 
         return $domElement->saveXML();
     }

@@ -46,6 +46,27 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
     /**
      * test if setter returns an instance of SoldItemsUpdate
      */
+    public function testSetUserDefinedFlag()
+    {
+        $result = $this->soldItemsUpdate->setUserDefinedflag(123);
+
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
+    }
+
+    /**
+     * test getter
+     */
+    public function testGetUserDefinedFlag()
+    {
+        $this->soldItemsUpdate->setUserDefinedFlag(123);
+
+        $this->assertTrue(is_int($this->soldItemsUpdate->getUserDefinedFlag()));
+        $this->assertSame(123, $this->soldItemsUpdate->getUserDefinedFlag());
+    }
+
+    /**
+     * test if setter returns an instance of SoldItemsUpdate
+     */
     public function testSetOperationFieldOne()
     {
         $result = $this->soldItemsUpdate->setOperationFieldOne('test');
@@ -99,7 +120,8 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->soldItemsUpdate->setOrderId(65656)
             ->setOperationFieldOne('gfgfgf')
-            ->setInvoiceMemo('gfgfgf');
+            ->setInvoiceMemo('gfgfgf')
+            ->setUserDefinedFlag(123);
 
         $object = simplexml_load_string($result->getData($credentials));
 
@@ -115,5 +137,6 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('Order', $object->Orders);
         $this->assertObjectHasAttribute('OrderID', $object->Orders->Order);
         $this->assertObjectHasAttribute('InvoiceMemo', $object->Orders->Order);
+        $this->assertObjectHasAttribute('UserDefinedFlag', $object->Orders->Order);
     }
 }
