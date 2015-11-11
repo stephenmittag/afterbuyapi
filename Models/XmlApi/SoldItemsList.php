@@ -15,9 +15,14 @@ final class SoldItemsList extends AbstractXmlWebservice
     private $filterValue = 'PaidAuctions';
 
     /**
+     * @var bool
+     */
+    private $mustHaveFeedbackDate = true;
+
+    /**
      * @param string $value
      *
-     * @return SoldItemsList
+     * @return $this
      */
     public function setDefaultFilter($value)
     {
@@ -32,6 +37,26 @@ final class SoldItemsList extends AbstractXmlWebservice
     public function getDefaultFilter()
     {
         return $this->filterValue;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getMustHaveFeedbackDate()
+    {
+        return $this->mustHaveFeedbackDate;
+    }
+
+    /**
+     * @param boolean $mustHaveFeedbackDate
+     *
+     * @return $this
+     */
+    public function setMustHaveFeedbackDate($mustHaveFeedbackDate)
+    {
+        $this->mustHaveFeedbackDate = $mustHaveFeedbackDate;
+
+        return $this;
     }
 
     /**
@@ -61,6 +86,14 @@ final class SoldItemsList extends AbstractXmlWebservice
         $rootNode->appendChild($domElement->createElement('RequestAllItems', 1));
 
         $dataFilter = $rootNode->appendChild($domElement->createElement('DataFilter'));
+
+        if ($this->mustHaveFeedbackDate) {
+            $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
+            $filter->appendChild($domElement->createElement('FilterName', 'DateFilter'));
+            $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
+            $filterValues->appendChild($domElement->createElement('FilterValue', 'FeedbackDate'));
+            $filterValues->appendChild($domElement->createElement('DateFrom', '01.01.2000 00:00:00'));
+        }
 
         $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
         $filter->appendChild($domElement->createElement('FilterName', 'UserDefinedFlag'));

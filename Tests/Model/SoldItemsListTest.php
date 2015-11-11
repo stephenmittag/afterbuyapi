@@ -1,7 +1,6 @@
 <?php
 
-use Wk\AfterbuyApi\Models\XmlApi;
-use Wk\AfterbuyApi\Models\XmlApi\AbstractXmlWebservice;
+use Wk\AfterbuyApi\Models\XmlApi\SoldItemsList;
 
 /**
  * Class SoldItemsListTest
@@ -9,7 +8,7 @@ use Wk\AfterbuyApi\Models\XmlApi\AbstractXmlWebservice;
 class SoldItemsListTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var AbstractXmlWebservice
+     * @var SoldItemsList
      */
     private $soldItemsList;
 
@@ -18,7 +17,7 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->soldItemsList = new XmlApi\SoldItemsList();
+        $this->soldItemsList = new SoldItemsList();
     }
 
     /**
@@ -66,6 +65,27 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * test if setter returns an instance of SolditemsList
+     */
+    public function testSetMustHaveFeedbackDate() {
+        $result = $this->soldItemsList->setMustHaveFeedbackDate(true);
+
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
+    }
+
+    /**
+     * test if getter returns correct feedback date setting
+     */
+    public function testGetMustHaveFeedbackDate()
+    {
+        $this->soldItemsList->setMustHaveFeedbackDate(true);
+        $this->assertSame(true, $this->soldItemsList->getMustHaveFeedbackDate());
+
+        $this->soldItemsList->setMustHaveFeedbackDate(false);
+        $this->assertSame(false, $this->soldItemsList->getMustHaveFeedbackDate());
+    }
+
+    /**
      * test if getData returns the correct SimpleXMLElement object and with correct attributes
      */
     public function testGetData()
@@ -77,7 +97,9 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
             'user_pass'    => '1'
         );
 
-        $result = $this->soldItemsList->setUserDefinedFlag(17733);
+        $result = $this->soldItemsList
+            ->setUserDefinedFlag(17733)
+            ->setMustHaveFeedbackDate(true);
 
         $object = simplexml_load_string($result->getData($credentials));
 
@@ -95,5 +117,6 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
         $this->assertObjectHasAttribute('FilterName', $object->DataFilter->Filter);
         $this->assertObjectHasAttribute('FilterValues', $object->DataFilter->Filter);
         $this->assertObjectHasAttribute('FilterValue', $object->DataFilter->Filter->FilterValues);
+        $this->assertObjectHasAttribute('DateFrom', $object->DataFilter->Filter->FilterValues);
     }
 }
