@@ -97,25 +97,11 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
             'user_pass' => '1'
         );
 
-        $result = $this->soldItemsUpdate->setOrderId(65656)
-            ->setOperationFieldOne('gfgfgf')
-            ->setInvoiceMemo('gfgfgf')
+        $result = $this->soldItemsUpdate
+            ->setOrderId(65656)
+            ->setInvoiceMemo('def')
             ->setUserDefinedFlag(123);
 
-        $object = simplexml_load_string($result->getData($credentials));
-
-        $this->assertObjectHasAttribute('AfterbuyGlobal', $object);
-        $this->assertObjectHasAttribute('PartnerID', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('PartnerPassword', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('UserID', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('UserPassword', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('CallName', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('DetailLevel', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('ErrorLanguage', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('Orders', $object);
-        $this->assertObjectHasAttribute('Order', $object->Orders);
-        $this->assertObjectHasAttribute('OrderID', $object->Orders->Order);
-        $this->assertObjectHasAttribute('InvoiceMemo', $object->Orders->Order);
-        $this->assertObjectHasAttribute('UserDefinedFlag', $object->Orders->Order);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../Data/UpdateSoldItems.xml', $result->getData($credentials));
     }
 }

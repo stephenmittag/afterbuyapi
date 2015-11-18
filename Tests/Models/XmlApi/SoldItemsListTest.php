@@ -76,22 +76,6 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
             ->setUserDefinedFlag(17733)
             ->setMustHaveFeedbackDate(true);
 
-        $object = simplexml_load_string($result->getData($credentials));
-
-        $this->assertObjectHasAttribute('AfterbuyGlobal', $object);
-        $this->assertObjectHasAttribute('PartnerID', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('PartnerPassword', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('UserID', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('UserPassword', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('CallName', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('DetailLevel', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('ErrorLanguage', $object->AfterbuyGlobal);
-        $this->assertObjectHasAttribute('RequestAllItems', $object);
-        $this->assertObjectHasAttribute('DataFilter', $object);
-        $this->assertObjectHasAttribute('Filter', $object->DataFilter);
-        $this->assertObjectHasAttribute('FilterName', $object->DataFilter->Filter);
-        $this->assertObjectHasAttribute('FilterValues', $object->DataFilter->Filter);
-        $this->assertObjectHasAttribute('FilterValue', $object->DataFilter->Filter->FilterValues);
-        $this->assertObjectHasAttribute('DateFrom', $object->DataFilter->Filter->FilterValues);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../Data/GetSoldItems.xml', $result->getData($credentials));
     }
 }

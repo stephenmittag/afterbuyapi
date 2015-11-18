@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Request>
+    <AfterbuyGlobal>
+        <PartnerID>1</PartnerID>
+        <PartnerPassword>1</PartnerPassword>
+        <UserID>1</UserID>
+        <UserPassword>1</UserPassword>
+        <CallName>UpdateSoldItems</CallName>
+        <DetailLevel>0</DetailLevel>
+        <ErrorLanguage>DE</ErrorLanguage>
+    </AfterbuyGlobal>
+    <Orders>
+        <Order>
+            <OrderID>65656</OrderID>
+            <InvoiceMemo>def</InvoiceMemo>
+            <UserDefinedFlag>123</UserDefinedFlag>
+        </Order>
+    </Orders>
+</Request>

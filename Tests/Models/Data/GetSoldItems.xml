@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Request>
+    <AfterbuyGlobal>
+        <PartnerID>1</PartnerID>
+        <PartnerPassword>1</PartnerPassword>
+        <UserID>1</UserID>
+        <UserPassword>1</UserPassword>
+        <CallName>GetSoldItems</CallName>
+        <DetailLevel>0</DetailLevel>
+        <ErrorLanguage>DE</ErrorLanguage>
+    </AfterbuyGlobal>
+    <RequestAllItems>1</RequestAllItems>
+    <DataFilter>
+        <Filter>
+            <FilterName>DateFilter</FilterName>
+            <FilterValues>
+                <FilterValue>FeedbackDate</FilterValue>
+                <DateFrom>01.01.2000 00:00:00</DateFrom>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>UserDefinedFlag</FilterName>
+            <FilterValues>
+                <FilterValue>17733</FilterValue>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>DefaultFilter</FilterName>
+            <FilterValues>
+                <FilterValue>PaidAuctions</FilterValue>
+            </FilterValues>
+        </Filter>
+    </DataFilter>
+</Request>
