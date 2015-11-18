@@ -62,10 +62,14 @@ class BaseAddress
 
     /**
      * @param string $city
+     *
+     * @return $this
      */
     public function setCity($city)
     {
         $this->city = $city;
+
+        return $this;
     }
 
     /**
@@ -78,10 +82,14 @@ class BaseAddress
 
     /**
      * @param string $company
+     *
+     * @return $this
      */
     public function setCompany($company)
     {
         $this->company = $company;
+
+        return $this;
     }
 
     /**
@@ -94,10 +102,14 @@ class BaseAddress
 
     /**
      * @param string $country
+     *
+     * @return $this
      */
     public function setCountry($country)
     {
         $this->country = $country;
+
+        return $this;
     }
 
     /**
@@ -110,10 +122,14 @@ class BaseAddress
 
     /**
      * @param string $firstName
+     *
+     * @return $this
      */
     public function setFirstName($firstName)
     {
         $this->firstName = $firstName;
+
+        return $this;
     }
 
     /**
@@ -126,10 +142,14 @@ class BaseAddress
 
     /**
      * @param string $lastName
+     *
+     * @return $this
      */
     public function setLastName($lastName)
     {
         $this->lastName = $lastName;
+
+        return $this;
     }
 
     /**
@@ -142,10 +162,14 @@ class BaseAddress
 
     /**
      * @param string $phone
+     *
+     * @return $this
      */
     public function setPhone($phone)
     {
         $this->phone = $phone;
+
+        return $this;
     }
 
     /**
@@ -158,10 +182,14 @@ class BaseAddress
 
     /**
      * @param string $street
+     *
+     * @return $this
      */
     public function setStreet($street)
     {
         $this->street = $street;
+
+        return $this;
     }
 
     /**
@@ -174,10 +202,14 @@ class BaseAddress
 
     /**
      * @param string $street2
+     *
+     * @return $this
      */
     public function setStreet2($street2)
     {
         $this->street2 = $street2;
+
+        return $this;
     }
 
     /**
@@ -190,9 +222,13 @@ class BaseAddress
 
     /**
      * @param string $zipCode
+     *
+     * @return $this
      */
     public function setZipCode($zipCode)
     {
         $this->zipCode = $zipCode;
+
+        return $this;
     }
 }

@@ -10,10 +10,14 @@ use Wk\AfterbuyApi\Models\AfterbuyOrder;
  */
 class AfterbuyShopApi
 {
-    /** @var AfterbuyConnection $afterbuyConnection */
+    /**
+     * @var AfterbuyConnection $afterbuyConnection
+     */
     private $afterbuyConnection;
 
-    /** @var \Monolog\Logger */
+    /**
+     * @var Logger
+     */
     private $logger;
 
     /**
@@ -26,18 +30,26 @@ class AfterbuyShopApi
 
     /**
      * @param Logger $logger
+     *
+     * @return $this
      */
     public function setLogger(Logger $logger)
     {
         $this->logger = $logger;
+
+        return $this;
     }
 
     /**
      * @param AfterbuyConnection $afterbuyConnection
+     *
+     * @return $this
      */
     public function setAfterbuyConnection($afterbuyConnection)
     {
         $this->afterbuyConnection = $afterbuyConnection;
+
+        return $this;
     }
 
     /**

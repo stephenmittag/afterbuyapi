@@ -3,6 +3,7 @@
 
 namespace Wk\AfterbuyApi\Services;
 
+use GuzzleHttp\Client;
 use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
 
 /**
@@ -11,15 +12,29 @@ use Wk\GuzzleCommandClient\Lib\GuzzleCommandClient;
  */
 class AfterbuyConnection extends GuzzleCommandClient
 {
-    /** @var  \GuzzleHttp\Client */
+    /**
+     * @var Client
+     */
     protected $guzzleClient;
 
+    /**
+     * @var string
+     */
     protected $partnerId;
 
+    /**
+     * @var string
+     */
     protected $partnerPassword;
 
+    /**
+     * @var string
+     */
     protected $userId;
 
+    /**
+     * @var string
+     */
     protected $userPassword;
 
     /**

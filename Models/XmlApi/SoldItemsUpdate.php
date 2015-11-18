@@ -35,7 +35,7 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
     /**
      * @param null|string $invoiceMemo
      *
-     * @return SoldItemsUpdate
+     * @return $this
      */
     public function setInvoiceMemo($invoiceMemo)
     {
@@ -47,7 +47,7 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
     /**
      * @param string $fieldValue
      *
-     * @return SoldItemsUpdate
+     * @return $this
      */
     public function setOperationFieldOne($fieldValue)
     {
@@ -75,7 +75,7 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
     /**
      * @param int $orderId
      *
-     * @return SoldItemsUpdate
+     * @return $this
      */
     public function setOrderId($orderId)
     {

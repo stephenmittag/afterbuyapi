@@ -52,7 +52,7 @@ final class AfterbuyXmlClient
     /**
      * @param array $credentials
      *
-     * @return AfterbuyXmlClient
+     * @return $this
      */
     public function setCredentials(array $credentials)
     {
@@ -72,7 +72,7 @@ final class AfterbuyXmlClient
     /**
      * @param string $uri
      *
-     * @return AfterbuyXmlClient
+     * @return $this
      */
     public function setUri($uri)
     {
@@ -85,7 +85,7 @@ final class AfterbuyXmlClient
     /**
      * @param Client $httpClient
      *
-     * @return AfterbuyXmlClient
+     * @return $this
      */
     public function setHttpClient(Client $httpClient)
     {
@@ -121,7 +121,7 @@ final class AfterbuyXmlClient
     /**
      * @param AbstractXmlWebservice $provider
      *
-     * @return AfterbuyXmlClient
+     * @return $this
      */
     public function setServiceProvider(AbstractXmlWebservice $provider)
     {
@@ -167,7 +167,7 @@ final class AfterbuyXmlClient
 
 
     /**
-     * @return SimpleXMLElement
+     * @return \SimpleXMLElement
      */
     public function send()
     {

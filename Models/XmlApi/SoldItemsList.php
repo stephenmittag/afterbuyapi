@@ -40,7 +40,7 @@ final class SoldItemsList extends AbstractXmlWebservice
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getMustHaveFeedbackDate()
     {
@@ -48,7 +48,7 @@ final class SoldItemsList extends AbstractXmlWebservice
     }
 
     /**
-     * @param boolean $mustHaveFeedbackDate
+     * @param bool $mustHaveFeedbackDate
      *
      * @return $this
      */
