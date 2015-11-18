@@ -25,7 +25,8 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     /**
      * @return array
      */
-    public function dataSetterAndGetter() {
+    public function dataSetterAndGetter()
+    {
         return array(
             array('setDefaultFilter', null, 'getDefaultFilter', ''),
             array('setDefaultFilter', 123456789, 'getDefaultFilter', '123456789'),
@@ -50,7 +51,8 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
      *
      * @dataProvider dataSetterAndGetter
      */
-    public function testSetterAndGetter($setter, $setterValue, $getter, $expectedGetterValue) {
+    public function testSetterAndGetter($setter, $setterValue, $getter, $expectedGetterValue)
+    {
         $soldItemsList = $this->soldItemsList->{$setter}($setterValue);
 
         $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsList', $soldItemsList);
@@ -64,10 +66,10 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     public function testGetData()
     {
         $credentials = array(
-            'partner_id'   => '1',
+            'partner_id' => '1',
             'partner_pass' => '1',
-            'user_id'      => '1',
-            'user_pass'    => '1'
+            'user_id' => '1',
+            'user_pass' => '1'
         );
 
         $result = $this->soldItemsList

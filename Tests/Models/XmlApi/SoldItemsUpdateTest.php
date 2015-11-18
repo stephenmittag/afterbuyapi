@@ -56,9 +56,9 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
      * @dataProvider dataSetterAndGetter
      */
     public function testSetterAndGetter($setter, $setterValue, $getter, $expectedGetterValue) {
-        $soldItemsList = $this->soldItemsUpdate->{$setter}($setterValue);
+        $soldItemsUpdate = $this->soldItemsUpdate->{$setter}($setterValue);
 
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $soldItemsList);
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $soldItemsUpdate);
 
         $this->assertSame($expectedGetterValue, $this->soldItemsUpdate->{$getter}());
     }
