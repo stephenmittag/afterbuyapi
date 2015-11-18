@@ -1,5 +1,7 @@
 <?php
 
+namespace Wk\AfterbuyApi\Tests\Models\XmlApi;
+
 use Wk\AfterbuyApi\Models\XmlApi;
 use Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate;
 
