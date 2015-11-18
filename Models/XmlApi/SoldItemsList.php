@@ -12,7 +12,7 @@ final class SoldItemsList extends AbstractXmlWebservice
     /**
      * @var string
      */
-    private $filterValue = 'PaidAuctions';
+    private $defaultFilter = 'PaidAuctions';
 
     /**
      * @var bool
@@ -26,7 +26,7 @@ final class SoldItemsList extends AbstractXmlWebservice
      */
     public function setDefaultFilter($value)
     {
-        $this->filterValue = (string) $value;
+        $this->defaultFilter = (string) $value;
 
         return $this;
     }
@@ -36,7 +36,7 @@ final class SoldItemsList extends AbstractXmlWebservice
      */
     public function getDefaultFilter()
     {
-        return $this->filterValue;
+        return $this->defaultFilter;
     }
 
     /**
@@ -103,7 +103,7 @@ final class SoldItemsList extends AbstractXmlWebservice
         $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
         $filter->appendChild($domElement->createElement('FilterName', 'DefaultFilter'));
         $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
-        $filterValues->appendChild($domElement->createElement('FilterValue', $this->filterValue));
+        $filterValues->appendChild($domElement->createElement('FilterValue', $this->defaultFilter));
 
         return $domElement->saveXML();
     }
