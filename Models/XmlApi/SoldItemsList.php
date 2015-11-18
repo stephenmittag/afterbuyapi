@@ -54,7 +54,7 @@ final class SoldItemsList extends AbstractXmlWebservice
      */
     public function setMustHaveFeedbackDate($mustHaveFeedbackDate)
     {
-        $this->mustHaveFeedbackDate = $mustHaveFeedbackDate;
+        $this->mustHaveFeedbackDate = (bool) $mustHaveFeedbackDate;
 
         return $this;
     }

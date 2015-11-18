@@ -24,68 +24,45 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test if setter returns an instance of SoldItemsUpdate
+     * @return array
      */
-    public function testSetOrderId()
-    {
-        $result = $this->soldItemsUpdate->setOrderId('27878768');
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
+    public function dataSetterAndGetter() {
+        return array(
+            array('setOrderId', null, 'getOrderId', 0),
+            array('setOrderId', 123456789, 'getOrderId', 123456789),
+            array('setOrderId', '123456789', 'getOrderId', 123456789),
+            array('setOrderId', 'abcdef', 'getOrderId', 0),
+            array('setUserDefinedFlag', null, 'getUserDefinedFlag', 0),
+            array('setUserDefinedFlag', 123456789, 'getUserDefinedFlag', 123456789),
+            array('setUserDefinedFlag', '123456789', 'getUserDefinedFlag', 123456789),
+            array('setUserDefinedFlag', 'abcdef', 'getUserDefinedFlag', 0),
+            array('setOperationFieldOne', null, 'getOperationFieldOne', ''),
+            array('setOperationFieldOne', 1233456789, 'getOperationFieldOne', '1233456789'),
+            array('setOperationFieldOne', '1233456789', 'getOperationFieldOne', '1233456789'),
+            array('setOperationFieldOne', 'abcdef', 'getOperationFieldOne', 'abcdef'),
+            array('setInvoiceMemo', null, 'getInvoiceMemo', ''),
+            array('setInvoiceMemo', 1233456789, 'getInvoiceMemo', '1233456789'),
+            array('setInvoiceMemo', '1233456789', 'getInvoiceMemo', '1233456789'),
+            array('setInvoiceMemo', 'abcdef', 'getInvoiceMemo', 'abcdef')
+        );
     }
 
     /**
-     * test if getter return correct orderID
+     * @param string $setter
+     * @param mixed  $setterValue
+     * @param string $getter
+     * @param mixed  $expectedGetterValue
+     *
+     * @dataProvider dataSetterAndGetter
      */
-    public function testGetOrderId()
-    {
-        $this->soldItemsUpdate->setOrderId('90966656');
-        $this->assertSame(90966656, $this->soldItemsUpdate->getOrderId());
+    public function testSetterAndGetter($setter, $setterValue, $getter, $expectedGetterValue) {
+        $soldItemsList = $this->soldItemsUpdate->{$setter}($setterValue);
 
-        $this->soldItemsUpdate->setOrderId('h9hghtzgf');
-        $this->assertSame(0, $this->soldItemsUpdate->getOrderId());
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $soldItemsList);
+
+        $this->assertSame($expectedGetterValue, $this->soldItemsUpdate->{$getter}());
     }
 
-    /**
-     * test if setter returns an instance of SoldItemsUpdate
-     */
-    public function testSetUserDefinedFlag()
-    {
-        $result = $this->soldItemsUpdate->setUserDefinedflag(123);
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
-    }
-
-    /**
-     * test getter
-     */
-    public function testGetUserDefinedFlag()
-    {
-        $this->soldItemsUpdate->setUserDefinedFlag(123);
-
-        $this->assertTrue(is_int($this->soldItemsUpdate->getUserDefinedFlag()));
-        $this->assertSame(123, $this->soldItemsUpdate->getUserDefinedFlag());
-    }
-
-    /**
-     * test if setter returns an instance of SoldItemsUpdate
-     */
-    public function testSetOperationFieldOne()
-    {
-        $result = $this->soldItemsUpdate->setOperationFieldOne('test');
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
-    }
-
-    /**
-     * test if getter returns correct value
-     */
-    public function testGetOperationFieldOne()
-    {
-        $this->soldItemsUpdate->setOperationFieldOne('test');
-
-        $this->assertTrue(is_string($this->soldItemsUpdate->getOperationFieldOne()));
-        $this->assertSame('test', $this->soldItemsUpdate->getOperationFieldOne());
-    }
 
     /**
      * test if setter returns an instance of SoldItemsUpdate

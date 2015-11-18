@@ -39,7 +39,7 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
      */
     public function setInvoiceMemo($invoiceMemo)
     {
-        $this->invoiceMemo = $invoiceMemo;
+        $this->invoiceMemo = (string) $invoiceMemo;
 
         return $this;
     }

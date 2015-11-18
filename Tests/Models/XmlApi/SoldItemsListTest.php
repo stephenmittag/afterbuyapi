@@ -23,68 +23,39 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * test if setter returns an instance of SolditemsList
+     * @return array
      */
-    public function testSetDefaultFilter()
-    {
-        $result = $this->soldItemsList->setDefaultFilter('kghggh');
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
+    public function dataSetterAndGetter() {
+        return array(
+            array('setDefaultFilter', null, 'getDefaultFilter', ''),
+            array('setDefaultFilter', 123456789, 'getDefaultFilter', '123456789'),
+            array('setDefaultFilter', '123456789', 'getDefaultFilter', '123456789'),
+            array('setDefaultFilter', 'abcdef', 'getDefaultFilter', 'abcdef'),
+            array('setUserDefinedFlag', null, 'getUserDefinedFlag', 0),
+            array('setUserDefinedFlag', 123456789, 'getUserDefinedFlag', 123456789),
+            array('setUserDefinedFlag', '123456789', 'getUserDefinedFlag', 123456789),
+            array('setUserDefinedFlag', 'abcdef', 'getUserDefinedFlag', 0),
+            array('setMustHaveFeedbackDate', null, 'getMustHaveFeedbackDate', false),
+            array('setMustHaveFeedbackDate', false, 'getMustHaveFeedbackDate', false),
+            array('setMustHaveFeedbackDate', true, 'getMustHaveFeedbackDate', true),
+            array('setMustHaveFeedbackDate', 123, 'getMustHaveFeedbackDate', true)
+        );
     }
 
     /**
-     * test if getter returns the correct default filter
+     * @param string $setter
+     * @param mixed  $setterValue
+     * @param string $getter
+     * @param mixed  $expectedGetterValue
+     *
+     * @dataProvider dataSetterAndGetter
      */
-    public function testGetDefaultFilter()
-    {
-        $this->soldItemsList->setDefaultFilter('123456789');
-        $this->assertSame('123456789', $this->soldItemsList->getDefaultFilter());
+    public function testSetterAndGetter($setter, $setterValue, $getter, $expectedGetterValue) {
+        $soldItemsList = $this->soldItemsList->{$setter}($setterValue);
 
-        $this->soldItemsList->setDefaultFilter('66546546456');
-        $this->assertTrue(is_string($this->soldItemsList->getDefaultFilter()));
-    }
+        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsList', $soldItemsList);
 
-    /**
-     * test if setter returns an instance of SolditemsList
-     */
-    public function testSetUserDefinedFlag()
-    {
-        $result = $this->soldItemsList->setUserDefinedFlag(99999);
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
-    }
-
-    /**
-     * test if getter returns correct user defined flag
-     */
-    public function testGetUserDefinedFlag()
-    {
-        $this->soldItemsList->setUserDefinedFlag(123456789);
-        $this->assertSame(123456789, $this->soldItemsList->getUserDefinedFlag());
-
-        $this->soldItemsList->setUserDefinedFlag('66546546456');
-        $this->assertTrue(is_int($this->soldItemsList->getUserDefinedFlag()));
-    }
-
-    /**
-     * test if setter returns an instance of SolditemsList
-     */
-    public function testSetMustHaveFeedbackDate() {
-        $result = $this->soldItemsList->setMustHaveFeedbackDate(true);
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SolditemsList', $result);
-    }
-
-    /**
-     * test if getter returns correct feedback date setting
-     */
-    public function testGetMustHaveFeedbackDate()
-    {
-        $this->soldItemsList->setMustHaveFeedbackDate(true);
-        $this->assertSame(true, $this->soldItemsList->getMustHaveFeedbackDate());
-
-        $this->soldItemsList->setMustHaveFeedbackDate(false);
-        $this->assertSame(false, $this->soldItemsList->getMustHaveFeedbackDate());
+        $this->assertSame($expectedGetterValue, $this->soldItemsList->{$getter}());
     }
 
     /**
