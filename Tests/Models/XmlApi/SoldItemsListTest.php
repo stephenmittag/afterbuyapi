@@ -28,18 +28,15 @@ class SoldItemsListTest extends \PHPUnit_Framework_TestCase
     public function dataSetterAndGetter()
     {
         return array(
-            array('setDefaultFilter', null, 'getDefaultFilter', ''),
-            array('setDefaultFilter', 123456789, 'getDefaultFilter', '123456789'),
-            array('setDefaultFilter', '123456789', 'getDefaultFilter', '123456789'),
-            array('setDefaultFilter', 'abcdef', 'getDefaultFilter', 'abcdef'),
+            array('setDefaultFilters', array(), 'getDefaultFilters', array()),
+            array('setDefaultFilters', array('abc'), 'getDefaultFilters', array('abc')),
+            array('setDefaultFilters', array('abc', 'def'), 'getDefaultFilters', array('abc', 'def')),
             array('setUserDefinedFlag', null, 'getUserDefinedFlag', 0),
             array('setUserDefinedFlag', 123456789, 'getUserDefinedFlag', 123456789),
             array('setUserDefinedFlag', '123456789', 'getUserDefinedFlag', 123456789),
             array('setUserDefinedFlag', 'abcdef', 'getUserDefinedFlag', 0),
-            array('setMustHaveFeedbackDate', null, 'getMustHaveFeedbackDate', false),
             array('setMustHaveFeedbackDate', false, 'getMustHaveFeedbackDate', false),
-            array('setMustHaveFeedbackDate', true, 'getMustHaveFeedbackDate', true),
-            array('setMustHaveFeedbackDate', 123, 'getMustHaveFeedbackDate', true)
+            array('setMustHaveFeedbackDate', true, 'getMustHaveFeedbackDate', true)
         );
     }
 

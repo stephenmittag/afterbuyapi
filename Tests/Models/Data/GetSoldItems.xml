@@ -16,7 +16,6 @@
             <FilterValues>
                 <DateFrom>01.01.2000 00:00:00</DateFrom>
                 <FilterValue>FeedbackDate</FilterValue>
-                <FilterValue>ShippingDate</FilterValue>
             </FilterValues>
         </Filter>
         <Filter>
@@ -29,6 +28,7 @@
             <FilterName>DefaultFilter</FilterName>
             <FilterValues>
                 <FilterValue>PaidAuctions</FilterValue>
+                <FilterValue>not_CompletedAuctions</FilterValue>
             </FilterValues>
         </Filter>
     </DataFilter>

@@ -10,38 +10,44 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
 final class SoldItemsList extends AbstractXmlWebservice
 {
     /**
-     * @var string
+     * @var array
      */
-    private $defaultFilter = 'PaidAuctions';
+    private $defaultFilters = array();
 
     /**
      * @var bool
      */
-    private $mustHaveFeedbackDate = true;
+    private $mustHaveFeedbackDate;
 
     /**
-     * @var bool
+     * set values for our API calls
      */
-    private $mustHaveShippingDate = true;
+    public function __construct() {
+        // from Afterbuy XML API documentation:
+        // PaidAuctions have a payment date and are paid in full
+        // CompletedAuctions have a payment date, are paid in full and have no shipping date
+        $this->defaultFilters = array('PaidAuctions', 'not_CompletedAuctions');
+        $this->mustHaveFeedbackDate = true;
+    }
 
     /**
-     * @param string $value
+     * @param array $defaultFilters
      *
      * @return $this
      */
-    public function setDefaultFilter($value)
+    public function setDefaultFilters(array $defaultFilters)
     {
-        $this->defaultFilter = (string) $value;
+        $this->defaultFilters = $defaultFilters;
 
         return $this;
     }
 
     /**
-     * @return string
+     * @return array
      */
-    public function getDefaultFilter()
+    public function getDefaultFilters()
     {
-        return $this->defaultFilter;
+        return $this->defaultFilters;
     }
 
     /**
@@ -59,27 +65,7 @@ final class SoldItemsList extends AbstractXmlWebservice
      */
     public function setMustHaveFeedbackDate($mustHaveFeedbackDate)
     {
-        $this->mustHaveFeedbackDate = (bool) $mustHaveFeedbackDate;
-
-        return $this;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getMustHaveShippingDate()
-    {
-        return $this->mustHaveShippingDate;
-    }
-
-    /**
-     * @param bool $mustHaveShippingDate
-     *
-     * @return $this
-     */
-    public function setMustHaveShippingDate($mustHaveShippingDate)
-    {
-        $this->mustHaveShippingDate = $mustHaveShippingDate;
+        $this->mustHaveFeedbackDate = $mustHaveFeedbackDate;
 
         return $this;
     }
@@ -112,19 +98,12 @@ final class SoldItemsList extends AbstractXmlWebservice
 
         $dataFilter = $rootNode->appendChild($domElement->createElement('DataFilter'));
 
-        if ($this->mustHaveFeedbackDate || $this->mustHaveShippingDate) {
+        if ($this->mustHaveFeedbackDate) {
             $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
             $filter->appendChild($domElement->createElement('FilterName', 'DateFilter'));
             $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
             $filterValues->appendChild($domElement->createElement('DateFrom', '01.01.2000 00:00:00'));
-
-            if ($this->mustHaveFeedbackDate) {
-                $filterValues->appendChild($domElement->createElement('FilterValue', 'FeedbackDate'));
-            }
-
-            if ($this->mustHaveShippingDate) {
-                $filterValues->appendChild($domElement->createElement('FilterValue', 'ShippingDate'));
-            }
+            $filterValues->appendChild($domElement->createElement('FilterValue', 'FeedbackDate'));
         }
 
         $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
@@ -132,10 +111,15 @@ final class SoldItemsList extends AbstractXmlWebservice
         $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
         $filterValues->appendChild($domElement->createElement('FilterValue', $this->userDefinedFlag));
 
-        $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
-        $filter->appendChild($domElement->createElement('FilterName', 'DefaultFilter'));
-        $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
-        $filterValues->appendChild($domElement->createElement('FilterValue', $this->defaultFilter));
+        if ($this->defaultFilters) {
+            $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
+            $filter->appendChild($domElement->createElement('FilterName', 'DefaultFilter'));
+            $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
+
+            foreach ($this->defaultFilters as $defaultFilter) {
+                $filterValues->appendChild($domElement->createElement('FilterValue', $defaultFilter));
+            }
+        }
 
         return $domElement->saveXML();
     }
