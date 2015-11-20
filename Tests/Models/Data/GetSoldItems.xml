@@ -14,8 +14,9 @@
         <Filter>
             <FilterName>DateFilter</FilterName>
             <FilterValues>
-                <FilterValue>FeedbackDate</FilterValue>
                 <DateFrom>01.01.2000 00:00:00</DateFrom>
+                <FilterValue>FeedbackDate</FilterValue>
+                <FilterValue>ShippingDate</FilterValue>
             </FilterValues>
         </Filter>
         <Filter>

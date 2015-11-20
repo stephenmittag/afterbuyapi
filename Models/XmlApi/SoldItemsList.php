@@ -20,6 +20,11 @@ final class SoldItemsList extends AbstractXmlWebservice
     private $mustHaveFeedbackDate = true;
 
     /**
+     * @var bool
+     */
+    private $mustHaveShippingDate = true;
+
+    /**
      * @param string $value
      *
      * @return $this
@@ -60,6 +65,26 @@ final class SoldItemsList extends AbstractXmlWebservice
     }
 
     /**
+     * @return bool
+     */
+    public function getMustHaveShippingDate()
+    {
+        return $this->mustHaveShippingDate;
+    }
+
+    /**
+     * @param bool $mustHaveShippingDate
+     *
+     * @return $this
+     */
+    public function setMustHaveShippingDate($mustHaveShippingDate)
+    {
+        $this->mustHaveShippingDate = $mustHaveShippingDate;
+
+        return $this;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getData(array $credentials)
@@ -87,12 +112,19 @@ final class SoldItemsList extends AbstractXmlWebservice
 
         $dataFilter = $rootNode->appendChild($domElement->createElement('DataFilter'));
 
-        if ($this->mustHaveFeedbackDate) {
+        if ($this->mustHaveFeedbackDate || $this->mustHaveShippingDate) {
             $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
             $filter->appendChild($domElement->createElement('FilterName', 'DateFilter'));
             $filterValues = $filter->appendChild($domElement->createElement('FilterValues'));
-            $filterValues->appendChild($domElement->createElement('FilterValue', 'FeedbackDate'));
             $filterValues->appendChild($domElement->createElement('DateFrom', '01.01.2000 00:00:00'));
+
+            if ($this->mustHaveFeedbackDate) {
+                $filterValues->appendChild($domElement->createElement('FilterValue', 'FeedbackDate'));
+            }
+
+            if ($this->mustHaveShippingDate) {
+                $filterValues->appendChild($domElement->createElement('FilterValue', 'ShippingDate'));
+            }
         }
 
         $filter = $dataFilter->appendChild($domElement->createElement('Filter'));
