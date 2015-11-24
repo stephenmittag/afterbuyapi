@@ -10,6 +10,16 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
 final class SoldItemsList extends AbstractXmlWebservice
 {
     /**
+     * default filter for paid auctions
+     */
+    const DEFAULT_FILTER_PAID_AUCTIONS = 'PaidAuctions';
+
+    /**
+     * default filter for not completed auctions
+     */
+    const DEFAULT_FILTER_NOT_COMPLETED_AUCTIONS = 'not_CompletedAuctions';
+
+    /**
      * @var array
      */
     private $defaultFilters = array();
@@ -26,7 +36,7 @@ final class SoldItemsList extends AbstractXmlWebservice
         // from Afterbuy XML API documentation:
         // PaidAuctions have a payment date and are paid in full
         // CompletedAuctions have a payment date, are paid in full and have no shipping date
-        $this->defaultFilters = array('PaidAuctions', 'not_CompletedAuctions');
+        $this->defaultFilters = array(self::DEFAULT_FILTER_PAID_AUCTIONS, self::DEFAULT_FILTER_NOT_COMPLETED_AUCTIONS);
         $this->mustHaveFeedbackDate = true;
     }
 
