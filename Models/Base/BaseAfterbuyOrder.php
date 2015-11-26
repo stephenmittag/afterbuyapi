@@ -16,12 +16,12 @@ class BaseAfterbuyOrder
     protected $shippingMethod;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $id;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $checkId;
 
@@ -41,7 +41,7 @@ class BaseAfterbuyOrder
     protected $customerEmail;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $noFeedback;
 
@@ -56,27 +56,27 @@ class BaseAfterbuyOrder
     protected $paymentMethod;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $paid;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $customerRecognition;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $noEbayNameUpdate;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $accountingForVat;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $markerId;
 
@@ -110,10 +110,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param string $comment
+     *
+     * @return $this
      */
     public function setComment($comment)
     {
         $this->comment = $comment;
+
+        return $this;
     }
 
     /**
@@ -126,14 +130,18 @@ class BaseAfterbuyOrder
 
     /**
      * @param \DateTime $buyDate
+     *
+     * @return $this
      */
     public function setBuyDate($buyDate)
     {
         $this->buyDate = $buyDate;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isAccountingForVat()
     {
@@ -141,11 +149,15 @@ class BaseAfterbuyOrder
     }
 
     /**
-     * @param boolean $accountingForVat
+     * @param bool $accountingForVat
+     *
+     * @return $this
      */
     public function setAccountingForVat($accountingForVat)
     {
         $this->accountingForVat = $accountingForVat;
+
+        return $this;
     }
 
     /**
@@ -158,10 +170,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param Article[] $articles
+     *
+     * @return $this
      */
     public function setArticles($articles)
     {
         $this->articles = $articles;
+
+        return $this;
     }
 
     /**
@@ -174,10 +190,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param Address $billingAddress
+     *
+     * @return $this
      */
     public function setBillingAddress($billingAddress)
     {
         $this->billingAddress = $billingAddress;
+
+        return $this;
     }
 
     /**
@@ -190,10 +210,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param string $customerEmail
+     *
+     * @return $this
      */
     public function setCustomerEmail($customerEmail)
     {
         $this->customerEmail = $customerEmail;
+
+        return $this;
     }
 
     /**
@@ -206,10 +230,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param int $customerRecognition
+     *
+     * @return $this
      */
     public function setCustomerRecognition($customerRecognition)
     {
         $this->customerRecognition = $customerRecognition;
+
+        return $this;
     }
 
     /**
@@ -222,10 +250,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param string $customerUsername
+     *
+     * @return $this
      */
     public function setCustomerUsername($customerUsername)
     {
         $this->customerUsername = $customerUsername;
+
+        return $this;
     }
 
     /**
@@ -238,10 +270,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param int $markerId
+     *
+     * @return $this
      */
     public function setMarkerId($markerId)
     {
         $this->markerId = $markerId;
+
+        return $this;
     }
 
     /**
@@ -254,10 +290,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param int $noEbayNameUpdate
+     *
+     * @return $this
      */
     public function setNoEbayNameUpdate($noEbayNameUpdate)
     {
         $this->noEbayNameUpdate = $noEbayNameUpdate;
+
+        return $this;
     }
 
     /**
@@ -270,14 +310,18 @@ class BaseAfterbuyOrder
 
     /**
      * @param int $noFeedback
+     *
+     * @return $this
      */
     public function setNoFeedback($noFeedback)
     {
         $this->noFeedback = $noFeedback;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isPaid()
     {
@@ -285,11 +329,15 @@ class BaseAfterbuyOrder
     }
 
     /**
-     * @param boolean $paid
+     * @param bool $paid
+     *
+     * @return $this
      */
     public function setPaid($paid)
     {
         $this->paid = $paid;
+
+        return $this;
     }
 
     /**
@@ -302,10 +350,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param string $paymentMethod
+     *
+     * @return $this
      */
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
+
+        return $this;
     }
 
     /**
@@ -318,10 +370,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param Address $shippingAddress
+     *
+     * @return $this
      */
     public function setShippingAddress($shippingAddress)
     {
         $this->shippingAddress = $shippingAddress;
+
+        return $this;
     }
 
     /**
@@ -334,10 +390,14 @@ class BaseAfterbuyOrder
 
     /**
      * @param float $shippingCost
+     *
+     * @return $this
      */
     public function setShippingCost($shippingCost)
     {
         $this->shippingCost = $shippingCost;
+
+        return $this;
     }
 
     /**
@@ -350,14 +410,18 @@ class BaseAfterbuyOrder
 
     /**
      * @param string $shippingMethod
+     *
+     * @return $this
      */
     public function setShippingMethod($shippingMethod)
     {
         $this->shippingMethod = $shippingMethod;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function isCheckId()
     {
@@ -365,11 +429,15 @@ class BaseAfterbuyOrder
     }
 
     /**
-     * @param boolean $checkId
+     * @param bool $checkId
+     *
+     * @return $this
      */
     public function setCheckId($checkId)
     {
         $this->checkId = $checkId;
+
+        return $this;
     }
 
     /**
@@ -382,9 +450,13 @@ class BaseAfterbuyOrder
 
     /**
      * @param int $id
+     *
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 }

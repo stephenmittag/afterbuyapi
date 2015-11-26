@@ -23,12 +23,12 @@ class BaseArticle
     protected $price;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $quantity;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $weight;
 
@@ -57,10 +57,14 @@ class BaseArticle
 
     /**
      * @param string $alternativeId2
+     *
+     * @return $this
      */
     public function setAlternativeId2($alternativeId2)
     {
         $this->alternativeId2 = $alternativeId2;
+
+        return $this;
     }
 
     /**
@@ -73,10 +77,14 @@ class BaseArticle
 
     /**
      * @param string $alternativeId1
+     *
+     * @return $this
      */
     public function setAlternativeId1($alternativeId1)
     {
         $this->alternativeId1 = $alternativeId1;
+
+        return $this;
     }
 
     /**
@@ -89,10 +97,14 @@ class BaseArticle
 
     /**
      * @param string $id
+     *
+     * @return $this
      */
     public function setId($id)
     {
         $this->id = $id;
+
+        return $this;
     }
 
     /**
@@ -105,10 +117,14 @@ class BaseArticle
 
     /**
      * @param string $name
+     *
+     * @return $this
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
@@ -121,10 +137,14 @@ class BaseArticle
 
     /**
      * @param float $price
+     *
+     * @return $this
      */
     public function setPrice($price)
     {
         $this->price = $price;
+
+        return $this;
     }
 
     /**
@@ -137,10 +157,14 @@ class BaseArticle
 
     /**
      * @param int $quantity
+     *
+     * @return $this
      */
     public function setQuantity($quantity)
     {
         $this->quantity = $quantity;
+
+        return $this;
     }
 
     /**
@@ -153,10 +177,14 @@ class BaseArticle
 
     /**
      * @param float $tax
+     *
+     * @return $this
      */
     public function setTax($tax)
     {
         $this->tax = $tax;
+
+        return $this;
     }
 
     /**
@@ -169,9 +197,13 @@ class BaseArticle
 
     /**
      * @param int $weight
+     *
+     * @return $this
      */
     public function setWeight($weight)
     {
         $this->weight = $weight;
+
+        return $this;
     }
 }
