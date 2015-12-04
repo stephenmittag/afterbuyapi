@@ -25,6 +25,11 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
     private $orderId = 0;
 
     /**
+     * @var \DateTime
+     */
+    private $invoiceDate;
+
+    /**
      * @return null|string
      */
     public function getInvoiceMemo()
@@ -40,6 +45,26 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
     public function setInvoiceMemo($invoiceMemo)
     {
         $this->invoiceMemo = (string) $invoiceMemo;
+
+        return $this;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getInvoiceDate()
+    {
+        return $this->invoiceDate;
+    }
+
+    /**
+     * @param \DateTime $invoiceDate
+     *
+     * @return $this
+     */
+    public function setInvoiceDate(\DateTime $invoiceDate = null)
+    {
+        $this->invoiceDate = $invoiceDate;
 
         return $this;
     }
@@ -114,6 +139,10 @@ final class SoldItemsUpdate extends AbstractXmlWebservice
         $order->appendChild($domElement->createElement('OrderID', $this->orderId));
         $order->appendChild($domElement->createElement('InvoiceMemo', $this->invoiceMemo));
         $order->appendChild($domElement->createElement('UserDefinedFlag', $this->userDefinedFlag));
+
+        if ($this->invoiceDate) {
+            $order->appendChild($domElement->createElement('InvoiceDate', $this->invoiceDate->format('d.m.Y H:i:s')));
+        }
 
         return $domElement->saveXML();
     }
