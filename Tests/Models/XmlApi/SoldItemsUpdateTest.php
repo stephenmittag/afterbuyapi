@@ -27,6 +27,8 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
      * @return array
      */
     public function dataSetterAndGetter() {
+        $dateTime = \DateTime::createFromFormat('Y-m-d H:i:s', '2015-10-01 12:01:02');
+
         return array(
             array('setOrderId', null, 'getOrderId', 0),
             array('setOrderId', 123456789, 'getOrderId', 123456789),
@@ -43,7 +45,9 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
             array('setInvoiceMemo', null, 'getInvoiceMemo', ''),
             array('setInvoiceMemo', 1233456789, 'getInvoiceMemo', '1233456789'),
             array('setInvoiceMemo', '1233456789', 'getInvoiceMemo', '1233456789'),
-            array('setInvoiceMemo', 'abcdef', 'getInvoiceMemo', 'abcdef')
+            array('setInvoiceMemo', 'abcdef', 'getInvoiceMemo', 'abcdef'),
+            array('setInvoiceDate', $dateTime, 'getInvoiceDate', $dateTime),
+            array('setInvoiceDate', null, 'getInvoiceDate', null)
         );
     }
 
@@ -63,28 +67,6 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expectedGetterValue, $this->soldItemsUpdate->{$getter}());
     }
 
-
-    /**
-     * test if setter returns an instance of SoldItemsUpdate
-     */
-    public function testSetInvoiceMemo()
-    {
-        $result = $this->soldItemsUpdate->setInvoiceMemo('test');
-
-        $this->assertInstanceOf('Wk\AfterbuyApi\Models\XmlApi\SoldItemsUpdate', $result);
-    }
-
-    /**
-     * test getter
-     */
-    public function testGetInvoiceMemo()
-    {
-        $this->soldItemsUpdate->setInvoiceMemo('test');
-
-        $this->assertTrue(is_string($this->soldItemsUpdate->getInvoiceMemo()));
-        $this->assertSame('test', $this->soldItemsUpdate->getInvoiceMemo());
-    }
-
     /**
      * test if getData returns the correct SimpleXmlElement object with correct attributes
      */
@@ -100,7 +82,8 @@ class SoldItemsUpdateTest extends \PHPUnit_Framework_TestCase
         $result = $this->soldItemsUpdate
             ->setOrderId(65656)
             ->setInvoiceMemo('def')
-            ->setUserDefinedFlag(123);
+            ->setUserDefinedFlag(123)
+            ->setInvoiceDate(\DateTime::createFromFormat('Y-m-d H:i:s', '2015-05-25 08:09:10'));
 
         $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../Data/UpdateSoldItems.xml', $result->getData($credentials));
     }
