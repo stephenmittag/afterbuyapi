@@ -9,16 +9,6 @@ parameters:
         baseurl:  "https://api.afterbuy.de/afterbuy/ABInterface.aspx"
 
 services:
-    wk_afterbuy.shop_api.connection:
-        class: Wk\AfterbuyApi\Services\AfterbuyConnection
-        arguments: ["shopApiServiceDescription.json"]
-        calls:
-            - [setParams, ["%wk_afterbuy.params%"]]
-    wk_afterbuy.shop_api:
-        class: Wk\AfterbuyApi\Services\AfterbuyShopApi
-        calls:
-           - [setAfterbuyConnection, ["@wk_afterbuy.shop_api.connection"]]
-           - [setLogger, ["@logger"]]
     wk_afterbuy.xml_api:
         class: Wk\AfterbuyApi\Services\AfterbuyXmlClient
         calls:
