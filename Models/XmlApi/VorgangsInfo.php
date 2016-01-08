@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-class VorgangsInfo
+class VorgangsInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("string")

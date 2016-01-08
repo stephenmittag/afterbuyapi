@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package Wk\AfterbuyApi\Models
  */
-class AfterbuyGlobal
+class AfterbuyGlobal extends AbstractModel
 {
     /**
      * @Serializer\Type("integer")

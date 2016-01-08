@@ -12,7 +12,7 @@ use \DateTime;
  *
  * @package Wk\AfterbuyApi\Models
  */
-class Order
+class Order extends AbstractModel
 {
     /**
      * @Serializer\Type("integer")
@@ -77,7 +77,8 @@ class Order
     private $invoiceNumber;
 
     /**
-     * @Serializer\Type("boolean")
+     * @Serializer\Type("integer")
+     * @Serializer\Accessor(getter="getOrderExportedAsInteger", setter="setOrderExportedFromInteger")
      * @var bool
      */
     private $orderExported;
@@ -89,7 +90,8 @@ class Order
     private $invoiceDate;
 
     /**
-     * @Serializer\Type("boolean")
+     * @Serializer\Type("integer")
+     * @Serializer\Accessor(getter="getHideOrderAsInteger", setter="setHideOrderFromInteger")
      * @var bool
      */
     private $hideOrder;
@@ -141,6 +143,34 @@ class Order
      * @var VorgangsInfo
      */
     private $vorgangsInfo;
+
+    /**
+     * @return int
+     */
+    public function getOrderExportedAsInteger() {
+        return $this->getBooleanAsInteger($this->orderExported);
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setOrderExportedFromInteger($value) {
+        $this->orderExported = $this->setBooleanFromInteger($value);
+    }
+
+    /**
+     * @return int
+     */
+    public function getHideOrderAsInteger() {
+        return $this->getBooleanAsInteger($this->hideOrder);
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setHideOrderFromInteger($value) {
+        $this->hideOrder = $this->setBooleanFromInteger($value);
+    }
 
     /**
      * @return int

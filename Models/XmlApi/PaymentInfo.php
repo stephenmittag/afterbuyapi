@@ -12,7 +12,7 @@ use \DateTime;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-class PaymentInfo
+class PaymentInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
@@ -40,10 +40,25 @@ class PaymentInfo
     private $paymentAdditionalCost;
 
     /**
-     * @Serializer\Type("boolean")
+     * @Serializer\Type("integer")
+     * @Serializer\Accessor(getter="getSendPaymentMailAsInteger", setter="setSendPaymentMailFromInteger")
      * @var bool
      */
     private $sendPaymentMail;
+
+    /**
+     * @return int
+     */
+    public function getSendPaymentMailAsInteger() {
+        return $this->getBooleanAsInteger($this->sendPaymentMail);
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setSendPaymentMailFromInteger($value) {
+        $this->sendPaymentMail = $this->setBooleanFromInteger($value);
+    }
 
     /**
      * @return string

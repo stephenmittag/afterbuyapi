@@ -11,7 +11,7 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-class BuyerInfo
+class BuyerInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\ShippingAddress")

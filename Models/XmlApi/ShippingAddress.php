@@ -11,11 +11,12 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-class ShippingAddress
+class ShippingAddress extends AbstractModel
 {
     /**
      * @Serializer\Type("integer")
-     * @var int
+     * @Serializer\Accessor(getter="getUseShippingAddressAsInteger", setter="setUseShippingAddressFromInteger")
+     * @var bool
      */
     private $useShippingAddress;
 
@@ -64,13 +65,27 @@ class ShippingAddress
     /**
      * @return int
      */
-    public function getUseShippingAddress()
+    public function getUseShippingAddressAsInteger() {
+        return $this->getBooleanAsInteger($this->useShippingAddress);
+    }
+
+    /**
+     * @param int $value
+     */
+    public function setUseShippingAddressFromInteger($value) {
+        $this->useShippingAddress = $this->setBooleanFromInteger($value);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isUseShippingAddress()
     {
         return $this->useShippingAddress;
     }
 
     /**
-     * @param int $useShippingAddress
+     * @param bool $useShippingAddress
      *
      * @return $this
      */
