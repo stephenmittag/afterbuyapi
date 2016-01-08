@@ -11,40 +11,14 @@ use JMS\Serializer\Annotation as Serializer;
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-class UpdateSoldItems extends AbstractModel
+class UpdateSoldItems extends AbstractRequest
 {
-    /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\AfterbuyGlobal")
-     * @var AfterbuyGlobal
-     */
-    private $afterbuyGlobal;
-
     /**
      * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Order>")
      * @Serializer\XmlList(entry="Order")
      * @var Order[]
      */
     private $orders;
-
-    /**
-     * @return AfterbuyGlobal
-     */
-    public function getAfterbuyGlobal()
-    {
-        return $this->afterbuyGlobal;
-    }
-
-    /**
-     * @param AfterbuyGlobal $afterbuyGlobal
-     *
-     * @return $this
-     */
-    public function setAfterbuyGlobal(AfterbuyGlobal $afterbuyGlobal = null)
-    {
-        $this->afterbuyGlobal = $afterbuyGlobal;
-
-        return $this;
-    }
 
     /**
      * @return Order[]

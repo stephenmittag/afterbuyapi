@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApi\Tests\Models\XmlApi;
 
 use JMS\Serializer\Serializer;
+use Wk\AfterbuyApi\Models\XmlApi\AbstractRequest;
 use Wk\AfterbuyApi\Models\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Models\XmlApi\BuyerInfo;
 use Wk\AfterbuyApi\Models\XmlApi\Order;
@@ -39,23 +40,24 @@ class UpdateSoldItemsTest extends WebTestCase
     public function provideSerializationAndDeserialization()
     {
         return array(
-            array('xml', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.xml'),
-            array('json', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.json'),
-            array('xml', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.xml'),
-            array('json', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.json')
+            array('xml', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.xml', UpdateSoldItems::class),
+            array('json', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.json', UpdateSoldItems::class),
+            array('xml', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.xml', UpdateSoldItems::class),
+            array('json', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.json', UpdateSoldItems::class)
         );
     }
 
     /**
      * @param string          $format
-     * @param UpdateSoldItems $updateSoldItems
+     * @param AbstractRequest $request
      * @param string          $deserializedObjectFile
+     * @param string          $type
      *
      * @dataProvider provideSerializationAndDeserialization
      */
-    public function testSerialization($format, UpdateSoldItems $updateSoldItems, $deserializedObjectFile)
+    public function testSerialization($format, AbstractRequest $request, $deserializedObjectFile, $type)
     {
-        $serializedUpdateSoldItems = $this->serializer->serialize($updateSoldItems, $format);
+        $serializedUpdateSoldItems = $this->serializer->serialize($request, $format);
 
         $function = $format == 'xml' ? 'assertXmlStringEqualsXmlFile' : 'assertJsonStringEqualsJsonFile';
 
@@ -64,17 +66,18 @@ class UpdateSoldItemsTest extends WebTestCase
 
     /**
      * @param string          $format
-     * @param UpdateSoldItems $updateSoldItems
+     * @param AbstractRequest $request
      * @param string          $deserializedObjectFile
+     * @param string          $type
      *
      * @dataProvider provideSerializationAndDeserialization
      */
-    public function testDeserialization($format, UpdateSoldItems $updateSoldItems, $deserializedObjectFile)
+    public function testDeserialization($format, AbstractRequest $request, $deserializedObjectFile, $type)
     {
         $serializedUpdateSoldItems = file_get_contents(__DIR__ . '/../Data/' . $deserializedObjectFile);
-        $deserializedUpdateSoldItems = $this->serializer->deserialize($serializedUpdateSoldItems, UpdateSoldItems::class, $format);
+        $deserializedUpdateSoldItems = $this->serializer->deserialize($serializedUpdateSoldItems, $type, $format);
 
-        $this->assertEquals($updateSoldItems, $deserializedUpdateSoldItems);
+        $this->assertEquals($request, $deserializedUpdateSoldItems);
     }
 
     /**
