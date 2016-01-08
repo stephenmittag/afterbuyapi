@@ -1,0 +1,22 @@
+{
+  "AfterbuyGlobal": {
+    "PartnerID": 12,
+    "PartnerPassword": "partner password",
+    "UserID": "user id",
+    "UserPassword": "user password",
+    "CallName": "call name",
+    "DetailLevel": 1,
+    "ErrorLanguage": "de"
+  },
+  "Orders": [
+    {
+      "OrderID": 12,
+      "UserDefinedFlag": 34,
+      "InvoiceMemo": ""
+    },
+    {
+      "OrderID": 56,
+      "UserDefinedFlag": 78
+    }
+  ]
+}

@@ -27,15 +27,61 @@ class UpdateSoldItemsTest extends WebTestCase
     /**
      * set up client
      */
-    public function setUp() {
+    public function setUp()
+    {
         $client = static::createClient();
         $this->serializer = $client->getContainer()->get('jms_serializer');
     }
 
     /**
-     * test serialization of a request
+     * @return array
      */
-    public function testSerialization() {
+    public function provideSerializationAndDeserialization()
+    {
+        return array(
+            array('xml', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.xml'),
+            array('json', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.json'),
+            array('xml', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.xml'),
+            array('json', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.json')
+        );
+    }
+
+    /**
+     * @param string          $format
+     * @param UpdateSoldItems $updateSoldItems
+     * @param string          $deserializedObjectFile
+     *
+     * @dataProvider provideSerializationAndDeserialization
+     */
+    public function testSerialization($format, UpdateSoldItems $updateSoldItems, $deserializedObjectFile)
+    {
+        $serializedUpdateSoldItems = $this->serializer->serialize($updateSoldItems, $format);
+
+        $function = $format == 'xml' ? 'assertXmlStringEqualsXmlFile' : 'assertJsonStringEqualsJsonFile';
+
+        $this->{$function}(__DIR__ . '/../Data/' . $deserializedObjectFile, $serializedUpdateSoldItems);
+    }
+
+    /**
+     * @param string          $format
+     * @param UpdateSoldItems $updateSoldItems
+     * @param string          $deserializedObjectFile
+     *
+     * @dataProvider provideSerializationAndDeserialization
+     */
+    public function testDeserialization($format, UpdateSoldItems $updateSoldItems, $deserializedObjectFile)
+    {
+        $serializedUpdateSoldItems = file_get_contents(__DIR__ . '/../Data/' . $deserializedObjectFile);
+        $deserializedUpdateSoldItems = $this->serializer->deserialize($serializedUpdateSoldItems, UpdateSoldItems::class, $format);
+
+        $this->assertEquals($updateSoldItems, $deserializedUpdateSoldItems);
+    }
+
+    /**
+     * @return UpdateSoldItems
+     */
+    private function getUpdateSoldItems1()
+    {
         $shippingAddress = (new ShippingAddress())
             ->setUseShippingAddress(true)
             ->setFirstName('firstname')
@@ -105,8 +151,36 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setAfterbuyGlobal($afterbuyGlobal)
             ->setOrders(array($order));
 
-        $serializedUpdateSoldItems = $this->serializer->serialize($updateSoldItems, 'xml');
+        return $updateSoldItems;
+    }
 
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../Data/UpdateSoldItems.xml', $serializedUpdateSoldItems);
+    /**
+     * @return UpdateSoldItems
+     */
+    private function getUpdateSoldItems2()
+    {
+        $afterbuyGlobal = (new AfterbuyGlobal())
+            ->setPartnerId(12)
+            ->setPartnerPassword('partner password')
+            ->setUserId('user id')
+            ->setUserPassword('user password')
+            ->setCallName('call name')
+            ->setDetailLevel(1)
+            ->setErrorLanguage('de');
+
+        $order1 = (new Order())
+            ->setOrderId(12)
+            ->setUserDefinedFlag(34)
+            ->setInvoiceMemo('');
+
+        $order2 = (new Order())
+            ->setOrderId(56)
+            ->setUserDefinedFlag(78);
+
+        $updateSoldItems = (new UpdateSoldItems())
+            ->setAfterbuyGlobal($afterbuyGlobal)
+            ->setOrders(array($order1, $order2));
+
+        return $updateSoldItems;
     }
 }

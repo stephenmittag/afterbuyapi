@@ -16,6 +16,10 @@ class AbstractModel
      */
     public function setBooleanFromInteger($value)
     {
+        if (is_null($value)) {
+            return null;
+        }
+
         return (bool)$value;
     }
 
@@ -24,7 +28,12 @@ class AbstractModel
      *
      * @return int
      */
-    public function getBooleanAsInteger($value) {
+    public function getBooleanAsInteger($value)
+    {
+        if (is_null($value)) {
+            return null;
+        }
+
         return $value ? 1 : 0;
     }
 }

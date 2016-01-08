@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+    <AfterbuyGlobal>
+        <PartnerID>12</PartnerID>
+        <PartnerPassword>partner password</PartnerPassword>
+        <UserID>user id</UserID>
+        <UserPassword>user password</UserPassword>
+        <CallName>call name</CallName>
+        <DetailLevel>1</DetailLevel>
+        <ErrorLanguage>de</ErrorLanguage>
+    </AfterbuyGlobal>
+    <Orders>
+        <Order>
+            <OrderID>12</OrderID>
+            <UserDefinedFlag>34</UserDefinedFlag>
+            <InvoiceMemo></InvoiceMemo>
+        </Order>
+        <Order>
+            <OrderID>56</OrderID>
+            <UserDefinedFlag>78</UserDefinedFlag>
+        </Order>
+    </Orders>
+</Request>
