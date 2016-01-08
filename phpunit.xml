@@ -1,15 +1,24 @@
-<phpunit bootstrap="./vendor/autoload.php"
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="./Tests/bootstrap.php"
          backupGlobals="false"
          backupStaticAttributes="false"
-         colors="always"
+         colors="true"
          syntaxCheck="false">
+
     <testsuites>
-        <testsuite name="UnitTests">
-            <directory suffix=".php">Tests</directory>
-        </testsuite>
-        <testsuite name="IntegrationTests">
-            <directory suffix=".php">Integration</directory>
+        <testsuite>
+            <directory>Tests</directory>
         </testsuite>
     </testsuites>
-</phpunit>
 
+    <filter>
+        <whitelist>
+            <directory suffix=".php">src</directory>
+        </whitelist>
+    </filter>
+
+    <php>
+        <server name="KERNEL_DIR" value="App" />
+    </php>
+
+</phpunit>
