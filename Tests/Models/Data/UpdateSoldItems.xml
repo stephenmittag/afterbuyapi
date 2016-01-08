@@ -1,20 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <Request>
     <AfterbuyGlobal>
-        <PartnerID>1</PartnerID>
-        <PartnerPassword>1</PartnerPassword>
-        <UserID>1</UserID>
-        <UserPassword>1</UserPassword>
-        <CallName>UpdateSoldItems</CallName>
+        <PartnerID>12</PartnerID>
+        <PartnerPassword>partner password</PartnerPassword>
+        <UserID>user id</UserID>
+        <UserPassword>user password</UserPassword>
+        <CallName>call name</CallName>
         <DetailLevel>0</DetailLevel>
-        <ErrorLanguage>DE</ErrorLanguage>
+        <ErrorLanguage>de</ErrorLanguage>
     </AfterbuyGlobal>
     <Orders>
         <Order>
-            <OrderID>65656</OrderID>
-            <InvoiceMemo>def</InvoiceMemo>
-            <UserDefinedFlag>123</UserDefinedFlag>
-            <InvoiceDate>25.05.2015 08:09:10</InvoiceDate>
+            <OrderID>34</OrderID>
+            <ItemID>56</ItemID>
+            <UserDefinedFlag>78</UserDefinedFlag>
+            <AdditionalInfo>additional info</AdditionalInfo>
+            <MailDate>01.02.2003 01:02:03</MailDate>
+            <ReminderMailDate>02.03.2004 02:03:04</ReminderMailDate>
+            <UserComment>user comment</UserComment>
+            <OrderMemo>order memo</OrderMemo>
+            <InvoiceMemo>invoice memo</InvoiceMemo>
+            <InvoiceNumber>90</InvoiceNumber>
+            <OrderExported>true</OrderExported>
+            <InvoiceDate>03.04.2005 03:04:05</InvoiceDate>
+            <HideOrder>false</HideOrder>
+            <Reminder1Date>04.05.2006 04:05:06</Reminder1Date>
+            <Reminder2Date>05.06.2007 05:06:07</Reminder2Date>
+            <FeedbackDate>06.07.2008 06:07:08</FeedbackDate>
+            <XmlDate>07.08.2009 07:08:09</XmlDate>
+            <BuyerInfo>
+                <ShippingAddress>
+                    <UseShippingAddress>1</UseShippingAddress>
+                    <FirstName>firstname</FirstName>
+                    <LastName>lastname</LastName>
+                    <Company>company</Company>
+                    <Street>street 1</Street>
+                    <PostalCode>ab123</PostalCode>
+                    <City>city</City>
+                    <Country>de</Country>
+                </ShippingAddress>
+            </BuyerInfo>
+            <PaymentInfo>
+                <PaymentMethod>paypal</PaymentMethod>
+                <PaymentDate>08.09.2010 08:09:10</PaymentDate>
+                <AlreadyPaid>10.2</AlreadyPaid>
+                <PaymentAadditionalCost>4.5</PaymentAadditionalCost>
+                <SendPaymentMail>true</SendPaymentMail>
+            </PaymentInfo>
+            <ShippingInfo>
+                <ShippingMethod>DHL</ShippingMethod>
+                <ShippingGroup>standard</ShippingGroup>
+                <ShippingCost>2.9</ShippingCost>
+                <DeliveryDate>09.10.2011 09:10:11</DeliveryDate>
+                <eBayShippingCost>0.9</eBayShippingCost>
+                <SendShippingMail>false</SendShippingMail>
+            </ShippingInfo>
+            <VorgangsInfo>
+                <VorgangsInfo1>vorgangsinfo1</VorgangsInfo1>
+                <VorgangsInfo2>vorgangsinfo2</VorgangsInfo2>
+                <VorgangsInfo3>vorgangsinfo3</VorgangsInfo3>
+            </VorgangsInfo>
         </Order>
     </Orders>
 </Request>
