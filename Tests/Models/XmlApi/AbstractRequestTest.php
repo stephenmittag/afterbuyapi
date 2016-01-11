@@ -6,11 +6,21 @@ use JMS\Serializer\Serializer;
 use Wk\AfterbuyApi\Models\XmlApi\AbstractRequest;
 use Wk\AfterbuyApi\Models\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Models\XmlApi\BuyerInfo;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\DateFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\DefaultFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\ShopIdFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\UserDefinedFlagFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\UserEmailFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\UserIdFilter;
+use Wk\AfterbuyApi\Models\XmlApi\GetSoldItemsRequest;
 use Wk\AfterbuyApi\Models\XmlApi\Order;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\OrderIdFilter;
 use Wk\AfterbuyApi\Models\XmlApi\PaymentInfo;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\PlatformFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Filter\RangeIdFilter;
 use Wk\AfterbuyApi\Models\XmlApi\ShippingAddress;
 use Wk\AfterbuyApi\Models\XmlApi\ShippingInfo;
-use Wk\AfterbuyApi\Models\XmlApi\UpdateSoldItems;
+use Wk\AfterbuyApi\Models\XmlApi\UpdateSoldItemsRequest;
 use Wk\AfterbuyApi\Models\XmlApi\VorgangsInfo;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
@@ -40,50 +50,30 @@ class UpdateSoldItemsTest extends WebTestCase
     public function provideSerializationAndDeserialization()
     {
         return array(
-            array('xml', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.xml', UpdateSoldItems::class),
-            array('json', $this->getUpdateSoldItems1(), 'UpdateSoldItems1.json', UpdateSoldItems::class),
-            array('xml', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.xml', UpdateSoldItems::class),
-            array('json', $this->getUpdateSoldItems2(), 'UpdateSoldItems2.json', UpdateSoldItems::class)
+            array($this->createExemplaryUpdateSoldItemsRequest1(), 'UpdateSoldItems1.xml'),
+            array($this->createExemplaryUpdateSoldItemsRequest2(), 'UpdateSoldItems2.xml'),
+
+            array($this->createExemplaryGetSoldItemsRequest1(), 'GetSoldItems1.xml'),
         );
     }
 
     /**
-     * @param string          $format
      * @param AbstractRequest $request
      * @param string          $deserializedObjectFile
-     * @param string          $type
      *
      * @dataProvider provideSerializationAndDeserialization
      */
-    public function testSerialization($format, AbstractRequest $request, $deserializedObjectFile, $type)
+    public function testSerializationToXml(AbstractRequest $request, $deserializedObjectFile)
     {
-        $serializedUpdateSoldItems = $this->serializer->serialize($request, $format);
+        $serializedUpdateSoldItemsRequest = $this->serializer->serialize($request, 'xml');
 
-        $function = $format == 'xml' ? 'assertXmlStringEqualsXmlFile' : 'assertJsonStringEqualsJsonFile';
-
-        $this->{$function}(__DIR__ . '/../Data/' . $deserializedObjectFile, $serializedUpdateSoldItems);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../Data/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
     }
 
     /**
-     * @param string          $format
-     * @param AbstractRequest $request
-     * @param string          $deserializedObjectFile
-     * @param string          $type
-     *
-     * @dataProvider provideSerializationAndDeserialization
+     * @return UpdateSoldItemsRequest
      */
-    public function testDeserialization($format, AbstractRequest $request, $deserializedObjectFile, $type)
-    {
-        $serializedUpdateSoldItems = file_get_contents(__DIR__ . '/../Data/' . $deserializedObjectFile);
-        $deserializedUpdateSoldItems = $this->serializer->deserialize($serializedUpdateSoldItems, $type, $format);
-
-        $this->assertEquals($request, $deserializedUpdateSoldItems);
-    }
-
-    /**
-     * @return UpdateSoldItems
-     */
-    private function getUpdateSoldItems1()
+    private function createExemplaryUpdateSoldItemsRequest1()
     {
         $shippingAddress = (new ShippingAddress())
             ->setUseShippingAddress(true)
@@ -118,15 +108,6 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setVorgangsInfo2('vorgangsinfo2')
             ->setVorgangsInfo3('vorgangsinfo3');
 
-        $afterbuyGlobal = (new AfterbuyGlobal())
-            ->setPartnerId(12)
-            ->setPartnerPassword('partner password')
-            ->setUserId('user id')
-            ->setUserPassword('user password')
-            ->setCallName('call name')
-            ->setDetailLevel(0)
-            ->setErrorLanguage('de');
-
         $order = (new Order())
             ->setOrderId(34)
             ->setItemId(56)
@@ -150,27 +131,18 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setShippingInfo($shippingInfo)
             ->setVorgangsInfo($vorgangsInfo);
 
-        $updateSoldItems = (new UpdateSoldItems())
-            ->setAfterbuyGlobal($afterbuyGlobal)
+        $updateSoldItems = (new UpdateSoldItemsRequest())
+            ->setAfterbuyGlobal($this->getAfterbuyGlobal())
             ->setOrders(array($order));
 
         return $updateSoldItems;
     }
 
     /**
-     * @return UpdateSoldItems
+     * @return UpdateSoldItemsRequest
      */
-    private function getUpdateSoldItems2()
+    private function createExemplaryUpdateSoldItemsRequest2()
     {
-        $afterbuyGlobal = (new AfterbuyGlobal())
-            ->setPartnerId(12)
-            ->setPartnerPassword('partner password')
-            ->setUserId('user id')
-            ->setUserPassword('user password')
-            ->setCallName('call name')
-            ->setDetailLevel(1)
-            ->setErrorLanguage('de');
-
         $order1 = (new Order())
             ->setOrderId(12)
             ->setUserDefinedFlag(34)
@@ -180,10 +152,70 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setOrderId(56)
             ->setUserDefinedFlag(78);
 
-        $updateSoldItems = (new UpdateSoldItems())
-            ->setAfterbuyGlobal($afterbuyGlobal)
+        $updateSoldItems = (new UpdateSoldItemsRequest())
+            ->setAfterbuyGlobal($this->getAfterbuyGlobal())
             ->setOrders(array($order1, $order2));
 
         return $updateSoldItems;
+    }
+
+    /**
+     * @return GetSoldItemsRequest
+     */
+    private function createExemplaryGetSoldItemsRequest1()
+    {
+        $orderIdFilter1 = (new OrderIdFilter());
+        $rangeIdFilter1 = (new RangeIdFilter())
+            ->setValueFrom(2)
+            ->setValueTo(4);
+        $rangeIdFilter2 = (new RangeIdFilter())
+            ->setValueFrom(6);
+        $dateFilter1 = (new DateFilter())
+            ->setDateFrom(new DateTime('2003-02-01 01:02:03'))
+            ->setDateTo(new DateTime('2004-03-02 02:03:04'));
+        $dateFilter2 = (new DateFilter())
+            ->setDateFrom(new DateTime('2005-04-03 03:04:05'));
+        $defaultFilter1 = (new DefaultFilter());
+        $platformFilter1 = (new PlatformFilter());
+        $userIdFilter1 = (new UserIdFilter());
+        $userDefinedFlagFilter1 = (new UserDefinedFlagFilter());
+        $userEmailFilter = (new UserEmailFilter());
+        $shopIdFilter = (new ShopIdFilter());
+
+        $getSoldItems = (new GetSoldItemsRequest())
+            ->setAfterbuyGlobal($this->getAfterbuyGlobal())
+            ->setRequestAllItems(true)
+            ->setMaxSoldItems(10)
+            ->setOrderDirection(1)
+            ->addFilter($orderIdFilter1)
+            ->addFilter($rangeIdFilter1)
+            ->addFilter($rangeIdFilter2)
+            ->addFilter($dateFilter1)
+            ->addFilter($dateFilter2)
+            ->addFilter($defaultFilter1)
+            ->addFilter($platformFilter1)
+            ->addFilter($userIdFilter1)
+            ->addFilter($userDefinedFlagFilter1)
+            ->addFilter($userEmailFilter)
+            ->addFilter($shopIdFilter);
+
+        return $getSoldItems;
+    }
+
+    /**
+     * @return AfterbuyGlobal
+     */
+    private function getAfterbuyGlobal()
+    {
+        $afterbuyGlobal = (new AfterbuyGlobal())
+            ->setPartnerId(12)
+            ->setPartnerPassword('partner password')
+            ->setUserId('user id')
+            ->setUserPassword('user password')
+            ->setCallName('call name')
+            ->setDetailLevel(0)
+            ->setErrorLanguage('de');
+
+        return $afterbuyGlobal;
     }
 }

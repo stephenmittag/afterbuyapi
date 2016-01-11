@@ -6,7 +6,7 @@
         <UserID>user id</UserID>
         <UserPassword>user password</UserPassword>
         <CallName>call name</CallName>
-        <DetailLevel>1</DetailLevel>
+        <DetailLevel>0</DetailLevel>
         <ErrorLanguage>de</ErrorLanguage>
     </AfterbuyGlobal>
     <Orders>

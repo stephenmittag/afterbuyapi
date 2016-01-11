@@ -8,8 +8,6 @@ use \DateTime;
 /**
  * Class Order
  *
- * @Serializer\XmlRoot("Order")
- *
  * @package Wk\AfterbuyApi\Models
  */
 class Order extends AbstractModel

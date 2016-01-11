@@ -7,8 +7,6 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class ShippingAddress
  *
- * @Serializer\XmlRoot("ShippingAddress")
- *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class ShippingAddress extends AbstractModel

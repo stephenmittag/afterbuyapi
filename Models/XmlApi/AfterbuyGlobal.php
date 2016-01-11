@@ -7,8 +7,6 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class AfterbuyGlobal
  *
- * @Serializer\XmlRoot("AfterbuyGlobal")
- *
  * @package Wk\AfterbuyApi\Models
  */
 class AfterbuyGlobal extends AbstractModel

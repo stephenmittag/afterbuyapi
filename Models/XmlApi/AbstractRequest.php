@@ -7,8 +7,6 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class AbstractRequest
  *
- * @Serializer\XmlRoot("Request")
- *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class AbstractRequest extends AbstractModel

@@ -8,8 +8,6 @@ use \DateTime;
 /**
  * Class PaymentInfo
  *
- * @Serializer\XmlRoot("PaymentInfo")
- *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class PaymentInfo extends AbstractModel

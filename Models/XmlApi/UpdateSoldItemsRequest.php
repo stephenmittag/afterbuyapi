@@ -5,13 +5,13 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
 use JMS\Serializer\Annotation as Serializer;
 
 /**
- * Class UpdateSoldItems
+ * Class UpdateSoldItemsRequest
  *
  * @Serializer\XmlRoot("Request")
  *
  * @package Wk\AfterbuyApi\Models\XmlApi
  */
-class UpdateSoldItems extends AbstractRequest
+class UpdateSoldItemsRequest extends AbstractRequest
 {
     /**
      * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Order>")
@@ -19,6 +19,17 @@ class UpdateSoldItems extends AbstractRequest
      * @var Order[]
      */
     private $orders;
+
+    /**
+     * @param Order $order
+     *
+     * @return $this
+     */
+    public function addOrder(Order $order) {
+        $this->orders[] = $order;
+
+        return $this;
+    }
 
     /**
      * @return Order[]
