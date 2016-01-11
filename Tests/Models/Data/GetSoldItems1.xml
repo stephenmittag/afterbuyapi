@@ -6,7 +6,7 @@
         <UserID>user id</UserID>
         <UserPassword>user password</UserPassword>
         <CallName>GetSoldItems</CallName>
-        <DetailLevel>2</DetailLevel>
+        <DetailLevel>0</DetailLevel>
         <ErrorLanguage>de</ErrorLanguage>
     </AfterbuyGlobal>
     <RequestAllItems>1</RequestAllItems>
@@ -41,24 +41,6 @@
             <FilterValues>
                 <DateFrom>03.04.2005 03:04:05</DateFrom>
             </FilterValues>
-        </Filter>
-        <Filter>
-            <FilterName>DefaultFilter</FilterName>
-        </Filter>
-        <Filter>
-            <FilterName>Plattform</FilterName>
-        </Filter>
-        <Filter>
-            <FilterName>AfterbuyUserID</FilterName>
-        </Filter>
-        <Filter>
-            <FilterName>UserDefinedFlag</FilterName>
-        </Filter>
-        <Filter>
-            <FilterName>AfterbuyUserEmail</FilterName>
-        </Filter>
-        <Filter>
-            <FilterName>ShopId</FilterName>
         </Filter>
     </DataFilter>
 </Request>

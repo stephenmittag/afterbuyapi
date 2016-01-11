@@ -50,10 +50,11 @@ class UpdateSoldItemsTest extends WebTestCase
     public function provideSerializationAndDeserialization()
     {
         return array(
-            array($this->createExemplaryUpdateSoldItemsRequest1(), 'UpdateSoldItems1.xml'),
-            array($this->createExemplaryUpdateSoldItemsRequest2(), 'UpdateSoldItems2.xml'),
-
             array($this->createExemplaryGetSoldItemsRequest1(), 'GetSoldItems1.xml'),
+            array($this->createExemplaryGetSoldItemsRequest2(), 'GetSoldItems2.xml'),
+
+            array($this->createExemplaryUpdateSoldItemsRequest1(), 'UpdateSoldItems1.xml'),
+            array($this->createExemplaryUpdateSoldItemsRequest2(), 'UpdateSoldItems2.xml')
         );
     }
 
@@ -74,6 +75,36 @@ class UpdateSoldItemsTest extends WebTestCase
      * @return UpdateSoldItemsRequest
      */
     private function createExemplaryUpdateSoldItemsRequest1()
+    {
+        $order = (new Order())
+            ->setOrderId(34)
+            ->setItemId(56)
+            ->setUserDefinedFlag(78)
+            ->setAdditionalInfo('additional info')
+            ->setMailDate(new DateTime('2003-02-01 01:02:03'))
+            ->setReminderMailDate(new DateTime('2004-03-02 02:03:04'))
+            ->setUserComment('user comment')
+            ->setOrderMemo('order memo')
+            ->setInvoiceMemo('invoice memo')
+            ->setInvoiceNumber(90)
+            ->setOrderExported(true)
+            ->setInvoiceDate(new DateTime('2005-04-03 03:04:05'))
+            ->setHideOrder(false)
+            ->setReminder1Date(new DateTime('2006-05-04 04:05:06'))
+            ->setReminder2Date(new DateTime('2007-06-05 05:06:07'))
+            ->setFeedbackDate(new DateTime('2008-07-06 06:07:08'))
+            ->setXmlDate(new DateTime('2009-08-07 07:08:09'));
+
+        $updateSoldItems = (new UpdateSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
+            ->setOrders(array($order));
+
+        return $updateSoldItems;
+    }
+
+    /**
+     * @return UpdateSoldItemsRequest
+     */
+    private function createExemplaryUpdateSoldItemsRequest2()
     {
         $shippingAddress = (new ShippingAddress())
             ->setUseShippingAddress(true)
@@ -108,51 +139,22 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setVorgangsInfo2('vorgangsinfo2')
             ->setVorgangsInfo3('vorgangsinfo3');
 
-        $order = (new Order())
-            ->setOrderId(34)
-            ->setItemId(56)
-            ->setUserDefinedFlag(78)
-            ->setAdditionalInfo('additional info')
-            ->setMailDate(new DateTime('2003-02-01 01:02:03'))
-            ->setReminderMailDate(new DateTime('2004-03-02 02:03:04'))
-            ->setUserComment('user comment')
-            ->setOrderMemo('order memo')
-            ->setInvoiceMemo('invoice memo')
-            ->setInvoiceNumber(90)
-            ->setOrderExported(true)
-            ->setInvoiceDate(new DateTime('2005-04-03 03:04:05'))
-            ->setHideOrder(false)
-            ->setReminder1Date(new DateTime('2006-05-04 04:05:06'))
-            ->setReminder2Date(new DateTime('2007-06-05 05:06:07'))
-            ->setFeedbackDate(new DateTime('2008-07-06 06:07:08'))
-            ->setXmlDate(new DateTime('2009-08-07 07:08:09'))
+        $order1 = (new Order())
+            ->setOrderId(12)
+            ->setUserDefinedFlag(34)
+            ->setInvoiceMemo('')
             ->setBuyerInfo($buyerInfo)
             ->setPaymentInfo($paymentInfo)
             ->setShippingInfo($shippingInfo)
             ->setVorgangsInfo($vorgangsInfo);
 
-        $updateSoldItems = (new UpdateSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
-            ->setOrders(array($order));
-
-        return $updateSoldItems;
-    }
-
-    /**
-     * @return UpdateSoldItemsRequest
-     */
-    private function createExemplaryUpdateSoldItemsRequest2()
-    {
-        $order1 = (new Order())
-            ->setOrderId(12)
-            ->setUserDefinedFlag(34)
-            ->setInvoiceMemo('');
-
         $order2 = (new Order())
             ->setOrderId(56)
             ->setUserDefinedFlag(78);
 
-        $updateSoldItems = (new UpdateSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
-            ->setOrders(array($order1, $order2));
+        $updateSoldItems = (new UpdateSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
+            ->setOrders(array($order1, $order2))
+            ->setDetailLevel(2);
 
         return $updateSoldItems;
     }
@@ -173,15 +175,8 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setDateTo(new DateTime('2004-03-02 02:03:04'));
         $dateFilter2 = (new DateFilter())
             ->setDateFrom(new DateTime('2005-04-03 03:04:05'));
-        $defaultFilter1 = (new DefaultFilter());
-        $platformFilter1 = (new PlatformFilter());
-        $userIdFilter1 = (new UserIdFilter());
-        $userDefinedFlagFilter1 = (new UserDefinedFlagFilter());
-        $userEmailFilter = (new UserEmailFilter());
-        $shopIdFilter = (new ShopIdFilter());
 
         $getSoldItems = (new GetSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
-            ->setDetailLevel(2)
             ->setRequestAllItems(true)
             ->setMaxSoldItems(10)
             ->setOrderDirection(1)
@@ -189,7 +184,28 @@ class UpdateSoldItemsTest extends WebTestCase
             ->addFilter($rangeIdFilter1)
             ->addFilter($rangeIdFilter2)
             ->addFilter($dateFilter1)
-            ->addFilter($dateFilter2)
+            ->addFilter($dateFilter2);
+
+        return $getSoldItems;
+    }
+
+    /**
+     * @return GetSoldItemsRequest
+     */
+    private function createExemplaryGetSoldItemsRequest2()
+    {
+        $defaultFilter1 = (new DefaultFilter());
+        $platformFilter1 = (new PlatformFilter());
+        $userIdFilter1 = (new UserIdFilter());
+        $userDefinedFlagFilter1 = (new UserDefinedFlagFilter());
+        $userEmailFilter = (new UserEmailFilter());
+        $shopIdFilter = (new ShopIdFilter());
+
+        $getSoldItems = (new GetSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
+            ->setDetailLevel(2)
+            ->setRequestAllItems(true)
+            ->setMaxSoldItems(10)
+            ->setOrderDirection(1)
             ->addFilter($defaultFilter1)
             ->addFilter($platformFilter1)
             ->addFilter($userIdFilter1)

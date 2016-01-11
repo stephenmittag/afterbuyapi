@@ -1,19 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Request>
     <AfterbuyGlobal>
-        <PartnerID>12</PartnerID>
-        <PartnerPassword>partner password</PartnerPassword>
-        <UserID>user id</UserID>
-        <UserPassword>user password</UserPassword>
+        <PartnerID>123</PartnerID>
+        <PartnerPassword>partner password2</PartnerPassword>
+        <UserID>user id2</UserID>
+        <UserPassword>user password2</UserPassword>
         <CallName>UpdateSoldItems</CallName>
-        <DetailLevel>0</DetailLevel>
-        <ErrorLanguage>de</ErrorLanguage>
+        <DetailLevel>2</DetailLevel>
+        <ErrorLanguage>en</ErrorLanguage>
     </AfterbuyGlobal>
     <Orders>
         <Order>
             <OrderID>12</OrderID>
             <UserDefinedFlag>34</UserDefinedFlag>
             <InvoiceMemo></InvoiceMemo>
+            <BuyerInfo>
+                <ShippingAddress>
+                    <UseShippingAddress>1</UseShippingAddress>
+                    <FirstName>firstname</FirstName>
+                    <LastName>lastname</LastName>
+                    <Company>company</Company>
+                    <Street>street 1</Street>
+                    <PostalCode>ab123</PostalCode>
+                    <City>city</City>
+                    <Country>de</Country>
+                </ShippingAddress>
+            </BuyerInfo>
+            <PaymentInfo>
+                <PaymentMethod>paypal</PaymentMethod>
+                <PaymentDate>08.09.2010 08:09:10</PaymentDate>
+                <AlreadyPaid>10.2</AlreadyPaid>
+                <PaymentAadditionalCost>4.5</PaymentAadditionalCost>
+                <SendPaymentMail>1</SendPaymentMail>
+            </PaymentInfo>
+            <ShippingInfo>
+                <ShippingMethod>DHL</ShippingMethod>
+                <ShippingGroup>standard</ShippingGroup>
+                <ShippingCost>2.9</ShippingCost>
+                <DeliveryDate>09.10.2011 09:10:11</DeliveryDate>
+                <eBayShippingCost>0.9</eBayShippingCost>
+                <SendShippingMail>0</SendShippingMail>
+            </ShippingInfo>
+            <VorgangsInfo>
+                <VorgangsInfo1>vorgangsinfo1</VorgangsInfo1>
+                <VorgangsInfo2>vorgangsinfo2</VorgangsInfo2>
+                <VorgangsInfo3>vorgangsinfo3</VorgangsInfo3>
+            </VorgangsInfo>
         </Order>
         <Order>
             <OrderID>56</OrderID>
