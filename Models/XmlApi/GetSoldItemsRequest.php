@@ -14,6 +14,8 @@ use Wk\AfterbuyApi\Models\XmlApi\Filter\AbstractFilter;
  */
 class GetSoldItemsRequest extends AbstractRequest
 {
+    const CALL_NAME = 'GetSoldItems';
+
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getRequestAllItemsAsInteger", setter="setRequestAllItemsFromInteger")
@@ -40,6 +42,19 @@ class GetSoldItemsRequest extends AbstractRequest
      * @var AbstractFilter[]
      */
     private $filters;
+
+    /**
+     * @param string $userId
+     * @param string $userPassword
+     * @param int    $partnerId
+     * @param string $partnerPassword
+     * @param int    $detailLevel
+     */
+    public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel) {
+        parent::__construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel);
+
+        $this->setCallName(self::CALL_NAME);
+    }
 
     /**
      * @return int

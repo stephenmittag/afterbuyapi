@@ -131,8 +131,7 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setShippingInfo($shippingInfo)
             ->setVorgangsInfo($vorgangsInfo);
 
-        $updateSoldItems = (new UpdateSoldItemsRequest())
-            ->setAfterbuyGlobal($this->getAfterbuyGlobal())
+        $updateSoldItems = (new UpdateSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
             ->setOrders(array($order));
 
         return $updateSoldItems;
@@ -152,8 +151,7 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setOrderId(56)
             ->setUserDefinedFlag(78);
 
-        $updateSoldItems = (new UpdateSoldItemsRequest())
-            ->setAfterbuyGlobal($this->getAfterbuyGlobal())
+        $updateSoldItems = (new UpdateSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
             ->setOrders(array($order1, $order2));
 
         return $updateSoldItems;
@@ -182,8 +180,8 @@ class UpdateSoldItemsTest extends WebTestCase
         $userEmailFilter = (new UserEmailFilter());
         $shopIdFilter = (new ShopIdFilter());
 
-        $getSoldItems = (new GetSoldItemsRequest())
-            ->setAfterbuyGlobal($this->getAfterbuyGlobal())
+        $getSoldItems = (new GetSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
+            ->setDetailLevel(2)
             ->setRequestAllItems(true)
             ->setMaxSoldItems(10)
             ->setOrderDirection(1)
@@ -200,22 +198,5 @@ class UpdateSoldItemsTest extends WebTestCase
             ->addFilter($shopIdFilter);
 
         return $getSoldItems;
-    }
-
-    /**
-     * @return AfterbuyGlobal
-     */
-    private function getAfterbuyGlobal()
-    {
-        $afterbuyGlobal = (new AfterbuyGlobal())
-            ->setPartnerId(12)
-            ->setPartnerPassword('partner password')
-            ->setUserId('user id')
-            ->setUserPassword('user password')
-            ->setCallName('call name')
-            ->setDetailLevel(0)
-            ->setErrorLanguage('de');
-
-        return $afterbuyGlobal;
     }
 }

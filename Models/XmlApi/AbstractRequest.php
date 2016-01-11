@@ -15,24 +15,37 @@ class AbstractRequest extends AbstractModel
      * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\AfterbuyGlobal")
      * @var AfterbuyGlobal
      */
-    protected $afterbuyGlobal;
+    private $afterbuyGlobal;
 
     /**
-     * @return AfterbuyGlobal
+     * @param string $userId
+     * @param string $userPassword
+     * @param int    $partnerId
+     * @param string $partnerPassword
+     * @param int    $detailLevel
      */
-    public function getAfterbuyGlobal()
-    {
-        return $this->afterbuyGlobal;
+    public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel) {
+        $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel);
     }
 
     /**
-     * @param AfterbuyGlobal $afterbuyGlobal
+     * @param int $detailLevel
      *
      * @return $this
      */
-    public function setAfterbuyGlobal(AfterbuyGlobal $afterbuyGlobal = null)
-    {
-        $this->afterbuyGlobal = $afterbuyGlobal;
+    public function setDetailLevel($detailLevel) { // TODO set value using constants
+        $this->afterbuyGlobal->setDetailLevel($detailLevel);
+
+        return $this;
+    }
+
+    /**
+     * @param string $callName
+     *
+     * @return $this
+     */
+    public function setCallName($callName) {
+        $this->afterbuyGlobal->setCallName($callName);
 
         return $this;
     }

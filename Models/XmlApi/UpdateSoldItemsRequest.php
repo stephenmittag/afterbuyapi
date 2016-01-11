@@ -13,12 +13,27 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class UpdateSoldItemsRequest extends AbstractRequest
 {
+    const CALL_NAME = 'UpdateSoldItems';
+    
     /**
      * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Order>")
      * @Serializer\XmlList(entry="Order")
      * @var Order[]
      */
     private $orders;
+
+    /**
+     * @param string $userId
+     * @param string $userPassword
+     * @param int    $partnerId
+     * @param string $partnerPassword
+     * @param int    $detailLevel
+     */
+    public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel) {
+        parent::__construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel);
+
+        $this->setCallName(self::CALL_NAME);
+    }
 
     /**
      * @param Order $order

@@ -5,8 +5,8 @@
         <PartnerPassword>partner password</PartnerPassword>
         <UserID>user id</UserID>
         <UserPassword>user password</UserPassword>
-        <CallName>call name</CallName>
-        <DetailLevel>0</DetailLevel>
+        <CallName>GetSoldItems</CallName>
+        <DetailLevel>2</DetailLevel>
         <ErrorLanguage>de</ErrorLanguage>
     </AfterbuyGlobal>
     <RequestAllItems>1</RequestAllItems>

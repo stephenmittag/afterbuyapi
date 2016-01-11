@@ -5,7 +5,7 @@
         <PartnerPassword>partner password</PartnerPassword>
         <UserID>user id</UserID>
         <UserPassword>user password</UserPassword>
-        <CallName>call name</CallName>
+        <CallName>UpdateSoldItems</CallName>
         <DetailLevel>0</DetailLevel>
         <ErrorLanguage>de</ErrorLanguage>
     </AfterbuyGlobal>
