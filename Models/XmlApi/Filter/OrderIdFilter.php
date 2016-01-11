@@ -11,8 +11,13 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class OrderIdFilter extends AbstractFilter
 {
-    public function __construct()
+    /**
+     * @param int $orderId
+     */
+    public function __construct($orderId)
     {
         parent::__construct('OrderID');
+
+        $this->filterValues['FilterValue'] = strval($orderId);
     }
 }

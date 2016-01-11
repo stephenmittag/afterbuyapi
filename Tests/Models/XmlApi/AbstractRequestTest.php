@@ -4,7 +4,6 @@ namespace Wk\AfterbuyApi\Tests\Models\XmlApi;
 
 use JMS\Serializer\Serializer;
 use Wk\AfterbuyApi\Models\XmlApi\AbstractRequest;
-use Wk\AfterbuyApi\Models\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Models\XmlApi\BuyerInfo;
 use Wk\AfterbuyApi\Models\XmlApi\Filter\DateFilter;
 use Wk\AfterbuyApi\Models\XmlApi\Filter\DefaultFilter;
@@ -69,6 +68,56 @@ class UpdateSoldItemsTest extends WebTestCase
         $serializedUpdateSoldItemsRequest = $this->serializer->serialize($request, 'xml');
 
         $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../Data/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
+    }
+
+    /**
+     * @return GetSoldItemsRequest
+     */
+    private function createExemplaryGetSoldItemsRequest1()
+    {
+        $rangeIdFilter1 = (new RangeIdFilter())
+            ->setValueFrom(2)
+            ->setValueTo(4);
+        $rangeIdFilter2 = (new RangeIdFilter())
+            ->setValueFrom(6);
+        $dateFilter1 = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
+            ->setDateFrom(new DateTime('2003-02-01 01:02:03'))
+            ->setDateTo(new DateTime('2004-03-02 02:03:04'));
+        $dateFilter2 = (new DateFilter(DateFilter::FILTER_FEEDBACK_DATE))
+            ->setDateFrom(new DateTime('2005-04-03 03:04:05'));
+
+        $getSoldItems = (new GetSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
+            ->setRequestAllItems(true)
+            ->setMaxSoldItems(10)
+            ->setOrderDirectionAscending()
+            ->addFilter(new OrderIdFilter(123))
+            ->addFilter($rangeIdFilter1)
+            ->addFilter($rangeIdFilter2)
+            ->addFilter($dateFilter1)
+            ->addFilter($dateFilter2);
+
+        return $getSoldItems;
+    }
+
+    /**
+     * @return GetSoldItemsRequest
+     */
+    private function createExemplaryGetSoldItemsRequest2()
+    {
+        $getSoldItems = (new GetSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
+            ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA)
+            ->setRequestAllItems(true)
+            ->setMaxSoldItems(10)
+            ->setOrderDirectionDescending()
+            ->addFilter(new DefaultFilter(DefaultFilter::FILTER_COMPLETED_AUCTIONS))
+            ->addFilter(new PlatformFilter('ebay'))
+            ->addFilter(new PlatformFilter('ebay', true))
+            ->addFilter(new UserIdFilter(123))
+            ->addFilter(new UserDefinedFlagFilter(456))
+            ->addFilter(new UserEmailFilter('test@test.de'))
+            ->addFilter(new ShopIdFilter(789));
+
+        return $getSoldItems;
     }
 
     /**
@@ -157,62 +206,5 @@ class UpdateSoldItemsTest extends WebTestCase
             ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA);
 
         return $updateSoldItems;
-    }
-
-    /**
-     * @return GetSoldItemsRequest
-     */
-    private function createExemplaryGetSoldItemsRequest1()
-    {
-        $orderIdFilter1 = (new OrderIdFilter());
-        $rangeIdFilter1 = (new RangeIdFilter())
-            ->setValueFrom(2)
-            ->setValueTo(4);
-        $rangeIdFilter2 = (new RangeIdFilter())
-            ->setValueFrom(6);
-        $dateFilter1 = (new DateFilter())
-            ->setDateFrom(new DateTime('2003-02-01 01:02:03'))
-            ->setDateTo(new DateTime('2004-03-02 02:03:04'));
-        $dateFilter2 = (new DateFilter())
-            ->setDateFrom(new DateTime('2005-04-03 03:04:05'));
-
-        $getSoldItems = (new GetSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
-            ->setRequestAllItems(true)
-            ->setMaxSoldItems(10)
-            ->setOrderDirectionAscending()
-            ->addFilter($orderIdFilter1)
-            ->addFilter($rangeIdFilter1)
-            ->addFilter($rangeIdFilter2)
-            ->addFilter($dateFilter1)
-            ->addFilter($dateFilter2);
-
-        return $getSoldItems;
-    }
-
-    /**
-     * @return GetSoldItemsRequest
-     */
-    private function createExemplaryGetSoldItemsRequest2()
-    {
-        $defaultFilter1 = (new DefaultFilter());
-        $platformFilter1 = (new PlatformFilter());
-        $userIdFilter1 = (new UserIdFilter());
-        $userDefinedFlagFilter1 = (new UserDefinedFlagFilter());
-        $userEmailFilter = (new UserEmailFilter());
-        $shopIdFilter = (new ShopIdFilter());
-
-        $getSoldItems = (new GetSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
-            ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA)
-            ->setRequestAllItems(true)
-            ->setMaxSoldItems(10)
-            ->setOrderDirectionDescending()
-            ->addFilter($defaultFilter1)
-            ->addFilter($platformFilter1)
-            ->addFilter($userIdFilter1)
-            ->addFilter($userDefinedFlagFilter1)
-            ->addFilter($userEmailFilter)
-            ->addFilter($shopIdFilter);
-
-        return $getSoldItems;
     }
 }

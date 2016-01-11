@@ -15,21 +15,45 @@
     <DataFilter>
         <Filter>
             <FilterName>DefaultFilter</FilterName>
+            <FilterValues>
+                <FilterValue>CompletedAuctions</FilterValue>
+            </FilterValues>
         </Filter>
         <Filter>
             <FilterName>Plattform</FilterName>
+            <FilterValues>
+                <FilterValue>ebay</FilterValue>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>Plattform</FilterName>
+            <FilterValues>
+                <FilterValue>not_ebay</FilterValue>
+            </FilterValues>
         </Filter>
         <Filter>
             <FilterName>AfterbuyUserID</FilterName>
+            <FilterValues>
+                <FilterValue>123</FilterValue>
+            </FilterValues>
         </Filter>
         <Filter>
             <FilterName>UserDefinedFlag</FilterName>
+            <FilterValues>
+                <FilterValue>456</FilterValue>
+            </FilterValues>
         </Filter>
         <Filter>
             <FilterName>AfterbuyUserEmail</FilterName>
+            <FilterValues>
+                <FilterValue>test@test.de</FilterValue>
+            </FilterValues>
         </Filter>
         <Filter>
             <FilterName>ShopId</FilterName>
+            <FilterValues>
+                <FilterValue>789</FilterValue>
+            </FilterValues>
         </Filter>
     </DataFilter>
 </Request>

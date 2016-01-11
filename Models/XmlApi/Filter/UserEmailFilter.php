@@ -11,8 +11,13 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class UserEmailFilter extends AbstractFilter
 {
-    public function __construct()
+    /**
+     * @param string $email
+     */
+    public function __construct($email)
     {
         parent::__construct('AfterbuyUserEmail');
+
+        $this->filterValues['FilterValue'] = $email;
     }
 }

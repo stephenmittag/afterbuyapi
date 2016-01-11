@@ -11,8 +11,13 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class UserDefinedFlagFilter extends AbstractFilter
 {
-    public function __construct()
+    /**
+     * @param string $flagId
+     */
+    public function __construct($flagId)
     {
         parent::__construct('UserDefinedFlag');
+
+        $this->filterValues['FilterValue'] = $flagId;
     }
 }

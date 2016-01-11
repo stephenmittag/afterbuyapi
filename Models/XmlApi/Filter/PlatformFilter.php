@@ -11,8 +11,14 @@ use JMS\Serializer\Annotation as Serializer;
  */
 class PlatformFilter extends AbstractFilter
 {
-    public function __construct()
+    /**
+     * @param string $platform
+     * @param bool   $negateFilter
+     */
+    public function __construct($platform, $negateFilter = false)
     {
         parent::__construct('Plattform');
+
+        $this->filterValues['FilterValue'] = $negateFilter ? ('not_' . $platform) : $platform;
     }
 }
