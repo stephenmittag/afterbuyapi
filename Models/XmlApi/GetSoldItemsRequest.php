@@ -131,6 +131,24 @@ class GetSoldItemsRequest extends AbstractRequest
     }
 
     /**
+     * @return $this
+     */
+    public function setOrderDirectionAscending() {
+        $this->orderDirection = 0;
+
+        return $this;
+    }
+
+    /**
+     * @return $this
+     */
+    public function setOrderDirectionDescending() {
+        $this->orderDirection = 1;
+
+        return $this;
+    }
+
+    /**
      * @return AbstractFilter
      */
     public function getFilters()

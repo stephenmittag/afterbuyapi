@@ -11,7 +11,7 @@
     </AfterbuyGlobal>
     <RequestAllItems>1</RequestAllItems>
     <MaxSoldItems>10</MaxSoldItems>
-    <OrderDirection>1</OrderDirection>
+    <OrderDirection>0</OrderDirection>
     <DataFilter>
         <Filter>
             <FilterName>OrderID</FilterName>

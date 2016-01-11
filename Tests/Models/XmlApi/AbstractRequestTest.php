@@ -122,16 +122,16 @@ class UpdateSoldItemsTest extends WebTestCase
         $paymentInfo = (new PaymentInfo())
             ->setPaymentMethod('paypal')
             ->setPaymentDate(new DateTime('2010-09-08 08:09:10'))
-            ->setAlreadyPaid(10.20)
-            ->setPaymentAdditionalCost(4.50)
+            ->setAlreadyPaid(10.2)
+            ->setPaymentAdditionalCost(4.5)
             ->setSendPaymentMail(true);
 
         $shippingInfo = (new ShippingInfo())
             ->setShippingMethod('DHL')
             ->setShippingGroup('standard')
-            ->setShippingCost(2.90)
+            ->setShippingCost(2.9)
             ->setDeliveryDate(new DateTime('2011-10-09 09:10:11'))
-            ->setEBayShippingCost(0.90)
+            ->setEBayShippingCost(0.9)
             ->setSendShippingMail(false);
 
         $vorgangsInfo = (new VorgangsInfo())
@@ -154,7 +154,7 @@ class UpdateSoldItemsTest extends WebTestCase
 
         $updateSoldItems = (new UpdateSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
             ->setOrders(array($order1, $order2))
-            ->setDetailLevel(2);
+            ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA);
 
         return $updateSoldItems;
     }
@@ -179,7 +179,7 @@ class UpdateSoldItemsTest extends WebTestCase
         $getSoldItems = (new GetSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
             ->setRequestAllItems(true)
             ->setMaxSoldItems(10)
-            ->setOrderDirection(1)
+            ->setOrderDirectionAscending()
             ->addFilter($orderIdFilter1)
             ->addFilter($rangeIdFilter1)
             ->addFilter($rangeIdFilter2)
@@ -202,10 +202,10 @@ class UpdateSoldItemsTest extends WebTestCase
         $shopIdFilter = (new ShopIdFilter());
 
         $getSoldItems = (new GetSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
-            ->setDetailLevel(2)
+            ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA)
             ->setRequestAllItems(true)
             ->setMaxSoldItems(10)
-            ->setOrderDirection(1)
+            ->setOrderDirectionDescending()
             ->addFilter($defaultFilter1)
             ->addFilter($platformFilter1)
             ->addFilter($userIdFilter1)
