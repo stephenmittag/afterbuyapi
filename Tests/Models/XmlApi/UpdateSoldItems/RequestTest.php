@@ -1,16 +1,16 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Models\XmlApi\UpdateSoldItems;
+namespace Wk\AfterbuyApi\Tests\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
-use Wk\AfterbuyApi\Models\XmlApi\Request\BuyerInfo;
-use Wk\AfterbuyApi\Models\XmlApi\Request\GetSoldItemsRequest;
-use Wk\AfterbuyApi\Models\XmlApi\Request\Order;
-use Wk\AfterbuyApi\Models\XmlApi\Request\PaymentInfo;
-use Wk\AfterbuyApi\Models\XmlApi\Request\ShippingAddress;
-use Wk\AfterbuyApi\Models\XmlApi\Request\ShippingInfo;
-use Wk\AfterbuyApi\Models\XmlApi\Request\UpdateSoldItemsRequest;
-use Wk\AfterbuyApi\Models\XmlApi\Request\VorgangsInfo;
+use Wk\AfterbuyApi\Model\XmlApi\Request\BuyerInfo;
+use Wk\AfterbuyApi\Model\XmlApi\Request\GetSoldItemsRequest;
+use Wk\AfterbuyApi\Model\XmlApi\Request\Order;
+use Wk\AfterbuyApi\Model\XmlApi\Request\PaymentInfo;
+use Wk\AfterbuyApi\Model\XmlApi\Request\ShippingAddress;
+use Wk\AfterbuyApi\Model\XmlApi\Request\ShippingInfo;
+use Wk\AfterbuyApi\Model\XmlApi\Request\UpdateSoldItemsRequest;
+use Wk\AfterbuyApi\Model\XmlApi\Request\VorgangsInfo;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
 
