@@ -1,15 +1,15 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Models\XmlApi\Request;
+namespace Wk\AfterbuyApi\Tests\Models\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterbuyApi\Models\XmlApi\Response\UpdateSoldItemsResponse;
 
 /**
- * Class UpdateSoldItemsResponseTest
+ * Class ResponseTest
  */
-class UpdateSoldItemsResponseTest extends WebTestCase
+class ResponseTest extends WebTestCase
 {
     /**
      * @var Serializer
@@ -30,7 +30,7 @@ class UpdateSoldItemsResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnSuccess()
     {
-        $updateSoldItemsResponse = $this->deserializeResponse('UpdateSoldItemsResponseOnSuccess.xml');
+        $updateSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccess.xml');
 
         $this->assertEquals('Success', $updateSoldItemsResponse->getCallStatus());
         $this->assertEquals('UpdateSoldItems', $updateSoldItemsResponse->getCallName());
@@ -43,7 +43,7 @@ class UpdateSoldItemsResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnError()
     {
-        $updateSoldItemsResponse = $this->deserializeResponse('UpdateSoldItemsResponseOnError.xml');
+        $updateSoldItemsResponse = $this->deserializeResponse('ResponseOnError.xml');
 
         $this->assertEquals('Error', $updateSoldItemsResponse->getCallStatus());
         $this->assertEquals('UpdateSoldItems', $updateSoldItemsResponse->getCallName());
@@ -66,7 +66,7 @@ class UpdateSoldItemsResponseTest extends WebTestCase
      * @return UpdateSoldItemsResponse
      */
     private function deserializeResponse($fileName) {
-        $responseBody = file_get_contents(__DIR__ . '/../../Data/Response/' . $fileName);
+        $responseBody = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItems/' . $fileName);
 
         return $this->serializer->deserialize($responseBody, UpdateSoldItemsResponse::class, 'xml');
     }

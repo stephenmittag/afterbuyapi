@@ -1,9 +1,8 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Models\XmlApi\Request;
+namespace Wk\AfterbuyApi\Tests\Models\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
-use Wk\AfterbuyApi\Models\XmlApi\Request\AbstractRequest;
 use Wk\AfterbuyApi\Models\XmlApi\Request\Filter\DateFilter;
 use Wk\AfterbuyApi\Models\XmlApi\Request\Filter\DefaultFilter;
 use Wk\AfterbuyApi\Models\XmlApi\Request\Filter\ShopIdFilter;
@@ -18,9 +17,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
 
 /**
- * Class GetSoldItemsRequestTest
+ * Class RequestTest
  */
-class GetSoldItemsRequestTest extends WebTestCase
+class RequestTest extends WebTestCase
 {
     /**
      * @var Serializer
@@ -42,8 +41,8 @@ class GetSoldItemsRequestTest extends WebTestCase
     public function provideSerializationToXml()
     {
         return array(
-            array($this->createExemplaryGetSoldItemsRequest1(), 'GetSoldItemsRequest1.xml'),
-            array($this->createExemplaryGetSoldItemsRequest2(), 'GetSoldItemsRequest2.xml')
+            array($this->createExemplaryRequest1(), 'Request1.xml'),
+            array($this->createExemplaryRequest2(), 'Request2.xml')
         );
     }
 
@@ -57,13 +56,13 @@ class GetSoldItemsRequestTest extends WebTestCase
     {
         $serializedGetSoldItemsRequest = $this->serializer->serialize($getSoldItemsRequest, 'xml');
 
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/Request/' . $deserializedObjectFile, $serializedGetSoldItemsRequest);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/GetSoldItems/' . $deserializedObjectFile, $serializedGetSoldItemsRequest);
     }
 
     /**
      * @return GetSoldItemsRequest
      */
-    private function createExemplaryGetSoldItemsRequest1()
+    private function createExemplaryRequest1()
     {
         $rangeIdFilter1 = (new RangeIdFilter())
             ->setValueFrom(2)
@@ -92,7 +91,7 @@ class GetSoldItemsRequestTest extends WebTestCase
     /**
      * @return GetSoldItemsRequest
      */
-    private function createExemplaryGetSoldItemsRequest2()
+    private function createExemplaryRequest2()
     {
         $getSoldItems = (new GetSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
             ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA)

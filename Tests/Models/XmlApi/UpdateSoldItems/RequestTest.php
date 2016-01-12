@@ -1,9 +1,8 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Models\XmlApi\Request;
+namespace Wk\AfterbuyApi\Tests\Models\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
-use Wk\AfterbuyApi\Models\XmlApi\Request\AbstractRequest;
 use Wk\AfterbuyApi\Models\XmlApi\Request\BuyerInfo;
 use Wk\AfterbuyApi\Models\XmlApi\Request\GetSoldItemsRequest;
 use Wk\AfterbuyApi\Models\XmlApi\Request\Order;
@@ -16,9 +15,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
 
 /**
- * Class UpdateSoldItemsRequestTest
+ * Class RequestTest
  */
-class UpdateSoldItemsRequestTest extends WebTestCase
+class RequestTest extends WebTestCase
 {
     /**
      * @var Serializer
@@ -40,8 +39,8 @@ class UpdateSoldItemsRequestTest extends WebTestCase
     public function provideSerializationToXml()
     {
         return array(
-            array($this->createExemplaryUpdateSoldItemsRequest1(), 'UpdateSoldItemsRequest1.xml'),
-            array($this->createExemplaryUpdateSoldItemsRequest2(), 'UpdateSoldItemsRequest2.xml')
+            array($this->createExemplaryRequest1(), 'Request1.xml'),
+            array($this->createExemplaryRequest2(), 'Request2.xml')
         );
     }
 
@@ -55,13 +54,13 @@ class UpdateSoldItemsRequestTest extends WebTestCase
     {
         $serializedUpdateSoldItemsRequest = $this->serializer->serialize($updateSoldItemsRequest, 'xml');
 
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/Request/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/UpdateSoldItems/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
     }
 
     /**
      * @return UpdateSoldItemsRequest
      */
-    private function createExemplaryUpdateSoldItemsRequest1()
+    private function createExemplaryRequest1()
     {
         $order = (new Order())
             ->setOrderId(34)
@@ -91,7 +90,7 @@ class UpdateSoldItemsRequestTest extends WebTestCase
     /**
      * @return UpdateSoldItemsRequest
      */
-    private function createExemplaryUpdateSoldItemsRequest2()
+    private function createExemplaryRequest2()
     {
         $shippingAddress = (new ShippingAddress())
             ->setUseShippingAddress(true)
