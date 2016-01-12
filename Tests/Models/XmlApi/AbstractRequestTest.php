@@ -49,11 +49,11 @@ class UpdateSoldItemsTest extends WebTestCase
     public function provideSerializationAndDeserialization()
     {
         return array(
-            array($this->createExemplaryGetSoldItemsRequest1(), 'GetSoldItems1.xml'),
-            array($this->createExemplaryGetSoldItemsRequest2(), 'GetSoldItems2.xml'),
+            array($this->createExemplaryGetSoldItemsRequest1(), 'GetSoldItemsRequest1.xml'),
+            array($this->createExemplaryGetSoldItemsRequest2(), 'GetSoldItemsRequest2.xml'),
 
-            array($this->createExemplaryUpdateSoldItemsRequest1(), 'UpdateSoldItems1.xml'),
-            array($this->createExemplaryUpdateSoldItemsRequest2(), 'UpdateSoldItems2.xml')
+            array($this->createExemplaryUpdateSoldItemsRequest1(), 'UpdateSoldItemsRequest1.xml'),
+            array($this->createExemplaryUpdateSoldItemsRequest2(), 'UpdateSoldItemsRequest2.xml')
         );
     }
 
