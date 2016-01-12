@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApi\Tests\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
+use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\DateFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\DefaultFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\ShopIdFilter;
@@ -75,7 +76,9 @@ class RequestTest extends WebTestCase
         $dateFilter2 = (new DateFilter(DateFilter::FILTER_FEEDBACK_DATE))
             ->setDateFrom(new DateTime('2005-04-03 03:04:05'));
 
-        $getSoldItems = (new GetSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
+        $afterbuyGlobal = (new AfterbuyGlobal('user id', 'user password', 12, 'partner password', 'de'));
+
+        $getSoldItems = (new GetSoldItemsRequest($afterbuyGlobal))
             ->setRequestAllItems(true)
             ->setMaxSoldItems(10)
             ->setOrderDirectionAscending()
@@ -93,8 +96,11 @@ class RequestTest extends WebTestCase
      */
     private function createExemplaryRequest2()
     {
-        $getSoldItems = (new GetSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
-            ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA)
+        $afterbuyGlobal = (new AfterbuyGlobal('user id2', 'user password2', 123, 'partner password2', 'en'))
+            ->setDetailLevel(AfterbuyGlobal::DETAIL_LEVEL_PAYMENT_DATA);
+
+        $getSoldItems = (new GetSoldItemsRequest($afterbuyGlobal))
+            ->setDetailLevel(AfterbuyGlobal::DETAIL_LEVEL_PAYMENT_DATA)
             ->setRequestAllItems(true)
             ->setMaxSoldItems(10)
             ->setOrderDirectionDescending()

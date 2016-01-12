@@ -4,6 +4,7 @@ namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApi\Model\XmlApi\AbstractRequest;
+use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
 
 /**
@@ -43,14 +44,10 @@ class GetSoldItemsRequest extends AbstractRequest
     private $filters;
 
     /**
-     * @param string $userId
-     * @param string $userPassword
-     * @param int    $partnerId
-     * @param string $partnerPassword
-     * @param int    $detailLevel
+     * @param AfterbuyGlobal $afterbuyGlobal
      */
-    public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel) {
-        parent::__construct($userId, $userPassword, $partnerId, $partnerPassword, $detailLevel);
+    public function __construct(AfterbuyGlobal $afterbuyGlobal) {
+        parent::__construct($afterbuyGlobal);
 
         $this->setCallName(self::CALL_NAME);
     }

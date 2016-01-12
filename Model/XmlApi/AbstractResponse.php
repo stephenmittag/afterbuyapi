@@ -3,7 +3,6 @@
 namespace Wk\AfterbuyApi\Model\XmlApi;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
 
 /**
  * Class AbstractResponse

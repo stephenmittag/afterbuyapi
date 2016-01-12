@@ -3,13 +3,42 @@
 namespace Wk\AfterbuyApi\Model\XmlApi;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
 
 /**
  * Class AfterbuyGlobal
  */
 class AfterbuyGlobal extends AbstractModel
 {
+    /**
+     * display process data only
+     */
+    const DETAIL_LEVEL_PROCESS_DATA = 0;
+
+    /**
+     * display payment data only
+     */
+    const DETAIL_LEVEL_PAYMENT_DATA = 2;
+
+    /**
+     * display buyer data only
+     */
+    const DETAIL_LEVEL_BUYER_DATA = 4;
+
+    /**
+     * display articles data only
+     */
+    const DETAIL_LEVEL_ARTICLES_DATA = 8;
+
+    /**
+     * display shipping data only
+     */
+    const DETAIL_LEVEL_SHIPPING_DATA = 16;
+
+    /**
+     * display articles data and custom attributes only
+     */
+    const DETAIL_LEVEL_CUSTOM_ATTRIBUTES = 32;
+
     /**
      * @Serializer\Type("integer")
      * @Serializer\SerializedName("PartnerID")

@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApi\Tests\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
+use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\BuyerInfo;
 use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\PaymentInfo;
@@ -80,7 +81,9 @@ class RequestTest extends WebTestCase
             ->setFeedbackDate(new DateTime('2008-07-06 06:07:08'))
             ->setXmlDate(new DateTime('2009-08-07 07:08:09'));
 
-        $updateSoldItems = (new UpdateSoldItemsRequest('user id', 'user password', 12, 'partner password', 'de'))
+        $afterbuyGlobal = (new AfterbuyGlobal('user id', 'user password', 12, 'partner password', 'de'));
+
+        $updateSoldItems = (new UpdateSoldItemsRequest($afterbuyGlobal))
             ->setOrders(array($order));
 
         return $updateSoldItems;
@@ -137,9 +140,12 @@ class RequestTest extends WebTestCase
             ->setOrderId(56)
             ->setUserDefinedFlag(78);
 
-        $updateSoldItems = (new UpdateSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
+        $afterbuyGlobal = (new AfterbuyGlobal('user id2', 'user password2', 123, 'partner password2', 'en'))
+            ->setDetailLevel(AfterbuyGlobal::DETAIL_LEVEL_PAYMENT_DATA);
+
+        $updateSoldItems = (new UpdateSoldItemsRequest($afterbuyGlobal))
             ->setOrders(array($order1, $order2))
-            ->setDetailLevel(UpdateSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA);
+            ->setDetailLevel(AfterbuyGlobal::DETAIL_LEVEL_PAYMENT_DATA);
 
         return $updateSoldItems;
     }
