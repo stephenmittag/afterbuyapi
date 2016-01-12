@@ -1,18 +1,16 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class BuyerInfo
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class BuyerInfo extends AbstractModel
 {
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\ShippingAddress")
+     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\Request\ShippingAddress")
      * @var ShippingAddress
      */
     private $shippingAddress;

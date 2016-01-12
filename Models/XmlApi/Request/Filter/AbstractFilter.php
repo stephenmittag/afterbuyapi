@@ -1,14 +1,12 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi\Filter;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request\Filter;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Models\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Models\XmlApi\Request\AbstractModel;
 
 /**
  * Class AbstractFilter
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 abstract class AbstractFilter extends AbstractModel
 {

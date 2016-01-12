@@ -1,13 +1,11 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class VorgangsInfo
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class VorgangsInfo extends AbstractModel
 {

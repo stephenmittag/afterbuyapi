@@ -1,16 +1,14 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Models\XmlApi\Filter\AbstractFilter;
+use Wk\AfterbuyApi\Models\XmlApi\Request\Filter\AbstractFilter;
 
 /**
  * Class GetSoldItemsRequest
  *
  * @Serializer\XmlRoot("Request")
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class GetSoldItemsRequest extends AbstractRequest
 {
@@ -36,7 +34,7 @@ class GetSoldItemsRequest extends AbstractRequest
     private $orderDirection;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Filter\AbstractFilter>")
+     * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Request\Filter\AbstractFilter>")
      * @Serializer\XmlList(entry="Filter")
      * @Serializer\SerializedName("DataFilter")
      * @var AbstractFilter[]

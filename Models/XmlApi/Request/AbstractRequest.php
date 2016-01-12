@@ -1,13 +1,11 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class AbstractRequest
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class AbstractRequest extends AbstractModel
 {
@@ -42,7 +40,7 @@ class AbstractRequest extends AbstractModel
     const DETAIL_LEVEL_CUSTOM_ATTRIBUTES = 32;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\AfterbuyGlobal")
+     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\Request\AfterbuyGlobal")
      * @var AfterbuyGlobal
      */
     private $afterbuyGlobal;

@@ -1,14 +1,12 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;
 
 /**
  * Class Order
- *
- * @package Wk\AfterbuyApi\Models
  */
 class Order extends AbstractModel
 {
@@ -119,25 +117,25 @@ class Order extends AbstractModel
     private $xmlDate;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\BuyerInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\Request\BuyerInfo")
      * @var BuyerInfo
      */
     private $buyerInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\PaymentInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\Request\PaymentInfo")
      * @var PaymentInfo
      */
     private $paymentInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\ShippingInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\Request\ShippingInfo")
      * @var ShippingInfo
      */
     private $shippingInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\VorgangsInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Models\XmlApi\Request\VorgangsInfo")
      * @var VorgangsInfo
      */
     private $vorgangsInfo;

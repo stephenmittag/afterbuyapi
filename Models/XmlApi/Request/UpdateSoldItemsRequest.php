@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -8,15 +8,13 @@ use JMS\Serializer\Annotation as Serializer;
  * Class UpdateSoldItemsRequest
  *
  * @Serializer\XmlRoot("Request")
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class UpdateSoldItemsRequest extends AbstractRequest
 {
     const CALL_NAME = 'UpdateSoldItems';
-    
+
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Order>")
+     * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Request\Order>")
      * @Serializer\XmlList(entry="Order")
      * @var Order[]
      */

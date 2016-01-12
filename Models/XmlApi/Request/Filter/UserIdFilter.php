@@ -1,13 +1,11 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi\Filter;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request\Filter;
 
 use JMS\Serializer\Annotation as Serializer;
 
 /**
  * Class UserIdFilter
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class UserIdFilter extends AbstractFilter
 {

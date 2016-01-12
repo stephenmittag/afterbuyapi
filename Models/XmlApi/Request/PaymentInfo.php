@@ -1,14 +1,12 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi;
+namespace Wk\AfterbuyApi\Models\XmlApi\Request;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;
 
 /**
  * Class PaymentInfo
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class PaymentInfo extends AbstractModel
 {
