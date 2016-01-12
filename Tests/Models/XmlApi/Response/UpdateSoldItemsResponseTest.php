@@ -30,15 +30,12 @@ class UpdateSoldItemsResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnSuccess()
     {
-        $response = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItemsResponse1.xml');
-
-        /** @var UpdateSoldItemsResponse $updateSoldItemsResponse */
-        $updateSoldItemsResponse = $this->serializer->deserialize($response, UpdateSoldItemsResponse::class, 'xml');
+        $updateSoldItemsResponse = $this->deserializeResponse('UpdateSoldItemsResponseOnSuccess.xml');
 
         $this->assertEquals('Success', $updateSoldItemsResponse->getCallStatus());
         $this->assertEquals('UpdateSoldItems', $updateSoldItemsResponse->getCallName());
         $this->assertEquals(8, $updateSoldItemsResponse->getVersionId());
-        $this->assertEmpty($updateSoldItemsResponse->getResult()->getErrorList());
+        $this->assertEmpty($updateSoldItemsResponse->getResult()->getErrors());
     }
 
     /**
@@ -46,16 +43,13 @@ class UpdateSoldItemsResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnError()
     {
-        $response = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItemsResponse2.xml');
-
-        /** @var UpdateSoldItemsResponse $updateSoldItemsResponse */
-        $updateSoldItemsResponse = $this->serializer->deserialize($response, UpdateSoldItemsResponse::class, 'xml');
+        $updateSoldItemsResponse = $this->deserializeResponse('UpdateSoldItemsResponseOnError.xml');
 
         $this->assertEquals('Error', $updateSoldItemsResponse->getCallStatus());
         $this->assertEquals('UpdateSoldItems', $updateSoldItemsResponse->getCallName());
         $this->assertEquals(8, $updateSoldItemsResponse->getVersionId());
 
-        $errorList = $updateSoldItemsResponse->getResult()->getErrorList();
+        $errorList = $updateSoldItemsResponse->getResult()->getErrors();
 
         $this->assertEquals(2, sizeof($errorList));
         $this->assertEquals(11, $errorList[0]->getErrorCode());
@@ -64,5 +58,16 @@ class UpdateSoldItemsResponseTest extends WebTestCase
         $this->assertEquals(22, $errorList[1]->getErrorCode());
         $this->assertEquals('another error', $errorList[1]->getErrorDescription());
         $this->assertEquals('another error', $errorList[1]->getErrorLongDescription());
+    }
+
+    /**
+     * @param string $fileName
+     *
+     * @return UpdateSoldItemsResponse
+     */
+    private function deserializeResponse($fileName) {
+        $responseBody = file_get_contents(__DIR__ . '/../../Data/Response/' . $fileName);
+
+        return $this->serializer->deserialize($responseBody, UpdateSoldItemsResponse::class, 'xml');
     }
 }

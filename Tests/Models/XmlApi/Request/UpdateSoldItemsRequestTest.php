@@ -55,7 +55,7 @@ class UpdateSoldItemsRequestTest extends WebTestCase
     {
         $serializedUpdateSoldItemsRequest = $this->serializer->serialize($updateSoldItemsRequest, 'xml');
 
-        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
+        $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/Request/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
     }
 
     /**
