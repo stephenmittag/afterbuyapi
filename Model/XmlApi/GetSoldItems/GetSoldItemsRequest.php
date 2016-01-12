@@ -87,15 +87,15 @@ class GetSoldItemsRequest extends AbstractRequest
     }
 
     /**
-     * @return bool
+     * @return int
      */
-    public function isMaxSoldItems()
+    public function getMaxSoldItems()
     {
         return $this->maxSoldItems;
     }
 
     /**
-     * @param bool $maxSoldItems
+     * @param int $maxSoldItems
      *
      * @return $this
      */

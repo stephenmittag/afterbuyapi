@@ -91,13 +91,12 @@ class AfterbuyGlobal extends AbstractModel
      * @param int    $errorLanguage
      */
     public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage) {
-        // TODO replace by config
         $this->userId = $userId;
         $this->userPassword = $userPassword;
         $this->partnerId = $partnerId;
         $this->partnerPassword = $partnerPassword;
         $this->errorLanguage = $errorLanguage;
-        $this->detailLevel = 0;
+        $this->detailLevel = self::DETAIL_LEVEL_PROCESS_DATA;
     }
 
     /**

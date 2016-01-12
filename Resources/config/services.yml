@@ -1,1 +1,11 @@
 services:
+    wk_afterbuy_api.xml.client:
+        class: WK\AfterbuyApi\Services\Xml\Client
+        arguments:
+            - "%wk_afterbuy_api.user.id%"
+            - "%wk_afterbuy_api.user.password%"
+            - "%wk_afterbuy_api.partner.id%"
+            - "%wk_afterbuy_api.partner.password%"
+            - "%wk_afterbuy_api.error_language%"
+        calls:
+            - [setSerializer, ["@serializer"]]
