@@ -98,6 +98,78 @@ class GetSoldItemsResponseTest extends WebTestCase
     }
 
     /**
+     * test deserialization of a response on success, assert Order/SoldItems
+     */
+    public function testDeserializationFromXmlOnSuccessSoldItems()
+    {
+        $updateSoldItemsResponse = $this->deserializeResponse('GetSoldItemsResponseOnSuccessSoldItems.xml');
+
+        $soldItems = $updateSoldItemsResponse->getResult()->getOrders()[0]->getSoldItems();
+
+        $this->assertEquals(2, sizeof($soldItems));
+        $this->assertEquals(123, $soldItems[0]->getItemId());
+
+        $soldItem = $soldItems[1];
+
+        $this->assertTrue($soldItem->isItemDetailsDone());
+        $this->assertEquals(123, $soldItem->getItemId());
+        $this->assertEquals(1.3, $soldItem->getAnr());
+        $this->assertEquals(345, $soldItem->getEbayTransactionId());
+        $this->assertEquals('alternative item number 1', $soldItem->getAlternativeItemNumber1());
+        $this->assertEquals('alternative item number', $soldItem->getAlternativeItemNumber());
+        $this->assertEquals(33, $soldItem->getInternalItemType());
+        $this->assertEquals(332, $soldItem->getUserDefinedFlag());
+        $this->assertEquals('item title', $soldItem->getItemTitle());
+        $this->assertEquals(7, $soldItem->getItemQuantity());
+        $this->assertEquals(3.4, $soldItem->getItemPrice());
+        $this->assertEquals(new DateTime('2003-02-01 01:02:03'), $soldItem->getItemEndDate());
+        $this->assertEquals(0.19, $soldItem->getTaxRate());
+        $this->assertEquals(3.2, $soldItem->getItemWeight());
+        $this->assertEquals(new DateTime('2004-03-02 02:03:04'), $soldItem->getItemXmlDate());
+        $this->assertEquals(new DateTime('2005-04-03 03:04:05'), $soldItem->getItemModDate());
+        $this->assertEquals('item platform name', $soldItem->getItemPlatformName());
+        $this->assertEquals('item link', $soldItem->getItemLink());
+        $this->assertTrue($soldItem->isEbayFeedbackCompleted());
+        $this->assertFalse($soldItem->isEbayFeedbackReceived());
+        $this->assertEquals('ebay feedback comment type', $soldItem->getEbayFeedbackCommentType());
+
+        $shopProductDetails = $soldItem->getShopProductDetails();
+
+        $this->assertEquals(123, $shopProductDetails->getProductId());
+        $this->assertEquals('ean', $shopProductDetails->getEan());
+        $this->assertEquals(2.7, $shopProductDetails->getAnr());
+        $this->assertEquals('unit of quantity', $shopProductDetails->getUnitOfQuantity());
+        $this->assertEquals(4.7, $shopProductDetails->getBasepriceFactor());
+
+        $baseProductData = $shopProductDetails->getBaseProductData();
+
+        $this->assertEquals(5, $baseProductData->getBaseProductType());
+
+        $childProduct = $baseProductData->getChildProduct();
+
+        $this->assertEquals(8, $childProduct->getProductId());
+        $this->assertEquals('product ean', $childProduct->getProductEan());
+        $this->assertEquals(9, $childProduct->getProductAnr());
+        $this->assertEquals('product name', $childProduct->getProductName());
+        $this->assertEquals(14, $childProduct->getProductQuantity());
+        $this->assertEquals(0.9, $childProduct->getProductVat());
+        $this->assertEquals(8.2, $childProduct->getProductWeight());
+        $this->assertEquals(3.5, $childProduct->getProductUnitPrice());
+
+        $soldItemAttributes = $soldItem->getSoldItemAttributes();
+
+        $this->assertEquals(2, sizeof($soldItemAttributes));
+
+        $this->assertEquals('attribute name', $soldItemAttributes[0]->getAttributeName());
+        $this->assertEquals('attribute value', $soldItemAttributes[0]->getAttributeValue());
+        $this->assertEquals(4, $soldItemAttributes[0]->getAttributePosition());
+
+        $this->assertEquals('attribute name2', $soldItemAttributes[1]->getAttributeName());
+        $this->assertEquals('attribute value2', $soldItemAttributes[1]->getAttributeValue());
+        $this->assertEquals(8, $soldItemAttributes[1]->getAttributePosition());
+    }
+
+    /**
      * test deserialization of a response on success, assert Order/BuyerInfo
      */
     public function testDeserializationFromXmlOnSuccessBuyerInfo()

@@ -122,6 +122,13 @@ class Order extends AbstractModel
     private $shippingInfo;
 
     /**
+     * @Serializer\Type("array<Wk\AfterbuyApi\Models\XmlApi\Response\SoldItem>")
+     * @Serializer\XmlList(entry="SoldItem")
+     * @var SoldItem[]
+     */
+    private $soldItems;
+
+    /**
      * @return int
      */
     public function getInvoiceNumber()
@@ -263,5 +270,13 @@ class Order extends AbstractModel
     public function getShippingInfo()
     {
         return $this->shippingInfo;
+    }
+
+    /**
+     * @return SoldItem[]
+     */
+    public function getSoldItems()
+    {
+        return $this->soldItems;
     }
 }
