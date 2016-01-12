@@ -9,3 +9,12 @@ jms_serializer:
 framework:
     secret: "%kernel.secret%"
     test: ~
+
+wk_afterbuy_api:
+    error_language: "%locale%"
+    partner:
+        id: "%afterbuy_partner_id%"
+        password: "%afterbuy_partner_password%"
+    user:
+        id: "%afterbuy_user_id%"
+        password: "%afterbuy_user_password%"
