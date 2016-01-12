@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\Response;
+namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
@@ -104,25 +104,25 @@ class Order extends AbstractModel
     private $orderIdAlt;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\PaymentInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\PaymentInfo")
      * @var PaymentInfo
      */
     private $paymentInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\BuyerInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BuyerInfo")
      * @var BuyerInfo
      */
     private $buyerInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\ShippingInfo")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingInfo")
      * @var ShippingInfo
      */
     private $shippingInfo;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\Response\SoldItem>")
+     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\SoldItem>")
      * @Serializer\XmlList(entry="SoldItem")
      * @var SoldItem[]
      */

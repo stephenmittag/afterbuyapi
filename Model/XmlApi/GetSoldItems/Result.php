@@ -1,23 +1,15 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\Response;
+namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\Result as BaseResult;
 
 /**
  * Class Result
  */
-class Result extends AbstractModel
+class Result extends BaseResult
 {
-    /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\Response\Error>")
-     * @Serializer\SerializedName("ErrorList")
-     * @Serializer\XmlList(entry="Error")
-     * @var Error[]
-     */
-    private $errors;
-
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(setter="setHasMoreItemsFromInteger")
@@ -45,7 +37,7 @@ class Result extends AbstractModel
     private $itemsCount;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\Response\Order>")
+     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Order>")
      * @Serializer\XmlList(entry="Order")
      * @var Order[]
      */
@@ -56,14 +48,6 @@ class Result extends AbstractModel
      */
     public function setHasMoreItemsFromInteger($value) {
         $this->hasMoreItems = $this->setBooleanFromInteger($value);
-    }
-
-    /**
-     * @return Error[]
-     */
-    public function getErrors()
-    {
-        return $this->errors;
     }
 
     /**

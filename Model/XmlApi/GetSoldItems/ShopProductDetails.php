@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\Response;
+namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
@@ -43,7 +43,7 @@ class ShopProductDetails extends AbstractModel
     private $basepriceFactor;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\BaseProductData")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BaseProductData")
      * @var BaseProductData
      */
     private $baseProductData;

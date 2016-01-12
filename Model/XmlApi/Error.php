@@ -1,9 +1,8 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\Response;
+namespace Wk\AfterbuyApi\Model\XmlApi;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
 
 /**
  * Class Error

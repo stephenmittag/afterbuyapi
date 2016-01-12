@@ -4,8 +4,8 @@ namespace Wk\AfterbuyApi\Tests\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Wk\AfterbuyApi\Model\XmlApi\Response\UpdateSoldItemsResponse;
 use \DateTime;
+use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 
 /**
  * Class ResponseTest
@@ -31,13 +31,13 @@ class ResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnSuccessOrder()
     {
-        $updateSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccessOrder.xml');
+        $getSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccessOrder.xml');
 
-        $this->assertEquals('Success', $updateSoldItemsResponse->getCallStatus());
-        $this->assertEquals('GetSoldItems', $updateSoldItemsResponse->getCallName());
-        $this->assertEquals(8, $updateSoldItemsResponse->getVersionId());
+        $this->assertEquals('Success', $getSoldItemsResponse->getCallStatus());
+        $this->assertEquals('GetSoldItems', $getSoldItemsResponse->getCallName());
+        $this->assertEquals(8, $getSoldItemsResponse->getVersionId());
 
-        $result = $updateSoldItemsResponse->getResult();
+        $result = $getSoldItemsResponse->getResult();
 
         $this->assertEmpty($result->getErrors());
         $this->assertTrue($result->isHasMoreItems());
@@ -70,9 +70,9 @@ class ResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnSuccessPaymentInfo()
     {
-        $updateSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccessPaymentInfo.xml');
+        $getSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccessPaymentInfo.xml');
 
-        $paymentInfo = $updateSoldItemsResponse->getResult()->getOrders()[0]->getPaymentInfo();
+        $paymentInfo = $getSoldItemsResponse->getResult()->getOrders()[0]->getPaymentInfo();
 
         $this->assertEquals('payment id', $paymentInfo->getPaymentId());
         $this->assertEquals('payment method', $paymentInfo->getPaymentMethod());
@@ -102,9 +102,9 @@ class ResponseTest extends WebTestCase
      */
     public function testDeserializationFromXmlOnSuccessSoldItems()
     {
-        $updateSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccessSoldItems.xml');
+        $getSoldItemsResponse = $this->deserializeResponse('ResponseOnSuccessSoldItems.xml');
 
-        $soldItems = $updateSoldItemsResponse->getResult()->getOrders()[0]->getSoldItems();
+        $soldItems = $getSoldItemsResponse->getResult()->getOrders()[0]->getSoldItems();
 
         $this->assertEquals(2, sizeof($soldItems));
         $this->assertEquals(123, $soldItems[0]->getItemId());
@@ -254,11 +254,11 @@ class ResponseTest extends WebTestCase
     /**
      * @param string $fileName
      *
-     * @return UpdateSoldItemsResponse
+     * @return GetSoldItemsResponse
      */
     private function deserializeResponse($fileName) {
         $responseBody = file_get_contents(__DIR__ . '/../../Data/GetSoldItems/' . $fileName);
 
-        return $this->serializer->deserialize($responseBody, UpdateSoldItemsResponse::class, 'xml');
+        return $this->serializer->deserialize($responseBody, GetSoldItemsResponse::class, 'xml');
     }
 }

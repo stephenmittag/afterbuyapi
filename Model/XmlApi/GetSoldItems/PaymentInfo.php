@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\Response;
+namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
@@ -31,7 +31,7 @@ class PaymentInfo extends AbstractModel
     private $paymentFunction;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\PaymentData")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\PaymentData")
      * @var PaymentData
      */
     private $paymentData;

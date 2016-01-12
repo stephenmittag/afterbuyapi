@@ -4,7 +4,7 @@ namespace Wk\AfterbuyApi\Tests\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Wk\AfterbuyApi\Model\XmlApi\Response\UpdateSoldItemsResponse;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
 
 /**
  * Class ResponseTest

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\Response;
+namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
@@ -11,13 +11,13 @@ use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
 class BuyerInfo extends AbstractModel
 {
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\BillingAddress")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BillingAddress")
      * @var BillingAddress
      */
     private $billingAddress;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Response\ShippingAddress")
+     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingAddress")
      * @var ShippingAddress
      */
     private $shippingAddress;
