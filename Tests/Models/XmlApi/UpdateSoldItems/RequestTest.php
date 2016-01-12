@@ -3,14 +3,13 @@
 namespace Wk\AfterbuyApi\Tests\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\Request\BuyerInfo;
-use Wk\AfterbuyApi\Model\XmlApi\Request\GetSoldItemsRequest;
-use Wk\AfterbuyApi\Model\XmlApi\Request\Order;
-use Wk\AfterbuyApi\Model\XmlApi\Request\PaymentInfo;
-use Wk\AfterbuyApi\Model\XmlApi\Request\ShippingAddress;
-use Wk\AfterbuyApi\Model\XmlApi\Request\ShippingInfo;
-use Wk\AfterbuyApi\Model\XmlApi\Request\UpdateSoldItemsRequest;
-use Wk\AfterbuyApi\Model\XmlApi\Request\VorgangsInfo;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\BuyerInfo;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\PaymentInfo;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\ShippingAddress;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\ShippingInfo;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\VorgangsInfo;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
 
@@ -140,7 +139,7 @@ class RequestTest extends WebTestCase
 
         $updateSoldItems = (new UpdateSoldItemsRequest('user id2', 'user password2', 123, 'partner password2', 'en'))
             ->setOrders(array($order1, $order2))
-            ->setDetailLevel(GetSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA);
+            ->setDetailLevel(UpdateSoldItemsRequest::DETAIL_LEVEL_PAYMENT_DATA);
 
         return $updateSoldItems;
     }

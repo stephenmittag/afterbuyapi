@@ -9,7 +9,7 @@ use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\ShopIdFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\UserDefinedFlagFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\UserEmailFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\UserIdFilter;
-use Wk\AfterbuyApi\Model\XmlApi\Request\GetSoldItemsRequest;
+use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\OrderIdFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\PlatformFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\RangeIdFilter;
