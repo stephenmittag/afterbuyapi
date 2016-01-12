@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             // Dependencies
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle($this),
-            new Wk\AfterbuyApi\WkAfterbuyApi(),
+            new Wk\AfterbuyApi\WkAfterbuyApiBundle(),
         );
 
         return $bundles;
