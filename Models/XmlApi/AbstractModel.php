@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Models\XmlApi\Request;
+namespace Wk\AfterbuyApi\Models\XmlApi;
 
 /**
  * Class AbstractModel

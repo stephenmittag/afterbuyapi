@@ -39,7 +39,7 @@ class GetSoldItemsRequestTest extends WebTestCase
     /**
      * @return array
      */
-    public function provideSerializationAndDeserialization()
+    public function provideSerializationToXml()
     {
         return array(
             array($this->createExemplaryGetSoldItemsRequest1(), 'GetSoldItemsRequest1.xml'),
@@ -51,7 +51,7 @@ class GetSoldItemsRequestTest extends WebTestCase
      * @param AbstractRequest $request
      * @param string          $deserializedObjectFile
      *
-     * @dataProvider provideSerializationAndDeserialization
+     * @dataProvider provideSerializationToXml
      */
     public function testSerializationToXml(AbstractRequest $request, $deserializedObjectFile)
     {

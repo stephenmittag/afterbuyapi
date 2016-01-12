@@ -3,7 +3,7 @@
 namespace Wk\AfterbuyApi\Models\XmlApi\Request\Filter;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Models\XmlApi\Request\AbstractModel;
+use Wk\AfterbuyApi\Models\XmlApi\AbstractModel;
 
 /**
  * Class AbstractFilter
