@@ -3,13 +3,13 @@
 namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\AbstractPaymentInfo;
 use \DateTime;
 
 /**
  * Class PaymentInfo
  */
-class PaymentInfo extends AbstractModel
+class PaymentInfo extends AbstractPaymentInfo
 {
     /**
      * @Serializer\Type("string")
@@ -17,12 +17,6 @@ class PaymentInfo extends AbstractModel
      * @var string
      */
     private $paymentId;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $paymentMethod;
 
     /**
      * @Serializer\Type("string")
@@ -48,18 +42,6 @@ class PaymentInfo extends AbstractModel
      * @var string
      */
     private $paymentStatus;
-
-    /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
-     * @var DateTime
-     */
-    private $paymentDate;
-
-    /**
-     * @Serializer\Type("float")
-     * @var float
-     */
-    private $alreadyPaid;
 
     /**
      * @Serializer\Type("float")
@@ -97,14 +79,6 @@ class PaymentInfo extends AbstractModel
     /**
      * @return string
      */
-    public function getPaymentMethod()
-    {
-        return $this->paymentMethod;
-    }
-
-    /**
-     * @return string
-     */
     public function getPaymentFunction()
     {
         return $this->paymentFunction;
@@ -132,22 +106,6 @@ class PaymentInfo extends AbstractModel
     public function getPaymentStatus()
     {
         return $this->paymentStatus;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getPaymentDate()
-    {
-        return $this->paymentDate;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAlreadyPaid()
-    {
-        return $this->alreadyPaid;
     }
 
     /**

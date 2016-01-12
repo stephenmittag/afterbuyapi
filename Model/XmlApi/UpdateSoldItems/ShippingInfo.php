@@ -4,36 +4,18 @@ namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\AbstractShippingInfo;
 
 /**
  * Class ShippingInfo
  */
-class ShippingInfo extends AbstractModel
+class ShippingInfo extends AbstractShippingInfo
 {
     /**
      * @Serializer\Type("string")
      * @var string
      */
-    private $shippingMethod;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
     private $shippingGroup;
-
-    /**
-     * @Serializer\Type("float")
-     * @var float
-     */
-    private $shippingCost;
-
-    /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
-     * @var DateTime
-     */
-    private $deliveryDate;
 
     /**
      * @Serializer\Type("float")
@@ -61,14 +43,6 @@ class ShippingInfo extends AbstractModel
      */
     public function setSendShippingMailFromInteger($value) {
         $this->sendShippingMail = $this->setBooleanFromInteger($value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getShippingMethod()
-    {
-        return $this->shippingMethod;
     }
 
     /**
@@ -104,14 +78,6 @@ class ShippingInfo extends AbstractModel
     }
 
     /**
-     * @return float
-     */
-    public function getShippingCost()
-    {
-        return $this->shippingCost;
-    }
-
-    /**
      * @param float $shippingCost
      *
      * @return $this
@@ -121,14 +87,6 @@ class ShippingInfo extends AbstractModel
         $this->shippingCost = $shippingCost;
 
         return $this;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDeliveryDate()
-    {
-        return $this->deliveryDate;
     }
 
     /**

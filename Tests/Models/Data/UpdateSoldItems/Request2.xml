@@ -12,11 +12,10 @@
     <Orders>
         <Order>
             <OrderID>12</OrderID>
-            <UserDefinedFlag>34</UserDefinedFlag>
             <InvoiceMemo></InvoiceMemo>
+            <UserDefinedFlag>34</UserDefinedFlag>
             <BuyerInfo>
                 <ShippingAddress>
-                    <UseShippingAddress>1</UseShippingAddress>
                     <FirstName>firstname</FirstName>
                     <LastName>lastname</LastName>
                     <Company>company</Company>
@@ -24,6 +23,7 @@
                     <PostalCode>ab123</PostalCode>
                     <City>city</City>
                     <Country>de</Country>
+                    <UseShippingAddress>1</UseShippingAddress>
                 </ShippingAddress>
             </BuyerInfo>
             <PaymentInfo>
@@ -35,9 +35,9 @@
             </PaymentInfo>
             <ShippingInfo>
                 <ShippingMethod>DHL</ShippingMethod>
-                <ShippingGroup>standard</ShippingGroup>
                 <ShippingCost>2.9</ShippingCost>
                 <DeliveryDate>09.10.2011 09:10:11</DeliveryDate>
+                <ShippingGroup>standard</ShippingGroup>
                 <eBayShippingCost>0.9</eBayShippingCost>
                 <SendShippingMail>0</SendShippingMail>
             </ShippingInfo>

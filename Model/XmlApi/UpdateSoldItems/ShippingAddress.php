@@ -3,12 +3,12 @@
 namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\AbstractAddress;
 
 /**
  * Class ShippingAddress
  */
-class ShippingAddress extends AbstractModel
+class ShippingAddress extends AbstractAddress
 {
     /**
      * @Serializer\Type("integer")
@@ -16,48 +16,6 @@ class ShippingAddress extends AbstractModel
      * @var bool
      */
     private $useShippingAddress;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $firstName;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $lastName;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $company;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $street;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $postalCode;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $city;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $country;
 
     /**
      * @return int
@@ -94,14 +52,6 @@ class ShippingAddress extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-
-    /**
      * @param string $firstName
      *
      * @return $this
@@ -111,14 +61,6 @@ class ShippingAddress extends AbstractModel
         $this->firstName = $firstName;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
     }
 
     /**
@@ -134,14 +76,6 @@ class ShippingAddress extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getCompany()
-    {
-        return $this->company;
-    }
-
-    /**
      * @param string $company
      *
      * @return $this
@@ -151,14 +85,6 @@ class ShippingAddress extends AbstractModel
         $this->company = $company;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getStreet()
-    {
-        return $this->street;
     }
 
     /**
@@ -174,14 +100,6 @@ class ShippingAddress extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getPostalCode()
-    {
-        return $this->postalCode;
-    }
-
-    /**
      * @param string $postalCode
      *
      * @return $this
@@ -194,14 +112,6 @@ class ShippingAddress extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getCity()
-    {
-        return $this->city;
-    }
-
-    /**
      * @param string $city
      *
      * @return $this
@@ -211,14 +121,6 @@ class ShippingAddress extends AbstractModel
         $this->city = $city;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCountry()
-    {
-        return $this->country;
     }
 
     /**

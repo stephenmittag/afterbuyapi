@@ -4,31 +4,13 @@ namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\AbstractPaymentInfo;
 
 /**
  * Class PaymentInfo
  */
-class PaymentInfo extends AbstractModel
+class PaymentInfo extends AbstractPaymentInfo
 {
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $paymentMethod;
-
-    /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
-     * @var DateTime
-     */
-    private $paymentDate;
-
-    /**
-     * @Serializer\Type("float")
-     * @var float
-     */
-    private $alreadyPaid;
-
     /**
      * @Serializer\Type("float")
      * @Serializer\SerializedName("PaymentAadditionalCost")
@@ -46,23 +28,17 @@ class PaymentInfo extends AbstractModel
     /**
      * @return int
      */
-    public function getSendPaymentMailAsInteger() {
+    public function getSendPaymentMailAsInteger()
+    {
         return $this->getBooleanAsInteger($this->sendPaymentMail);
     }
 
     /**
      * @param int $value
      */
-    public function setSendPaymentMailFromInteger($value) {
-        $this->sendPaymentMail = $this->setBooleanFromInteger($value);
-    }
-
-    /**
-     * @return string
-     */
-    public function getPaymentMethod()
+    public function setSendPaymentMailFromInteger($value)
     {
-        return $this->paymentMethod;
+        $this->sendPaymentMail = $this->setBooleanFromInteger($value);
     }
 
     /**
@@ -78,14 +54,6 @@ class PaymentInfo extends AbstractModel
     }
 
     /**
-     * @return DateTime
-     */
-    public function getPaymentDate()
-    {
-        return $this->paymentDate;
-    }
-
-    /**
      * @param DateTime $paymentDate
      *
      * @return $this
@@ -95,14 +63,6 @@ class PaymentInfo extends AbstractModel
         $this->paymentDate = $paymentDate;
 
         return $this;
-    }
-
-    /**
-     * @return float
-     */
-    public function getAlreadyPaid()
-    {
-        return $this->alreadyPaid;
     }
 
     /**

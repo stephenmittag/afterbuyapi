@@ -4,20 +4,13 @@ namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\AbstractOrder;
 
 /**
  * Class Order
  */
-class Order extends AbstractModel
+class Order extends AbstractOrder
 {
-    /**
-     * @Serializer\Type("integer")
-     * @Serializer\SerializedName("OrderID")
-     * @var int
-     */
-    private $orderId;
-
     /**
      * @Serializer\Type("integer")
      * @Serializer\SerializedName("ItemID")
@@ -30,12 +23,6 @@ class Order extends AbstractModel
      * @var int
      */
     private $userDefinedFlag;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $additionalInfo;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
@@ -53,25 +40,7 @@ class Order extends AbstractModel
      * @Serializer\Type("string")
      * @var string
      */
-    private $userComment;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
     private $orderMemo;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $invoiceMemo;
-
-    /**
-     * @Serializer\Type("integer")
-     * @var int
-     */
-    private $invoiceNumber;
 
     /**
      * @Serializer\Type("integer")
@@ -104,12 +73,6 @@ class Order extends AbstractModel
      * @var DateTime
      */
     private $reminder2Date;
-
-    /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
-     * @var DateTime
-     */
-    private $feedbackDate;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
@@ -170,14 +133,6 @@ class Order extends AbstractModel
     }
 
     /**
-     * @return int
-     */
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
-    /**
      * @param int $orderId
      *
      * @return $this
@@ -227,14 +182,6 @@ class Order extends AbstractModel
         $this->userDefinedFlag = $userDefinedFlag;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAdditionalInfo()
-    {
-        return $this->additionalInfo;
     }
 
     /**
@@ -290,14 +237,6 @@ class Order extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getUserComment()
-    {
-        return $this->userComment;
-    }
-
-    /**
      * @param string $userComment
      *
      * @return $this
@@ -330,14 +269,6 @@ class Order extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getInvoiceMemo()
-    {
-        return $this->invoiceMemo;
-    }
-
-    /**
      * @param string $invoiceMemo
      *
      * @return $this
@@ -347,14 +278,6 @@ class Order extends AbstractModel
         $this->invoiceMemo = $invoiceMemo;
 
         return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getInvoiceNumber()
-    {
-        return $this->invoiceNumber;
     }
 
     /**
@@ -467,14 +390,6 @@ class Order extends AbstractModel
         $this->reminder2Date = $reminder2Date;
 
         return $this;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getFeedbackDate()
-    {
-        return $this->feedbackDate;
     }
 
     /**

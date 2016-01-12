@@ -3,27 +3,14 @@
 namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApi\Model\XmlApi\AbstractOrder;
 use \DateTime;
 
 /**
  * Class Order
  */
-class Order extends AbstractModel
+class Order extends AbstractOrder
 {
-    /**
-     * @Serializer\Type("integer")
-     * @var int
-     */
-    private $invoiceNumber;
-
-    /**
-     * @Serializer\Type("integer")
-     * @Serializer\SerializedName("OrderID")
-     * @var int
-     */
-    private $orderId;
-
     /**
      * @Serializer\Type("string")
      * @var string
@@ -49,24 +36,6 @@ class Order extends AbstractModel
     private $alternativeItemNumber1;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
-     * @var DateTime
-     */
-    private $feedbackDate;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $userComment;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $additionalInfo;
-
-    /**
      * @Serializer\Type("string")
      * @var string
      */
@@ -77,12 +46,6 @@ class Order extends AbstractModel
      * @var string
      */
     private $memo;
-
-    /**
-     * @Serializer\Type("string")
-     * @var string
-     */
-    private $invoiceMemo;
 
     /**
      * @Serializer\Type("string")
@@ -129,22 +92,6 @@ class Order extends AbstractModel
     private $soldItems;
 
     /**
-     * @return int
-     */
-    public function getInvoiceNumber()
-    {
-        return $this->invoiceNumber;
-    }
-
-    /**
-     * @return int
-     */
-    public function getOrderId()
-    {
-        return $this->orderId;
-    }
-
-    /**
      * @return string
      */
     public function getEbayAccount()
@@ -177,30 +124,6 @@ class Order extends AbstractModel
     }
 
     /**
-     * @return DateTime
-     */
-    public function getFeedbackDate()
-    {
-        return $this->feedbackDate;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUserComment()
-    {
-        return $this->userComment;
-    }
-
-    /**
-     * @return string
-     */
-    public function getAdditionalInfo()
-    {
-        return $this->additionalInfo;
-    }
-
-    /**
      * @return string
      */
     public function getTrackingLink()
@@ -214,14 +137,6 @@ class Order extends AbstractModel
     public function getMemo()
     {
         return $this->memo;
-    }
-
-    /**
-     * @return string
-     */
-    public function getInvoiceMemo()
-    {
-        return $this->invoiceMemo;
     }
 
     /**
