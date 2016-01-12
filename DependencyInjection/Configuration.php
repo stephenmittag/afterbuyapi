@@ -17,12 +17,50 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $treeBuilder->root('after_buy');
+        $invalidLanguageCode = function ($v) {
+            return preg_match('/^[a-z]{2}$/', $v) === 0;
+        };
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $treeBuilder = new TreeBuilder();
+        $treeBuilder
+            ->root('wk_afterbuy_api')
+            ->children()
+                ->arrayNode('partner')
+                    ->children()
+                        ->integerNode('id')
+                            ->isRequired()
+                            ->min(1)
+                        ->end()
+                        ->scalarNode('password')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end()
+                ->arrayNode('user')
+                    ->children()
+                        ->scalarNode('id')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('password')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end()
+                ->scalarNode('error_language')
+                    ->info('ISO 639-1 language code for error response messages')
+                    ->example('de')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                    ->defaultValue('en')
+                    ->validate()
+                        ->ifTrue($invalidLanguageCode)
+                        ->thenInvalid('Invalid language code %s. It should consist of two letters.')
+                    ->end()
+                ->end()
+            ->end();
 
         return $treeBuilder;
     }
