@@ -4,8 +4,6 @@ namespace Wk\AfterbuyApi\Models\XmlApi;
 
 /**
  * Class AbstractModel
- *
- * @package Wk\AfterbuyApi\Models\XmlApi
  */
 class AbstractModel
 {
