@@ -46,14 +46,14 @@ class UpdateSoldItemsRequestTest extends WebTestCase
     }
 
     /**
-     * @param AbstractRequest $request
-     * @param string          $deserializedObjectFile
+     * @param UpdateSoldItemsRequest $updateSoldItemsRequest
+     * @param string                 $deserializedObjectFile
      *
      * @dataProvider provideSerializationToXml
      */
-    public function testSerializationToXml(AbstractRequest $request, $deserializedObjectFile)
+    public function testSerializationToXml(UpdateSoldItemsRequest $updateSoldItemsRequest, $deserializedObjectFile)
     {
-        $serializedUpdateSoldItemsRequest = $this->serializer->serialize($request, 'xml');
+        $serializedUpdateSoldItemsRequest = $this->serializer->serialize($updateSoldItemsRequest, 'xml');
 
         $this->assertXmlStringEqualsXmlFile(__DIR__ . '/../../Data/' . $deserializedObjectFile, $serializedUpdateSoldItemsRequest);
     }
