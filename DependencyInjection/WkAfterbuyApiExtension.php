@@ -28,7 +28,7 @@ class WkAfterbuyApiExtension extends Extension
         $container->setParameter('wk_afterbuy_api.user.id', $config['user']['id']);
         $container->setParameter('wk_afterbuy_api.user.password', $config['user']['password']);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }
 }

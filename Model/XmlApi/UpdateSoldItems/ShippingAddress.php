@@ -20,14 +20,16 @@ class ShippingAddress extends AbstractAddress
     /**
      * @return int
      */
-    public function getUseShippingAddressAsInteger() {
+    public function getUseShippingAddressAsInteger()
+    {
         return $this->getBooleanAsInteger($this->useShippingAddress);
     }
 
     /**
      * @param int $value
      */
-    public function setUseShippingAddressFromInteger($value) {
+    public function setUseShippingAddressFromInteger($value)
+    {
         $this->useShippingAddress = $this->setBooleanFromInteger($value);
     }
 

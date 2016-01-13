@@ -34,14 +34,16 @@ class ShippingInfo extends AbstractShippingInfo
     /**
      * @return int
      */
-    public function getSendShippingMailAsInteger() {
+    public function getSendShippingMailAsInteger()
+    {
         return $this->getBooleanAsInteger($this->sendShippingMail);
     }
 
     /**
      * @param int $value
      */
-    public function setSendShippingMailFromInteger($value) {
+    public function setSendShippingMailFromInteger($value)
+    {
         $this->sendShippingMail = $this->setBooleanFromInteger($value);
     }
 

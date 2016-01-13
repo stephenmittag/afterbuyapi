@@ -161,21 +161,24 @@ class SoldItem extends AbstractModel
     /**
      * @param int $value
      */
-    public function setItemDetailsDoneFromInteger($value) {
+    public function setItemDetailsDoneFromInteger($value)
+    {
         $this->itemDetailsDone = $this->setBooleanFromInteger($value);
     }
 
     /**
      * @param int $value
      */
-    public function setEbayFeedbackCompletedFromInteger($value) {
+    public function setEbayFeedbackCompletedFromInteger($value)
+    {
         $this->ebayFeedbackCompleted = $this->setBooleanFromInteger($value);
     }
 
     /**
      * @param int $value
      */
-    public function setEbayFeedbackReceivedFromInteger($value) {
+    public function setEbayFeedbackReceivedFromInteger($value)
+    {
         $this->ebayFeedbackReceived = $this->setBooleanFromInteger($value);
     }
 

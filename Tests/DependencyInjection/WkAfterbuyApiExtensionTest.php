@@ -50,12 +50,12 @@ class WkAfterbuyApiExtensionTest extends AbstractExtensionTestCase
     public function testLoadParameter()
     {
         $this->load([
-            'partner'        => [
-                'id'       => 123456789,
+            'partner' => [
+                'id' => 123456789,
                 'password' => '5gjhgjh983',
             ],
-            'user'           => [
-                'id'       => 'usertest',
+            'user' => [
+                'id' => 'usertest',
                 'password' => '5gjhgjh983',
             ],
             'error_language' => 'de',

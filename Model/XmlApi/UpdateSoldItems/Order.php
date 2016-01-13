@@ -107,28 +107,32 @@ class Order extends AbstractOrder
     /**
      * @return int
      */
-    public function getOrderExportedAsInteger() {
+    public function getOrderExportedAsInteger()
+    {
         return $this->getBooleanAsInteger($this->orderExported);
     }
 
     /**
      * @param int $value
      */
-    public function setOrderExportedFromInteger($value) {
+    public function setOrderExportedFromInteger($value)
+    {
         $this->orderExported = $this->setBooleanFromInteger($value);
     }
 
     /**
      * @return int
      */
-    public function getHideOrderAsInteger() {
+    public function getHideOrderAsInteger()
+    {
         return $this->getBooleanAsInteger($this->hideOrder);
     }
 
     /**
      * @param int $value
      */
-    public function setHideOrderFromInteger($value) {
+    public function setHideOrderFromInteger($value)
+    {
         $this->hideOrder = $this->setBooleanFromInteger($value);
     }
 

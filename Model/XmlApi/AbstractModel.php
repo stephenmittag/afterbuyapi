@@ -8,9 +8,9 @@ namespace Wk\AfterbuyApi\Model\XmlApi;
 class AbstractModel
 {
     /**
-     * @param string $value
+     * @param int $value
      *
-     * @return bool
+     * @return bool|null
      */
     public function setBooleanFromInteger($value)
     {
@@ -24,7 +24,7 @@ class AbstractModel
     /**
      * @param bool $value
      *
-     * @return int
+     * @return int|null
      */
     public function getBooleanAsInteger($value)
     {
