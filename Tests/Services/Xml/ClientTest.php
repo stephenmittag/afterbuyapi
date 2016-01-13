@@ -1,6 +1,6 @@
 <?php
 
-namespace WK\AfterbuyApi\Tests\Services\Xml;
+namespace Wk\AfterbuyApi\Tests\Services\Xml;
 
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;

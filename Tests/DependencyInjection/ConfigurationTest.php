@@ -1,6 +1,6 @@
 <?php
 
-namespace WK\AfterbuyApi\Tests\DependencyInjection;
+namespace Wk\AfterbuyApi\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
 use Wk\AfterbuyApi\DependencyInjection\Configuration;

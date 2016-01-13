@@ -1,6 +1,6 @@
 <?php
 
-namespace WK\AfterbuyApi\Tests\DependencyInjection;
+namespace Wk\AfterbuyApi\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;

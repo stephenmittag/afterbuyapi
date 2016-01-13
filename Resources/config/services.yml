@@ -1,6 +1,6 @@
 services:
     wk_afterbuy_api.xml.client:
-        class: WK\AfterbuyApi\Services\Xml\Client
+        class: Wk\AfterbuyApi\Services\Xml\Client
         arguments:
             - "%wk_afterbuy_api.user.id%"
             - "%wk_afterbuy_api.user.password%"

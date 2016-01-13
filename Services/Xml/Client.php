@@ -5,7 +5,6 @@ namespace Wk\AfterbuyApi\Services\Xml;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
-use Wk\AfterbuyApi\Model\XmlApi\Error;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
