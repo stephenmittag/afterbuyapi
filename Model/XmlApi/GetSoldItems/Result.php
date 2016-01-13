@@ -46,7 +46,8 @@ class Result extends BaseResult
     /**
      * @param int $value
      */
-    public function setHasMoreItemsFromInteger($value) {
+    public function setHasMoreItemsFromInteger($value)
+    {
         $this->hasMoreItems = $this->setBooleanFromInteger($value);
     }
 

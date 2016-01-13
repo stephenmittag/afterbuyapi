@@ -46,7 +46,8 @@ class GetSoldItemsRequest extends AbstractRequest
     /**
      * @param AfterbuyGlobal $afterbuyGlobal
      */
-    public function __construct(AfterbuyGlobal $afterbuyGlobal) {
+    public function __construct(AfterbuyGlobal $afterbuyGlobal)
+    {
         parent::__construct($afterbuyGlobal);
 
         $this->setCallName(self::CALL_NAME);
@@ -55,14 +56,16 @@ class GetSoldItemsRequest extends AbstractRequest
     /**
      * @return int
      */
-    public function getRequestAllItemsAsInteger() {
+    public function getRequestAllItemsAsInteger()
+    {
         return $this->getBooleanAsInteger($this->requestAllItems);
     }
 
     /**
      * @param int $value
      */
-    public function setRequestAllItemsFromInteger($value) {
+    public function setRequestAllItemsFromInteger($value)
+    {
         $this->requestAllItems = $this->setBooleanFromInteger($value);
     }
 
@@ -129,7 +132,8 @@ class GetSoldItemsRequest extends AbstractRequest
     /**
      * @return $this
      */
-    public function setOrderDirectionAscending() {
+    public function setOrderDirectionAscending()
+    {
         $this->orderDirection = 0;
 
         return $this;
@@ -138,7 +142,8 @@ class GetSoldItemsRequest extends AbstractRequest
     /**
      * @return $this
      */
-    public function setOrderDirectionDescending() {
+    public function setOrderDirectionDescending()
+    {
         $this->orderDirection = 1;
 
         return $this;
@@ -169,7 +174,8 @@ class GetSoldItemsRequest extends AbstractRequest
      *
      * @return $this
      */
-    public function addFilter(AbstractFilter $filter) {
+    public function addFilter(AbstractFilter $filter)
+    {
         $this->filters[] = $filter;
 
         return $this;

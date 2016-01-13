@@ -66,7 +66,8 @@ class BillingAddress extends ShippingAddress
     /**
      * @param int $value
      */
-    public function setIsMerchantFromInteger($value) {
+    public function setIsMerchantFromInteger($value)
+    {
         $this->merchant = $this->setBooleanFromInteger($value);
     }
 

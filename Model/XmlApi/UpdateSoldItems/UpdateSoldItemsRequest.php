@@ -25,7 +25,8 @@ class UpdateSoldItemsRequest extends AbstractRequest
     /**
      * @param AfterbuyGlobal $afterbuyGlobal
      */
-    public function __construct(AfterbuyGlobal $afterbuyGlobal) {
+    public function __construct(AfterbuyGlobal $afterbuyGlobal)
+    {
         parent::__construct($afterbuyGlobal);
 
         $this->setCallName(self::CALL_NAME);
@@ -36,7 +37,8 @@ class UpdateSoldItemsRequest extends AbstractRequest
      *
      * @return $this
      */
-    public function addOrder(Order $order) {
+    public function addOrder(Order $order)
+    {
         $this->orders[] = $order;
 
         return $this;

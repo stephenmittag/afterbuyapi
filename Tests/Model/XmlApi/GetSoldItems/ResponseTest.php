@@ -256,7 +256,8 @@ class ResponseTest extends WebTestCase
      *
      * @return GetSoldItemsResponse
      */
-    private function deserializeResponse($fileName) {
+    private function deserializeResponse($fileName)
+    {
         $responseBody = file_get_contents(__DIR__ . '/../../../Data/GetSoldItems/' . $fileName);
 
         return $this->serializer->deserialize($responseBody, GetSoldItemsResponse::class, 'xml');
