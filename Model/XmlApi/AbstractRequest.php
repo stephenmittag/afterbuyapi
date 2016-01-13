@@ -11,6 +11,7 @@ class AbstractRequest extends AbstractModel
 {
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal")
+     * @Serializer\SerializedName("AfterbuyGlobal")
      * @var AfterbuyGlobal
      */
     private $afterbuyGlobal;

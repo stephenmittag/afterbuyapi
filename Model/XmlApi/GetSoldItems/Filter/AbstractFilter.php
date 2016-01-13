@@ -12,6 +12,7 @@ abstract class AbstractFilter extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("FilterName")
      * @var string
      */
     private $filterName;
@@ -19,6 +20,7 @@ abstract class AbstractFilter extends AbstractModel
     /**
      * @Serializer\Type("array<string,string>")
      * @Serializer\XmlKeyValuePairs()
+     * @Serializer\SerializedName("FilterValues")
      * @var array
      */
     protected $filterValues;

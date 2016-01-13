@@ -12,18 +12,21 @@ class ShippingInfo extends AbstractShippingInfo
 {
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ShippingAdditionalCost")
      * @var float
      */
     private $shippingAdditionalCost;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ShippingTotalCost")
      * @var float
      */
     private $shippingTotalCost;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ShippingTaxRate")
      * @var float
      */
     private $shippingTaxRate;

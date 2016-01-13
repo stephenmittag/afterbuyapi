@@ -12,12 +12,14 @@ class BaseProductData extends AbstractModel
 {
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("BaseProductType")
      * @var int
      */
     private $baseProductType;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ChildProduct")
+     * @Serializer\SerializedName("ChildProduct")
      * @var ChildProduct
      */
     private $childProduct;

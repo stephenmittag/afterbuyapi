@@ -13,6 +13,7 @@ class ShippingAddress extends AbstractAddress
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getUseShippingAddressAsInteger", setter="setUseShippingAddressFromInteger")
+     * @Serializer\SerializedName("UseShippingAddress")
      * @var bool
      */
     private $useShippingAddress;

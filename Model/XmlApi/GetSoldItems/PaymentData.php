@@ -12,42 +12,49 @@ class PaymentData extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("BankCode")
      * @var string
      */
     private $bankCode;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AccountHolder")
      * @var string
      */
     private $accountHolder;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("BankName")
      * @var string
      */
     private $bankName;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AccountNumber")
      * @var string
      */
     private $accountNumber;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Iban")
      * @var string
      */
     private $iban;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Bic")
      * @var string
      */
     private $bic;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ReferenceNumber")
      * @var string
      */
     private $referenceNumber;

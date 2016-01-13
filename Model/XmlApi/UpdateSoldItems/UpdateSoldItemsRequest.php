@@ -18,6 +18,7 @@ class UpdateSoldItemsRequest extends AbstractRequest
     /**
      * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order>")
      * @Serializer\XmlList(entry="Order")
+     * @Serializer\SerializedName("Orders")
      * @var Order[]
      */
     private $orders;

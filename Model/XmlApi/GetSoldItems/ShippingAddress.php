@@ -12,18 +12,21 @@ class ShippingAddress extends AbstractAddress
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Street2")
      * @var string
      */
     protected $street2;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("StateOrProvince")
      * @var string
      */
     protected $stateOrProvince;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Phone")
      * @var string
      */
     protected $phone;

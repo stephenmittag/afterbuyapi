@@ -14,6 +14,7 @@ class SoldItem extends AbstractModel
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(setter="setItemDetailsDoneFromInteger")
+     * @Serializer\SerializedName("ItemDetailsDone")
      * @var bool
      */
     private $itemDetailsDone;
@@ -27,6 +28,7 @@ class SoldItem extends AbstractModel
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("Anr")
      * @var float
      */
     private $anr;
@@ -40,100 +42,114 @@ class SoldItem extends AbstractModel
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AlternativeItemNumber1")
      * @var string
      */
     private $alternativeItemNumber1;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AlternativeItemNumber")
      * @var string
      */
     private $alternativeItemNumber;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("InternalItemType")
      * @var int
      */
     private $internalItemType;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("UserDefinedFlag")
      * @var int
      */
     private $userDefinedFlag;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ItemTitle")
      * @var string
      */
     private $itemTitle;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("ItemQuantity")
      * @var int
      */
     private $itemQuantity;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ItemPrice")
      * @var float
      */
     private $itemPrice;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("ItemEndDate")
      * @var DateTime
      */
     private $itemEndDate;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("TaxRate")
      * @var float
      */
     private $taxRate;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ItemWeight")
      * @var float
      */
     private $itemWeight;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("ItemXmlDate")
      * @var DateTime
      */
     private $itemXmlDate;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("ItemModDate")
      * @var DateTime
      */
     private $itemModDate;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ItemPlatformName")
      * @var string
      */
     private $itemPlatformName;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ItemLink")
      * @var string
      */
     private $itemLink;
 
     /**
      * @Serializer\Type("integer")
-     * @Serializer\SerializedName("eBayFeedbackCompleted")
      * @Serializer\Accessor(setter="setEbayFeedbackCompletedFromInteger")
+     * @Serializer\SerializedName("eBayFeedbackCompleted")
      * @var bool
      */
     private $ebayFeedbackCompleted;
 
     /**
      * @Serializer\Type("integer")
-     * @Serializer\SerializedName("eBayFeedbackReceived")
      * @Serializer\Accessor(setter="setEbayFeedbackReceivedFromInteger")
+     * @Serializer\SerializedName("eBayFeedbackReceived")
      * @var bool
      */
     private $ebayFeedbackReceived;
@@ -147,6 +163,7 @@ class SoldItem extends AbstractModel
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShopProductDetails")
+     * @Serializer\SerializedName("ShopProductDetails")
      * @var ShopProductDetails
      */
     private $shopProductDetails;
@@ -154,6 +171,7 @@ class SoldItem extends AbstractModel
     /**
      * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\SoldItemAttribute>")
      * @Serializer\XmlList(entry="SoldItemAttribute")
+     * @Serializer\SerializedName("SoldItemAttributes")
      * @var SoldItemAttribute[]
      */
     private $soldItemAttributes;

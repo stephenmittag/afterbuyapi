@@ -11,42 +11,49 @@ abstract class AbstractAddress extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("FirstName")
      * @var string
      */
     protected $firstName;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("LastName")
      * @var string
      */
     protected $lastName;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Company")
      * @var string
      */
     protected $company;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Street")
      * @var string
      */
     protected $street;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("PostalCode")
      * @var string
      */
     protected $postalCode;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("City")
      * @var string
      */
     protected $city;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Country")
      * @var string
      */
     protected $country;

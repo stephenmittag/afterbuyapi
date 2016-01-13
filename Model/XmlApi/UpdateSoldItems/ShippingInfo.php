@@ -13,6 +13,7 @@ class ShippingInfo extends AbstractShippingInfo
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ShippingGroup")
      * @var string
      */
     private $shippingGroup;
@@ -27,6 +28,7 @@ class ShippingInfo extends AbstractShippingInfo
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getSendShippingMailAsInteger", setter="setSendShippingMailFromInteger")
+     * @Serializer\SerializedName("SendShippingMail")
      * @var bool
      */
     private $sendShippingMail;

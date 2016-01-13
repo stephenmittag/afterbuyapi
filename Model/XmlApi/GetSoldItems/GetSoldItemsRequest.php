@@ -19,18 +19,21 @@ class GetSoldItemsRequest extends AbstractRequest
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getRequestAllItemsAsInteger", setter="setRequestAllItemsFromInteger")
+     * @Serializer\SerializedName("RequestAllItems")
      * @var bool
      */
     private $requestAllItems;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("MaxSoldItems")
      * @var int
      */
     private $maxSoldItems;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("OrderDirection")
      * @var int
      */
     private $orderDirection;

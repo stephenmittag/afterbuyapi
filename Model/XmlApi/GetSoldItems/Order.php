@@ -13,48 +13,56 @@ class Order extends AbstractOrder
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("EbayAccount")
      * @var string
      */
     private $ebayAccount;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AmazonAccount")
      * @var string
      */
     private $amazonAccount;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("Anr")
      * @var float
      */
     private $anr;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AlternativeItemNumber1")
      * @var string
      */
     private $alternativeItemNumber1;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("TrackingLink")
      * @var string
      */
     private $trackingLink;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Memo")
      * @var string
      */
     private $memo;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("FeedbackLink")
      * @var string
      */
     private $feedbackLink;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("OrderDate")
      * @var DateTime
      */
     private $orderDate;
@@ -68,18 +76,21 @@ class Order extends AbstractOrder
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\PaymentInfo")
+     * @Serializer\SerializedName("PaymentInfo")
      * @var PaymentInfo
      */
     private $paymentInfo;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BuyerInfo")
+     * @Serializer\SerializedName("BuyerInfo")
      * @var BuyerInfo
      */
     private $buyerInfo;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingInfo")
+     * @Serializer\SerializedName("ShippingInfo")
      * @var ShippingInfo
      */
     private $shippingInfo;
@@ -87,6 +98,7 @@ class Order extends AbstractOrder
     /**
      * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\SoldItem>")
      * @Serializer\XmlList(entry="SoldItem")
+     * @Serializer\SerializedName("SoldItems")
      * @var SoldItem[]
      */
     private $soldItems;

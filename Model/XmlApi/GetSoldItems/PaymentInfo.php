@@ -20,12 +20,14 @@ class PaymentInfo extends AbstractPaymentInfo
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("PaymentFunction")
      * @var string
      */
     private $paymentFunction;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\PaymentData")
+     * @Serializer\SerializedName("PaymentData")
      * @var PaymentData
      */
     private $paymentData;
@@ -39,24 +41,28 @@ class PaymentInfo extends AbstractPaymentInfo
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("PaymentStatus")
      * @var string
      */
     private $paymentStatus;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("FullAmount")
      * @var float
      */
     private $fullAmount;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("PaymentInstruction")
      * @var string
      */
     private $paymentInstruction;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("InvoiceDate")
      * @var DateTime
      */
     private $invoiceDate;

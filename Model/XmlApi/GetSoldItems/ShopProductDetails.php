@@ -26,24 +26,28 @@ class ShopProductDetails extends AbstractModel
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("Anr")
      * @var float
      */
     private $anr;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("UnitOfQuantity")
      * @var string
      */
     private $unitOfQuantity;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("BasepriceFactor")
      * @var float
      */
     private $basepriceFactor;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BaseProductData")
+     * @Serializer\SerializedName("BaseProductData")
      * @var BaseProductData
      */
     private $baseProductData;

@@ -21,6 +21,7 @@ class PaymentInfo extends AbstractPaymentInfo
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getSendPaymentMailAsInteger", setter="setSendPaymentMailFromInteger")
+     * @Serializer\SerializedName("SendPaymentMail")
      * @var bool
      */
     private $sendPaymentMail;

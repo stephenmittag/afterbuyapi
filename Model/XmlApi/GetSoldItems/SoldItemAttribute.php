@@ -12,18 +12,21 @@ class SoldItemAttribute extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AttributeName")
      * @var string
      */
     private $attributeName;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AttributeValue")
      * @var string
      */
     private $attributeValue;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("AttributePosition")
      * @var int
      */
     private $attributePosition;

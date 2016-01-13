@@ -32,18 +32,21 @@ class BillingAddress extends ShippingAddress
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Title")
      * @var string
      */
     private $title;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Fax")
      * @var string
      */
     private $fax;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("Mail")
      * @var string
      */
     private $mail;

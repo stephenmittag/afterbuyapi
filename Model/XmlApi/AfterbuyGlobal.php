@@ -48,6 +48,7 @@ class AfterbuyGlobal extends AbstractModel
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("PartnerPassword")
      * @var string
      */
     private $partnerPassword;
@@ -61,24 +62,28 @@ class AfterbuyGlobal extends AbstractModel
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("UserPassword")
      * @var string
      */
     private $userPassword;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("CallName")
      * @var string
      */
     private $callName;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("DetailLevel")
      * @var int
      */
     private $detailLevel;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ErrorLanguage")
      * @var string
      */
     private $errorLanguage;

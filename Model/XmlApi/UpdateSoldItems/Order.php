@@ -20,24 +20,28 @@ class Order extends AbstractOrder
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("UserDefinedFlag")
      * @var int
      */
     private $userDefinedFlag;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("MailDate")
      * @var DateTime
      */
     private $mailDate;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("ReminderMailDate")
      * @var DateTime
      */
     private $reminderMailDate;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("OrderMemo")
      * @var string
      */
     private $orderMemo;
@@ -45,12 +49,14 @@ class Order extends AbstractOrder
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getOrderExportedAsInteger", setter="setOrderExportedFromInteger")
+     * @Serializer\SerializedName("OrderExported")
      * @var bool
      */
     private $orderExported;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("InvoiceDate")
      * @var DateTime
      */
     private $invoiceDate;
@@ -58,48 +64,56 @@ class Order extends AbstractOrder
     /**
      * @Serializer\Type("integer")
      * @Serializer\Accessor(getter="getHideOrderAsInteger", setter="setHideOrderFromInteger")
+     * @Serializer\SerializedName("HideOrder")
      * @var bool
      */
     private $hideOrder;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("Reminder1Date")
      * @var DateTime
      */
     private $reminder1Date;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("Reminder2Date")
      * @var DateTime
      */
     private $reminder2Date;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("XmlDate")
      * @var DateTime
      */
     private $xmlDate;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\BuyerInfo")
+     * @Serializer\SerializedName("BuyerInfo")
      * @var BuyerInfo
      */
     private $buyerInfo;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\PaymentInfo")
+     * @Serializer\SerializedName("PaymentInfo")
      * @var PaymentInfo
      */
     private $paymentInfo;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\ShippingInfo")
+     * @Serializer\SerializedName("ShippingInfo")
      * @var ShippingInfo
      */
     private $shippingInfo;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\VorgangsInfo")
+     * @Serializer\SerializedName("VorgangsInfo")
      * @var VorgangsInfo
      */
     private $vorgangsInfo;

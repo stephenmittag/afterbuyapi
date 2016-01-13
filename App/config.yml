@@ -1,11 +1,6 @@
 imports:
     - { resource: parameters.yml }
 
-jms_serializer:
-    property_naming:
-        separator:
-        lower_case: false
-
 framework:
     secret: "%kernel.secret%"
     test: ~

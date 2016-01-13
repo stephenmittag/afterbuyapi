@@ -19,30 +19,35 @@ abstract class AbstractOrder extends AbstractModel
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("AdditionalInfo")
      * @var string
      */
     protected $additionalInfo;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("UserComment")
      * @var string
      */
     protected $userComment;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("InvoiceMemo")
      * @var string
      */
     protected $invoiceMemo;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("InvoiceNumber")
      * @var int
      */
     protected $invoiceNumber;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("FeedbackDate")
      * @var DateTime
      */
     protected $feedbackDate;

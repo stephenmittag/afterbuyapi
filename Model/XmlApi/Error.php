@@ -11,18 +11,21 @@ class Error extends AbstractModel
 {
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("ErrorCode")
      * @var int
      */
     private $errorCode;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ErrorDescription")
      * @var string
      */
     private $errorDescription;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ErrorLongDescription")
      * @var string
      */
     private $errorLongDescription;

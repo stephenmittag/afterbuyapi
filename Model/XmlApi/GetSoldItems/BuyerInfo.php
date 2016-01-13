@@ -12,12 +12,14 @@ class BuyerInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BillingAddress")
+     * @Serializer\SerializedName("BillingAddress")
      * @var BillingAddress
      */
     private $billingAddress;
 
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingAddress")
+     * @Serializer\SerializedName("ShippingAddress")
      * @var ShippingAddress
      */
     private $shippingAddress;

@@ -15,6 +15,7 @@ class UpdateSoldItemsResponse extends AbstractResponse
 {
     /**
      * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Result")
+     * @Serializer\SerializedName("Result")
      * @var Result
      */
     private $result;

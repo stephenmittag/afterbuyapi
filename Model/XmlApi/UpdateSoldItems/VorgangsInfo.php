@@ -12,18 +12,21 @@ class VorgangsInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("VorgangsInfo1")
      * @var string
      */
     private $vorgangsInfo1;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("VorgangsInfo2")
      * @var string
      */
     private $vorgangsInfo2;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("VorgangsInfo3")
      * @var string
      */
     private $vorgangsInfo3;

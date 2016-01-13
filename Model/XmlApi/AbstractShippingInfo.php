@@ -12,18 +12,21 @@ abstract class AbstractShippingInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ShippingMethod")
      * @var string
      */
     protected $shippingMethod;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ShippingCost")
      * @var float
      */
     protected $shippingCost;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("DeliveryDate")
      * @var DateTime
      */
     protected $deliveryDate;

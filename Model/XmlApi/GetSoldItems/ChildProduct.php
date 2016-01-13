@@ -33,12 +33,14 @@ class ChildProduct extends AbstractModel
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("ProductName")
      * @var string
      */
     private $productName;
 
     /**
      * @Serializer\Type("integer")
+     * @Serializer\SerializedName("ProductQuantity")
      * @var int
      */
     private $productQuantity;
@@ -52,12 +54,14 @@ class ChildProduct extends AbstractModel
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ProductWeight")
      * @var float
      */
     private $productWeight;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("ProductUnitPrice")
      * @var float
      */
     private $productUnitPrice;

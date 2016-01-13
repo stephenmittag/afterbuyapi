@@ -11,12 +11,14 @@ class AbstractResponse extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("CallStatus")
      * @var string
      */
     private $callStatus;
 
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("CallName")
      * @var string
      */
     private $callName;

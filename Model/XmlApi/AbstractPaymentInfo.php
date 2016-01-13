@@ -12,18 +12,21 @@ abstract class AbstractPaymentInfo extends AbstractModel
 {
     /**
      * @Serializer\Type("string")
+     * @Serializer\SerializedName("PaymentMethod")
      * @var string
      */
     protected $paymentMethod;
 
     /**
      * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\SerializedName("PaymentDate")
      * @var DateTime
      */
     protected $paymentDate;
 
     /**
      * @Serializer\Type("float")
+     * @Serializer\SerializedName("AlreadyPaid")
      * @var float
      */
     protected $alreadyPaid;
