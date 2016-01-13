@@ -106,7 +106,7 @@ class ResponseTest extends WebTestCase
 
         $soldItems = $getSoldItemsResponse->getResult()->getOrders()[0]->getSoldItems();
 
-        $this->assertEquals(2, sizeof($soldItems));
+        $this->assertCount(2, $soldItems);
         $this->assertEquals(123, $soldItems[0]->getItemId());
 
         $soldItem = $soldItems[1];
@@ -158,7 +158,7 @@ class ResponseTest extends WebTestCase
 
         $soldItemAttributes = $soldItem->getSoldItemAttributes();
 
-        $this->assertEquals(2, sizeof($soldItemAttributes));
+        $this->assertCount(2, $soldItemAttributes);
 
         $this->assertEquals('attribute name', $soldItemAttributes[0]->getAttributeName());
         $this->assertEquals('attribute value', $soldItemAttributes[0]->getAttributeValue());
@@ -245,7 +245,7 @@ class ResponseTest extends WebTestCase
 
         $errorList = $updateSoldItemsResponse->getResult()->getErrors();
 
-        $this->assertEquals(1, sizeof($errorList));
+        $this->assertCount(1, $errorList);
         $this->assertEquals(11, $errorList[0]->getErrorCode());
         $this->assertEquals('something failed', $errorList[0]->getErrorDescription());
         $this->assertEquals('something really failed', $errorList[0]->getErrorLongDescription());
@@ -257,7 +257,7 @@ class ResponseTest extends WebTestCase
      * @return GetSoldItemsResponse
      */
     private function deserializeResponse($fileName) {
-        $responseBody = file_get_contents(__DIR__ . '/../../Data/GetSoldItems/' . $fileName);
+        $responseBody = file_get_contents(__DIR__ . '/../../../Data/GetSoldItems/' . $fileName);
 
         return $this->serializer->deserialize($responseBody, GetSoldItemsResponse::class, 'xml');
     }

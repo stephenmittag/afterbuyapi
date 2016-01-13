@@ -51,7 +51,7 @@ class ResponseTest extends WebTestCase
 
         $errorList = $updateSoldItemsResponse->getResult()->getErrors();
 
-        $this->assertEquals(2, sizeof($errorList));
+        $this->assertCount(2, $errorList);
         $this->assertEquals(11, $errorList[0]->getErrorCode());
         $this->assertEquals('something failed', $errorList[0]->getErrorDescription());
         $this->assertEquals('something really failed', $errorList[0]->getErrorLongDescription());
@@ -66,7 +66,7 @@ class ResponseTest extends WebTestCase
      * @return UpdateSoldItemsResponse
      */
     private function deserializeResponse($fileName) {
-        $responseBody = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItems/' . $fileName);
+        $responseBody = file_get_contents(__DIR__ . '/../../../Data/UpdateSoldItems/' . $fileName);
 
         return $this->serializer->deserialize($responseBody, UpdateSoldItemsResponse::class, 'xml');
     }

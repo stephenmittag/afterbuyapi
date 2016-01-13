@@ -1,9 +1,9 @@
 <?php
 
-namespace WK\AfterbuyApi\Services\Xml;
+namespace Wk\AfterbuyApi\Services\Xml;
 
 use GuzzleHttp\ClientInterface;
-use JMS\Serializer\SerializerInterface;
+use GuzzleHttp\Exception\BadResponseException;
 use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Model\XmlApi\Error;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
@@ -11,6 +11,7 @@ use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use JMS\Serializer\SerializerInterface;
 
 /**
  * Class Client
@@ -90,9 +91,9 @@ class Client
      * @param int              $maxSoldItems
      * @param int              $detailLevel
      *
-     * @return GetSoldItemsResponse|Error|null
+     * @return GetSoldItemsResponse|null
      */
-    public function getSoldItems(array $filters = array(), $orderDirection = false, $maxSoldItems = 250, $detailLevel = AfterbuyGlobal::DETAIL_LEVEL_PROCESS_DATA)
+    public function getSoldItems(array $filters = [], $orderDirection = false, $maxSoldItems = 250, $detailLevel = AfterbuyGlobal::DETAIL_LEVEL_PROCESS_DATA)
     {
         $request = new GetSoldItemsRequest($this->afterbuyGlobal);
         $request
@@ -103,7 +104,12 @@ class Client
 
         $xml = $this->serializer->serialize($request, 'xml');
         $options = ['body' => $xml, '_conditional' => ['Content-Type' => 'text/xml']];
-        $response = $this->client->request('POST', null, $options);
+        try {
+            $response = $this->client->request('POST', null, $options);
+        } catch (BadResponseException $exception) {
+            return null;
+        }
+
         if ($response->getStatusCode() != 200) {
             return null;
         }
@@ -111,7 +117,7 @@ class Client
         try {
             $object = $this->serializer->deserialize($response->getBody(), GetSoldItemsResponse::class, 'xml');
         } catch (\Exception $exception) {
-            $object = $this->serializer->deserialize($response->getBody(), Error::class, 'xml');
+            return null;
         }
 
         return $object;
@@ -120,7 +126,7 @@ class Client
     /**
      * @param Order[] $orders
      *
-     * @return UpdateSoldItemsResponse|Error|null
+     * @return UpdateSoldItemsResponse|null
      */
     public function updateSoldItems(array $orders)
     {
