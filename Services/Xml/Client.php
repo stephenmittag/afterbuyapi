@@ -4,6 +4,8 @@ namespace Wk\AfterbuyApi\Services\Xml;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
@@ -15,17 +17,22 @@ use JMS\Serializer\SerializerInterface;
 /**
  * Class Client
  */
-class Client
+class Client implements LoggerAwareInterface
 {
     /**
      * @var ClientInterface
      */
-    private $client;
+    protected $client;
+
+    /**
+     * @var LoggerInterface
+     */
+    protected $logger;
 
     /**
      * @var SerializerInterface
      */
-    private $serializer;
+    protected $serializer;
 
     /**
      * @var AfterbuyGlobal
@@ -85,6 +92,26 @@ class Client
     }
 
     /**
+     * @return LoggerInterface
+     */
+    public function getLogger()
+    {
+        return $this->logger;
+    }
+
+    /**
+     * @param LoggerInterface $logger
+     *
+     * @return $this
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
+
+        return $this;
+    }
+
+    /**
      * @param AbstractFilter[] $filters
      * @param bool             $orderDirection
      * @param int              $maxSoldItems
@@ -103,19 +130,27 @@ class Client
 
         $xml = $this->serializer->serialize($request, 'xml');
         $options = ['body' => $xml, '_conditional' => ['Content-Type' => 'text/xml']];
+        $this->logger->debug(sprintf('Posted to Afterbuy with the following options: %s', json_encode($options)));
         try {
             $response = $this->client->request('POST', null, $options);
         } catch (BadResponseException $exception) {
+            $this->logger->error($exception->getMessage());
+
             return null;
         }
 
         if ($response->getStatusCode() != 200) {
+            $this->logger->error(sprintf('Afterbuy responded with HTTP status code %d', $response->getStatusCode()));
+
             return null;
         }
 
         try {
             $object = $this->serializer->deserialize($response->getBody(), GetSoldItemsResponse::class, 'xml');
+            $this->logger->debug(sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (\Exception $exception) {
+            $this->logger->error($exception->getMessage());
+
             return null;
         }
 

@@ -6,6 +6,8 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use JMS\Serializer\SerializerInterface;
+use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterbuyApi\Model\XmlApi\Error;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BillingAddress;
@@ -159,8 +161,12 @@ class ClientTest extends WebTestCase
     {
         /** @var SerializerInterface $serializer */
         $serializer = static::createClient()->getContainer()->get('serializer');
+        /** @var LoggerInterface $logger */
+        $logger = $this->getMock(Logger::class, [], [], '', false);
+
         $this->client = new Client('test-user', 'user-password', 123456789, 'partner-password', 'en');
         $this->client->setSerializer($serializer);
+        $this->client->setLogger($logger);
 
         parent::setUp();
     }

@@ -9,3 +9,4 @@ services:
             - "%wk_afterbuy_api.error_language%"
         calls:
             - [setSerializer, ["@serializer"]]
+            - [setLogger, ["@logger"]]
