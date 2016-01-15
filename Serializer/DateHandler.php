@@ -29,10 +29,24 @@ use JMS\Serializer\XmlSerializationVisitor;
 
 class DateHandler implements SubscribingHandlerInterface
 {
+    /**
+     * @var string
+     */
     private $defaultFormat;
+
+    /**
+     * @var \DateTimeZone
+     */
     private $defaultTimezone;
+
+    /**
+     * @var bool
+     */
     private $xmlCData;
 
+    /**
+     * @return array
+     */
     public static function getSubscribingMethods()
     {
         $methods = array();
@@ -58,6 +72,13 @@ class DateHandler implements SubscribingHandlerInterface
         return $methods;
     }
 
+    /**
+     * DateHandler constructor.
+     *
+     * @param string $defaultFormat
+     * @param string $defaultTimezone
+     * @param bool   $xmlCData
+     */
     public function __construct($defaultFormat = \DateTime::ISO8601, $defaultTimezone = 'UTC', $xmlCData = true)
     {
         $this->defaultFormat = $defaultFormat;
@@ -65,6 +86,14 @@ class DateHandler implements SubscribingHandlerInterface
         $this->xmlCData = $xmlCData;
     }
 
+    /**
+     * @param VisitorInterface $visitor
+     * @param \DateTime        $date
+     * @param array            $type
+     * @param Context          $context
+     *
+     * @return mixed|void
+     */
     public function serializeDateTime(VisitorInterface $visitor, \DateTime $date, array $type, Context $context)
     {
         if ($visitor instanceof XmlSerializationVisitor && false === $this->xmlCData) {
@@ -74,6 +103,14 @@ class DateHandler implements SubscribingHandlerInterface
         return $visitor->visitString($date->format($this->getFormat($type)), $type, $context);
     }
 
+    /**
+     * @param VisitorInterface $visitor
+     * @param \DateInterval    $date
+     * @param array            $type
+     * @param Context          $context
+     *
+     * @return mixed|void
+     */
     public function serializeDateInterval(VisitorInterface $visitor, \DateInterval $date, array $type, Context $context)
     {
         $iso8601DateIntervalString = $this->format($date);
@@ -85,6 +122,13 @@ class DateHandler implements SubscribingHandlerInterface
         return $visitor->visitString($iso8601DateIntervalString, $type, $context);
     }
 
+    /**
+     * @param XmlDeserializationVisitor $visitor
+     * @param mixed                     $data
+     * @param array                     $type
+     *
+     * @return \DateTime|null
+     */
     public function deserializeDateTimeFromXml(XmlDeserializationVisitor $visitor, $data, array $type)
     {
         $attributes = $data->attributes('xsi', true);
@@ -95,6 +139,13 @@ class DateHandler implements SubscribingHandlerInterface
         return $this->parseDateTime($data, $type);
     }
 
+    /**
+     * @param JsonDeserializationVisitor $visitor
+     * @param mixed                      $data
+     * @param array                      $type
+     *
+     * @return \DateTime|null
+     */
     public function deserializeDateTimeFromJson(JsonDeserializationVisitor $visitor, $data, array $type)
     {
         if (null === $data) {
@@ -104,8 +155,18 @@ class DateHandler implements SubscribingHandlerInterface
         return $this->parseDateTime($data, $type);
     }
 
+    /**
+     * @param mixed $data
+     * @param array $type
+     *
+     * @return \DateTime|null
+     */
     private function parseDateTime($data, array $type)
     {
+        if (!$data) {
+            return null;
+        }
+
         $timezone = isset($type['params'][1]) ? new \DateTimeZone($type['params'][1]) : $this->defaultTimezone;
         $format = $this->getFormat($type);
         $datetime = \DateTime::createFromFormat($format, (string) $data, $timezone);
