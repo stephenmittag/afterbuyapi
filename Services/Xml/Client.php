@@ -133,6 +133,7 @@ class Client implements LoggerAwareInterface
         $this->logger->debug(sprintf('Posted to Afterbuy with the following options: %s', json_encode($options)));
         try {
             $response = $this->client->request('POST', null, $options);
+            $this->logger->debug(sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (BadResponseException $exception) {
             $this->logger->error($exception->getMessage());
 
@@ -147,7 +148,6 @@ class Client implements LoggerAwareInterface
 
         try {
             $object = $this->serializer->deserialize($response->getBody(), GetSoldItemsResponse::class, 'xml');
-            $this->logger->debug(sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (\Exception $exception) {
             $this->logger->error($exception->getMessage());
 
