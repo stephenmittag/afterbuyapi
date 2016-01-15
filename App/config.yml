@@ -9,10 +9,6 @@ monolog:
             level:  debug
         console:
             type:   console
-            bubble: false
-            verbosity_levels:
-                VERBOSITY_VERY_VERBOSE: DEBUG
-            channels: ["!doctrine"]
 
 framework:
     secret: "%kernel.secret%"
