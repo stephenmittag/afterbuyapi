@@ -163,19 +163,20 @@ class DateHandler implements SubscribingHandlerInterface
      */
     private function parseDateTime($data, array $type)
     {
+        $data = trim($data);
         if (!$data) {
             return null;
         }
 
         $timezone = isset($type['params'][1]) ? new \DateTimeZone($type['params'][1]) : $this->defaultTimezone;
         $format = $this->getFormat($type);
-        $datetime = \DateTime::createFromFormat($format, (string) $data, $timezone);
+        $datetime = \DateTime::createFromFormat($format, $data, $timezone);
         if (false !== $datetime) {
             return $datetime;
         }
 
         $fallback = $this->getFormatFallback($type);
-        $datetime = \DateTime::createFromFormat($fallback, (string) $data, $timezone);
+        $datetime = \DateTime::createFromFormat($fallback, $data, $timezone);
         if (false === $datetime) {
             throw new RuntimeException(sprintf('Invalid datetime "%s", expected format %s.', $data, $format));
         }

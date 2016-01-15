@@ -84,12 +84,36 @@ class ResponseTest extends WebTestCase
         $this->assertEquals('payment function', $paymentInfo->getPaymentFunction());
         $this->assertEquals('payment transaction id', $paymentInfo->getPaymentTransactionId());
         $this->assertEquals('payment status', $paymentInfo->getPaymentStatus());
-        $this->assertEquals(new DateTime('2005-04-03 03:04:05', $this->timezone), $paymentInfo->getPaymentDate());
+        $this->assertEquals(1.2, $paymentInfo->getAlreadyPaid());
+        $this->assertEquals(2.5, $paymentInfo->getFullAmount());
+        $this->assertEquals('payment instruction', $paymentInfo->getPaymentInstruction());
+        $this->assertEquals(new DateTime('2006-05-04 04:05:06', $this->timezone), $paymentInfo->getInvoiceDate());
+        $this->assertEquals(new DateTime('2006-05-04 03:04:05', $this->timezone), $paymentInfo->getPaymentDate());
+        $this->assertEquals('eftid', $paymentInfo->getEftid());
+
+        $paymentData = $paymentInfo->getPaymentData();
+
+        $this->assertEquals('bank code', $paymentData->getBankCode());
+        $this->assertEquals('account holder', $paymentData->getAccountHolder());
+        $this->assertEquals('bank name', $paymentData->getBankName());
+        $this->assertEquals('account number', $paymentData->getAccountNumber());
+        $this->assertEquals('iban', $paymentData->getIban());
+        $this->assertEquals('bic', $paymentData->getBic());
+        $this->assertEquals('reference number', $paymentData->getReferenceNumber());
+
+        $paymentInfo = $getSoldItemsResponse->getResult()->getOrders()[1]->getPaymentInfo();
+
+        $this->assertEquals('payment id', $paymentInfo->getPaymentId());
+        $this->assertEquals('payment method', $paymentInfo->getPaymentMethod());
+        $this->assertEquals('payment function', $paymentInfo->getPaymentFunction());
+        $this->assertEquals('payment transaction id', $paymentInfo->getPaymentTransactionId());
+        $this->assertEquals('payment status', $paymentInfo->getPaymentStatus());
         $this->assertEquals(1.2, $paymentInfo->getAlreadyPaid());
         $this->assertEquals(2.5, $paymentInfo->getFullAmount());
         $this->assertEquals('payment instruction', $paymentInfo->getPaymentInstruction());
         $this->assertEquals(new DateTime('2006-05-04', $this->timezone), $paymentInfo->getInvoiceDate());
         $this->assertEquals('eftid', $paymentInfo->getEftid());
+        $this->assertNull($paymentInfo->getPaymentDate());
 
         $paymentData = $paymentInfo->getPaymentData();
 
