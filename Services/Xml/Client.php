@@ -130,7 +130,7 @@ class Client implements LoggerAwareInterface
 
         $xml = $this->serializer->serialize($request, 'xml');
         $options = ['body' => $xml, '_conditional' => ['Content-Type' => 'text/xml']];
-        $this->logger->debug(sprintf('Posted to Afterbuy with the following options: %s', json_encode($options)));
+        $this->logger->debug('Posted to Afterbuy with the following options: ', $options);
         try {
             $response = $this->client->request('POST', null, $options);
             $this->logger->debug(sprintf('Afterbuy response: %s', $response->getBody()));
