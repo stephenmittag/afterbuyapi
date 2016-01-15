@@ -61,7 +61,7 @@ class Order extends AbstractOrder
     private $feedbackLink;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("OrderDate")
      * @var DateTime
      */

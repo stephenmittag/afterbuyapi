@@ -61,7 +61,7 @@ class PaymentInfo extends AbstractPaymentInfo
     private $paymentInstruction;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("InvoiceDate")
      * @var DateTime
      */

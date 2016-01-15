@@ -1,4 +1,8 @@
 services:
+    jms_serializer.datetime_handler:
+        class: Wk\AfterbuyApi\Serializer\DateHandler
+        tags:
+            - { name: jms_serializer.subscribing_handler }
     wk_afterbuy_api.xml.client:
         class: Wk\AfterbuyApi\Services\Xml\Client
         arguments:

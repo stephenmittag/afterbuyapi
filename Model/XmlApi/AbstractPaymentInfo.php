@@ -18,7 +18,7 @@ abstract class AbstractPaymentInfo extends AbstractModel
     protected $paymentMethod;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("PaymentDate")
      * @var DateTime
      */

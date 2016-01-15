@@ -46,7 +46,7 @@ abstract class AbstractOrder extends AbstractModel
     protected $invoiceNumber;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("FeedbackDate")
      * @var DateTime
      */

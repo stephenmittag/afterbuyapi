@@ -25,7 +25,7 @@
                     <AlreadyPaid>1.2</AlreadyPaid>
                     <FullAmount>2.5</FullAmount>
                     <PaymentInstruction><![CDATA[payment instruction]]></PaymentInstruction>
-                    <InvoiceDate>04.05.2006 04:05:06</InvoiceDate>
+                    <InvoiceDate>04.05.2006</InvoiceDate>
                     <EFTID><![CDATA[eftid]]></EFTID>
                 </PaymentInfo>
             </Order>

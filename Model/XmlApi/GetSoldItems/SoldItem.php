@@ -90,7 +90,7 @@ class SoldItem extends AbstractModel
     private $itemPrice;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("ItemEndDate")
      * @var DateTime
      */
@@ -111,7 +111,7 @@ class SoldItem extends AbstractModel
     private $itemWeight;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("ItemXmlDate")
      * @var DateTime
      */

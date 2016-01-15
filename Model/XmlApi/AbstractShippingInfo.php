@@ -25,7 +25,7 @@ abstract class AbstractShippingInfo extends AbstractModel
     protected $shippingCost;
 
     /**
-     * @Serializer\Type("DateTime<'d.m.Y H:i:s'>")
+     * @Serializer\Type("DateTime<'d.m.Y H:i:s', 'UTC', '!d.m.Y'>")
      * @Serializer\SerializedName("DeliveryDate")
      * @var DateTime
      */

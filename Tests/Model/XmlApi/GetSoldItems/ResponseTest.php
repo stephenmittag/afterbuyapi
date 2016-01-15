@@ -18,12 +18,17 @@ class ResponseTest extends WebTestCase
     private $serializer;
 
     /**
+     * @var \DateTimeZone
+     */
+    private $timezone;
+
+    /**
      * set up client
      */
     public function setUp()
     {
-        $client = static::createClient();
-        $this->serializer = $client->getContainer()->get('jms_serializer');
+        $this->serializer = static::createClient()->getContainer()->get('jms_serializer');
+        $this->timezone = new \DateTimeZone('UTC');
     }
 
     /**
@@ -54,14 +59,14 @@ class ResponseTest extends WebTestCase
         $this->assertEquals('amazon account', $order->getAmazonAccount());
         $this->assertEquals(111, $order->getAnr());
         $this->assertEquals('abc', $order->getAlternativeItemNumber1());
-        $this->assertEquals(new DateTime('2003-02-01 01:02:03'), $order->getFeedbackDate());
+        $this->assertEquals(new DateTime('2003-02-01 01:02:03', $this->timezone), $order->getFeedbackDate());
         $this->assertEquals('user comment', $order->getUserComment());
         $this->assertEquals('additional info', $order->getAdditionalInfo());
         $this->assertEquals('tracking link', $order->getTrackingLink());
         $this->assertEquals('memo', $order->getMemo());
         $this->assertEquals('invoice memo', $order->getInvoiceMemo());
         $this->assertEquals('feedback link', $order->getFeedbackLink());
-        $this->assertEquals(new DateTime('2004-03-02 02:03:04'), $order->getOrderDate());
+        $this->assertEquals(new DateTime('2004-03-02 02:03:04', $this->timezone), $order->getOrderDate());
         $this->assertEquals('order id alt', $order->getOrderIdAlt());
     }
 
@@ -79,11 +84,11 @@ class ResponseTest extends WebTestCase
         $this->assertEquals('payment function', $paymentInfo->getPaymentFunction());
         $this->assertEquals('payment transaction id', $paymentInfo->getPaymentTransactionId());
         $this->assertEquals('payment status', $paymentInfo->getPaymentStatus());
-        $this->assertEquals(new DateTime('2005-04-03 03:04:05'), $paymentInfo->getPaymentDate());
+        $this->assertEquals(new DateTime('2005-04-03 03:04:05', $this->timezone), $paymentInfo->getPaymentDate());
         $this->assertEquals(1.2, $paymentInfo->getAlreadyPaid());
         $this->assertEquals(2.5, $paymentInfo->getFullAmount());
         $this->assertEquals('payment instruction', $paymentInfo->getPaymentInstruction());
-        $this->assertEquals(new DateTime('2006-05-04 04:05:06'), $paymentInfo->getInvoiceDate());
+        $this->assertEquals(new DateTime('2006-05-04', $this->timezone), $paymentInfo->getInvoiceDate());
         $this->assertEquals('eftid', $paymentInfo->getEftid());
 
         $paymentData = $paymentInfo->getPaymentData();
@@ -122,11 +127,11 @@ class ResponseTest extends WebTestCase
         $this->assertEquals('item title', $soldItem->getItemTitle());
         $this->assertEquals(7, $soldItem->getItemQuantity());
         $this->assertEquals(3.4, $soldItem->getItemPrice());
-        $this->assertEquals(new DateTime('2003-02-01 01:02:03'), $soldItem->getItemEndDate());
+        $this->assertEquals(new DateTime('2003-02-01 01:02:03', $this->timezone), $soldItem->getItemEndDate());
         $this->assertEquals(0.19, $soldItem->getTaxRate());
         $this->assertEquals(3.2, $soldItem->getItemWeight());
-        $this->assertEquals(new DateTime('2004-03-02 02:03:04'), $soldItem->getItemXmlDate());
-        $this->assertEquals(new DateTime('2005-04-03 03:04:05'), $soldItem->getItemModDate());
+        $this->assertEquals(new DateTime('2004-03-02 02:03:04', $this->timezone), $soldItem->getItemXmlDate());
+        $this->assertEquals(new DateTime('2005-04-03 03:04:05', $this->timezone), $soldItem->getItemModDate());
         $this->assertEquals('item platform name', $soldItem->getItemPlatformName());
         $this->assertEquals('item link', $soldItem->getItemLink());
         $this->assertTrue($soldItem->isEbayFeedbackCompleted());
@@ -229,7 +234,7 @@ class ResponseTest extends WebTestCase
         $this->assertEquals(1.2, $shippingInfo->getShippingAdditionalCost());
         $this->assertEquals(2.1, $shippingInfo->getShippingTotalCost());
         $this->assertEquals(0.19, $shippingInfo->getShippingTaxRate());
-        $this->assertEquals(new DateTime('2003-02-01 01:02:03'), $shippingInfo->getDeliveryDate());
+        $this->assertEquals(new DateTime('2003-02-01 01:02:03', $this->timezone), $shippingInfo->getDeliveryDate());
     }
 
     /**
