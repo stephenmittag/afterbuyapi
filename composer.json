@@ -1,15 +1,18 @@
 {
     "name": "asgoodasnu/afterbuyapi",
     "type": "symfony-bundle",
-    "description": "Afterbuy Api for Symfony2",
+    "description": "The WkAfterbuyApi provides a Symfony2 service to interact with the Afterbuy XML API",
     "keywords":     ["afterbuy"],
     "homepage": "https://github.com/asgoodasnu/afterbuyapi",
     "license": "MIT",
     "authors": [
         {
-            "name": "Simon Chrzanowski",
-            "email": "simon@wirkaufens.de",
-            "homepage": "http://wirkaufens.de"
+            "name": "Annika Flemming",
+            "email": "annika.flemming@wirkaufens.de"
+        },
+        {
+            "name": "Thomas Stägemann",
+            "email": "thomas.staegemann@wirkaufens.de"
         },
         {
             "name": "Github Community",
