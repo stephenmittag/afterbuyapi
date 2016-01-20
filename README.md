@@ -21,7 +21,7 @@ public function registerBundles()
 }
 ```
 
-Overwrite the parameters defined in Wk\AfterbuyApi\App\parameters.yml with your own Afterbuy credentials in your project's parameter.yml:
+Overwrite the parameters defined in `Wk\AfterbuyApi\App\parameters.yml` with your own Afterbuy credentials in your project's `parameter.yml`:
 
 ```yaml
 # parameters.yml
@@ -39,7 +39,8 @@ Interaction with the Afterbuy XML API is done via the service `wk_afterbuy_api.x
 #### Retrieving a list of sold items from Afterbuy:
 
 ```php
-$soldItems = $container->get('wk_afterbuy_api.xml.client')->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
+$soldItems = $container->get('wk_afterbuy_api.xml.client')
+                ->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
 ```
 
 Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter`.
