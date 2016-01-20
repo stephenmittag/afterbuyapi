@@ -21,7 +21,7 @@ public function registerBundles()
 }
 ```
 
-Overwrite the parameters defined in `Wk\AfterbuyApi\App\parameters.yml` with your own Afterbuy credentials in your project's `parameter.yml`:
+Overwrite the parameters defined in `Wk\AfterbuyApi\App\parameters.yml` with your own Afterbuy credentials in your project's `parameters.yml`:
 
 ```yaml
 # parameters.yml
@@ -69,15 +69,17 @@ The response will be an instance of `Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems
 
 Dependencies
 ----------------------------------------------------------------
-* jms/serializer-bundle - Allows you to easily serialize, and deserialize data of any complexity
-* guzzlehttp/guzzle - Guzzle is a PHP HTTP client library
-* symfony/browser-kit - Symfony BrowserKit Component
-* symfony/yaml - Symfony Yaml Component
-* symfony/monolog - Symfony MonologBundle
-* symfony/framework-bundle - Symfony FrameworkBundle
+* `jms/serializer-bundle` - Allows you to easily serialize, and deserialize data of any complexity
+* `guzzlehttp/guzzle` - Guzzle is a PHP HTTP client library
+* `symfony/browser-kit` - Symfony BrowserKit Component
+* `symfony/yaml` - Symfony Yaml Component
+* `symfony/monolog` - Symfony MonologBundle
+* `symfony/framework-bundle` - Symfony FrameworkBundle
 
-PHPunit Tests
+PHPUnit Tests
 ----------------------------------------------------------------
+You can run the tests using the following command:
+
     $ vendor/bin/phpunit
 
 Resources
