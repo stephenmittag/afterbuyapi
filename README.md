@@ -1,4 +1,4 @@
-# WkAfterbuyAPI
+# WkAfterbuyApi
 
 The WkAfterbuyApi provides a Symfony2 service to interact with the [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
 
@@ -13,7 +13,6 @@ Register the bundle:
 
 ```php
 // app/AppKernel.php
-
 public function registerBundles()
 {
     $bundles = array(
@@ -22,11 +21,10 @@ public function registerBundles()
 }
 ```
 
-Overwrite the parameters defined in afterbuyapi/parameters.yml with your own Afterbuy credentials in your project's parameter.yml:
+Overwrite the parameters defined in Wk\AfterbuyApi\App\parameters.yml with your own Afterbuy credentials in your project's parameter.yml:
 
 ```yaml
 # parameters.yml
-
 locale: en
 afterbuy_partner_id: 123
 afterbuy_partner_password: pass
@@ -44,7 +42,7 @@ Interaction with the Afterbuy XML API is done via the service `wk_afterbuy_api.x
 $soldItems = $container->get('wk_afterbuy_api.xml.client')->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
 ```
 
-Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `afterbuyapi/Model/XmlApi/GetSoldItems/Filter`.
+Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter`.
 
 ```php
 $dateFilter = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
@@ -54,7 +52,7 @@ $dateFilter = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
 $defaultFilter = new DefaultFilter(DefaultFilter::FILTER_COMPLETED_AUCTIONS);
 ```
 
-The response will be an instance of `afterbuyapi/Model/XmlApi/GetSoldItems/GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
+The response will be an instance of `Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
 
 ```php
 $orders = $getSoldItemsResponse->getResult()->getOrders();
@@ -66,7 +64,7 @@ $orders = $getSoldItemsResponse->getResult()->getOrders();
 TODO
 ```
 
-The response will be an instance of `afterbuyapi/Model/XmlApi/UpdateSoldItems/UpdateSoldItemsResponse`.
+The response will be an instance of `Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse`.
 
 Dependencies
 ----------------------------------------------------------------
