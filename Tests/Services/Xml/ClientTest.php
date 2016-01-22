@@ -13,9 +13,12 @@ use Wk\AfterbuyApi\Model\XmlApi\Error;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BillingAddress;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BuyerInfo;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Order;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Result;
+use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Order as GetSoldItemsOrder;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order as UpdateSoldItemsOrder;
+use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Result as GetSoldItemsResult;
+use Wk\AfterbuyApi\Model\XmlApi\Result as UpdateSoldItemsResult;
 use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingAddress;
+use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
 use Wk\AfterbuyApi\Services\Xml\Client;
 
 /**
@@ -69,7 +72,7 @@ class ClientTest extends WebTestCase
         $this->assertInstanceOf(GetSoldItemsResponse::class, $soldItems);
 
         $result = $soldItems->getResult();
-        $this->assertInstanceOf(Result::class, $result);
+        $this->assertInstanceOf(GetSoldItemsResult::class, $result);
         $this->assertEmpty($result->getOrders());
 
         $errors = $result->getErrors();
@@ -100,16 +103,16 @@ class ClientTest extends WebTestCase
         $this->assertInstanceOf(GetSoldItemsResponse::class, $soldItems);
 
         $result = $soldItems->getResult();
-        $this->assertInstanceOf(Result::class, $result);
+        $this->assertInstanceOf(GetSoldItemsResult::class, $result);
         $this->assertEmpty($result->getErrors());
 
         $orders = $result->getOrders();
-        $this->assertContainsOnlyInstancesOf(Order::class, $orders);
+        $this->assertContainsOnlyInstancesOf(GetSoldItemsOrder::class, $orders);
         $this->assertCount(1, $orders);
 
-        /** @var Order $order */
+        /** @var GetSoldItemsOrder $order */
         $order = reset($orders);
-        $this->assertInstanceOf(Order::class, $order);
+        $this->assertInstanceOf(GetSoldItemsOrder::class, $order);
         $this->assertNull($order->getAdditionalInfo());
         $this->assertNull($order->getPaymentInfo());
         $this->assertNull($order->getShippingInfo());
@@ -152,6 +155,82 @@ class ClientTest extends WebTestCase
         $this->assertEquals('phone2', $shippingAddress->getPhone());
         $this->assertEquals('country2', $shippingAddress->getCountry());
         $this->assertEquals('es', $shippingAddress->getCountryIso());
+    }
+
+    /**
+     * Tests unavailable UpdateSoldItems action of the Afterbuy XML API
+     */
+    public function testUpdateSoldItemsUnavailability()
+    {
+        $mock = new MockHandler([
+            new Response(300),
+            new Response(301),
+            new Response(400),
+            new Response(404),
+            new Response(500),
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $this->client->setClient($guzzle);
+
+        $orders = [new UpdateSoldItemsOrder()];
+
+        $this->assertNull($this->client->updateSoldItems($orders));
+        $this->assertNull($this->client->updateSoldItems($orders));
+        $this->assertNull($this->client->updateSoldItems($orders));
+        $this->assertNull($this->client->updateSoldItems($orders));
+        $this->assertNull($this->client->updateSoldItems($orders));
+    }
+
+    /**
+     * Tests an error throwing UpdateSoldItems request of the Afterbuy XML Client
+     */
+    public function testUpdateSoldItemsError()
+    {
+        $xml = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItems/ResponseOnError.xml');
+        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
+        $response = new Response(200, $headers, $xml);
+        $mock = new MockHandler([$response]);
+        $handler = HandlerStack::create($mock);
+        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $this->client->setClient($guzzle);
+
+        $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
+        $this->assertInstanceOf(UpdateSoldItemsResponse::class, $soldItems);
+
+        $result = $soldItems->getResult();
+        $this->assertInstanceOf(UpdateSoldItemsResult::class, $result);
+
+        $errors = $result->getErrors();
+        $this->assertContainsOnlyInstancesOf(Error::class, $errors);
+        $this->assertCount(2, $errors);
+
+        /** @var Error $error */
+        $error = reset($errors);
+        $this->assertEquals(11, $error->getErrorCode());
+        $this->assertEquals('something failed', $error->getErrorDescription());
+        $this->assertEquals('something really failed', $error->getErrorLongDescription());
+    }
+
+    /**
+     * Tests a successful UpdateSoldItems request of the Afterbuy XML Client
+     */
+    public function testUpdateSoldItemsSuccess() {
+        $xml = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItems/ResponseOnSuccess.xml');
+        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
+        $response = new Response(200, $headers, $xml);
+        $mock = new MockHandler([$response]);
+        $handler = HandlerStack::create($mock);
+        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $this->client->setClient($guzzle);
+
+        $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
+        $this->assertInstanceOf(UpdateSoldItemsResponse::class, $soldItems);
+
+        $result = $soldItems->getResult();
+        $this->assertInstanceOf(UpdateSoldItemsResult::class, $result);
+        $this->assertEmpty($result->getErrors());
     }
 
     /**
