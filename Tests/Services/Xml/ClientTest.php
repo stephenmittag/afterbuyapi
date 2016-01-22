@@ -32,26 +32,29 @@ class ClientTest extends WebTestCase
     private $client;
 
     /**
-     * Tests unavailable GetSoldItems action of the Afterbuy XML API
+     * @return array
      */
-    public function testGetSoldItemsUnavailability()
+    public function provideStatusCodes() {
+        return [
+            [300],
+            [301],
+            [400],
+            [404],
+            [500]
+        ];
+    }
+
+    /**
+     * Tests unavailable GetSoldItems action of the Afterbuy XML API
+     *
+     * @param int $statusCode
+     *
+     * @dataProvider provideStatusCodes
+     */
+    public function testGetSoldItemsUnavailability($statusCode)
     {
-        $mock = new MockHandler([
-            new Response(300),
-            new Response(301),
-            new Response(400),
-            new Response(404),
-            new Response(500),
-        ]);
+        $this->setMockHandlerForUnavailabilityTest($statusCode);
 
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
-
-        $this->assertNull($this->client->getSoldItems());
-        $this->assertNull($this->client->getSoldItems());
-        $this->assertNull($this->client->getSoldItems());
-        $this->assertNull($this->client->getSoldItems());
         $this->assertNull($this->client->getSoldItems());
     }
 
@@ -60,13 +63,7 @@ class ClientTest extends WebTestCase
      */
     public function testGetSoldItemsError()
     {
-        $xml = file_get_contents(__DIR__ . '/../../Data/GetSoldItems/ResponseOnError.xml');
-        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
-        $response = new Response(200, $headers, $xml);
-        $mock = new MockHandler([$response]);
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $this->setMockHandlerForErrorTest('GetSoldItems/ResponseOnError.xml');
 
         $soldItems = $this->client->getSoldItems();
         $this->assertInstanceOf(GetSoldItemsResponse::class, $soldItems);
@@ -91,13 +88,7 @@ class ClientTest extends WebTestCase
      */
     public function testGetSoldItemsSuccess()
     {
-        $xml = file_get_contents(__DIR__ . '/../../Data/GetSoldItems/ResponseOnSuccessBuyerInfo.xml');
-        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
-        $response = new Response(200, $headers, $xml);
-        $mock = new MockHandler([$response]);
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $this->setMockHandlerForSuccessTest('GetSoldItems/ResponseOnSuccessBuyerInfo.xml');
 
         $soldItems = $this->client->getSoldItems();
         $this->assertInstanceOf(GetSoldItemsResponse::class, $soldItems);
@@ -159,28 +150,16 @@ class ClientTest extends WebTestCase
 
     /**
      * Tests unavailable UpdateSoldItems action of the Afterbuy XML API
+     *
+     * @param int $statusCode
+     *
+     * @dataProvider provideStatusCodes
      */
-    public function testUpdateSoldItemsUnavailability()
+    public function testUpdateSoldItemsUnavailability($statusCode)
     {
-        $mock = new MockHandler([
-            new Response(300),
-            new Response(301),
-            new Response(400),
-            new Response(404),
-            new Response(500),
-        ]);
+        $this->setMockHandlerForUnavailabilityTest($statusCode);
 
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
-
-        $orders = [new UpdateSoldItemsOrder()];
-
-        $this->assertNull($this->client->updateSoldItems($orders));
-        $this->assertNull($this->client->updateSoldItems($orders));
-        $this->assertNull($this->client->updateSoldItems($orders));
-        $this->assertNull($this->client->updateSoldItems($orders));
-        $this->assertNull($this->client->updateSoldItems($orders));
+        $this->assertNull($this->client->updateSoldItems([new UpdateSoldItemsOrder()]));
     }
 
     /**
@@ -188,13 +167,7 @@ class ClientTest extends WebTestCase
      */
     public function testUpdateSoldItemsError()
     {
-        $xml = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItems/ResponseOnError.xml');
-        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
-        $response = new Response(200, $headers, $xml);
-        $mock = new MockHandler([$response]);
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $this->setMockHandlerForErrorTest('UpdateSoldItems/ResponseOnError.xml');
 
         $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
         $this->assertInstanceOf(UpdateSoldItemsResponse::class, $soldItems);
@@ -217,13 +190,7 @@ class ClientTest extends WebTestCase
      * Tests a successful UpdateSoldItems request of the Afterbuy XML Client
      */
     public function testUpdateSoldItemsSuccess() {
-        $xml = file_get_contents(__DIR__ . '/../../Data/UpdateSoldItems/ResponseOnSuccess.xml');
-        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
-        $response = new Response(200, $headers, $xml);
-        $mock = new MockHandler([$response]);
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $this->setMockHandlerForSuccessTest('UpdateSoldItems/ResponseOnSuccess.xml');
 
         $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
         $this->assertInstanceOf(UpdateSoldItemsResponse::class, $soldItems);
@@ -248,5 +215,44 @@ class ClientTest extends WebTestCase
         $this->client->setLogger($logger);
 
         parent::setUp();
+    }
+
+    /**
+     * @param int $statusCode
+     */
+    private function setMockHandlerForUnavailabilityTest($statusCode) {
+        $mock = new MockHandler([
+            new Response($statusCode)
+        ]);
+
+        $handler = HandlerStack::create($mock);
+        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $this->client->setClient($guzzle);
+    }
+
+    /**
+     * @param string $pathToXmlFile
+     */
+    private function setMockHandlerForErrorTest($pathToXmlFile) {
+        $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
+        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
+        $response = new Response(200, $headers, $xml);
+        $mock = new MockHandler([$response]);
+        $handler = HandlerStack::create($mock);
+        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $this->client->setClient($guzzle);
+    }
+
+    /**
+     * @param string $pathToXmlFile
+     */
+    private function setMockHandlerForSuccessTest($pathToXmlFile) {
+        $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
+        $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
+        $response = new Response(200, $headers, $xml);
+        $mock = new MockHandler([$response]);
+        $handler = HandlerStack::create($mock);
+        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $this->client->setClient($guzzle);
     }
 }
