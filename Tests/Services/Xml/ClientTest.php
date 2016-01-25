@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Services\Xml;
+namespace Wk\AfterbuyApiBundle\Tests\Services\Xml;
 
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
@@ -9,17 +9,17 @@ use JMS\Serializer\SerializerInterface;
 use Monolog\Logger;
 use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Wk\AfterbuyApi\Model\XmlApi\Error;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BillingAddress;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BuyerInfo;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Order as GetSoldItemsOrder;
-use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order as UpdateSoldItemsOrder;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Result as GetSoldItemsResult;
-use Wk\AfterbuyApi\Model\XmlApi\Result as UpdateSoldItemsResult;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingAddress;
-use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
-use Wk\AfterbuyApi\Services\Xml\Client;
+use Wk\AfterbuyApiBundle\Model\XmlApi\Error;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BillingAddress;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BuyerInfo;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Order as GetSoldItemsOrder;
+use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order as UpdateSoldItemsOrder;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Result as GetSoldItemsResult;
+use Wk\AfterbuyApiBundle\Model\XmlApi\Result as UpdateSoldItemsResult;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\ShippingAddress;
+use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
 /**
  * Class ClientTest

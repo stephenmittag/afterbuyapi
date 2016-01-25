@@ -1,10 +1,10 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\DependencyInjection;
+namespace Wk\AfterbuyApiBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionTestCase;
 use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
-use Wk\AfterbuyApi\DependencyInjection\WkAfterbuyApiExtension;
+use Wk\AfterbuyApiBundle\DependencyInjection\WkAfterbuyApiExtension;
 
 /**
  * Class WkAfterbuyApiExtensionTest
@@ -70,7 +70,7 @@ class WkAfterbuyApiExtensionTest extends AbstractExtensionTestCase
     {
         $this->load($this->config);
 
-        $this->assertContainerBuilderHasService('wk_afterbuy_api.xml.client', 'Wk\AfterbuyApi\Services\Xml\Client');
+        $this->assertContainerBuilderHasService('wk_afterbuy_api.xml.client', 'Wk\AfterbuyApiBundle\Services\Xml\Client');
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 0, '%wk_afterbuy_api.user.id%');
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 1, '%wk_afterbuy_api.user.password%');
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 2, '%wk_afterbuy_api.partner.id%');

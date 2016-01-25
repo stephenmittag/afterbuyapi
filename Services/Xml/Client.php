@@ -1,20 +1,20 @@
 <?php
 
-namespace Wk\AfterbuyApi\Services\Xml;
+namespace Wk\AfterbuyApiBundle\Services\Xml;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractRequest;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractResponse;
-use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
-use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\Order;
-use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
-use Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractRequest;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
+use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
+use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
 use JMS\Serializer\SerializerInterface;
 
 /**

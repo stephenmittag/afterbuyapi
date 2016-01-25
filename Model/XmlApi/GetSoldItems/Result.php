@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\Result as BaseResult;
+use Wk\AfterbuyApiBundle\Model\XmlApi\Result as BaseResult;
 
 /**
  * Class Result
@@ -40,7 +40,7 @@ class Result extends BaseResult
     private $itemsCount;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Order>")
+     * @Serializer\Type("array<Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Order>")
      * @Serializer\SerializedName("Orders")
      * @Serializer\XmlList(entry="Order")
      * @var Order[]

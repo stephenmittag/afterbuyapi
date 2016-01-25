@@ -1,6 +1,6 @@
-# WkAfterbuyApi
+# WkAfterbuyApiBundle
 
-The WkAfterbuyApi provides a Symfony2 service to interact with the [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
+The WkAfterbuyApiBundle provides a Symfony2 service to interact with the [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
 
 Installation
 ----------------------------------------------------------------
@@ -16,12 +16,12 @@ Register the bundle:
 public function registerBundles()
 {
     $bundles = array(
-        new Wk\AfterbuyApi\WkAfterbuyApiBundle(),
+        new Wk\AfterbuyApiBundle\WkAfterbuyApiBundle(),
     );
 }
 ```
 
-Overwrite the parameters defined in `Wk\AfterbuyApi\App\parameters.yml` with your own Afterbuy credentials in your project's `parameters.yml`:
+Overwrite the parameters defined in `Wk\AfterbuyApiBundle\App\parameters.yml` with your own Afterbuy credentials in your project's `parameters.yml`:
 
 ```yaml
 # parameters.yml
@@ -43,7 +43,7 @@ $soldItems = $container->get('wk_afterbuy_api.xml.client')
                 ->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
 ```
 
-Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter`.
+Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter`.
 
 ```php
 $dateFilter = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
@@ -53,7 +53,7 @@ $dateFilter = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
 $defaultFilter = new DefaultFilter(DefaultFilter::FILTER_COMPLETED_AUCTIONS);
 ```
 
-The response will be an instance of `Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
+The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
 
 ```php
 $orders = $getSoldItemsResponse->getResult()->getOrders();
@@ -65,7 +65,7 @@ $orders = $getSoldItemsResponse->getResult()->getOrders();
 TODO
 ```
 
-The response will be an instance of `Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse`.
+The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse`.
 
 Dependencies
 ----------------------------------------------------------------

@@ -1,10 +1,10 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\DependencyInjection;
+namespace Wk\AfterbuyApiBundle\Tests\DependencyInjection;
 
 use Matthias\SymfonyDependencyInjectionTest\PhpUnit\AbstractExtensionConfigurationTestCase;
-use Wk\AfterbuyApi\DependencyInjection\Configuration;
-use Wk\AfterbuyApi\DependencyInjection\WkAfterbuyApiExtension;
+use Wk\AfterbuyApiBundle\DependencyInjection\Configuration;
+use Wk\AfterbuyApiBundle\DependencyInjection\WkAfterbuyApiExtension;
 
 /**
  * Class ConfigurationTest

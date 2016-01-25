@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractPaymentInfo;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractPaymentInfo;
 use \DateTime;
 
 /**
@@ -26,7 +26,7 @@ class PaymentInfo extends AbstractPaymentInfo
     private $paymentFunction;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\PaymentData")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\PaymentData")
      * @Serializer\SerializedName("PaymentData")
      * @var PaymentData
      */

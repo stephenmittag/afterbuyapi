@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 
 /**
  * Class AbstractFilter

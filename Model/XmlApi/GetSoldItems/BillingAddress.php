@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 

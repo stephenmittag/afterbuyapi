@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractOrder;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractOrder;
 use \DateTime;
 
 /**
@@ -75,28 +75,28 @@ class Order extends AbstractOrder
     private $orderIdAlt;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\PaymentInfo")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\PaymentInfo")
      * @Serializer\SerializedName("PaymentInfo")
      * @var PaymentInfo
      */
     private $paymentInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\BuyerInfo")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BuyerInfo")
      * @Serializer\SerializedName("BuyerInfo")
      * @var BuyerInfo
      */
     private $buyerInfo;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShippingInfo")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\ShippingInfo")
      * @Serializer\SerializedName("ShippingInfo")
      * @var ShippingInfo
      */
     private $shippingInfo;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\SoldItem>")
+     * @Serializer\Type("array<Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\SoldItem>")
      * @Serializer\XmlList(entry="SoldItem")
      * @Serializer\SerializedName("SoldItems")
      * @var SoldItem[]

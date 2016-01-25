@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 use \DateTime;
 
 /**
@@ -162,14 +162,14 @@ class SoldItem extends AbstractModel
     private $ebayFeedbackCommentType;
 
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\ShopProductDetails")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\ShopProductDetails")
      * @Serializer\SerializedName("ShopProductDetails")
      * @var ShopProductDetails
      */
     private $shopProductDetails;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\SoldItemAttribute>")
+     * @Serializer\Type("array<Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\SoldItemAttribute>")
      * @Serializer\XmlList(entry="SoldItemAttribute")
      * @Serializer\SerializedName("SoldItemAttributes")
      * @var SoldItemAttribute[]

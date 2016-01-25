@@ -1,9 +1,9 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 
 /**
  * Class BuyerInfo
@@ -11,7 +11,7 @@ use Wk\AfterbuyApi\Model\XmlApi\AbstractModel;
 class BuyerInfo extends AbstractModel
 {
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems\ShippingAddress")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\ShippingAddress")
      * @Serializer\SerializedName("ShippingAddress")
      * @var ShippingAddress
      */

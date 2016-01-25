@@ -1,11 +1,11 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 
 /**
  * Class ResponseTest

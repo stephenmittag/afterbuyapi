@@ -16,7 +16,7 @@
  * limitations under the License.
  */
 
-namespace Wk\AfterbuyApi\Serializer;
+namespace Wk\AfterbuyApiBundle\Serializer;
 
 use JMS\Serializer\Context;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\DependencyInjection;
+namespace Wk\AfterbuyApiBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -19,6 +19,7 @@ class WkAfterbuyApiExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
+        die();
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $config);
 

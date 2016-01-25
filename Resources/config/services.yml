@@ -1,10 +1,10 @@
 services:
     jms_serializer.datetime_handler:
-        class: Wk\AfterbuyApi\Serializer\DateHandler
+        class: Wk\AfterbuyApiBundle\Serializer\DateHandler
         tags:
             - { name: jms_serializer.subscribing_handler }
     wk_afterbuy_api.xml.client:
-        class: Wk\AfterbuyApi\Services\Xml\Client
+        class: Wk\AfterbuyApiBundle\Services\Xml\Client
         arguments:
             - "%wk_afterbuy_api.user.id%"
             - "%wk_afterbuy_api.user.password%"

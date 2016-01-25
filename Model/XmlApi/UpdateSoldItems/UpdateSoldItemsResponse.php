@@ -1,10 +1,10 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractResponse;
-use Wk\AfterbuyApi\Model\XmlApi\Result;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\Result;
 
 /**
  * Class UpdateSoldItemsResponse
@@ -14,7 +14,7 @@ use Wk\AfterbuyApi\Model\XmlApi\Result;
 class UpdateSoldItemsResponse extends AbstractResponse
 {
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\Result")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\Result")
      * @Serializer\SerializedName("Result")
      * @var Result
      */

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi;
+namespace Wk\AfterbuyApiBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;

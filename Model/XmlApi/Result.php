@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation as Serializer;
 class Result extends AbstractModel
 {
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\Error>")
+     * @Serializer\Type("array<Wk\AfterbuyApiBundle\Model\XmlApi\Error>")
      * @Serializer\SerializedName("ErrorList")
      * @Serializer\XmlList(entry="Error")
      * @var Error[]

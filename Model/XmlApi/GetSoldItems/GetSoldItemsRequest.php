@@ -1,11 +1,11 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractRequest;
-use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractRequest;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
 
 /**
  * Class GetSoldItemsRequest
@@ -39,7 +39,7 @@ class GetSoldItemsRequest extends AbstractRequest
     private $orderDirection;
 
     /**
-     * @Serializer\Type("array<Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\AbstractFilter>")
+     * @Serializer\Type("array<Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\AbstractFilter>")
      * @Serializer\XmlList(entry="Filter")
      * @Serializer\SerializedName("DataFilter")
      * @var AbstractFilter[]

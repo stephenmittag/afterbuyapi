@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi;
 
 use JMS\Serializer\Annotation as Serializer;
 
@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation as Serializer;
 class AbstractRequest extends AbstractModel
 {
     /**
-     * @Serializer\Type("Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal")
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal")
      * @Serializer\SerializedName("AfterbuyGlobal")
      * @var AfterbuyGlobal
      */

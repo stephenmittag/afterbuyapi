@@ -1,19 +1,19 @@
 <?php
 
-namespace Wk\AfterbuyApi\Tests\Model\XmlApi\GetSoldItems;
+namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
-use Wk\AfterbuyApi\Model\XmlApi\AfterbuyGlobal;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\DateFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\DefaultFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\ShopIdFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\UserDefinedFlagFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\UserEmailFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\UserIdFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\OrderIdFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\PlatformFilter;
-use Wk\AfterbuyApi\Model\XmlApi\GetSoldItems\Filter\RangeIdFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\DateFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\DefaultFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\ShopIdFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\UserDefinedFlagFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\UserEmailFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\UserIdFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\OrderIdFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\PlatformFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\RangeIdFilter;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
 

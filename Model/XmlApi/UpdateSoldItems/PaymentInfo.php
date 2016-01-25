@@ -1,10 +1,10 @@
 <?php
 
-namespace Wk\AfterbuyApi\Model\XmlApi\UpdateSoldItems;
+namespace Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
 use \DateTime;
-use Wk\AfterbuyApi\Model\XmlApi\AbstractPaymentInfo;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractPaymentInfo;
 
 /**
  * Class PaymentInfo
