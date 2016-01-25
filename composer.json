@@ -32,6 +32,6 @@
         "phpunit/phpunit": "~4.8"
     },
     "autoload": {
-        "psr-4": { "Wk\\AfterbuyApi\\": "" }
+        "psr-4": { "Wk\\AfterbuyApiBundle\\": "" }
     }
 }

@@ -19,7 +19,6 @@ class WkAfterbuyApiExtension extends Extension
      */
     public function load(array $config, ContainerBuilder $container)
     {
-        die();
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $config);
 
