@@ -12,6 +12,11 @@ use Wk\AfterbuyApi\DependencyInjection\WkAfterbuyApiExtension;
 class WkAfterbuyApiExtensionTest extends AbstractExtensionTestCase
 {
     /**
+     * @var array
+     */
+    private $config;
+
+    /**
      * Provides data for parameter misconfiguration
      */
     public function dataLoadParameterException()
@@ -49,23 +54,30 @@ class WkAfterbuyApiExtensionTest extends AbstractExtensionTestCase
      */
     public function testLoadParameter()
     {
-        $this->load([
-            'partner' => [
-                'id' => 123456789,
-                'password' => '5gjhgjh983',
-            ],
-            'user' => [
-                'id' => 'usertest',
-                'password' => '5gjhgjh983',
-            ],
-            'error_language' => 'de',
-        ]);
+        $this->load($this->config);
 
         $this->assertContainerBuilderHasParameter('wk_afterbuy_api.error_language', 'de');
         $this->assertContainerBuilderHasParameter('wk_afterbuy_api.partner.id', 123456789);
         $this->assertContainerBuilderHasParameter('wk_afterbuy_api.partner.password', '5gjhgjh983');
         $this->assertContainerBuilderHasParameter('wk_afterbuy_api.user.id', 'usertest');
         $this->assertContainerBuilderHasParameter('wk_afterbuy_api.user.password', '5gjhgjh983');
+    }
+
+    /**
+     * Test that the services exist in the container
+     */
+    public function testLoadContainer()
+    {
+        $this->load($this->config);
+
+        $this->assertContainerBuilderHasService('wk_afterbuy_api.xml.client', 'Wk\AfterbuyApi\Services\Xml\Client');
+        $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 0, '%wk_afterbuy_api.user.id%');
+        $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 1, '%wk_afterbuy_api.user.password%');
+        $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 2, '%wk_afterbuy_api.partner.id%');
+        $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 3, '%wk_afterbuy_api.partner.password%');
+        $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 4, '%wk_afterbuy_api.error_language%');
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall('wk_afterbuy_api.xml.client', 'setSerializer', ['serializer']);
+        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall('wk_afterbuy_api.xml.client', 'setLogger', ['logger']);
     }
 
     /**
@@ -76,5 +88,24 @@ class WkAfterbuyApiExtensionTest extends AbstractExtensionTestCase
         return array(
             new WkAfterbuyApiExtension()
         );
+    }
+
+    /**
+     * set up config
+     */
+    protected function setUp() {
+        parent::setUp();
+
+        $this->config = [
+            'partner' => [
+                'id' => 123456789,
+                'password' => '5gjhgjh983',
+            ],
+            'user' => [
+                'id' => 'usertest',
+                'password' => '5gjhgjh983',
+            ],
+            'error_language' => 'de',
+        ];
     }
 }
