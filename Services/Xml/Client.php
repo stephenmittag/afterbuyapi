@@ -6,10 +6,10 @@ use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
 use JMS\Serializer\SerializerBuilder;
-use Monolog\Handler\StreamHandler;
-use Monolog\Logger;
+use JMS\Serializer\SerializerInterface;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
@@ -19,7 +19,6 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
-use JMS\Serializer\SerializerInterface;
 
 /**
  * Class Client
@@ -27,19 +26,17 @@ use JMS\Serializer\SerializerInterface;
 class Client implements LoggerAwareInterface
 {
     /**
-     * @var ClientInterface
-     */
-    protected $client;
-
-    /**
      * @var LoggerInterface
      */
     protected $logger;
-
+    /**
+     * @var ClientInterface
+     */
+    private $client;
     /**
      * @var SerializerInterface
      */
-    protected $serializer;
+    private $serializer;
 
     /**
      * @var AfterbuyGlobal
@@ -60,48 +57,6 @@ class Client implements LoggerAwareInterface
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
         $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.afterbuy.de/afterbuy/ABInterface.aspx']);
         $this->serializer = SerializerBuilder::create()->build();
-        $this->logger = new Logger("stdout");
-        $this->logger->pushHandler(new StreamHandler('php://stdout', Logger::WARNING));
-    }
-
-    /**
-     * @return ClientInterface
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
-     * @param ClientInterface $client
-     *
-     * @return $this
-     */
-    public function setClient(ClientInterface $client)
-    {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    /**
-     * @return SerializerInterface
-     */
-    public function getSerializer()
-    {
-        return $this->serializer;
-    }
-
-    /**
-     * @param SerializerInterface $serializer
-     *
-     * @return $this
-     */
-    public function setSerializer(SerializerInterface $serializer)
-    {
-        $this->serializer = $serializer;
-
-        return $this;
     }
 
     /**
@@ -159,6 +114,20 @@ class Client implements LoggerAwareInterface
     }
 
     /**
+     * Logs to a logger, when given
+     *
+     * @param string|LogLevel  $level
+     * @param string $message
+     * @param array  $context
+     */
+    private function log($level, $message, array $context = array())
+    {
+        if ($this->logger) {
+            $this->logger->log($level, $message, $context);
+        }
+    }
+
+    /**
      * @param AbstractRequest $request
      * @param string          $type
      *
@@ -168,19 +137,19 @@ class Client implements LoggerAwareInterface
     {
         $xml = $this->serializer->serialize($request, 'xml');
         $options = ['body' => $xml, '_conditional' => ['Content-Type' => 'text/xml']];
-        $this->logger->debug('Posted to Afterbuy with the following options: ', $options);
+        $this->log(LogLevel::DEBUG, 'Posted to Afterbuy with the following options: ', $options);
 
         try {
             $response = $this->client->request('POST', null, $options);
-            $this->logger->debug(sprintf('Afterbuy response: %s', $response->getBody()));
+            $this->log(LogLevel::DEBUG, sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (BadResponseException $exception) {
-            $this->logger->error($exception->getMessage());
+            $this->log(LogLevel::ERROR, $exception->getMessage());
 
             return null;
         }
 
         if ($response->getStatusCode() != 200) {
-            $this->logger->error(sprintf('Afterbuy responded with HTTP status code %d', $response->getStatusCode()));
+            $this->log(LogLevel::ERROR, sprintf('Afterbuy responded with HTTP status code %d', $response->getStatusCode()));
 
             return null;
         }
@@ -188,7 +157,7 @@ class Client implements LoggerAwareInterface
         try {
             $object = $this->serializer->deserialize($response->getBody(), $type, 'xml');
         } catch (\Exception $exception) {
-            $this->logger->error($exception->getMessage());
+            $this->log(LogLevel::ERROR, $exception->getMessage());
 
             return null;
         }

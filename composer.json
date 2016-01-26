@@ -23,8 +23,7 @@
         "symfony/framework-bundle": "~2.6",
         "symfony/yaml": "~2.6",
         "guzzlehttp/guzzle": "~6.0",
-        "jms/serializer": "^1.1",
-        "monolog/monolog": "^1.17"
+        "jms/serializer": "^1.1"
     },
     "require-dev": {
         "matthiasnoback/symfony-dependency-injection-test": "~0.7",
