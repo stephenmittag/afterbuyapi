@@ -2,8 +2,12 @@
 
 namespace Wk\AfterbuyApiBundle\Services\Xml;
 
+use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
+use JMS\Serializer\SerializerBuilder;
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractRequest;
@@ -51,8 +55,13 @@ class Client implements LoggerAwareInterface
      */
     public function __construct($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage)
     {
+        AnnotationRegistry::registerLoader('class_exists');
+
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
         $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.afterbuy.de/afterbuy/ABInterface.aspx']);
+        $this->serializer = SerializerBuilder::create()->build();
+        $this->logger = new Logger("stdout");
+        $this->logger->pushHandler(new StreamHandler('php://stdout', Logger::WARNING));
     }
 
     /**
