@@ -69,7 +69,7 @@ The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSol
 
 Dependencies
 ----------------------------------------------------------------
-* `jms/serializer-bundle` - Allows you to easily serialize, and deserialize data of any complexity
+* `jms/serializer` - Allows you to easily serialize, and deserialize data of any complexity
 * `guzzlehttp/guzzle` - Guzzle is a PHP HTTP client library
 * `symfony/browser-kit` - Symfony BrowserKit Component
 * `symfony/yaml` - Symfony Yaml Component
