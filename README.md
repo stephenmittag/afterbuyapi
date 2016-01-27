@@ -39,8 +39,14 @@ Interaction with the Afterbuy XML API is done via the service `wk_afterbuy_api.x
 #### Retrieving a list of sold items from Afterbuy:
 
 ```php
-$soldItems = $container->get('wk_afterbuy_api.xml.client')
-                ->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
+$client = $container->get('wk_afterbuy_api.xml.client');
+$soldItems = $client->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
+```
+
+The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
+
+```php
+$orders = $soldItems->getResult()->getOrders();
 ```
 
 Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter`.
@@ -53,16 +59,15 @@ $dateFilter = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
 $defaultFilter = new DefaultFilter(DefaultFilter::FILTER_COMPLETED_AUCTIONS);
 ```
 
-The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
-
-```php
-$orders = $getSoldItemsResponse->getResult()->getOrders();
-```
-
 #### Updating sold items on Afterbuy:
 
 ```php
-TODO
+$order = new \Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order();
+$order->setOrderId(1234567890)
+      ->setUserDefinedFlag(12345)
+      ->setInvoiceMemo("You didn't read the memo? You are fired!");
+$client = $container->get('wk_afterbuy_api.xml.client');
+$client->updateSoldItems(array($orders));
 ```
 
 The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse`.
