@@ -3,14 +3,15 @@
 namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use JMS\Serializer\SerializerBuilder;
 use \DateTime;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
 /**
  * Class ResponseTest
  */
-class ResponseTest extends WebTestCase
+class ResponseTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Serializer
@@ -27,7 +28,7 @@ class ResponseTest extends WebTestCase
      */
     public function setUp()
     {
-        $this->serializer = static::createClient()->getContainer()->get('jms_serializer');
+        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
         $this->timezone = new \DateTimeZone('UTC');
     }
 
