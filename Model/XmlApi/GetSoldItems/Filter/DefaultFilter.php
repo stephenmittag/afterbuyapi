@@ -2,8 +2,6 @@
 
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter;
 
-use JMS\Serializer\Annotation as Serializer;
-
 /**
  * Class DefaultFilter
  */
