@@ -5,6 +5,10 @@ namespace Wk\AfterbuyApiBundle\Services\Xml;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\BadResponseException;
+use JMS\Serializer\Handler\ArrayCollectionHandler;
+use JMS\Serializer\Handler\HandlerRegistry;
+use JMS\Serializer\Handler\PhpCollectionHandler;
+use JMS\Serializer\Handler\PropelCollectionHandler;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -19,6 +23,7 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Serializer\DateHandler;
 
 /**
  * Class Client
@@ -56,7 +61,20 @@ class Client implements LoggerAwareInterface
 
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
         $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.afterbuy.de/afterbuy/ABInterface.aspx']);
-        $this->serializer = SerializerBuilder::create()->build();
+        $this->serializer = SerializerBuilder::create()->configureHandlers(self::getHandlerConfiguration())->build();
+    }
+
+    /**
+     * @return \Closure
+     */
+    public static function getHandlerConfiguration()
+    {
+        return function (HandlerRegistry $registry) {
+            $registry->registerSubscribingHandler(new DateHandler());
+            $registry->registerSubscribingHandler(new PhpCollectionHandler());
+            $registry->registerSubscribingHandler(new ArrayCollectionHandler());
+            $registry->registerSubscribingHandler(new PropelCollectionHandler());
+        };
     }
 
     /**

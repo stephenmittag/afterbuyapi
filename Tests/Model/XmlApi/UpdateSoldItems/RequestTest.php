@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\BuyerInfo;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
@@ -13,6 +14,7 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\VorgangsInfo;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
+use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
 /**
  * Class RequestTest
@@ -29,8 +31,7 @@ class RequestTest extends WebTestCase
      */
     public function setUp()
     {
-        $client = static::createClient();
-        $this->serializer = $client->getContainer()->get('jms_serializer');
+        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
     }
 
     /**

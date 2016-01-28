@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\DateFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\DefaultFilter;
@@ -14,13 +15,13 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\OrderIdFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\PlatformFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\RangeIdFilter;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use \DateTime;
+use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
 /**
  * Class RequestTest
  */
-class RequestTest extends WebTestCase
+class RequestTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var Serializer
@@ -32,8 +33,7 @@ class RequestTest extends WebTestCase
      */
     public function setUp()
     {
-        $client = static::createClient();
-        $this->serializer = $client->getContainer()->get('jms_serializer');
+        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
     }
 
     /**
