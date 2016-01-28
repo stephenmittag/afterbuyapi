@@ -53,7 +53,7 @@ class BillingAddress extends ShippingAddress
 
     /**
      * @Serializer\Type("integer")
-     * @Serializer\Accessor(setter="setIsMerchantFromInteger")
+     * @Serializer\Accessor(setter="setMerchantFromInteger")
      * @Serializer\SerializedName("IsMerchant")
      * @var bool
      */
@@ -69,7 +69,7 @@ class BillingAddress extends ShippingAddress
     /**
      * @param int $value
      */
-    public function setIsMerchantFromInteger($value)
+    public function setMerchantFromInteger($value)
     {
         $this->merchant = $this->setBooleanFromInteger($value);
     }
