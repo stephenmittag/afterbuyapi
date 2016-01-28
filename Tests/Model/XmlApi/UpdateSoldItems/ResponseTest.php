@@ -3,8 +3,10 @@
 namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Serializer;
+use JMS\Serializer\SerializerBuilder;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
 /**
  * Class ResponseTest
@@ -21,8 +23,7 @@ class ResponseTest extends WebTestCase
      */
     public function setUp()
     {
-        $client = static::createClient();
-        $this->serializer = $client->getContainer()->get('jms_serializer');
+        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
     }
 
     /**

@@ -5,19 +5,16 @@ namespace Wk\AfterbuyApiBundle\Tests\Services\Xml;
 use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
-use JMS\Serializer\SerializerInterface;
-use Monolog\Logger;
-use Psr\Log\LoggerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterbuyApiBundle\Model\XmlApi\Error;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BillingAddress;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BuyerInfo;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Order as GetSoldItemsOrder;
-use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order as UpdateSoldItemsOrder;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Result as GetSoldItemsResult;
-use Wk\AfterbuyApiBundle\Model\XmlApi\Result as UpdateSoldItemsResult;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\ShippingAddress;
+use Wk\AfterbuyApiBundle\Model\XmlApi\Result as UpdateSoldItemsResult;
+use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order as UpdateSoldItemsOrder;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
@@ -32,9 +29,19 @@ class ClientTest extends WebTestCase
     private $client;
 
     /**
+     * Set up before each test
+     */
+    protected function setUp()
+    {
+        $this->client = new Client('test-user', 'user-password', 123456789, 'partner-password', 'en');
+        parent::setUp();
+    }
+
+    /**
      * @return array
      */
-    public function provideStatusCodes() {
+    public function provideStatusCodes()
+    {
         return [
             [300],
             [301],
@@ -189,7 +196,8 @@ class ClientTest extends WebTestCase
     /**
      * Tests a successful UpdateSoldItems request of the Afterbuy XML Client
      */
-    public function testUpdateSoldItemsSuccess() {
+    public function testUpdateSoldItemsSuccess()
+    {
         $this->setMockHandlerForSuccessTest('UpdateSoldItems/ResponseOnSuccess.xml');
 
         $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
@@ -201,58 +209,50 @@ class ClientTest extends WebTestCase
     }
 
     /**
-     * Set up before each test
-     */
-    protected function setUp()
-    {
-        /** @var SerializerInterface $serializer */
-        $serializer = static::createClient()->getContainer()->get('serializer');
-        /** @var LoggerInterface $logger */
-        $logger = $this->getMock(Logger::class, [], [], '', false);
-
-        $this->client = new Client('test-user', 'user-password', 123456789, 'partner-password', 'en');
-        $this->client->setSerializer($serializer);
-        $this->client->setLogger($logger);
-
-        parent::setUp();
-    }
-
-    /**
      * @param int $statusCode
      */
-    private function setMockHandlerForUnavailabilityTest($statusCode) {
+    private function setMockHandlerForUnavailabilityTest($statusCode)
+    {
         $mock = new MockHandler([
             new Response($statusCode)
         ]);
 
         $handler = HandlerStack::create($mock);
         $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $clientReflection = new \ReflectionProperty(Client::class, 'client');
+        $clientReflection->setAccessible(true);
+        $clientReflection->setValue($this->client, $guzzle);
     }
 
     /**
      * @param string $pathToXmlFile
      */
-    private function setMockHandlerForErrorTest($pathToXmlFile) {
+    private function setMockHandlerForErrorTest($pathToXmlFile)
+    {
         $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
         $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
         $response = new Response(200, $headers, $xml);
         $mock = new MockHandler([$response]);
         $handler = HandlerStack::create($mock);
         $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $clientReflection = new \ReflectionProperty(Client::class, 'client');
+        $clientReflection->setAccessible(true);
+        $clientReflection->setValue($this->client, $guzzle);
     }
 
     /**
      * @param string $pathToXmlFile
      */
-    private function setMockHandlerForSuccessTest($pathToXmlFile) {
+    private function setMockHandlerForSuccessTest($pathToXmlFile)
+    {
         $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
         $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
         $response = new Response(200, $headers, $xml);
         $mock = new MockHandler([$response]);
         $handler = HandlerStack::create($mock);
         $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
-        $this->client->setClient($guzzle);
+        $clientReflection = new \ReflectionProperty(Client::class, 'client');
+        $clientReflection->setAccessible(true);
+        $clientReflection->setValue($this->client, $guzzle);
     }
 }

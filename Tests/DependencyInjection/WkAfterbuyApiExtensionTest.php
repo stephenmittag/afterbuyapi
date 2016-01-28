@@ -76,7 +76,6 @@ class WkAfterbuyApiExtensionTest extends AbstractExtensionTestCase
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 2, '%wk_afterbuy_api.partner.id%');
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 3, '%wk_afterbuy_api.partner.password%');
         $this->assertContainerBuilderHasServiceDefinitionWithArgument('wk_afterbuy_api.xml.client', 4, '%wk_afterbuy_api.error_language%');
-        $this->assertContainerBuilderHasServiceDefinitionWithMethodCall('wk_afterbuy_api.xml.client', 'setSerializer', ['serializer']);
         $this->assertContainerBuilderHasServiceDefinitionWithMethodCall('wk_afterbuy_api.xml.client', 'setLogger', ['logger']);
     }
 
