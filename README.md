@@ -78,7 +78,6 @@ Dependencies
 ----------------------------------------------------------------
 * `jms/serializer` - Allows you to easily serialize, and deserialize data of any complexity
 * `guzzlehttp/guzzle` - Guzzle is a PHP HTTP client library
-* `symfony/browser-kit` - Symfony BrowserKit Component
 * `symfony/yaml` - Symfony Yaml Component
 * `symfony/monolog` - Symfony MonologBundle
 * `symfony/framework-bundle` - Symfony FrameworkBundle
