@@ -46,3 +46,4 @@ class ConfigurationTest extends AbstractExtensionConfigurationTestCase
         return new Configuration();
     }
 }
+

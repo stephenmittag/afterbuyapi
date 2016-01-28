@@ -32,3 +32,4 @@ class WkAfterbuyApiExtension extends Extension
         $loader->load('services.yml');
     }
 }
+
