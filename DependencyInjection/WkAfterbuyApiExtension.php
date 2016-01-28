@@ -1,6 +1,6 @@
 <?php
 
-namespace Wk\AfterbuyApi\DependencyInjection;
+namespace Wk\AfterbuyApiBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
@@ -17,12 +17,19 @@ class WkAfterbuyApiExtension extends Extension
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $this->processConfiguration($configuration, $configs);
+        $config = $this->processConfiguration($configuration, $config);
 
-        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $container->setParameter('wk_afterbuy_api.error_language', $config['error_language']);
+        $container->setParameter('wk_afterbuy_api.partner.id', $config['partner']['id']);
+        $container->setParameter('wk_afterbuy_api.partner.password', $config['partner']['password']);
+        $container->setParameter('wk_afterbuy_api.user.id', $config['user']['id']);
+        $container->setParameter('wk_afterbuy_api.user.password', $config['user']['password']);
+
+        $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
     }
 }
+

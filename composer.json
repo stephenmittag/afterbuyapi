@@ -1,15 +1,18 @@
 {
     "name": "asgoodasnu/afterbuyapi",
     "type": "symfony-bundle",
-    "description": "Afterbuy Api for Symfony2",
+    "description": "The WkAfterbuyApi provides a Symfony2 service to interact with the Afterbuy XML API",
     "keywords":     ["afterbuy"],
     "homepage": "https://github.com/asgoodasnu/afterbuyapi",
     "license": "MIT",
     "authors": [
         {
-            "name": "Simon Chrzanowski",
-            "email": "simon@wirkaufens.de",
-            "homepage": "http://wirkaufens.de"
+            "name": "Annika Flemming",
+            "email": "annika.flemming@wirkaufens.de"
+        },
+        {
+            "name": "Thomas Stägemann",
+            "email": "thomas.staegemann@wirkaufens.de"
         },
         {
             "name": "Github Community",
@@ -17,15 +20,17 @@
         }
     ],
     "require": {
-        "symfony/symfony": "2.6.*",
-        "monolog/monolog": "1.12.0",
-        "symfony/yaml": "2.6.*",
-        "guzzlehttp/guzzle": "6.*"
+        "symfony/framework-bundle": "~2.6",
+        "symfony/yaml": "~2.6",
+        "guzzlehttp/guzzle": "~6.0",
+        "jms/serializer": "^1.1"
     },
     "require-dev": {
-        "phpunit/phpunit": "4.8.*"
+        "matthiasnoback/symfony-dependency-injection-test": "~0.7",
+        "symfony/monolog-bundle": "~2.6",
+        "phpunit/phpunit": "~4.8"
     },
     "autoload": {
-        "psr-4": { "Wk\\AfterbuyApi\\": "" }
+        "psr-4": { "Wk\\AfterbuyApiBundle\\": "" }
     }
 }

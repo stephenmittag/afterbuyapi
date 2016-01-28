@@ -1,26 +1,15 @@
-parameters:
-    wk_afterbuy.params:
-        partner_id:     "%afterbuy_partner_id%"
-        partner_pass:   "%afterbuy_partner_pass%"
-        user_id:        "%afterbuy_user_id%"
-        user_pass:      "%afterbuy_user_password%"
-
-    wk_afterbuy.params.xml:
-        baseurl:  "https://api.afterbuy.de/afterbuy/ABInterface.aspx"
-
 services:
-    wk_afterbuy.shop_api.connection:
-        class: Wk\AfterbuyApi\Services\AfterbuyConnection
-        arguments: ["shopApiServiceDescription.json"]
+    jms_serializer.datetime_handler:
+        class: Wk\AfterbuyApiBundle\Serializer\DateHandler
+        tags:
+            - { name: jms_serializer.subscribing_handler }
+    wk_afterbuy_api.xml.client:
+        class: Wk\AfterbuyApiBundle\Services\Xml\Client
+        arguments:
+            - "%wk_afterbuy_api.user.id%"
+            - "%wk_afterbuy_api.user.password%"
+            - "%wk_afterbuy_api.partner.id%"
+            - "%wk_afterbuy_api.partner.password%"
+            - "%wk_afterbuy_api.error_language%"
         calls:
-            - [setParams, ["%wk_afterbuy.params%"]]
-    wk_afterbuy.shop_api:
-        class: Wk\AfterbuyApi\Services\AfterbuyShopApi
-        calls:
-           - [setAfterbuyConnection, ["@wk_afterbuy.shop_api.connection"]]
-           - [setLogger, ["@logger"]]
-    wk_afterbuy.xml_api:
-        class: Wk\AfterbuyApi\Services\AfterbuyXmlClient
-        calls:
-           - [setCredentials, ["%wk_afterbuy.params%"]]
-           - [setUri, ["%wk_afterbuy.params.xml%"]]
+            - [setLogger, ["@logger"]]

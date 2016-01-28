@@ -1,66 +1,98 @@
-afterbuyapi
-==========
-[![Composer Downloads](https://poser.pugx.org/asgoodasnu/afterbuyapi/d/total.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![Build Status](https://travis-ci.org/asgoodasnu/afterbuyapi.png?branch=master)](https://travis-ci.org/asgoodasnu/afterbuyapi) [![Dependency Status](https://www.versioneye.com/user/projects/535e7341fe0d0734a30001c1/badge.png)](https://www.versioneye.com/user/projects/535e7341fe0d0734a30001c1)
+# WkAfterbuyApiBundle
 
-This bundle implements the afterbuy xml- and shop-api as described here http://xmldoku.afterbuy.de/dokued/ and here http://shopdoku.afterbuy.de/shopdoku/
-by using great guzzle/guzzle webservice description, leading to a cool restful interface.
+[![Build Status](https://travis-ci.org/asgoodasnu/afterbuyapi.png?branch=master)](https://travis-ci.org/asgoodasnu/afterbuyapi) [![Total Downloads](https://poser.pugx.org/asgoodasnu/afterbuyapi/d/total.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![Latest Stable Version](https://poser.pugx.org/asgoodasnu/afterbuyapi/v/stable.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9a1fccba-a214-46bf-bd44-c6288a049a91/mini.png)](https://insight.sensiolabs.com/projects/9a1fccba-a214-46bf-bd44-c6288a049a91)
 
-to "talk" with afterbuy you'll need to set following parameters in your parameters.yml
+The WkAfterbuyApiBundle provides a Symfony2 service to interact with the [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
 
-    afterbuy_shop_uri: 'https://api.afterbuy.de/afterbuy/ShopInterfaceUTF8.aspx'
-    afterbuy_xml_uri: 'https://api.afterbuy.de/afterbuy/ABInterface.aspx'
-    afterbuy_partner_id: [YOUR_PARTNER_ID]
-    afterbuy_partner_pass: [YOUR_PARTNER_PASS]
-    afterbuy_user_id: [YOUR_USER_ID]
-    afterbuy_user_password: [YOUR_USER_PASS]
-    afterbuy_marker_id: [YOUR_MARKER_ID]
-    afterbuy_check_vid: 1
-    afterbuy_detail_level: 0
-    afterbuy_error_language: DE
+Installation
+----------------------------------------------------------------
 
+Require the bundle and its dependencies with composer:
 
-
-
-Using Afterbuy XML-Api (Examples):
-==================================
-
-
-
-<b>GetSoldItems:</b>
-
-    $serviceprovider = new SoldItemslist();
-    $serviceprovider->setUserDefinedFlag(17733);
-
-
-    $apicall = new AfterbuyXmlClient();
-    $apicall->setServiceProvider($serviceprovider)
-            ->setCredentials(array(
-                    'partner_id' => 'your_partnerid',
-                    'partner_pass' => 'Your_partnerpassword',
-                    'user_id' => 'your_userid',
-                    'user_pass' => 'your_userpassword'
-                ));
+    $ composer require asgoodasnu/afterbuyapi
     
-    apicall->send();
+Register the bundle:
 
+```php
+// app/AppKernel.php
+public function registerBundles()
+{
+    $bundles = array(
+        new Wk\AfterbuyApiBundle\WkAfterbuyApiBundle(),
+    );
+}
+```
 
+Overwrite the parameters defined in `Wk\AfterbuyApiBundle\App\parameters.yml` with your own Afterbuy credentials in your project's `parameters.yml`:
 
+```yaml
+# parameters.yml
+locale: en
+afterbuy_partner_id: 123
+afterbuy_partner_password: pass
+afterbuy_user_id: user
+afterbuy_user_password: pass
+```
+ 
+Usage
+----------------------------------------------------------------
+Interaction with the Afterbuy XML API is done via the service `wk_afterbuy_api.xml.client`.
 
+#### Retrieving a list of sold items from Afterbuy:
 
-<b>UpdateSoldItems:</b>
+```php
+$client = $container->get('wk_afterbuy_api.xml.client');
+$soldItems = $client->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
+```
 
-    $serviceprovider = new SoldItemsUpdate();
-    $serviceprovider->setOrderId(your_afterbuy_orderid)
-                    ->setOperationFieldOne('your_infofield1_text')
-                    ->setUserDefinedFlag(123);
-    
-    $apicall = new AfterbuyXmlClient();
-    $apicall->setServiceProvider($serviceprovider)
-            ->setCredentials(array(
-                    'partner_id' => 'your_partnerid',
-                    'partner_pass' => 'Your_partnerpassword',
-                    'user_id' => 'your_userid',
-                    'user_pass' => 'your_userpassword'
-                ));
-    
-    apicall->send();
+The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse` and provides methods to traverse the XML sent back from Afterbuy such as fetching the orders:
+
+```php
+$orders = $soldItems->getResult()->getOrders();
+```
+
+Provide an array of filters defined in Afterbuy, for example a DateFilter or a DefaultFilter. The models for these filters can be found in `Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter`.
+
+```php
+$dateFilter = (new DateFilter(DateFilter::FILTER_AUCTION_END_DATE))
+                ->setDateFrom(new DateTime('2000-01-01 00:00:00'))
+                ->setDateTo(new DateTime('2000-01-10 00:00:00'));
+            
+$defaultFilter = new DefaultFilter(DefaultFilter::FILTER_COMPLETED_AUCTIONS);
+```
+
+#### Updating sold items on Afterbuy:
+
+```php
+$order = new \Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order();
+$order->setOrderId(1234567890)
+      ->setUserDefinedFlag(12345)
+      ->setInvoiceMemo("You didn't read the memo? You are fired!");
+$client = $container->get('wk_afterbuy_api.xml.client');
+$client->updateSoldItems(array($orders));
+```
+
+The response will be an instance of `Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse`.
+
+Dependencies
+----------------------------------------------------------------
+* `jms/serializer` - Allows you to easily serialize, and deserialize data of any complexity
+* `guzzlehttp/guzzle` - Guzzle is a PHP HTTP client library
+* `symfony/browser-kit` - Symfony BrowserKit Component
+* `symfony/yaml` - Symfony Yaml Component
+* `symfony/monolog` - Symfony MonologBundle
+* `symfony/framework-bundle` - Symfony FrameworkBundle
+
+PHPUnit Tests
+----------------------------------------------------------------
+You can run the tests using the following command:
+
+    $ vendor/bin/phpunit
+
+Resources
+----------------------------------------------------------------
+Symfony 2
+> [http://symfony.com](http://symfony.com)
+
+Afterbuy XML Interface Documentation:
+> [http://xmldoku.afterbuy.de/dokued/](http://xmldoku.afterbuy.de/dokued/)
