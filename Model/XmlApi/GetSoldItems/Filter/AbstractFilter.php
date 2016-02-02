@@ -7,6 +7,8 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 
 /**
  * Class AbstractFilter
+ *
+ * @Serializer\AccessorOrder("custom", custom={"filterName", "filterValues"})
  */
 abstract class AbstractFilter extends AbstractModel
 {
@@ -17,6 +19,7 @@ abstract class AbstractFilter extends AbstractModel
      * @var array
      */
     protected $filterValues;
+
     /**
      * @Serializer\Type("string")
      * @Serializer\SerializedName("FilterName")
