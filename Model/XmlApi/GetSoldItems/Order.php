@@ -104,6 +104,13 @@ class Order extends AbstractOrder
     private $soldItems;
 
     /**
+     * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\VorgangsInfo")
+     * @Serializer\SerializedName("VorgangsInfo")
+     * @var VorgangsInfo
+     */
+    private $vorgangsInfo;
+
+    /**
      * @return string
      */
     public function getEbayAccount()
@@ -205,5 +212,13 @@ class Order extends AbstractOrder
     public function getSoldItems()
     {
         return $this->soldItems;
+    }
+
+    /**
+     * @return VorgangsInfo
+     */
+    public function getVorgangsInfo()
+    {
+        return $this->vorgangsInfo;
     }
 }
