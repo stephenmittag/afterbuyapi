@@ -32,4 +32,12 @@ abstract class AbstractFilter extends AbstractModel
     {
         $this->filterName = $filterName;
     }
+
+    /**
+     * @return string
+     */
+    public function getFilterName()
+    {
+        return $this->filterName;
+    }
 }
