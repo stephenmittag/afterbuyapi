@@ -3,42 +3,13 @@
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractVorgangsInfo;
 
 /**
  * Class VorgangsInfo
  */
-class VorgangsInfo extends AbstractModel
+class VorgangsInfo extends AbstractVorgangsInfo
 {
-    /**
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("VorgangsInfo1")
-     * @var string
-     */
-    private $vorgangsInfo1;
-
-    /**
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("VorgangsInfo2")
-     * @var string
-     */
-    private $vorgangsInfo2;
-
-    /**
-     * @Serializer\Type("string")
-     * @Serializer\SerializedName("VorgangsInfo3")
-     * @var string
-     */
-    private $vorgangsInfo3;
-
-    /**
-     * @return string
-     */
-    public function getVorgangsInfo1()
-    {
-        return $this->vorgangsInfo1;
-    }
-
     /**
      * @param string $vorgangsInfo1
      *
@@ -52,14 +23,6 @@ class VorgangsInfo extends AbstractModel
     }
 
     /**
-     * @return string
-     */
-    public function getVorgangsInfo2()
-    {
-        return $this->vorgangsInfo2;
-    }
-
-    /**
      * @param string $vorgangsInfo2
      *
      * @return $this
@@ -69,14 +32,6 @@ class VorgangsInfo extends AbstractModel
         $this->vorgangsInfo2 = $vorgangsInfo2;
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getVorgangsInfo3()
-    {
-        return $this->vorgangsInfo3;
     }
 
     /**

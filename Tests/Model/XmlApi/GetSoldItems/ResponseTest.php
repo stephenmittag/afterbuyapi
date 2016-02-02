@@ -128,6 +128,23 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
+     * test deserialization of a response on success, assert Order/VorgangsInfo
+     */
+    public function testDeserializationFromXmlOnSuccessVorgangsInfo()
+    {
+        $vorgangsInfoResponse = $this->deserializeResponse('ResponseOnSuccessVorgangsInfo.xml');
+        $vorgangsInfo = $vorgangsInfoResponse->getResult()->getOrders()[0]->getVorgangsInfo();
+
+        $this->assertObjectHasAttribute('vorgangsInfo1', $vorgangsInfo);
+        $this->assertObjectHasAttribute('vorgangsInfo2', $vorgangsInfo);
+        $this->assertObjectHasAttribute('vorgangsInfo3', $vorgangsInfo);
+
+        $this->assertEquals('1AP01244-00-23656-3223', $vorgangsInfo->getVorgangsInfo1());
+        $this->assertEquals('', $vorgangsInfo->getVorgangsInfo2());
+        $this->assertEquals('ID1020: M*1234567,*9876543#1234567890', $vorgangsInfo->getVorgangsInfo3());
+    }
+
+    /**
      * test deserialization of a response on success, assert Order/SoldItems
      */
     public function testDeserializationFromXmlOnSuccessSoldItems()
