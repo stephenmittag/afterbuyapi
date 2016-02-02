@@ -2,7 +2,6 @@
 
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems;
 
-use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractVorgangsInfo;
 
 /**
@@ -46,3 +45,4 @@ class VorgangsInfo extends AbstractVorgangsInfo
         return $this;
     }
 }
+
