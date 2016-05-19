@@ -15,6 +15,9 @@ class PaymentInfo extends AbstractPaymentInfo
      * @Serializer\Type("float")
      * @Serializer\SerializedName("PaymentAadditionalCost")
      * @var float
+     *
+     * Info: PaymentAadditionalCost is correct it is a bug in the afterbuy xml api
+     *
      */
     private $paymentAdditionalCost;
 
