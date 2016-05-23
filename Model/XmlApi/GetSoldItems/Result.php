@@ -11,8 +11,7 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\Result as BaseResult;
 class Result extends BaseResult
 {
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(setter="setHasMoreItemsFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("HasMoreItems")
      * @var bool
      */
@@ -46,14 +45,6 @@ class Result extends BaseResult
      * @var Order[]
      */
     private $orders;
-
-    /**
-     * @param int $value
-     */
-    public function setHasMoreItemsFromInteger($value)
-    {
-        $this->hasMoreItems = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @return bool

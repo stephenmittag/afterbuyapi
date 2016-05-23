@@ -3,17 +3,15 @@
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 use \DateTime;
 
 /**
  * Class SoldItem
  */
-class SoldItem extends AbstractModel
+class SoldItem
 {
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(setter="setItemDetailsDoneFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("ItemDetailsDone")
      * @var bool
      */
@@ -139,16 +137,14 @@ class SoldItem extends AbstractModel
     private $itemLink;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(setter="setEbayFeedbackCompletedFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("eBayFeedbackCompleted")
      * @var bool
      */
     private $ebayFeedbackCompleted;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(setter="setEbayFeedbackReceivedFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("eBayFeedbackReceived")
      * @var bool
      */
@@ -175,30 +171,6 @@ class SoldItem extends AbstractModel
      * @var SoldItemAttribute[]
      */
     private $soldItemAttributes;
-
-    /**
-     * @param int $value
-     */
-    public function setItemDetailsDoneFromInteger($value)
-    {
-        $this->itemDetailsDone = $this->setBooleanFromInteger($value);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setEbayFeedbackCompletedFromInteger($value)
-    {
-        $this->ebayFeedbackCompleted = $this->setBooleanFromInteger($value);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setEbayFeedbackReceivedFromInteger($value)
-    {
-        $this->ebayFeedbackReceived = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @return boolean

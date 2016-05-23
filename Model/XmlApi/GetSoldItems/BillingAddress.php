@@ -52,8 +52,7 @@ class BillingAddress extends ShippingAddress
     private $mail;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(setter="setMerchantFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("IsMerchant")
      * @var bool
      */
@@ -65,14 +64,6 @@ class BillingAddress extends ShippingAddress
      * @var string
      */
     private $taxIdNumber;
-
-    /**
-     * @param int $value
-     */
-    public function setMerchantFromInteger($value)
-    {
-        $this->merchant = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @return string

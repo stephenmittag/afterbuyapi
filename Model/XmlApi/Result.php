@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class Result
  */
-class Result extends AbstractModel
+class Result
 {
     /**
      * @Serializer\Type("array<Wk\AfterbuyApiBundle\Model\XmlApi\Error>")

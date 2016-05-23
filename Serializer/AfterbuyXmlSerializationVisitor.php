@@ -9,7 +9,7 @@ use JMS\Serializer\XmlSerializationVisitor;
 
 /**
  * Class AfterbuyXmlSerializationVisitor
- * 
+ *
  * @package Wk\AfterbuyApiBundle\Serializer
  */
 class AfterbuyXmlSerializationVisitor extends XmlSerializationVisitor
@@ -31,5 +31,16 @@ class AfterbuyXmlSerializationVisitor extends XmlSerializationVisitor
     public function visitDouble($data, array $type, Context $context)
     {
         return parent::visitString(str_replace('.', ',', (string)$data), $type, $context);
+    }
+
+    /**
+     * @param mixed   $data
+     * @param array   $type
+     * @param Context $context
+     * @return mixed|void
+     */
+    public function visitBoolean($data, array $type, Context $context)
+    {
+        return parent::visitString($data ? '1' : '0', $type, $context);
     }
 }

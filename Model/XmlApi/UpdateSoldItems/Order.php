@@ -47,8 +47,7 @@ class Order extends AbstractOrder
     private $orderMemo;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(getter="getOrderExportedAsInteger", setter="setOrderExportedFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("OrderExported")
      * @var bool
      */
@@ -62,8 +61,7 @@ class Order extends AbstractOrder
     private $invoiceDate;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(getter="getHideOrderAsInteger", setter="setHideOrderFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("HideOrder")
      * @var bool
      */
@@ -117,38 +115,6 @@ class Order extends AbstractOrder
      * @var VorgangsInfo
      */
     private $vorgangsInfo;
-
-    /**
-     * @return int
-     */
-    public function getOrderExportedAsInteger()
-    {
-        return $this->getBooleanAsInteger($this->orderExported);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setOrderExportedFromInteger($value)
-    {
-        $this->orderExported = $this->setBooleanFromInteger($value);
-    }
-
-    /**
-     * @return int
-     */
-    public function getHideOrderAsInteger()
-    {
-        return $this->getBooleanAsInteger($this->hideOrder);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setHideOrderFromInteger($value)
-    {
-        $this->hideOrder = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @param int $orderId

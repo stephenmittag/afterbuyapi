@@ -17,33 +17,15 @@ class PaymentInfo extends AbstractPaymentInfo
      * @var float
      *
      * Info: PaymentAadditionalCost is correct it is a bug in the afterbuy xml api
-     *
      */
     private $paymentAdditionalCost;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(getter="getSendPaymentMailAsInteger", setter="setSendPaymentMailFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("SendPaymentMail")
      * @var bool
      */
     private $sendPaymentMail;
-
-    /**
-     * @return int
-     */
-    public function getSendPaymentMailAsInteger()
-    {
-        return $this->getBooleanAsInteger($this->sendPaymentMail);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setSendPaymentMailFromInteger($value)
-    {
-        $this->sendPaymentMail = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @param string $paymentMethod

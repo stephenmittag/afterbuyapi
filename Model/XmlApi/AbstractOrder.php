@@ -8,7 +8,7 @@ use \DateTime;
 /**
  * Class AbstractOrder
  */
-abstract class AbstractOrder extends AbstractModel
+abstract class AbstractOrder
 {
     /**
      * @Serializer\Type("integer")

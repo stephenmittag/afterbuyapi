@@ -3,14 +3,13 @@
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 
 /**
  * Class AbstractFilter
  *
  * @Serializer\AccessorOrder("custom", custom={"filterName", "filterValues"})
  */
-abstract class AbstractFilter extends AbstractModel
+abstract class AbstractFilter
 {
     /**
      * @Serializer\Type("array<string,string>")
