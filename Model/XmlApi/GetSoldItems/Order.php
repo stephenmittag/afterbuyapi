@@ -101,7 +101,7 @@ class Order extends AbstractOrder
      * @Serializer\SerializedName("SoldItems")
      * @var SoldItem[]
      */
-    private $soldItems;
+    private $soldItems = [];
 
     /**
      * @Serializer\Type("Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\VorgangsInfo")

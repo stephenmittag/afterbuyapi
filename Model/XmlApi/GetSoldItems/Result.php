@@ -44,7 +44,7 @@ class Result extends BaseResult
      * @Serializer\XmlList(entry="Order")
      * @var Order[]
      */
-    private $orders;
+    private $orders = [];
 
     /**
      * @return bool

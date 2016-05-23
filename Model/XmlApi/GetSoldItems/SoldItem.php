@@ -170,7 +170,7 @@ class SoldItem
      * @Serializer\SerializedName("SoldItemAttributes")
      * @var SoldItemAttribute[]
      */
-    private $soldItemAttributes;
+    private $soldItemAttributes = [];
 
     /**
      * @return boolean

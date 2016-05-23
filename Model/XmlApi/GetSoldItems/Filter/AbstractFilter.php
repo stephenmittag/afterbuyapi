@@ -17,7 +17,7 @@ abstract class AbstractFilter
      * @Serializer\SerializedName("FilterValues")
      * @var array
      */
-    protected $filterValues;
+    protected $filterValues = [];
 
     /**
      * @Serializer\Type("string")

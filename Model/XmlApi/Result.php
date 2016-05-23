@@ -15,7 +15,7 @@ class Result
      * @Serializer\XmlList(entry="Error")
      * @var Error[]
      */
-    protected $errors;
+    protected $errors = [];
 
     /**
      * @return Error[]

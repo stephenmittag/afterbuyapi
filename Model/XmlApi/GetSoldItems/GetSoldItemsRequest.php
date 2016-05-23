@@ -43,7 +43,7 @@ class GetSoldItemsRequest extends AbstractRequest
      * @Serializer\SerializedName("DataFilter")
      * @var AbstractFilter[]
      */
-    private $filters;
+    private $filters = [];
 
     /**
      * @param AfterbuyGlobal $afterbuyGlobal
