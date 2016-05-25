@@ -22,8 +22,8 @@
                     <PaymentTransactionID><![CDATA[payment transaction id]]></PaymentTransactionID>
                     <PaymentStatus><![CDATA[payment status]]></PaymentStatus>
                     <PaymentDate>04.05.2006 03:04:05</PaymentDate>
-                    <AlreadyPaid>1.2</AlreadyPaid>
-                    <FullAmount>2.5</FullAmount>
+                    <AlreadyPaid>1,2</AlreadyPaid>
+                    <FullAmount>2,5</FullAmount>
                     <PaymentInstruction><![CDATA[payment instruction]]></PaymentInstruction>
                     <InvoiceDate>04.05.2006 04:05:06</InvoiceDate>
                     <EFTID><![CDATA[eftid]]></EFTID>
@@ -47,8 +47,8 @@
                     <PaymentStatus><![CDATA[payment status]]></PaymentStatus>
                     <PaymentDate>
                     </PaymentDate>
-                    <AlreadyPaid>1.2</AlreadyPaid>
-                    <FullAmount>2.5</FullAmount>
+                    <AlreadyPaid>1,2</AlreadyPaid>
+                    <FullAmount>2,5</FullAmount>
                     <PaymentInstruction><![CDATA[payment instruction]]></PaymentInstruction>
                     <InvoiceDate>04.05.2006</InvoiceDate>
                     <EFTID><![CDATA[eftid]]></EFTID>

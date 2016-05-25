@@ -9,6 +9,7 @@ use JMS\Serializer\Handler\ArrayCollectionHandler;
 use JMS\Serializer\Handler\HandlerRegistry;
 use JMS\Serializer\Handler\PhpCollectionHandler;
 use JMS\Serializer\Handler\PropelCollectionHandler;
+use JMS\Serializer\Serializer;
 use JMS\Serializer\SerializerBuilder;
 use JMS\Serializer\SerializerInterface;
 use Psr\Log\LoggerAwareInterface;
@@ -23,6 +24,8 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Serializer\AfterbuyXmlDeserializationVisitor;
+use Wk\AfterbuyApiBundle\Serializer\AfterbuyXmlSerializationVisitor;
 use Wk\AfterbuyApiBundle\Serializer\DateHandler;
 
 /**
@@ -34,10 +37,12 @@ class Client implements LoggerAwareInterface
      * @var LoggerInterface
      */
     protected $logger;
+
     /**
      * @var ClientInterface
      */
     private $client;
+
     /**
      * @var SerializerInterface
      */
@@ -61,7 +66,19 @@ class Client implements LoggerAwareInterface
 
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
         $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.afterbuy.de/afterbuy/ABInterface.aspx']);
-        $this->serializer = SerializerBuilder::create()->configureHandlers(self::getHandlerConfiguration())->build();
+        $this->serializer = Client::getDefaultSerializer();
+    }
+
+    /**
+     * @return Serializer
+     */
+    public static function getDefaultSerializer()
+    {
+        return SerializerBuilder::create()
+            ->setSerializationVisitor('xml', new AfterbuyXmlSerializationVisitor())
+            ->setDeserializationVisitor('xml', new AfterbuyXmlDeserializationVisitor())
+            ->configureHandlers(self::getHandlerConfiguration())
+            ->build();
     }
 
     /**

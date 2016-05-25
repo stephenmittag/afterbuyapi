@@ -3,12 +3,11 @@
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems;
 
 use JMS\Serializer\Annotation as Serializer;
-use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractModel;
 
 /**
  * Class ShopProductDetails
  */
-class ShopProductDetails extends AbstractModel
+class ShopProductDetails
 {
     /**
      * @Serializer\Type("integer")

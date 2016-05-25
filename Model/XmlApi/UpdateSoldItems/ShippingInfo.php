@@ -26,28 +26,11 @@ class ShippingInfo extends AbstractShippingInfo
     private $eBayShippingCost;
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(getter="getSendShippingMailAsInteger", setter="setSendShippingMailFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("SendShippingMail")
      * @var bool
      */
     private $sendShippingMail;
-
-    /**
-     * @return int
-     */
-    public function getSendShippingMailAsInteger()
-    {
-        return $this->getBooleanAsInteger($this->sendShippingMail);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setSendShippingMailFromInteger($value)
-    {
-        $this->sendShippingMail = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @param string $shippingMethod

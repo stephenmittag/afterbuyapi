@@ -2,20 +2,19 @@
 
 namespace Wk\AfterbuyApiBundle\Tests\Model\XmlApi\GetSoldItems;
 
+use DateTime;
 use JMS\Serializer\Serializer;
-use JMS\Serializer\SerializerBuilder;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\DateFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\DefaultFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\OrderIdFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\PlatformFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\RangeIdFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\ShopIdFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\UserDefinedFlagFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\UserEmailFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\UserIdFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
-use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\OrderIdFilter;
-use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\PlatformFilter;
-use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\RangeIdFilter;
-use \DateTime;
 use Wk\AfterbuyApiBundle\Services\Xml\Client;
 
 /**
@@ -33,7 +32,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
+        $this->serializer = Client::getDefaultSerializer();
     }
 
     /**

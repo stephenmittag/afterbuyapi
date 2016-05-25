@@ -21,7 +21,7 @@ class UpdateSoldItemsRequest extends AbstractRequest
      * @Serializer\SerializedName("Orders")
      * @var Order[]
      */
-    private $orders;
+    private $orders = [];
 
     /**
      * @param AfterbuyGlobal $afterbuyGlobal
