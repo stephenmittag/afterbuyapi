@@ -28,7 +28,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function setUp()
     {
-        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
+        $this->serializer = Client::getDefaultSerializer();
         $this->timezone = new \DateTimeZone('UTC');
     }
 

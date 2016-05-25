@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class Error
  */
-class Error extends AbstractModel
+class Error
 {
     /**
      * @Serializer\Type("integer")

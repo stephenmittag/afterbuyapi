@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class AbstractVorgangsInfo
  */
-abstract class AbstractVorgangsInfo extends AbstractModel
+abstract class AbstractVorgangsInfo
 {
     /**
      * @Serializer\Type("string")

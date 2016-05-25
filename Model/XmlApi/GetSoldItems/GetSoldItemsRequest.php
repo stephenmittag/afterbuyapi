@@ -17,8 +17,7 @@ class GetSoldItemsRequest extends AbstractRequest
     const CALL_NAME = 'GetSoldItems';
 
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(getter="getRequestAllItemsAsInteger", setter="setRequestAllItemsFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("RequestAllItems")
      * @var bool
      */
@@ -44,7 +43,7 @@ class GetSoldItemsRequest extends AbstractRequest
      * @Serializer\SerializedName("DataFilter")
      * @var AbstractFilter[]
      */
-    private $filters;
+    private $filters = [];
 
     /**
      * @param AfterbuyGlobal $afterbuyGlobal
@@ -54,22 +53,6 @@ class GetSoldItemsRequest extends AbstractRequest
         parent::__construct($afterbuyGlobal);
 
         $this->setCallName(self::CALL_NAME);
-    }
-
-    /**
-     * @return int
-     */
-    public function getRequestAllItemsAsInteger()
-    {
-        return $this->getBooleanAsInteger($this->requestAllItems);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setRequestAllItemsFromInteger($value)
-    {
-        $this->requestAllItems = $this->setBooleanFromInteger($value);
     }
 
     /**

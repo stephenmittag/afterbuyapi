@@ -23,7 +23,7 @@ class ResponseTest extends WebTestCase
      */
     public function setUp()
     {
-        $this->serializer = SerializerBuilder::create()->configureHandlers(Client::getHandlerConfiguration())->build();
+        $this->serializer = Client::getDefaultSerializer();
     }
 
     /**

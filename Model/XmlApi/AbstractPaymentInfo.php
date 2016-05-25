@@ -8,7 +8,7 @@ use \DateTime;
 /**
  * Class AbstractPaymentInfo
  */
-abstract class AbstractPaymentInfo extends AbstractModel
+abstract class AbstractPaymentInfo
 {
     /**
      * @Serializer\Type("string")

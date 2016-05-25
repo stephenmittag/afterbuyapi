@@ -11,28 +11,11 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractAddress;
 class ShippingAddress extends AbstractAddress
 {
     /**
-     * @Serializer\Type("integer")
-     * @Serializer\Accessor(getter="getUseShippingAddressAsInteger", setter="setUseShippingAddressFromInteger")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("UseShippingAddress")
      * @var bool
      */
     private $useShippingAddress;
-
-    /**
-     * @return int
-     */
-    public function getUseShippingAddressAsInteger()
-    {
-        return $this->getBooleanAsInteger($this->useShippingAddress);
-    }
-
-    /**
-     * @param int $value
-     */
-    public function setUseShippingAddressFromInteger($value)
-    {
-        $this->useShippingAddress = $this->setBooleanFromInteger($value);
-    }
 
     /**
      * @return bool

@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class AbstractAddress
  */
-abstract class AbstractAddress extends AbstractModel
+abstract class AbstractAddress
 {
     /**
      * @Serializer\Type("string")

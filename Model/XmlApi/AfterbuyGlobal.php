@@ -7,7 +7,7 @@ use JMS\Serializer\Annotation as Serializer;
 /**
  * Class AfterbuyGlobal
  */
-class AfterbuyGlobal extends AbstractModel
+class AfterbuyGlobal
 {
     /**
      * display process data only
