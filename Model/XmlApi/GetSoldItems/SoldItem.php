@@ -175,7 +175,7 @@ class SoldItem
     /**
      * @return int
      */
-    public function isItemDetailsDone()
+    public function getItemDetailsDone()
     {
         return $this->itemDetailsDone;
     }
