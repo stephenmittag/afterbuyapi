@@ -158,7 +158,7 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
 
         $soldItem = $soldItems[1];
 
-        $this->assertTrue($soldItem->isItemDetailsDone());
+        $this->assertEquals(1, $soldItem->isItemDetailsDone());
         $this->assertEquals(123, $soldItem->getItemId());
         $this->assertEquals(1.3, $soldItem->getAnr());
         $this->assertEquals(345, $soldItem->getEbayTransactionId());

@@ -11,9 +11,9 @@ use \DateTime;
 class SoldItem
 {
     /**
-     * @Serializer\Type("boolean")
+     * @Serializer\Type("integer")
      * @Serializer\SerializedName("ItemDetailsDone")
-     * @var bool
+     * @var int
      */
     private $itemDetailsDone;
 
@@ -173,7 +173,7 @@ class SoldItem
     private $soldItemAttributes = [];
 
     /**
-     * @return boolean
+     * @return int
      */
     public function isItemDetailsDone()
     {
