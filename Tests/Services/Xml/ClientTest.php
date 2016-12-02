@@ -2,7 +2,6 @@
 
 namespace Wk\AfterbuyApiBundle\Tests\Services\Xml;
 
-use GuzzleHttp\Psr7\Stream;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterbuyApiBundle\Model\XmlApi\Error;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BillingAddress;
