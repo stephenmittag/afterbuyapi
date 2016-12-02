@@ -171,11 +171,11 @@ class Client implements LoggerAwareInterface
     private function serializeAndSubmitRequest(AbstractRequest $request, $type)
     {
         $xml = $this->serializer->serialize($request, 'xml');
-        $options = ['body' => $xml, '_conditional' => ['Content-Type' => 'text/xml']];
+        $options = ['body' => $xml, 'headers' => ['Content-Type' => 'text/xml']];
         $this->log(LogLevel::DEBUG, 'Posted to Afterbuy with the following options: ', $options);
 
         try {
-            $response = $this->client->request('POST', null, $options);
+            $response = $this->client->post(null, $options);
             $this->log(LogLevel::DEBUG, sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (BadResponseException $exception) {
             $this->log(LogLevel::ERROR, $exception->getMessage());

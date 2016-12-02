@@ -2,9 +2,7 @@
 
 namespace Wk\AfterbuyApiBundle\Tests\Services\Xml;
 
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Psr7\Response;
+use GuzzleHttp\Psr7\Stream;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Wk\AfterbuyApiBundle\Model\XmlApi\Error;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\BillingAddress;
@@ -213,15 +211,10 @@ class ClientTest extends WebTestCase
      */
     private function setMockHandlerForUnavailabilityTest($statusCode)
     {
-        $mock = new MockHandler([
-            new Response($statusCode)
-        ]);
-
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $mock = $this->createMockClient($statusCode);
         $clientReflection = new \ReflectionProperty(Client::class, 'client');
         $clientReflection->setAccessible(true);
-        $clientReflection->setValue($this->client, $guzzle);
+        $clientReflection->setValue($this->client, $mock);
     }
 
     /**
@@ -231,13 +224,10 @@ class ClientTest extends WebTestCase
     {
         $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
         $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
-        $response = new Response(200, $headers, $xml);
-        $mock = new MockHandler([$response]);
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $mock = $this->createMockClient(200, $headers, $xml);
         $clientReflection = new \ReflectionProperty(Client::class, 'client');
         $clientReflection->setAccessible(true);
-        $clientReflection->setValue($this->client, $guzzle);
+        $clientReflection->setValue($this->client, $mock);
     }
 
     /**
@@ -247,12 +237,36 @@ class ClientTest extends WebTestCase
     {
         $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
         $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
-        $response = new Response(200, $headers, $xml);
-        $mock = new MockHandler([$response]);
-        $handler = HandlerStack::create($mock);
-        $guzzle = new \GuzzleHttp\Client(['handler' => $handler]);
+        $mock = $this->createMockClient(200, $headers, $xml);
         $clientReflection = new \ReflectionProperty(Client::class, 'client');
         $clientReflection->setAccessible(true);
-        $clientReflection->setValue($this->client, $guzzle);
+        $clientReflection->setValue($this->client, $mock);
+    }
+
+    /**
+     * @param int   $statusCode
+     * @param array $headers
+     * @param null  $body
+     *
+     * @return \GuzzleHttp\Client
+     */
+    private function createMockClient($statusCode = 200, array $headers = array(), $body = null)
+    {
+        if (version_compare(\GuzzleHttp\Client::VERSION, '6.0.0', '<')) {
+            // Guzzle 5
+            $stream = \GuzzleHttp\Stream\Stream::factory($body);
+            $response = new \GuzzleHttp\Message\Response($statusCode, $headers, $stream);
+            $mock = new \GuzzleHttp\Subscriber\Mock([$response]);
+            $client = new \GuzzleHttp\Client();
+            $client->getEmitter()->attach($mock);
+        } else {
+            // Guzzle 6
+            $response = new \GuzzleHttp\Psr7\Response($statusCode, $headers, $body);
+            $mock = new \GuzzleHttp\Handler\MockHandler([$response]);
+            $handler = \GuzzleHttp\HandlerStack::create($mock);
+            $client = new \GuzzleHttp\Client(['handler' => $handler]);
+        }
+
+        return $client;
     }
 }
