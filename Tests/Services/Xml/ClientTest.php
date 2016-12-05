@@ -57,7 +57,7 @@ class ClientTest extends WebTestCase
      */
     public function testGetSoldItemsUnavailability($statusCode)
     {
-        $this->setMockHandlerForUnavailabilityTest($statusCode);
+        $this->setMockForUnavailabilityTest($statusCode);
 
         $this->assertNull($this->client->getSoldItems());
     }
@@ -67,7 +67,7 @@ class ClientTest extends WebTestCase
      */
     public function testGetSoldItemsError()
     {
-        $this->setMockHandlerForErrorTest('GetSoldItems/ResponseOnError.xml');
+        $this->setMockForErrorTest('GetSoldItems/ResponseOnError.xml');
 
         $soldItems = $this->client->getSoldItems();
         $this->assertInstanceOf(GetSoldItemsResponse::class, $soldItems);
@@ -92,7 +92,7 @@ class ClientTest extends WebTestCase
      */
     public function testGetSoldItemsSuccess()
     {
-        $this->setMockHandlerForSuccessTest('GetSoldItems/ResponseOnSuccessBuyerInfo.xml');
+        $this->setMockForSuccessTest('GetSoldItems/ResponseOnSuccessBuyerInfo.xml');
 
         $soldItems = $this->client->getSoldItems();
         $this->assertInstanceOf(GetSoldItemsResponse::class, $soldItems);
@@ -161,7 +161,7 @@ class ClientTest extends WebTestCase
      */
     public function testUpdateSoldItemsUnavailability($statusCode)
     {
-        $this->setMockHandlerForUnavailabilityTest($statusCode);
+        $this->setMockForUnavailabilityTest($statusCode);
 
         $this->assertNull($this->client->updateSoldItems([new UpdateSoldItemsOrder()]));
     }
@@ -171,7 +171,7 @@ class ClientTest extends WebTestCase
      */
     public function testUpdateSoldItemsError()
     {
-        $this->setMockHandlerForErrorTest('UpdateSoldItems/ResponseOnError.xml');
+        $this->setMockForErrorTest('UpdateSoldItems/ResponseOnError.xml');
 
         $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
         $this->assertInstanceOf(UpdateSoldItemsResponse::class, $soldItems);
@@ -195,7 +195,7 @@ class ClientTest extends WebTestCase
      */
     public function testUpdateSoldItemsSuccess()
     {
-        $this->setMockHandlerForSuccessTest('UpdateSoldItems/ResponseOnSuccess.xml');
+        $this->setMockForSuccessTest('UpdateSoldItems/ResponseOnSuccess.xml');
 
         $soldItems = $this->client->updateSoldItems([new UpdateSoldItemsOrder()]);
         $this->assertInstanceOf(UpdateSoldItemsResponse::class, $soldItems);
@@ -208,7 +208,7 @@ class ClientTest extends WebTestCase
     /**
      * @param int $statusCode
      */
-    private function setMockHandlerForUnavailabilityTest($statusCode)
+    private function setMockForUnavailabilityTest($statusCode)
     {
         $mock = $this->createMockClient($statusCode);
         $clientReflection = new \ReflectionProperty(Client::class, 'client');
@@ -219,7 +219,7 @@ class ClientTest extends WebTestCase
     /**
      * @param string $pathToXmlFile
      */
-    private function setMockHandlerForErrorTest($pathToXmlFile)
+    private function setMockForErrorTest($pathToXmlFile)
     {
         $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
         $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
@@ -232,7 +232,7 @@ class ClientTest extends WebTestCase
     /**
      * @param string $pathToXmlFile
      */
-    private function setMockHandlerForSuccessTest($pathToXmlFile)
+    private function setMockForSuccessTest($pathToXmlFile)
     {
         $xml = file_get_contents(__DIR__ . '/../../Data/' . $pathToXmlFile);
         $headers = ['Content-Type:' => 'text/xml', 'Content-Length' => strlen($xml)];
@@ -258,14 +258,15 @@ class ClientTest extends WebTestCase
             $mock = new \GuzzleHttp\Subscriber\Mock([$response]);
             $client = new \GuzzleHttp\Client();
             $client->getEmitter()->attach($mock);
-        } else {
-            // Guzzle 6
-            $response = new \GuzzleHttp\Psr7\Response($statusCode, $headers, $body);
-            $mock = new \GuzzleHttp\Handler\MockHandler([$response]);
-            $handler = \GuzzleHttp\HandlerStack::create($mock);
-            $client = new \GuzzleHttp\Client(['handler' => $handler]);
+
+            return $client;
         }
 
-        return $client;
+        // Guzzle 6
+        $response = new \GuzzleHttp\Psr7\Response($statusCode, $headers, $body);
+        $mock = new \GuzzleHttp\Handler\MockHandler([$response]);
+        $handler = \GuzzleHttp\HandlerStack::create($mock);
+
+        return new \GuzzleHttp\Client(['handler' => $handler]);
     }
 }
