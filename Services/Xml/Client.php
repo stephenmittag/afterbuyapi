@@ -64,8 +64,15 @@ class Client implements LoggerAwareInterface
     {
         AnnotationRegistry::registerLoader('class_exists');
 
+        $baseUri = 'https://api.afterbuy.de/afterbuy/ABInterface.aspx';
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
-        $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.afterbuy.de/afterbuy/ABInterface.aspx']);
+        if (version_compare(\GuzzleHttp\Client::VERSION, '6.0.0', '<')) {
+            $clientOptions = ['base_url' => $baseUri];
+        } else {
+            $clientOptions = ['base_uri' => $baseUri];
+        }
+        $this->client = new \GuzzleHttp\Client($clientOptions);
+
         $this->serializer = Client::getDefaultSerializer();
     }
 
