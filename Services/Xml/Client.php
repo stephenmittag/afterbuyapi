@@ -18,13 +18,14 @@ use Psr\Log\LogLevel;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
-use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetShopProducts\GetShopProductsRequest;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractFilter;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
-use Wk\AfterbuyApiBundle\Model\XmlApi\GetShop;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetShopProducts\GetShopProductsResponse;
 
 use Wk\AfterbuyApiBundle\Serializer\AfterbuyXmlDeserializationVisitor;
 use Wk\AfterbuyApiBundle\Serializer\AfterbuyXmlSerializationVisitor;
@@ -143,15 +144,15 @@ class Client implements LoggerAwareInterface
      *
      * @return GetSoldItemsResponse|null
      */
-    public function getShopProducts(array $filters = [], $orderDirection = false, $maxSoldItems = 250, $detailLevel = AfterbuyGlobal::DETAIL_LEVEL_PROCESS_DATA)
+    public function getShopProducts(array $filters = [], $maxShopItems = 250, $paginationEnabled = true, $suppressBaseProductRelatedData = 0)
     {
-        $request = (new GetShop($this->afterbuyGlobal))
+        $request = (new GetShopProductsRequest($this->afterbuyGlobal))
             ->setFilters($filters)
-            ->setDetailLevel($detailLevel)
-            ->setMaxSoldItems($maxSoldItems)
-            ->setOrderDirection(intval($orderDirection));
+            ->setMaxShopItems($maxShopItems)
+            ->setPaginationEnabled($paginationEnabled)
+            ->setSuppressBaseProductRelatedData(intval($suppressBaseProductRelatedData));
 
-        return $this->serializeAndSubmitRequest($request, GetSoldItemsResponse::class);
+        return $this->serializeAndSubmitRequest($request, GetShopProductsResponse::class);
     }
 
 
@@ -214,6 +215,7 @@ class Client implements LoggerAwareInterface
         try {
             $object = $this->serializer->deserialize($response->getBody(), $type, 'xml');
         } catch (\Exception $exception) {
+            var_dump($exception->getMessage());
             $this->log(LogLevel::ERROR, $exception->getMessage());
 
             return null;

@@ -5,10 +5,10 @@ namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetShopProducts;
 use JMS\Serializer\Annotation as Serializer;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\AfterbuyGlobal;
-use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter\AbstractFilter;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractFilter;
 
 /**
- * Class GetSoldItemsRequest
+ * Class GetShopProducts
  *
  * @Serializer\XmlRoot("Request")
  */
@@ -24,7 +24,7 @@ class GetShopProductsRequest extends AbstractRequest
     private $maxShopItems;
 
     /**
-     * @Serializer\Type("booelan")
+     * @Serializer\Type("boolean")
      * @Serializer\SerializedName("PaginationEnabled")
      * @var int
      */
@@ -51,87 +51,57 @@ class GetShopProductsRequest extends AbstractRequest
     public function __construct(AfterbuyGlobal $afterbuyGlobal)
     {
         parent::__construct($afterbuyGlobal);
-
         $this->setCallName(self::CALL_NAME);
     }
 
     /**
      * @return bool
      */
-    public function getRequestAllItems()
+    public function isMaxShopItems()
     {
-        return $this->requestAllItems;
+        return $this->maxShopItems;
     }
 
     /**
-     * @param bool $requestAllItems
-     *
-     * @return $this
+     * @param bool $maxShopItems
      */
-    public function setRequestAllItems($requestAllItems)
+    public function setMaxShopItems($maxShopItems)
     {
-        $this->requestAllItems = $requestAllItems;
-
+        $this->maxShopItems = $maxShopItems;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getMaxSoldItems()
+    public function getPaginationEnabled()
     {
-        return $this->maxSoldItems;
+        return $this->paginationEnabled;
     }
 
     /**
-     * @param int $maxSoldItems
-     *
-     * @return $this
+     * @param int $paginationEnabled
      */
-    public function setMaxSoldItems($maxSoldItems)
+    public function setPaginationEnabled($paginationEnabled)
     {
-        $this->maxSoldItems = $maxSoldItems;
-
+        $this->paginationEnabled = $paginationEnabled;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getOrderDirection()
+    public function getSuppressBaseProductRelatedData()
     {
-        return $this->orderDirection;
+        return $this->suppressBaseProductRelatedData;
     }
 
     /**
-     * @param int $orderDirection
-     *
-     * @return $this
+     * @param int $suppressBaseProductRelatedData
      */
-    public function setOrderDirection($orderDirection)
+    public function setSuppressBaseProductRelatedData($suppressBaseProductRelatedData)
     {
-        $this->orderDirection = $orderDirection;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setOrderDirectionAscending()
-    {
-        $this->orderDirection = 0;
-
-        return $this;
-    }
-
-    /**
-     * @return $this
-     */
-    public function setOrderDirectionDescending()
-    {
-        $this->orderDirection = 1;
-
+        $this->suppressBaseProductRelatedData = $suppressBaseProductRelatedData;
         return $this;
     }
 
