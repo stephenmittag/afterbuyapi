@@ -2,6 +2,8 @@
 
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter;
 
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractFilter;
+
 /**
  * Class ShopIdFilter
  */

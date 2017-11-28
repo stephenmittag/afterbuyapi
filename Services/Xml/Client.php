@@ -24,6 +24,8 @@ use Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\GetSoldItemsResponse;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsRequest;
 use Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\UpdateSoldItemsResponse;
+use Wk\AfterbuyApiBundle\Model\XmlApi\GetShop;
+
 use Wk\AfterbuyApiBundle\Serializer\AfterbuyXmlDeserializationVisitor;
 use Wk\AfterbuyApiBundle\Serializer\AfterbuyXmlSerializationVisitor;
 use Wk\AfterbuyApiBundle\Serializer\DateHandler;
@@ -64,15 +66,8 @@ class Client implements LoggerAwareInterface
     {
         AnnotationRegistry::registerLoader('class_exists');
 
-        $baseUri = 'https://api.afterbuy.de/afterbuy/ABInterface.aspx';
         $this->afterbuyGlobal = new AfterbuyGlobal($userId, $userPassword, $partnerId, $partnerPassword, $errorLanguage);
-        if (version_compare(\GuzzleHttp\Client::VERSION, '6.0.0', '<')) {
-            $clientOptions = ['base_url' => $baseUri];
-        } else {
-            $clientOptions = ['base_uri' => $baseUri];
-        }
-        $this->client = new \GuzzleHttp\Client($clientOptions);
-
+        $this->client = new \GuzzleHttp\Client(['base_uri' => 'https://api.afterbuy.de/afterbuy/ABInterface.aspx']);
         $this->serializer = Client::getDefaultSerializer();
     }
 
@@ -141,6 +136,26 @@ class Client implements LoggerAwareInterface
     }
 
     /**
+     * @param AbstractFilter[] $filters
+     * @param bool             $orderDirection
+     * @param int              $maxSoldItems
+     * @param int              $detailLevel
+     *
+     * @return GetSoldItemsResponse|null
+     */
+    public function getShopProducts(array $filters = [], $orderDirection = false, $maxSoldItems = 250, $detailLevel = AfterbuyGlobal::DETAIL_LEVEL_PROCESS_DATA)
+    {
+        $request = (new GetShop($this->afterbuyGlobal))
+            ->setFilters($filters)
+            ->setDetailLevel($detailLevel)
+            ->setMaxSoldItems($maxSoldItems)
+            ->setOrderDirection(intval($orderDirection));
+
+        return $this->serializeAndSubmitRequest($request, GetSoldItemsResponse::class);
+    }
+
+
+    /**
      * @param Order[] $orders
      * @param int     $detailLevel
      *
@@ -178,11 +193,11 @@ class Client implements LoggerAwareInterface
     private function serializeAndSubmitRequest(AbstractRequest $request, $type)
     {
         $xml = $this->serializer->serialize($request, 'xml');
-        $options = ['body' => $xml, 'headers' => ['Content-Type' => 'text/xml']];
+        $options = ['body' => $xml, '_conditional' => ['Content-Type' => 'text/xml']];
         $this->log(LogLevel::DEBUG, 'Posted to Afterbuy with the following options: ', $options);
 
         try {
-            $response = $this->client->post(null, $options);
+            $response = $this->client->request('POST', null, $options);
             $this->log(LogLevel::DEBUG, sprintf('Afterbuy response: %s', $response->getBody()));
         } catch (BadResponseException $exception) {
             $this->log(LogLevel::ERROR, $exception->getMessage());

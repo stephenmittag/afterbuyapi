@@ -3,6 +3,7 @@
 namespace Wk\AfterbuyApiBundle\Model\XmlApi\GetSoldItems\Filter;
 
 use \DateTime;
+use Wk\AfterbuyApiBundle\Model\XmlApi\AbstractFilter;
 
 /**
  * Class DateFilter
