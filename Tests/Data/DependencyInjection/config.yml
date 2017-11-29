@@ -1,8 +1,0 @@
-wk_afterbuy_api:
-    error_language: "de"
-    partner:
-        id: 123456789
-        password: "strong-password"
-    user:
-        id: "user"
-        password: "strong-password"
