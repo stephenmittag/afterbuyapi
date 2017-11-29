@@ -13,7 +13,7 @@ class Catalog
     /**
      * @Serializer\Type("integer")
      * @Serializer\SerializedName("CatalogID")
-     * @var string
+     * @var integer
      */
     private $catalogId;
 

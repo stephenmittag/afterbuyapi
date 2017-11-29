@@ -144,7 +144,7 @@ class Client implements LoggerAwareInterface
      *
      * @return GetSoldItemsResponse|null
      */
-    public function getShopProducts(array $filters = [], $maxShopItems = 250, $paginationEnabled = true, $suppressBaseProductRelatedData = 0)
+    public function getShopProducts(array $filters = [], $maxShopItems = 250, $paginationEnabled = true, $suppressBaseProductRelatedData = 1)
     {
         $request = (new GetShopProductsRequest($this->afterbuyGlobal))
             ->setFilters($filters)
