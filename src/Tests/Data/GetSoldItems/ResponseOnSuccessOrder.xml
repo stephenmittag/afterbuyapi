@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Afterbuy>
+    <CallStatus>Success</CallStatus>
+    <CallName>GetSoldItems</CallName>
+    <VersionID>8</VersionID>
+    <Result>
+        <HasMoreItems>1</HasMoreItems>
+        <OrdersCount>10</OrdersCount>
+        <LastOrderID>123</LastOrderID>
+        <ItemsCount>20</ItemsCount>
+        <Orders>
+            <Order>
+                <InvoiceNumber>1234</InvoiceNumber>
+                <OrderID>12</OrderID>
+                <EbayAccount>ebay account</EbayAccount>
+                <AmazonAccount>amazon account</AmazonAccount>
+                <Anr>111</Anr>
+                <AlternativeItemNumber1>abc</AlternativeItemNumber1>
+                <FeedbackDate>01.02.2003 01:02:03</FeedbackDate>
+                <UserComment><![CDATA[user comment]]></UserComment>
+                <AdditionalInfo><![CDATA[additional info]]></AdditionalInfo>
+                <TrackingLink><![CDATA[tracking link]]></TrackingLink>
+                <Memo><![CDATA[memo]]></Memo>
+                <InvoiceMemo><![CDATA[invoice memo]]></InvoiceMemo>
+                <FeedbackLink>feedback link</FeedbackLink>
+                <OrderDate>02.03.2004 02:03:04</OrderDate>
+                <OrderIDAlt>order id alt</OrderIDAlt>
+            </Order>
+        </Orders>
+    </Result>
+</Afterbuy>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Afterbuy>
+    <CallStatus>Success</CallStatus>
+    <CallName>GetSoldItems</CallName>
+    <VersionID>8</VersionID>
+    <Result>
+        <Orders>
+            <Order>
+                <PaymentInfo>
+                    <PaymentID>payment id</PaymentID>
+                    <PaymentMethod><![CDATA[payment method]]></PaymentMethod>
+                    <PaymentFunction><![CDATA[payment function]]></PaymentFunction>
+                    <PaymentData>
+                        <BankCode><![CDATA[bank code]]></BankCode>
+                        <AccountHolder><![CDATA[account holder]]></AccountHolder>
+                        <BankName><![CDATA[bank name]]></BankName>
+                        <AccountNumber><![CDATA[account number]]></AccountNumber>
+                        <Iban><![CDATA[iban]]></Iban>
+                        <Bic><![CDATA[bic]]></Bic>
+                        <ReferenceNumber>reference number</ReferenceNumber>
+                    </PaymentData>
+                    <PaymentTransactionID><![CDATA[payment transaction id]]></PaymentTransactionID>
+                    <PaymentStatus><![CDATA[payment status]]></PaymentStatus>
+                    <PaymentDate>04.05.2006 03:04:05</PaymentDate>
+                    <AlreadyPaid>1,2</AlreadyPaid>
+                    <FullAmount>2,5</FullAmount>
+                    <PaymentInstruction><![CDATA[payment instruction]]></PaymentInstruction>
+                    <InvoiceDate>04.05.2006 04:05:06</InvoiceDate>
+                    <EFTID><![CDATA[eftid]]></EFTID>
+                </PaymentInfo>
+            </Order>
+            <Order>
+                <PaymentInfo>
+                    <PaymentID>payment id</PaymentID>
+                    <PaymentMethod><![CDATA[payment method]]></PaymentMethod>
+                    <PaymentFunction><![CDATA[payment function]]></PaymentFunction>
+                    <PaymentData>
+                        <BankCode><![CDATA[bank code]]></BankCode>
+                        <AccountHolder><![CDATA[account holder]]></AccountHolder>
+                        <BankName><![CDATA[bank name]]></BankName>
+                        <AccountNumber><![CDATA[account number]]></AccountNumber>
+                        <Iban><![CDATA[iban]]></Iban>
+                        <Bic><![CDATA[bic]]></Bic>
+                        <ReferenceNumber>reference number</ReferenceNumber>
+                    </PaymentData>
+                    <PaymentTransactionID><![CDATA[payment transaction id]]></PaymentTransactionID>
+                    <PaymentStatus><![CDATA[payment status]]></PaymentStatus>
+                    <PaymentDate>
+                    </PaymentDate>
+                    <AlreadyPaid>1,2</AlreadyPaid>
+                    <FullAmount>2,5</FullAmount>
+                    <PaymentInstruction><![CDATA[payment instruction]]></PaymentInstruction>
+                    <InvoiceDate>04.05.2006</InvoiceDate>
+                    <EFTID><![CDATA[eftid]]></EFTID>
+                </PaymentInfo>
+            </Order>
+        </Orders>
+    </Result>
+</Afterbuy>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Request>
+    <AfterbuyGlobal>
+        <PartnerID>12</PartnerID>
+        <PartnerPassword>partner password</PartnerPassword>
+        <UserID>user id</UserID>
+        <UserPassword>user password</UserPassword>
+        <CallName>GetSoldItems</CallName>
+        <DetailLevel>0</DetailLevel>
+        <ErrorLanguage>de</ErrorLanguage>
+    </AfterbuyGlobal>
+    <RequestAllItems>1</RequestAllItems>
+    <MaxSoldItems>10</MaxSoldItems>
+    <OrderDirection>0</OrderDirection>
+    <DataFilter>
+        <Filter>
+            <FilterName>OrderID</FilterName>
+            <FilterValues>
+                <FilterValue>123</FilterValue>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>RangeID</FilterName>
+            <FilterValues>
+                <ValueFrom>2</ValueFrom>
+                <ValueTo>4</ValueTo>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>RangeID</FilterName>
+            <FilterValues>
+                <ValueFrom>6</ValueFrom>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>DateFilter</FilterName>
+            <FilterValues>
+                <FilterValue>AuctionEndDate</FilterValue>
+                <DateFrom>01.02.2003 01:02:03</DateFrom>
+                <DateTo>02.03.2004 02:03:04</DateTo>
+            </FilterValues>
+        </Filter>
+        <Filter>
+            <FilterName>DateFilter</FilterName>
+            <FilterValues>
+                <FilterValue>FeedbackDate</FilterValue>
+                <DateFrom>03.04.2005 03:04:05</DateFrom>
+            </FilterValues>
+        </Filter>
+    </DataFilter>
+</Request>

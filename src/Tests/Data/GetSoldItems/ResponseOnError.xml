@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Afterbuy>
+    <CallStatus>Error</CallStatus>
+    <CallName>GetSoldItems</CallName>
+    <VersionID>8</VersionID>
+    <Result>
+        <ErrorList>
+            <Error>
+                <ErrorCode>11</ErrorCode>
+                <ErrorDescription><![CDATA[something failed]]></ErrorDescription>
+                <ErrorLongDescription><![CDATA[something really failed]]></ErrorLongDescription>
+            </Error>
+        </ErrorList>
+    </Result>
+</Afterbuy>

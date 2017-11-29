@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Afterbuy>
+    <CallStatus>Success</CallStatus>
+    <CallName>GetSoldItems</CallName>
+    <VersionID>8</VersionID>
+    <Result>
+        <Orders>
+            <Order>
+                <VorgangsInfo>
+                    <VorgangsInfo1><![CDATA[1AP01244-00-23656-3223]]></VorgangsInfo1>
+                    <VorgangsInfo2><![CDATA[]]></VorgangsInfo2>
+                    <VorgangsInfo3><![CDATA[ID1020: M*1234567,*9876543#1234567890]]></VorgangsInfo3>
+                </VorgangsInfo>
+            </Order>
+        </Orders>
+    </Result>
+</Afterbuy>
