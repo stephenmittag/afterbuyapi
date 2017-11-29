@@ -1,9 +1,4 @@
-# Symfony directories
-App/cache/*
-!App/cache/.gitkeep
-App/logs/*
-!App/logs/.gitkeep
-
+.idea
 # Composer
 vendor
 composer.lock
