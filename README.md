@@ -11,37 +11,20 @@ Require the bundle and its dependencies with composer:
 
     $ composer require asgoodasnu/afterbuyapi
     
-Register the bundle:
-
-```php
-// app/AppKernel.php
-public function registerBundles()
-{
-    $bundles = array(
-        new Wk\AfterbuyApiBundle\WkAfterbuyApiBundle(),
-    );
-}
-```
-
-Overwrite the parameters defined in `Wk\AfterbuyApiBundle\App\parameters.yml` with your own Afterbuy credentials in your project's `parameters.yml`:
-
-```yaml
-# parameters.yml
-locale: en
-afterbuy_partner_id: 123
-afterbuy_partner_password: pass
-afterbuy_user_id: user
-afterbuy_user_password: pass
-```
  
 Usage
 ----------------------------------------------------------------
-Interaction with the Afterbuy XML API is done via the service `wk_afterbuy_api.xml.client`.
 
 #### Retrieving a list of sold items from Afterbuy:
 
 ```php
-$client = $container->get('wk_afterbuy_api.xml.client');
+$client = new Client(
+    $config['afterbuy']['userId'],
+    $config['afterbuy']['userPw'],
+    $config['afterbuy']['partnerId'],
+    $config['afterbuy']['partnerPw'],
+    'EN'
+);
 $soldItems = $client->getSoldItems($filters, $orderDirection, $maxSoldItems, $detailLevel);
 ```
 
@@ -68,7 +51,6 @@ $order = new \Wk\AfterbuyApiBundle\Model\XmlApi\UpdateSoldItems\Order();
 $order->setOrderId(1234567890)
       ->setUserDefinedFlag(12345)
       ->setInvoiceMemo("You didn't read the memo? You are fired!");
-$client = $container->get('wk_afterbuy_api.xml.client');
 $client->updateSoldItems(array($orders));
 ```
 
@@ -78,9 +60,6 @@ Dependencies
 ----------------------------------------------------------------
 * `jms/serializer` - Allows you to easily serialize, and deserialize data of any complexity
 * `guzzlehttp/guzzle` - Guzzle is a PHP HTTP client library
-* `symfony/yaml` - Symfony Yaml Component
-* `symfony/monolog` - Symfony MonologBundle
-* `symfony/framework-bundle` - Symfony FrameworkBundle
 
 PHPUnit Tests
 ----------------------------------------------------------------
@@ -90,8 +69,5 @@ You can run the tests using the following command:
 
 Resources
 ----------------------------------------------------------------
-Symfony 2
-> [http://symfony.com](http://symfony.com)
-
 Afterbuy XML Interface Documentation:
 > [http://xmldoku.afterbuy.de/dokued/](http://xmldoku.afterbuy.de/dokued/)
