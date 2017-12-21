@@ -1,4 +1,4 @@
-# WkAfterbuyApiBundle
+# PHP-AfterbuyApi
 
 This fork of the WkAfterbuyApiBundle provides implementations for some endpoints of [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
 
