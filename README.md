@@ -9,7 +9,7 @@ Installation
 
 Require the bundle and its dependencies with composer:
 
-    $ composer require asgoodasnu/afterbuyapi
+    $ composer require stephenmittag/php-afterbuyapi
     
  
 Usage
