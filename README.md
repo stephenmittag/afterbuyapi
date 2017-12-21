@@ -1,8 +1,6 @@
 # WkAfterbuyApiBundle
 
-[![Build Status](https://travis-ci.org/asgoodasnu/afterbuyapi.png?branch=master)](https://travis-ci.org/asgoodasnu/afterbuyapi) [![Total Downloads](https://poser.pugx.org/asgoodasnu/afterbuyapi/d/total.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![Latest Stable Version](https://poser.pugx.org/asgoodasnu/afterbuyapi/v/stable.png)](https://packagist.org/packages/asgoodasnu/afterbuyapi) [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9a1fccba-a214-46bf-bd44-c6288a049a91/mini.png)](https://insight.sensiolabs.com/projects/9a1fccba-a214-46bf-bd44-c6288a049a91)
-
-The WkAfterbuyApiBundle provides a Symfony2 service to interact with the [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
+This fork of the WkAfterbuyApiBundle provides implementations for some endpoints of [Afterbuy XML API](http://xmldoku.afterbuy.de/dokued/) using Guzzle.
 
 Installation
 ----------------------------------------------------------------
