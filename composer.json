@@ -1,7 +1,7 @@
 {
-    "name": "stephenmittag/afterbuyapi",
+    "name": "stephenmittag/php-afterbuyapi",
     "type": "library",
-    "description": "This fork of WkAfterbuyApi provides a full implementation of Afterbuy XML API",
+    "description": "This fork of WkAfterbuyApi provides a some endpoints of Afterbuy XML API",
     "keywords":     ["afterbuy"],
     "homepage": "https://github.com/stephenmittag/afterbuyapi",
     "license": "MIT",
